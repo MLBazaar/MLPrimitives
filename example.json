@@ -12,11 +12,13 @@
     "fit": {
         "method": "fit",
         "args": [
-            "X": {
+            {
+                "name": "X",
                 "description": "each input can be described",
                 "type": "DataFrame"
             },
-            "y": {
+            {
+                "name": "y",
                 "description": "each input can be described",
                 "type": "Series"
             }
@@ -25,7 +27,8 @@
     "produce": {
         "method": "predict",
         "args": [
-            "X": {
+            {
+                "name": "X",
                 "description": "each input can be described",
                 "type": "DataFrame"
             }
@@ -33,25 +36,26 @@
         "output": [
             {
                 "descrtiption": "each output argument can be described",
-                "name": "X",
-                "type": "DataFrame"
+                "name": "y",
+                "type": "Series"
             }
         ]
     },
     "hyperparameters": {
-        "required": {
-            "descrtiption": "these are arguments that need to be provided by the user",
-            "the key is the name": "and the value is a description, which ideally specifies the expected type",
-            "for": "example:",
-            "num_classes": "int - number of classes"
-        },
-        "fixed": {
-            "descrtiption": "these are hyperparameters that cannot be tunned because they have a single value",
-            "but": "that have default values provided by the primitive author, which makes them optional",
-            "the key is the name": "and the value is a description, which ideally specifies the expected type",
-            "for": "example:",
-            "n_jobs": "int - number of threads to use. if -1, use one for each available cpu core."
-        },
+        "required": [
+            {
+                "name": "example",
+                "descrtiption": "these are non tunable hyperparameters that need to be provided by the user",
+                "type": "int"
+            }
+        ],
+        "fixed": [
+            {
+                "name": "another_example",
+                "descrtiption": "these are non tunable hyperparameters that are optional because they have default values",
+                "type": "int"
+            }
+        ],
         "tunable": {
             "a_simple_range_hyperparameter": {
                 "description": "hyperparameter documentation can be put here",
