@@ -42,18 +42,17 @@
         ]
     },
     "hyperparameters": {
-        "required": [
-            {
-                "name": "example",
-                "descrtiption": "these are non tunable hyperparameters that need to be provided by the user",
-                "type": "int"
-            }
-        ],
         "fixed": [
             {
-                "name": "another_example",
-                "descrtiption": "these are non tunable hyperparameters that are optional because they have default values",
+                "name": "a_required_hyperparameter",
+                "descrtiption": "this is a non tunable hyperparameter that needs to be specified by the user, because it does not have a default value",
                 "type": "int"
+            },
+            {
+                "name": "an_optional_hyperparameter",
+                "descrtiption": "this is a non tunable hyperparameter that is optional, because it has a default value",
+                "type": "int",
+                "default": 1
             }
         ],
         "tunable": {
