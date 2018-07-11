@@ -8,7 +8,7 @@
         "subtype": "regression"
     },
     "modalities": ["image", "text", "graph"],
-    "primitive": "full.python.path.to.AClass_or_function",
+    "primitive": "full.python.path.to.AClass",
     "fit": {
         "method": "fit",
         "args": [

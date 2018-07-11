@@ -1,0 +1,86 @@
+{
+    "name": "sklearn.ensemble.RandomForestClassifier",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
+    "description": "Scikit-learn RandomForestClassifier.",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classification"
+    },
+    "modalities": [],
+    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": [
+            {
+                "name": "n_jobs",
+                "type": "int",
+                "default": -1
+            }
+        ],
+        "tunable": {
+            "criterion": {
+                "type": "string",
+                "default": "entropy",
+                "values": ["entropy", "gini"]
+            },
+            "max_features": {
+                "type": "string",
+                "default": null,
+                "range": [null, "auto", "log2"]
+            },
+            "max_depth": {
+                "type": "int",
+                "default": 10,
+                "range": [1, 30]
+            },
+            "min_samples_split": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0001, 0.5]
+            },
+            "min_samples_leaf": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0001, 0.5]
+            },
+            "n_estimators": {
+                "type": "int",
+                "default": 30,
+                "values": [2, 500]
+            },
+            "class_weight": {
+                "type": "string",
+                "default": null,
+                "range": [null, "balanced"]
+            }
+        }
+    }
+}
