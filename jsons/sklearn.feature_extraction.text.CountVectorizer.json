@@ -1,0 +1,106 @@
+{
+    "name": "sklearn.feature_extraction.text.CountVectorizer",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html",
+    "description": "Convert a collection of text documents to a matrix of token counts",
+    "classifiers": {
+        "type": "feature_extraction",
+        "subtype": ""
+    },
+    "modalities": ["text"],
+    "primitive": "sklearn.feature_extraction.text.CountVectorizer",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "FIXME": "This needs to be reviewed",
+        "fixed": [
+            {
+                "name": "input",
+                "type": "str",
+                "default": "content"
+            },
+            {
+                "name": "encoding",
+                "type": "str",
+                "default": "utf-8"
+            },
+            {
+                "name": "decode_error",
+                "type": "str",
+                "default": "strict"
+            },
+            {
+                "name": "lowercase",
+                "type": "bool",
+                "default": true
+            },
+            {
+                "name": "ngram_range",
+                "type": "list",
+                "default": [1, 1]
+            },
+            {
+                "name": "analyzer",
+                "type": "str",
+                "default": "word"
+            },
+            {
+                "name": "binary",
+                "type": "bool",
+                "default": false
+            }
+        ],
+        "tunable": {
+            "max_features": {
+                "type": "int",
+                "default": 1000,
+                "range": [
+                    1000,
+                    40000
+                ]
+            },
+            "max_df": {
+                "type": "float",
+                "default": 0.99,
+                "range": [
+                    0.99,
+                    1.0
+                ]
+            },
+            "min_df": {
+                "type": "float",
+                "default": 0.0,
+                "range": [
+                    0.0,
+                    0.01
+                ]
+            }
+        }
+    }
+}

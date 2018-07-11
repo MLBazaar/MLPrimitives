@@ -1,0 +1,52 @@
+{
+    "name": "sklearn.preprocessing.OneHotEncoder",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html",
+    "description": "Encode categorical integer features using a one-hot aka one-of-K scheme.",
+    "classifiers": {
+        "type": "preprocessing",
+        "subtype": "encoding"
+    },
+    "modalities": [],
+    "primitive": "sklearn.preprocessing.OneHotEncoder",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "FIXME": "this needs to be completed",
+        "fixed": [
+            {
+                "name": "sparse",
+                "type": "bool",
+                "default": false
+            },
+            {
+                "name": "handle_unknown",
+                "type": "str",
+                "default": "ignore"
+            }
+        ],
+        "tunable": {}
+    }
+}
