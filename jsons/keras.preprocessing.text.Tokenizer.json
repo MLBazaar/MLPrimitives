@@ -40,7 +40,7 @@
         "fixed": {
             "filters": {
                 "type": "str",
-                "default": "!\"#$%&()*+,-./:;<=>?@[\]^_`{|}~\n"
+                "default": "!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\n"
             },
             "split": {
                 "type": "str",
@@ -48,7 +48,7 @@
             },
             "oov_token": {
                 "type": "str",
-                "default": null "
+                "default": null
             }
         },
         "tunable": {

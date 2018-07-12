@@ -35,18 +35,16 @@
     },
     "hyperparameters": {
         "FIXME": "this needs to be completed",
-        "fixed": [
-            {
-                "name": "sparse",
+        "fixed": {
+            "sparse": {
                 "type": "bool",
                 "default": false
             },
-            {
-                "name": "handle_unknown",
+            "handle_unknown": {
                 "type": "str",
                 "default": "ignore"
             }
-        ],
+        },
         "tunable": {}
     }
 }

@@ -34,7 +34,7 @@
         ]
     },
     "hyperparameters": {
-        "fixed": [],
+        "fixed": {},
         "tunable": {
             "with_mean": {
                 "type": "bool",

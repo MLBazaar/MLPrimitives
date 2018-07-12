@@ -34,18 +34,16 @@
         ]
     },
     "hyperparameters": {
-        "fixed": [
-            {
-                "name": "default",
+        "fixed": {
+            "default": {
                 "descrtiption": "Default value to return if the trivial value cannot be computed.",
                 "default": 0
             },
-            {
-                "name": "method",
+            "method": {
                 "descrtiption": "Method to use to compute the predicted value. One of 'median', 'mode' or null. If null, the default value is always returned.",
                 "type": "str",
                 "default": null
             }
-        ]
+        }
     }
 }

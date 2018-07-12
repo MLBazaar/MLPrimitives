@@ -38,13 +38,12 @@
         ]
     },
     "hyperparameters": {
-        "fixed": [
-            {
-                "name": "n_jobs",
+        "fixed": {
+            "n_jobs": {
                 "type": "int",
                 "default": -1
             }
-        ],
+        },
         "tunable": {
             "criterion": {
                 "type": "string",

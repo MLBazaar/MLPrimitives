@@ -1,0 +1,89 @@
+{
+    "name": "mlprimitives.lightfm.LightFM",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://lyst.github.io/lightfm/docs/index.html",
+    "description": "LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback.",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "collaborative_filtering"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.lightfm.LightFM",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "epochs": {
+                "type": "int",
+                "default": 1
+            },
+            "num_threads": {
+                "type": "int",
+                "default": 1
+            }
+        },
+        "FIXME": "This needs to be reviewed and extended",
+        "tunable": {
+            "loss": {
+                "type": "string",
+                "default": "warp",
+                "values": [
+                    "warp",
+                    "logistic",
+                    "bpr",
+                    "warp-kos"
+                ]
+            },
+            "learning_schedule": {
+                "type": "string",
+                "default": "adagrad",
+                "values": [
+                    "adagrad",
+                    "adadelta"
+                ]
+            },
+            "no_components": {
+                "type": "int",
+                "default": 5,
+                "range": [
+                    5,
+                    15
+                ]
+            },
+            "k": {
+                "type": "int",
+                "default": 2,
+                "range": [
+                    2,
+                    10
+                ]
+            }
+        }
+    }
+}

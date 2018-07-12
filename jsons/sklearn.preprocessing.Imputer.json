@@ -34,7 +34,7 @@
         ]
     },
     "hyperparameters": {
-        "fixed": [
+        "fixed": {
             "missing_values": {
                 "default": "NaN"
             },
@@ -47,7 +47,7 @@
                 "type": "bool",
                 "default": true
             }
-        ],
+        },
         "tunable": {
             "strategy": {
                 "type": "string",

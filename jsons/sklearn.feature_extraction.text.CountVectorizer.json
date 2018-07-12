@@ -39,43 +39,36 @@
     },
     "hyperparameters": {
         "FIXME": "This needs to be reviewed",
-        "fixed": [
-            {
-                "name": "input",
+        "fixed": {
+            "input": {
                 "type": "str",
                 "default": "content"
             },
-            {
-                "name": "encoding",
+            "encoding": {
                 "type": "str",
                 "default": "utf-8"
             },
-            {
-                "name": "decode_error",
+            "decode_error": {
                 "type": "str",
                 "default": "strict"
             },
-            {
-                "name": "lowercase",
+            "lowercase": {
                 "type": "bool",
                 "default": true
             },
-            {
-                "name": "ngram_range",
+            "ngram_range": {
                 "type": "list",
                 "default": [1, 1]
             },
-            {
-                "name": "analyzer",
+            "analyzer": {
                 "type": "str",
                 "default": "word"
             },
-            {
-                "name": "binary",
+            "binary": {
                 "type": "bool",
                 "default": false
             }
-        ],
+        },
         "tunable": {
             "max_features": {
                 "type": "int",
