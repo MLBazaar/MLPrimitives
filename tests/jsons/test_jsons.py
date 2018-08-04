@@ -4,9 +4,7 @@ import json
 import os
 from unittest.mock import patch
 
-import mlblocks
 from mlblocks.mlblock import MLBlock
-
 
 PRIMITIVES_PATH = os.path.normpath(
     os.path.join(
@@ -28,5 +26,4 @@ def test_jsons():
             primitive = json.load(f)
 
         primitive_name = primitive['name']
-        # primitive_name = primitive.replace('.json', '')
         MLBlock(primitive_name)
