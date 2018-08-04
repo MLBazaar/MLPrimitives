@@ -1,0 +1,54 @@
+mlprimitives package
+====================
+
+Submodules
+----------
+
+mlprimitives.feature\_extraction module
+---------------------------------------
+
+.. automodule:: mlprimitives.feature_extraction
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.keras module
+-------------------------
+
+.. automodule:: mlprimitives.keras
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.lightfm module
+---------------------------
+
+.. automodule:: mlprimitives.lightfm
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.trivial module
+---------------------------
+
+.. automodule:: mlprimitives.trivial
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.utils module
+-------------------------
+
+.. automodule:: mlprimitives.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: mlprimitives
+    :members:
+    :undoc-members:
+    :show-inheritance:

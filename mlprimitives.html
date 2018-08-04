@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mlprimitives package &mdash; MLPrimitives 0.0.1-dev documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="mlprimitives" href="modules.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mlprimitives</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mlprimitives package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mlprimitives-keras-module">mlprimitives.keras module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.lightfm">mlprimitives.lightfm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.utils">mlprimitives.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#fix-bugs">Fix Bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#implement-features">Implement Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#submit-feedback">Submit Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#release-workflow">Release Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">mlprimitives</a> &raquo;</li>
+        
+      <li>mlprimitives package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/mlprimitives.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mlprimitives-package">
+<h1>mlprimitives package<a class="headerlink" href="#mlprimitives-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mlprimitives.feature_extraction">
+<span id="mlprimitives-feature-extraction-module"></span><h2>mlprimitives.feature_extraction module<a class="headerlink" href="#module-mlprimitives.feature_extraction" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.feature_extraction.CategoricalEncoder">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_extraction.</code><code class="descname">CategoricalEncoder</code><span class="sig-paren">(</span><em>max_labels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#CategoricalEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.CategoricalEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mlprimitives.feature_extraction.FeatureExtractor" title="mlprimitives.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.feature_extraction.FeatureExtractor</span></code></a></p>
+<p>Use the OneHotLabelEncoder only on categorical features.</p>
+<p>NOTE: At the moment of this release, sklearn.preprocessing.data.CategoricalEncoder
+has not been released yet, this is why we write our own version of it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ce</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ce</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">categorical_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="go">   b  a=a  a=b  c=1  c=2</span>
+<span class="go">0  1    1    0    1    0</span>
+<span class="go">1  2    1    0    0    1</span>
+<span class="go">2  2    0    1    1    0</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.CategoricalEncoder.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#CategoricalEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.CategoricalEncoder.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_extraction.DatetimeFeaturizer">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_extraction.</code><code class="descname">DatetimeFeaturizer</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#DatetimeFeaturizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.DatetimeFeaturizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mlprimitives.feature_extraction.FeatureExtractor" title="mlprimitives.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.feature_extraction.FeatureExtractor</span></code></a></p>
+<p>Extract features from a datetime.</p>
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.DatetimeFeaturizer.detect_features">
+<code class="descname">detect_features</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#DatetimeFeaturizer.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.DatetimeFeaturizer.detect_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_extraction.FeatureExtractor">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_extraction.</code><code class="descname">FeatureExtractor</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#FeatureExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.FeatureExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Single FeatureExtractor applied to multiple features.</p>
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.FeatureExtractor.detect_features">
+<code class="descname">detect_features</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#FeatureExtractor.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.FeatureExtractor.detect_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.FeatureExtractor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#FeatureExtractor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.FeatureExtractor.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.FeatureExtractor.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#FeatureExtractor.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.FeatureExtractor.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.FeatureExtractor.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#FeatureExtractor.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.FeatureExtractor.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_extraction.OneHotLabelEncoder">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_extraction.</code><code class="descname">OneHotLabelEncoder</code><span class="sig-paren">(</span><em>name=None</em>, <em>max_labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#OneHotLabelEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.OneHotLabelEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Combination of LabelEncoder + OneHotEncoder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OneHotLabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="go">   a=a  a=b</span>
+<span class="go">0    1    0</span>
+<span class="go">1    1    0</span>
+<span class="go">2    0    1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OneHotLabelEncoder</span><span class="p">(</span><span class="n">max_labels</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="go">   a=a</span>
+<span class="go">0    1</span>
+<span class="go">1    1</span>
+<span class="go">2    0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">OneHotLabelEncoder</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;a_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="go">   a_name=a  a_name=b</span>
+<span class="go">0         1         0</span>
+<span class="go">1         1         0</span>
+<span class="go">2         0         1</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.OneHotLabelEncoder.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#OneHotLabelEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.OneHotLabelEncoder.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.OneHotLabelEncoder.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#OneHotLabelEncoder.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.OneHotLabelEncoder.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.OneHotLabelEncoder.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#OneHotLabelEncoder.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.OneHotLabelEncoder.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_extraction.StringVectorizer">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_extraction.</code><code class="descname">StringVectorizer</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#StringVectorizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.StringVectorizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mlprimitives.feature_extraction.FeatureExtractor" title="mlprimitives.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.feature_extraction.FeatureExtractor</span></code></a></p>
+<p>Use the sklearn CountVectorizer only on string features.</p>
+<dl class="method">
+<dt id="mlprimitives.feature_extraction.StringVectorizer.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_extraction.html#StringVectorizer.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_extraction.StringVectorizer.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="mlprimitives-keras-module">
+<h2>mlprimitives.keras module<a class="headerlink" href="#mlprimitives-keras-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mlprimitives.lightfm">
+<span id="mlprimitives-lightfm-module"></span><h2>mlprimitives.lightfm module<a class="headerlink" href="#module-mlprimitives.lightfm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.lightfm.LightFM">
+<em class="property">class </em><code class="descclassname">mlprimitives.lightfm.</code><code class="descname">LightFM</code><span class="sig-paren">(</span><em>epochs=1</em>, <em>num_threads=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.lightfm.LightFM</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.lightfm.LightFM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model.</p>
+<p>For details on how to use feature matrices, see the documentation
+on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>interactions</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em>) – the matrix containing
+user-item interactions. Will be converted to
+numpy.float32 dtype if it is not of that type.</li>
+<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
+<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
+<li><strong>sample_weight</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em><em>, </em><em>optional</em>) – matrix with entries expressing weights of individual
+interactions from the interactions matrix.
+Its row and col arrays must be the same as
+those of the interactions matrix. For memory
+efficiency its possible to use the same arrays
+for both weights and interaction matrices.
+Defaults to weight 1.0 for all interactions.
+Not implemented for the k-OS loss.</li>
+<li><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – number of epochs to run</li>
+<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
+not be higher than the number of physical cores.</li>
+<li><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to print progress messages.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the fitted model</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">LightFM instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.lightfm.LightFM.get_columns">
+<code class="descname">get_columns</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.get_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.get_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.lightfm.LightFM.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the recommendation score for user-item pairs.</p>
+<p>For details on how to use feature matrices, see the documentation
+on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_ids</strong> (<em>integer</em><em> or </em><em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – single user id or an array containing the user ids for the
+user-item pairs for which a prediction is to be computed</li>
+<li><strong>item_ids</strong> (<em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – an array containing the item ids for the user-item pairs for which
+a prediction is to be computed.</li>
+<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
+<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
+<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
+not be higher than the number of physical cores.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Numpy array containing the recommendation scores for pairs defined
+by the inputs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.float32 array of shape [n_pairs,]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.trivial">
+<span id="mlprimitives-trivial-module"></span><h2>mlprimitives.trivial module<a class="headerlink" href="#module-mlprimitives.trivial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.trivial.TrivialPredictor">
+<em class="property">class </em><code class="descclassname">mlprimitives.trivial.</code><code class="descname">TrivialPredictor</code><span class="sig-paren">(</span><em>default=0</em>, <em>method=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/trivial.html#TrivialPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.trivial.TrivialPredictor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/trivial.html#TrivialPredictor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.trivial.TrivialPredictor.get_length">
+<code class="descname">get_length</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/trivial.html#TrivialPredictor.get_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.get_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.trivial.TrivialPredictor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/trivial.html#TrivialPredictor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.utils">
+<span id="mlprimitives-utils-module"></span><h2>mlprimitives.utils module<a class="headerlink" href="#module-mlprimitives.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mlprimitives.utils.import_object">
+<code class="descclassname">mlprimitives.utils.</code><code class="descname">import_object</code><span class="sig-paren">(</span><em>object_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#import_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.import_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import an object from its Fully Qualified Name.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mlprimitives" title="Permalink to this headline">¶</a></h2>
+<p>Top-level package for MLPrimitives.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="mlprimitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1-dev',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
