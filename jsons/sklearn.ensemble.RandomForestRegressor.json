@@ -74,11 +74,6 @@
                 "type": "int",
                 "default": 30,
                 "values": [2, 500]
-            },
-            "class_weight": {
-                "type": "string",
-                "default": null,
-                "range": [null, "balanced"]
             }
         }
     }
