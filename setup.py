@@ -27,6 +27,7 @@ install_requires = [
     'scikit-learn>=0.19.1',
     'scipy>=1.1.0',
     'tensorflow==1.8.0',
+    'xgboost>=0.72.1',
 ]
 
 

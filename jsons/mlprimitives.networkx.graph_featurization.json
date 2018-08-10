@@ -1,0 +1,33 @@
+{
+    "name": "mlprimitives.networkx.graph_featurization",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.networkx.graph_featurization",
+    "classifiers": {
+        "type": "graph_featurization",
+        "subtype": "graph_featurization"
+    },
+    "modalities": ["graph"],
+    "primitive": "mlprimitives.networkx.graph_featurization",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "graphs",
+                "type": "dict"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}

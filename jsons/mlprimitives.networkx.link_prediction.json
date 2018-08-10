@@ -1,0 +1,37 @@
+{
+    "name": "mlprimitives.networkx.link_prediction",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.networkx.link_prediction",
+    "classifiers": {
+        "type": "graph_featurization",
+        "subtype": "link_prediction"
+    },
+    "modalities": ["graph"],
+    "primitive": "mlprimitives.networkx.link_prediction",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "node_columns",
+                "type": "list"
+            },
+            {
+                "name": "graphs",
+                "type": "list"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}

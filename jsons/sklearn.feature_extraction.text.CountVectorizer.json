@@ -14,11 +14,11 @@
         "args": [
             {
                 "name": "X",
-                "type": "DataFrame"
+                "type": "array"
             },
             {
                 "name": "y",
-                "type": "Series"
+                "type": "ndarray"
             }
         ]
     },
@@ -27,13 +27,13 @@
         "args": [
             {
                 "name": "X",
-                "type": "DataFrame"
+                "type": "array"
             }
         ],
         "output": [
             {
                 "name": "y",
-                "type": "Series"
+                "type": "ndarray"
             }
         ]
     },
@@ -74,24 +74,24 @@
                 "type": "int",
                 "default": 1000,
                 "range": [
-                    1000,
+                    10,
                     40000
                 ]
             },
             "max_df": {
                 "type": "float",
-                "default": 0.99,
+                "default": 1.0,
                 "range": [
-                    0.99,
+                    0.0,
                     1.0
                 ]
             },
             "min_df": {
                 "type": "float",
-                "default": 0.0,
+                "default": 1.0,
                 "range": [
                     0.0,
-                    0.01
+                    1.0
                 ]
             }
         }

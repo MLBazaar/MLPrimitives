@@ -1,0 +1,39 @@
+{
+    "name": "mlprimitives.audio.padding.AudioPadder",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.audio.padding.AudioPadder",
+    "classifiers": {
+        "type": "audio_featurization",
+        "subtype": "padding"
+    },
+    "modalities": ["audio"],
+    "primitive": "mlprimitives.audio.padding.AudioPadder",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "produce",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}

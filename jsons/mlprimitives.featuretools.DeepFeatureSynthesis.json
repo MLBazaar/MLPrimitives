@@ -1,0 +1,61 @@
+{
+    "name": "mlprimitives.featuretools.DeepFeatureSynthesis",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.featuretools.DeepFeatureSynthesis",
+    "classifiers": {
+        "type": "feature_extraction",
+        "subtype": "multitable"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.featuretools.DeepFeatureSynthesis",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "produce": {
+        "method": "produce",
+        "args": [
+            {
+                "name": "X",
+                "type": "array"
+            },
+            {
+                "name": "instance_ids",
+                "type": "array"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {
+            "max_depth": {
+                "type": "int",
+                "default": 1,
+                "range": [
+                    1,
+                    3
+                ],
+                "values": null
+            },
+            "features_only": {
+                "type": "bool",
+                "default": true
+            },
+            "remove_low_information": {
+                "type": "bool",
+                "default": true
+            }
+        }
+    }
+}

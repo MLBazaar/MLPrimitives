@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.ensemble.RandomForestClassifier",
+    "name": "xgboost.XGBClassifier",
     "author": "Carles Sala <carles@pythiac.com>",
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
-    "description": "Scikit-learn RandomForestClassifier.",
+    "documentation": "https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier",
+    "description": "Implementation of the scikit-learn API for XGBoost classification.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classification"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "primitive": "xgboost.XGBClassifier",
     "fit": {
         "method": "fit",
         "args": [
@@ -45,40 +45,45 @@
             }
         },
         "tunable": {
-            "criterion": {
-                "type": "string",
-                "default": "entropy",
-                "values": ["entropy", "gini"]
-            },
-            "max_features": {
-                "type": "string",
-                "default": null,
-                "range": [null, "auto", "log2"]
+            "n_estimators": {
+                "type": "int",
+                "default": 10,
+                "range": [
+                    10,
+                    500
+                ]
             },
             "max_depth": {
                 "type": "int",
-                "default": 10,
-                "range": [1, 30]
+                "default": 3,
+                "range": [
+                    3,
+                    10
+                ]
             },
-            "min_samples_split": {
+            "learning_rate": {
                 "type": "float",
-                "default": 0.1,
-                "range": [0.0001, 0.5]
+                "default": 0,
+                "range": [
+                    0,
+                    1
+                ]
             },
-            "min_samples_leaf": {
+            "gamma": {
                 "type": "float",
-                "default": 0.1,
-                "range": [0.0001, 0.5]
+                "default": 0,
+                "range": [
+                    0,
+                    1
+                ]
             },
-            "n_estimators": {
+            "min_child_weight": {
                 "type": "int",
-                "default": 30,
-                "values": [2, 500]
-            },
-            "class_weight": {
-                "type": "string",
-                "default": null,
-                "range": [null, "balanced"]
+                "default": 1,
+                "range": [
+                    1,
+                    10
+                ]
             }
         }
     }

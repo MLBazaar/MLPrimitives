@@ -1,0 +1,38 @@
+{
+    "name": "mlprimitives.community.CommunityBestPartition",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.community.CommunityBestPartition",
+    "classifiers": {
+        "type": "",
+        "subtype": ""
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.community.CommunityBestPartition",
+    "produce": {
+        "method": "produce",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "partition",
+                "type": "dict"
+            },
+            {
+                "name": "graph",
+                "type": "Graph"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}

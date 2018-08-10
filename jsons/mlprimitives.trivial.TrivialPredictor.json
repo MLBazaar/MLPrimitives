@@ -12,7 +12,7 @@
             {
                 "name": "y",
                 "description": "Vector of targets to predict.",
-                "type": "Series"
+                "type": "array"
             }
         ]
     },
@@ -22,14 +22,14 @@
             {
                 "name": "X",
                 "description": "Feature matrix.",
-                "type": "DataFrame"
+                "type": "ndarray"
             }
         ],
         "output": [
             {
                 "descrtiption": "Predicted targets",
                 "name": "y",
-                "type": "Series"
+                "type": "array"
             }
         ]
     },

@@ -14,7 +14,7 @@
         "args": [
             {
                 "name": "X",
-                "type": "ndarray"
+                "type": "sparse"
             }
         ]
     },
@@ -23,7 +23,7 @@
         "args": [
             {
                 "name": "X",
-                "type": "ndarray"
+                "type": "sparse"
             }
         ],
         "output": [

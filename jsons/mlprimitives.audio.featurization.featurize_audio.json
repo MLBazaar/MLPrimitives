@@ -1,0 +1,33 @@
+{
+    "name": "mlprimitives.audio.featurization.featurize_audio",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "mlprimitives.audio.featurization.featurize_audio",
+    "classifiers": {
+        "type": "featurize_audio",
+        "subtype": "featurize_audio"
+    },
+    "modalities": ["audio"],
+    "primitive": "mlprimitives.audio.featurization.featurize_audio",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "sample_frequencies",
+                "type": "list"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}
