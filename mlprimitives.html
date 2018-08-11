@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="next" title="mlprimitives.audio package" href="mlprimitives.audio.html" />
     <link rel="prev" title="mlprimitives" href="modules.html" /> 
 
   
@@ -85,10 +85,20 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">mlprimitives</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mlprimitives package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.audio.html">mlprimitives.audio package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.image.html">mlprimitives.image package</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.community">mlprimitives.community module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.cv2">mlprimitives.cv2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mlprimitives-keras-module">mlprimitives.keras module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.featuretools">mlprimitives.featuretools module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.keras">mlprimitives.keras module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.lightfm">mlprimitives.lightfm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.networkx">mlprimitives.networkx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives">Module contents</a></li>
@@ -186,8 +196,88 @@
             
   <div class="section" id="mlprimitives-package">
 <h1>mlprimitives package<a class="headerlink" href="#mlprimitives-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mlprimitives.audio.html">mlprimitives.audio package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio.featurization">mlprimitives.audio.featurization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio.padding">mlprimitives.audio.padding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mlprimitives.image.html">mlprimitives.image package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#module-mlprimitives.image.hog">mlprimitives.image.hog module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#module-mlprimitives.image">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mlprimitives.community">
+<span id="mlprimitives-community-module"></span><h2>mlprimitives.community module<a class="headerlink" href="#module-mlprimitives.community" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.community.CommunityBestPartition">
+<em class="property">class </em><code class="descclassname">mlprimitives.community.</code><code class="descname">CommunityBestPartition</code><a class="reference internal" href="_modules/mlprimitives/community.html#CommunityBestPartition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.community.CommunityBestPartition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.community.CommunityBestPartition.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em>, <em>partition=None</em>, <em>graph=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/community.html#CommunityBestPartition.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.community.CommunityBestPartition.produce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.cv2">
+<span id="mlprimitives-cv2-module"></span><h2>mlprimitives.cv2 module<a class="headerlink" href="#module-mlprimitives.cv2" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mlprimitives.cv2.GaussianBlur">
+<code class="descclassname">mlprimitives.cv2.</code><code class="descname">GaussianBlur</code><span class="sig-paren">(</span><em>src</em>, <em>ksize</em>, <em>sigmaX</em><span class="optional">[</span>, <em>dst</em><span class="optional">[</span>, <em>sigmaY</em><span class="optional">[</span>, <em>borderType</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; dst<a class="headerlink" href="#mlprimitives.cv2.GaussianBlur" title="Permalink to this definition">¶</a></dt>
+<dd><p>.   &#64;brief Blurs an image using a Gaussian filter.
+.
+.   The function convolves the source image with the specified Gaussian kernel. In-place filtering is
+.   supported.
+.
+.   &#64;param src input image; the image can have any number of channels, which are processed
+.   independently, but the depth should be CV_8U, CV_16U, CV_16S, CV_32F or CV_64F.
+.   &#64;param dst output image of the same size and type as src.
+.   &#64;param ksize Gaussian kernel size. ksize.width and ksize.height can differ but they both must be
+.   positive and odd. Or, they can be zero’s and then they are computed from sigma.
+.   &#64;param sigmaX Gaussian kernel standard deviation in X direction.
+.   &#64;param sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be
+.   equal to sigmaX, if both sigmas are zeros, they are computed from ksize.width and ksize.height,
+.   respectively (see #getGaussianKernel for details); to fully control the result regardless of
+.   possible future modifications of all this semantics, it is recommended to specify all of ksize,
+.   sigmaX, and sigmaY.
+.   &#64;param borderType pixel extrapolation method, see #BorderTypes
+.
+.   &#64;sa  sepFilter2D, filter2D, blur, boxFilter, bilateralFilter, medianBlur</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.cv2.gaussian_blur">
+<code class="descclassname">mlprimitives.cv2.</code><code class="descname">gaussian_blur</code><span class="sig-paren">(</span><em>X</em>, <em>kernel_size</em>, <em>stddev</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/cv2.html#gaussian_blur"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.cv2.gaussian_blur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply Gaussian blur to the given data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> – data to blur</li>
+<li><strong>kernel_size</strong> – Gaussian kernel size</li>
+<li><strong>stddev</strong> – Gaussian kernel standard deviation (in both X and Y directions)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="module-mlprimitives.feature_extraction">
 <span id="mlprimitives-feature-extraction-module"></span><h2>mlprimitives.feature_extraction module<a class="headerlink" href="#module-mlprimitives.feature_extraction" title="Permalink to this headline">¶</a></h2>
@@ -314,8 +404,162 @@ has not been released yet, this is why we write our own version of it.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="mlprimitives-keras-module">
-<h2>mlprimitives.keras module<a class="headerlink" href="#mlprimitives-keras-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-mlprimitives.feature_selection">
+<span id="mlprimitives-feature-selection-module"></span><h2>mlprimitives.feature_selection module<a class="headerlink" href="#module-mlprimitives.feature_selection" title="Permalink to this headline">¶</a></h2>
+<p>Feature selection based on the scikit-learn
+ExtraTreesClassifier and SelectFromModel solution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">ExtraTreesClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="k">import</span> <span class="n">SelectFromModel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(150, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="go">array([ 0.04...,  0.05...,  0.4...,  0.4...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">SelectFromModel</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">prefit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_new</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(150, 2)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_selection.</code><code class="descname">EstimatorFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#EstimatorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Feature Selector based on sklearn.feature_selection.SelectFromModel.</p>
+<dl class="attribute">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.ESTIMATOR">
+<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>class</em> – Estimator class to use. To be defined in subclasses.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.selector">
+<code class="descname">selector</code><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.selector" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SelectFromModel</em> – sklearn.ensemble.SelectFromModel that will
+perform the actual feature selection.</p>
+</dd></dl>
+
+<p class="rubric">Example</p>
+<p>This example below shows simple usage case using an ExtraTreesClassifier
+as the estimator, and shows the output when passing both a pandas.DataFrame
+and a numpy.ndarray.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="go">    ... {&#39;a&#39;: 1, &#39;b&#39;: 1, &#39;c&#39;: 1},</span>
+<span class="go">    ... {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 1},</span>
+<span class="go">    ... {&#39;a&#39;: 2, &#39;b&#39;: 1, &#39;c&#39;: 2},</span>
+<span class="go">    ... {&#39;a&#39;: 2, &#39;b&#39;: 2, &#39;c&#39;: 2}</span>
+<span class="go">    ... ])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">c</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mlblocks.primitives.custom.preprocessors.feature_selection</span>         <span class="o">...</span>         <span class="kn">import</span> <span class="nn">EstimatorFeatureSelector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">ExtraTreesClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">efs</span> <span class="o">=</span> <span class="n">EstimatorFeatureSelector</span><span class="p">(</span><span class="n">ExtraTreesClassifier</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">efs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">efs</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">   a</span>
+<span class="go">   0  1</span>
+<span class="go">   1  1</span>
+<span class="go">   2  2</span>
+<span class="go">   3  2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">efs</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="go">array([[1],</span>
+<span class="go">       [1],</span>
+<span class="go">       [2],</span>
+<span class="go">       [2]])</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt>
+<code class="descname">ESTIMATOR</code><em class="property"> = None</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#EstimatorFeatureSelector.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#EstimatorFeatureSelector.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#EstimatorFeatureSelector.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_selection.</code><code class="descname">ExtraTreesClassifierFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#ExtraTreesClassifierFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mlprimitives.feature_selection.EstimatorFeatureSelector" title="mlprimitives.feature_selection.EstimatorFeatureSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.feature_selection.EstimatorFeatureSelector</span></code></a></p>
+<p>EstimatorFeatureSelector based on ExtraTreesClassifier.</p>
+<dl class="attribute">
+<dt id="mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector.ESTIMATOR">
+<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ExtraTreesClassifier</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector">
+<em class="property">class </em><code class="descclassname">mlprimitives.feature_selection.</code><code class="descname">ExtraTreesRegressorFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/feature_selection.html#ExtraTreesRegressorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mlprimitives.feature_selection.EstimatorFeatureSelector" title="mlprimitives.feature_selection.EstimatorFeatureSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.feature_selection.EstimatorFeatureSelector</span></code></a></p>
+<p>EstimatorFeatureSelector based on ExtraTreesRegressor.</p>
+<dl class="attribute">
+<dt id="mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector.ESTIMATOR">
+<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ExtraTreesRegressor</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.featuretools">
+<span id="mlprimitives-featuretools-module"></span><h2>mlprimitives.featuretools module<a class="headerlink" href="#module-mlprimitives.featuretools" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.featuretools.DeepFeatureSynthesis">
+<em class="property">class </em><code class="descclassname">mlprimitives.featuretools.</code><code class="descname">DeepFeatureSynthesis</code><span class="sig-paren">(</span><em>max_depth</em>, <em>features_only=True</em>, <em>remove_low_information=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.featuretools.DeepFeatureSynthesis.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.featuretools.DeepFeatureSynthesis.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em>, <em>instance_ids=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis.produce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.keras">
+<span id="mlprimitives-keras-module"></span><h2>mlprimitives.keras module<a class="headerlink" href="#module-mlprimitives.keras" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.keras.Sequential">
+<em class="property">class </em><code class="descclassname">mlprimitives.keras.</code><code class="descname">Sequential</code><span class="sig-paren">(</span><em>layers</em>, <em>loss</em>, <em>optimizer</em>, <em>metrics=None</em>, <em>epochs=10</em>, <em>**hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Wrapper around Sequential Keras models with a simpler interface.</p>
+<dl class="method">
+<dt id="mlprimitives.keras.Sequential.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.keras.Sequential.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-mlprimitives.lightfm">
 <span id="mlprimitives-lightfm-module"></span><h2>mlprimitives.lightfm module<a class="headerlink" href="#module-mlprimitives.lightfm" title="Permalink to this headline">¶</a></h2>
@@ -405,6 +649,19 @@ by the inputs.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-mlprimitives.networkx">
+<span id="mlprimitives-networkx-module"></span><h2>mlprimitives.networkx module<a class="headerlink" href="#module-mlprimitives.networkx" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mlprimitives.networkx.graph_featurization">
+<code class="descclassname">mlprimitives.networkx.</code><code class="descname">graph_featurization</code><span class="sig-paren">(</span><em>X</em>, <em>graphs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/networkx.html#graph_featurization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.networkx.graph_featurization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.networkx.link_prediction">
+<code class="descclassname">mlprimitives.networkx.</code><code class="descname">link_prediction</code><span class="sig-paren">(</span><em>X</em>, <em>node_columns</em>, <em>graphs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/networkx.html#link_prediction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.networkx.link_prediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="module-mlprimitives.trivial">
 <span id="mlprimitives-trivial-module"></span><h2>mlprimitives.trivial module<a class="headerlink" href="#module-mlprimitives.trivial" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -452,7 +709,7 @@ by the inputs.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.audio.html" class="btn btn-neutral float-right" title="mlprimitives.audio package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral" title="mlprimitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

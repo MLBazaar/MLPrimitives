@@ -1,13 +1,53 @@
 mlprimitives package
 ====================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    mlprimitives.audio
+    mlprimitives.image
+
 Submodules
 ----------
+
+mlprimitives.community module
+-----------------------------
+
+.. automodule:: mlprimitives.community
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.cv2 module
+-----------------------
+
+.. automodule:: mlprimitives.cv2
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 mlprimitives.feature\_extraction module
 ---------------------------------------
 
 .. automodule:: mlprimitives.feature_extraction
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.feature\_selection module
+--------------------------------------
+
+.. automodule:: mlprimitives.feature_selection
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.featuretools module
+--------------------------------
+
+.. automodule:: mlprimitives.featuretools
     :members:
     :undoc-members:
     :show-inheritance:
@@ -24,6 +64,14 @@ mlprimitives.lightfm module
 ---------------------------
 
 .. automodule:: mlprimitives.lightfm
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mlprimitives.networkx module
+----------------------------
+
+.. automodule:: mlprimitives.networkx
     :members:
     :undoc-members:
     :show-inheritance:

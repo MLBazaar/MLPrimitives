@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; MLPrimitives 0.0.1-dev documentation</title>
+  <title>mlprimitives.image package &mdash; MLPrimitives 0.0.1-dev documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Credits" href="authors.html" /> 
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="mlprimitives.audio package" href="mlprimitives.audio.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -75,18 +76,18 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#stable-release">Stable release</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#from-sources">From sources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">mlprimitives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.html">mlprimitives package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mlprimitives</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html">mlprimitives package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="mlprimitives.audio.html">mlprimitives.audio package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mlprimitives.image.html">mlprimitives.image package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">mlprimitives.image package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a></li>
@@ -170,14 +171,18 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+          <li><a href="modules.html">mlprimitives</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
+        
+      <li>mlprimitives.image package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/history.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/mlprimitives.image.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -191,7 +196,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="mlprimitives-image-package">
+<h1>mlprimitives.image package<a class="headerlink" href="#mlprimitives-image-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mlprimitives.image.hog">
+<span id="mlprimitives-image-hog-module"></span><h2>mlprimitives.image.hog module<a class="headerlink" href="#module-mlprimitives.image.hog" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.image.hog.HOG">
+<em class="property">class </em><code class="descclassname">mlprimitives.image.hog.</code><code class="descname">HOG</code><span class="sig-paren">(</span><em>orientations</em>, <em>pixels_per_cell</em>, <em>cells_per_block</em>, <em>image_size_x=None</em>, <em>image_size_y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/image/hog.html#HOG"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.image.hog.HOG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.image.hog.HOG.make_hog_features">
+<code class="descname">make_hog_features</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/image/hog.html#HOG.make_hog_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.image.hog.HOG.make_hog_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the transform function of the HOG primitive.</p>
+<p>NOTE: Get a “ValueError: Negative sizes” with some settings
+of the hyperparameters.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mlprimitives.image">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mlprimitives.image" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
 
            </div>
            
@@ -200,8 +231,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="authors.html" class="btn btn-neutral" title="Credits" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="mlprimitives.audio.html" class="btn btn-neutral" title="mlprimitives.audio package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

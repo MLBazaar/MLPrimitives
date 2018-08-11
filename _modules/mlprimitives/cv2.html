@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.trivial &mdash; MLPrimitives 0.0.1-dev documentation</title>
+  <title>mlprimitives.cv2 &mdash; MLPrimitives 0.0.1-dev documentation</title>
   
 
   
@@ -171,7 +171,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>mlprimitives.trivial</li>
+      <li>mlprimitives.cv2</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -186,49 +186,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for mlprimitives.trivial</h1><div class="highlight"><pre>
+  <h1>Source code for mlprimitives.cv2</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">types</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">cv2</span> <span class="k">import</span> <span class="n">GaussianBlur</span>
 
-<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
+<div class="viewcode-block" id="gaussian_blur"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.cv2.gaussian_blur">[docs]</a><span class="k">def</span> <span class="nf">gaussian_blur</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stddev</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply Gaussian blur to the given data.</span>
 
-<div class="viewcode-block" id="TrivialPredictor"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.trivial.TrivialPredictor">[docs]</a><span class="k">class</span> <span class="nc">TrivialPredictor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="sd">    Args:</span>
+<span class="sd">        X: data to blur</span>
+<span class="sd">        kernel_size: Gaussian kernel size</span>
+<span class="sd">        stddev: Gaussian kernel standard deviation (in both X and Y directions)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">gaussian_blur</span> <span class="o">=</span> <span class="n">GaussianBlur</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">],</span> <span class="n">size</span><span class="p">,</span> <span class="n">sigmaX</span><span class="o">=</span><span class="n">stddev</span><span class="p">,</span> <span class="n">sigmaY</span><span class="o">=</span><span class="n">stddev</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">gaussian_blur</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">prediction</span> <span class="o">=</span> <span class="n">default</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">method</span><span class="p">)</span> <span class="k">if</span> <span class="n">method</span> <span class="k">else</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">_median</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-
-<div class="viewcode-block" id="TrivialPredictor.fit"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.trivial.TrivialPredictor.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">prediction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Could not compute y.</span><span class="si">%s</span><span class="s1">(). Using default.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="TrivialPredictor.get_length"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.trivial.TrivialPredictor.get_length">[docs]</a>    <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">GeneratorType</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">X</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="TrivialPredictor.predict"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.trivial.TrivialPredictor.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="n">length</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_length</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span></div></div>
+    <span class="k">return</span> <span class="n">output</span></div>
 </pre></div>
 
            </div>
