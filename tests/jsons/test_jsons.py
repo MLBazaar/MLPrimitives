@@ -4,7 +4,7 @@ import json
 import os
 from unittest.mock import patch
 
-from mlblocks.mlblock import MLBlock
+from mlblocks import MLBlock
 
 PRIMITIVES_PATH = os.path.normpath(
     os.path.join(
@@ -45,5 +45,6 @@ def test_jsons():
                     init_hyperparameters[name] = HYPERPARAMETER_DEFAULTS.get(type_)
 
             MLBlock(primitive_name, **init_hyperparameters)
+
         except Exception:
             raise ValueError("Invalid JSON primitive: {}".format(primitive_filename))
