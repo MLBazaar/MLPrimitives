@@ -19,7 +19,6 @@ install_requires = [
     'Keras>=2.1.6',
     'featuretools>=0.1.17',
     'lightfm>=1.15',
-    'mlblocks>=0.2.0.dev0',
     'networkx>=2.0',
     'numpy>=1.14.0',
     'opencv-python>=3.4.0.12',
@@ -33,6 +32,7 @@ install_requires = [
 
 
 tests_require = [
+    # 'mlblocks>=0.2.0.dev0',
     'pytest>=3.4.2',
 ]
 
@@ -89,9 +89,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     data_files = list(data_files.items()),
-    dependency_links=[
-        'https://github.com/HDI-Project/MLBlocks/tarball/new_api#egg=mlblocks-0.2.0.dev0'
-    ],
     description="MLBlocks Primitives",
     extras_require=extras_require,
     install_requires=install_requires,

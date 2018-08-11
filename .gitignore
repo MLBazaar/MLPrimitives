@@ -64,6 +64,9 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/mlprimitives.rst
+docs/mlprimitives.*.rst
+docs/modules.rst
 
 # PyBuilder
 target/
