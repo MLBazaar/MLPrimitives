@@ -6,7 +6,7 @@ import tempfile
 import keras
 import numpy as np
 
-from mlblocks import import_object
+from mlprimitives.utils import import_object
 
 LOGGER = logging.getLogger(__name__)
 
