@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.keras.Sequential.LSTMTextClassifier",
+    "name": "keras.Sequential.SingleLayerCNNImageRegressor",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.keras.Sequential.LSTMTextClassifier",
+    "description": "keras.Sequential.SingleLayerCNNImageRegressor",
     "classifiers": {
         "type": "estimator",
         "subtype": "regression"
     },
-    "modalities": ["text"],
-    "primitive": "mlprimitives.keras.Sequential",
+    "modalities": ["image"],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
         "args": [
@@ -38,9 +38,17 @@
     },
     "hyperparameters": {
         "fixed": {
-            "pad_length": {
+            "input_shape": {
+                "type": "list",
+                "default": [
+                    224,
+                    224,
+                    3
+                ]
+            },
+            "conv_filters": {
                 "type": "int",
-                "default": 1500
+                "default": 32
             },
             "conv_activation": {
                 "type": "str",
@@ -48,39 +56,36 @@
             },
             "dense_units": {
                 "type": "int",
-                "description": "Number of classes"
-            },
-            "embedding_input_dim": {
-                "type": "int",
-                "description": "vocabulary size + 1: number of known words in input."
+                "default": 1
             },
             "dense_activation": {
                 "type": "str",
-                "default": "softmax"
+                "default": "linear"
             },
             "optimizer": {
                 "type": "str",
-                "default": "keras.optimizers.Adadelta"
+                "default": "keras.optimizers.Adam"
             },
             "loss": {
                 "type": "str",
-                "default": "keras.losses.categorical_crossentropy"
-            },
-            "metrics": {
-                "type": "list",
-                "default": [
-                    "accuracy"
-                ]
+                "default": "keras.losses.mean_squared_error"
             },
             "layers": {
                 "type": "list",
                 "default": [
                     {
-                        "class": "keras.layers.Embedding",
+                        "class": "keras.layers.Conv2D",
                         "parameters": {
-                            "input_dim": "embedding_input_dim",
-                            "output_dim": "embedding_output_dim",
-                            "input_length": "pad_length"
+                            "filters": "conv_filters",
+                            "kernel_size": "conv_kernel_size",
+                            "activation": "conv_activation",
+                            "input_shape": "input_shape"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.MaxPooling2D",
+                        "parameters": {
+                            "pool_size": "max_pooling_pool_size"
                         }
                     },
                     {
@@ -90,24 +95,8 @@
                         }
                     },
                     {
-                        "class": "keras.layers.Conv1D",
-                        "parameters": {
-                            "filters": "embedding_output_dim",
-                            "kernel_size": "conv_kernel_size",
-                            "activation": "conv_activation"
-                        }
-                    },
-                    {
-                        "class": "keras.layers.MaxPooling1D",
-                        "parameters": {
-                            "pool_size": "max_pooling_pool_size"
-                        }
-                    },
-                    {
-                        "class": "keras.layers.LSTM",
-                        "parameters": {
-                            "units": "embedding_output_dim"
-                        }
+                        "class": "keras.layers.Flatten",
+                        "parameters": {}
                     },
                     {
                         "class": "keras.layers.Dense",
@@ -120,22 +109,6 @@
             }
         },
         "tunable": {
-            "embedding_output_dim": {
-                "type": "int",
-                "default": 100,
-                "range": [
-                    100,
-                    500
-                ]
-            },
-            "dropout_rate": {
-                "type": "float",
-                "default": 0.1,
-                "range": [
-                    0.1,
-                    0.75
-                ]
-            },
             "conv_kernel_size": {
                 "type": "int",
                 "default": 3,
@@ -150,6 +123,14 @@
                 "range": [
                     2,
                     10
+                ]
+            },
+            "dropout_rate": {
+                "type": "float",
+                "default": 0.0,
+                "range": [
+                    0.0,
+                    0.75
                 ]
             }
         }

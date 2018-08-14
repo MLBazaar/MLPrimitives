@@ -1,22 +1,28 @@
 {
-    "name": "mlprimitives.audio.featurization.featurize_audio",
+    "name": "mlprimitives.audio_padding.AudioPadder",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.audio.featurization.featurize_audio",
+    "description": "mlprimitives.audio_padding.AudioPadder",
     "classifiers": {
-        "type": "featurize_audio",
-        "subtype": "featurize_audio"
+        "type": "audio_featurization",
+        "subtype": "padding"
     },
     "modalities": ["audio"],
-    "primitive": "mlprimitives.audio.featurization.featurize_audio",
-    "produce": {
+    "primitive": "mlprimitives.audio_padding.AudioPadder",
+    "fit": {
+        "method": "fit",
         "args": [
             {
                 "name": "X",
                 "type": "ndarray"
-            },
+            }
+        ]
+    },
+    "produce": {
+        "method": "produce",
+        "args": [
             {
-                "name": "sample_frequencies",
-                "type": "list"
+                "name": "X",
+                "type": "ndarray"
             }
         ],
         "output": [

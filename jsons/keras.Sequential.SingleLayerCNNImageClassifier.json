@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.keras.Sequential.SingleLayerCNNImageClassifier",
+    "name": "keras.Sequential.SingleLayerCNNImageClassifier",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.keras.Sequential.SingleLayerCNNImageClassifier",
+    "description": "keras.Sequential.SingleLayerCNNImageClassifier",
     "classifiers": {
         "type": "estimator",
         "subtype": "classification"
     },
     "modalities": ["image"],
-    "primitive": "mlprimitives.keras.Sequential",
+    "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
         "args": [

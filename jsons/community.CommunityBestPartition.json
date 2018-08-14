@@ -1,13 +1,14 @@
 {
-    "name": "mlprimitives.community.CommunityBestPartition",
+    "name": "community.CommunityBestPartition",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.community.CommunityBestPartition",
+    "documentation": "https://perso.crans.org/aynaud/communities/api.html#community.best_partition",
+    "description": "Compute the partition of the graph nodes which maximises the modularity (or try..) using the Louvain heuristices.",
     "classifiers": {
-        "type": "",
-        "subtype": ""
+        "type": "graph_featurization",
+        "subtype": "community_detection"
     },
-    "modalities": [],
-    "primitive": "mlprimitives.community.CommunityBestPartition",
+    "modalities": ["graph"],
+    "primitive": "mlprimitives.adapters.community.CommunityBestPartition",
     "produce": {
         "method": "produce",
         "args": [

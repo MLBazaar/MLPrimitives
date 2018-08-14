@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.keras.Sequential.SingleLayerCNNImageRegressor",
+    "name": "keras.Sequential.LSTMTextClassifier",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.keras.Sequential.SingleLayerCNNImageRegressor",
+    "description": "keras.Sequential.LSTMTextClassifier",
     "classifiers": {
         "type": "estimator",
         "subtype": "regression"
     },
-    "modalities": ["image"],
-    "primitive": "mlprimitives.keras.Sequential",
+    "modalities": ["text"],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
         "args": [
@@ -38,17 +38,9 @@
     },
     "hyperparameters": {
         "fixed": {
-            "input_shape": {
-                "type": "list",
-                "default": [
-                    224,
-                    224,
-                    3
-                ]
-            },
-            "conv_filters": {
+            "pad_length": {
                 "type": "int",
-                "default": 32
+                "default": 1500
             },
             "conv_activation": {
                 "type": "str",
@@ -56,36 +48,39 @@
             },
             "dense_units": {
                 "type": "int",
-                "default": 1
+                "description": "Number of classes"
+            },
+            "embedding_input_dim": {
+                "type": "int",
+                "description": "vocabulary size + 1: number of known words in input."
             },
             "dense_activation": {
                 "type": "str",
-                "default": "linear"
+                "default": "softmax"
             },
             "optimizer": {
                 "type": "str",
-                "default": "keras.optimizers.Adam"
+                "default": "keras.optimizers.Adadelta"
             },
             "loss": {
                 "type": "str",
-                "default": "keras.losses.mean_squared_error"
+                "default": "keras.losses.categorical_crossentropy"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "accuracy"
+                ]
             },
             "layers": {
                 "type": "list",
                 "default": [
                     {
-                        "class": "keras.layers.Conv2D",
+                        "class": "keras.layers.Embedding",
                         "parameters": {
-                            "filters": "conv_filters",
-                            "kernel_size": "conv_kernel_size",
-                            "activation": "conv_activation",
-                            "input_shape": "input_shape"
-                        }
-                    },
-                    {
-                        "class": "keras.layers.MaxPooling2D",
-                        "parameters": {
-                            "pool_size": "max_pooling_pool_size"
+                            "input_dim": "embedding_input_dim",
+                            "output_dim": "embedding_output_dim",
+                            "input_length": "pad_length"
                         }
                     },
                     {
@@ -95,8 +90,24 @@
                         }
                     },
                     {
-                        "class": "keras.layers.Flatten",
-                        "parameters": {}
+                        "class": "keras.layers.Conv1D",
+                        "parameters": {
+                            "filters": "embedding_output_dim",
+                            "kernel_size": "conv_kernel_size",
+                            "activation": "conv_activation"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.MaxPooling1D",
+                        "parameters": {
+                            "pool_size": "max_pooling_pool_size"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.LSTM",
+                        "parameters": {
+                            "units": "embedding_output_dim"
+                        }
                     },
                     {
                         "class": "keras.layers.Dense",
@@ -109,6 +120,22 @@
             }
         },
         "tunable": {
+            "embedding_output_dim": {
+                "type": "int",
+                "default": 100,
+                "range": [
+                    100,
+                    500
+                ]
+            },
+            "dropout_rate": {
+                "type": "float",
+                "default": 0.1,
+                "range": [
+                    0.1,
+                    0.75
+                ]
+            },
             "conv_kernel_size": {
                 "type": "int",
                 "default": 3,
@@ -123,14 +150,6 @@
                 "range": [
                     2,
                     10
-                ]
-            },
-            "dropout_rate": {
-                "type": "float",
-                "default": 0.0,
-                "range": [
-                    0.0,
-                    0.75
                 ]
             }
         }

@@ -6,7 +6,7 @@ from featuretools import variable_types as vtypes
 from featuretools.selection import remove_low_information_features
 
 
-class DeepFeatureSynthesis(object):
+class DFS(object):
 
     def __init__(self, max_depth, features_only=True, remove_low_information=True):
         self.max_depth = max_depth

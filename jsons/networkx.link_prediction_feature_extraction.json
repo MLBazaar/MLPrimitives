@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.networkx.link_prediction",
+    "name": "networkx.link_prediction_feature_extraction",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.networkx.link_prediction",
+    "description": "Graph feature extraction using functions from networkx.algorithms.link_prediction module",
     "classifiers": {
         "type": "graph_featurization",
         "subtype": "link_prediction"
     },
     "modalities": ["graph"],
-    "primitive": "mlprimitives.networkx.link_prediction",
+    "primitive": "mlprimitives.utils.graph_pairs_feature_extraction",
     "produce": {
         "args": [
             {
@@ -31,7 +31,17 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "functions": {
+                "type": "list",
+                "default": [
+                    "netowrkx.jaccard_coefficient",
+                    "netowrkx.resource_allocation_index",
+                    "netowrkx.adamic_adar_index",
+                    "netowrkx.preferential_attachment"
+                ]
+            }
+        },
         "tunable": {}
     }
 }

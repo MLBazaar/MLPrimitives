@@ -44,7 +44,15 @@ def test_jsons():
                     type_ = hyperparameter.get('type')
                     init_hyperparameters[name] = HYPERPARAMETER_DEFAULTS.get(type_)
 
-            MLBlock(primitive_name, **init_hyperparameters)
+            mlblock = MLBlock(primitive_name, **init_hyperparameters)
+
+            if mlblock._class:
+                fit = primitive.get('fit')
+                if fit:
+                    assert hasattr(mlblock.instance, fit['method'])
+
+                produce = primitive['produce']
+                assert hasattr(mlblock.instance, produce['method'])
 
         except Exception:
             raise ValueError("Invalid JSON primitive: {}".format(primitive_filename))

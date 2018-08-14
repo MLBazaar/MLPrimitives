@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.networkx.graph_featurization",
+    "name": "networkx.graph_feature_extraction",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.networkx.graph_featurization",
+    "description": "Apply multiple networkx functions to extract features form a list of graphs.",
     "classifiers": {
         "type": "graph_featurization",
         "subtype": "graph_featurization"
     },
     "modalities": ["graph"],
-    "primitive": "mlprimitives.networkx.graph_featurization",
+    "primitive": "mlprimitives.utils.graph_feature_extraction",
     "produce": {
         "args": [
             {
@@ -27,7 +27,17 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "functions": {
+                "type": "list",
+                "default": [
+                    "networkx.degree_centrality",
+                    "networkx.closeness_centrality",
+                    "networkx.betweenness_centrality",
+                    "networkx.clustering"
+                ]
+            }
+        },
         "tunable": {}
     }
 }

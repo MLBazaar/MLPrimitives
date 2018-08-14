@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.lightfm.LightFM",
+    "name": "lightfm.LightFM",
     "author": "Carles Sala <carles@pythiac.com>",
     "documentation": "http://lyst.github.io/lightfm/docs/index.html",
     "description": "LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback.",
@@ -8,7 +8,7 @@
         "subtype": "collaborative_filtering"
     },
     "modalities": [],
-    "primitive": "mlprimitives.lightfm.LightFM",
+    "primitive": "mlprimitives.adapters.lightfm.LightFM",
     "fit": {
         "method": "fit",
         "args": [

@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.keras.Sequential.LSTMTextRegressor",
+    "name": "keras.Sequential.LSTMTextRegressor",
     "author": "Carles Sala <carles@pythiac.com>",
-    "description": "mlprimitives.keras.Sequential.LSTMTextRegressor",
+    "description": "keras.Sequential.LSTMTextRegressor",
     "classifiers": {
         "type": "estimator",
         "subtype": "regression"
     },
     "modalities": ["text"],
-    "primitive": "mlprimitives.keras.Sequential",
+    "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
         "args": [
