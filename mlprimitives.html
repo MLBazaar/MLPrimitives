@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="mlprimitives.audio package" href="mlprimitives.audio.html" />
+    <link rel="next" title="mlprimitives.adapters package" href="mlprimitives.adapters.html" />
     <link rel="prev" title="mlprimitives" href="modules.html" /> 
 
   
@@ -86,19 +86,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">mlprimitives</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">mlprimitives package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="mlprimitives.audio.html">mlprimitives.audio package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mlprimitives.image.html">mlprimitives.image package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.community">mlprimitives.community module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.cv2">mlprimitives.cv2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.audio_featurization">mlprimitives.audio_featurization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.featuretools">mlprimitives.featuretools module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.keras">mlprimitives.keras module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.lightfm">mlprimitives.lightfm module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.networkx">mlprimitives.networkx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives">Module contents</a></li>
@@ -200,17 +195,15 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.audio.html">mlprimitives.audio package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio.featurization">mlprimitives.audio.featurization module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio.padding">mlprimitives.audio.padding module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.audio.html#module-mlprimitives.audio">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.image.html">mlprimitives.image package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#module-mlprimitives.image.hog">mlprimitives.image.hog module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.image.html#module-mlprimitives.image">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.community">mlprimitives.adapters.community module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.cv2">mlprimitives.adapters.cv2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.featuretools">mlprimitives.adapters.featuretools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.keras">mlprimitives.adapters.keras module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.lightfm">mlprimitives.adapters.lightfm module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters.skimage">mlprimitives.adapters.skimage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#module-mlprimitives.adapters">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -219,63 +212,87 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-mlprimitives.community">
-<span id="mlprimitives-community-module"></span><h2>mlprimitives.community module<a class="headerlink" href="#module-mlprimitives.community" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="mlprimitives.community.CommunityBestPartition">
-<em class="property">class </em><code class="descclassname">mlprimitives.community.</code><code class="descname">CommunityBestPartition</code><a class="reference internal" href="_modules/mlprimitives/community.html#CommunityBestPartition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.community.CommunityBestPartition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="mlprimitives.community.CommunityBestPartition.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em>, <em>partition=None</em>, <em>graph=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/community.html#CommunityBestPartition.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.community.CommunityBestPartition.produce" title="Permalink to this definition">¶</a></dt>
+<div class="section" id="module-mlprimitives.audio_featurization">
+<span id="mlprimitives-audio-featurization-module"></span><h2>mlprimitives.audio_featurization module<a class="headerlink" href="#module-mlprimitives.audio_featurization" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.FFT">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">FFT</code><span class="sig-paren">(</span><em>data</em>, <em>nFFT</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#FFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.FFT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.energy">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">energy</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes signal energy of data</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.energy_entropy">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">energy_entropy</code><span class="sig-paren">(</span><em>data</em>, <em>fs</em>, <em>numOfShortBlocks=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#energy_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.energy_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes entropy of energy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.featurize_audio">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">featurize_audio</code><span class="sig-paren">(</span><em>X</em>, <em>sample_frequencies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#featurize_audio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.featurize_audio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.featurize_segments">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">featurize_segments</code><span class="sig-paren">(</span><em>segments</em>, <em>sample_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#featurize_segments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.featurize_segments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.rand_attr1">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">rand_attr1</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#rand_attr1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.rand_attr1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.spectral_centroid_and_spread">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_centroid_and_spread</code><span class="sig-paren">(</span><em>data</em>, <em>fs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#spectral_centroid_and_spread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_centroid_and_spread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes spectral centroid of frame (given abs(FFT))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.spectral_entropy">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_entropy</code><span class="sig-paren">(</span><em>data</em>, <em>numOfShortBlocks=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#spectral_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the spectral entropy</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.spectral_flux">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_flux</code><span class="sig-paren">(</span><em>d0</em>, <em>d1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#spectral_flux"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_flux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the spectral flux feature of the current frame</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.spectral_rolloff">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_rolloff</code><span class="sig-paren">(</span><em>data</em>, <em>coeff</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#spectral_rolloff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_rolloff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes spectral roll-off</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.audio_featurization.zcr">
+<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">zcr</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_featurization.html#zcr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.zcr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes zero crossing rate of segment</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-mlprimitives.cv2">
-<span id="mlprimitives-cv2-module"></span><h2>mlprimitives.cv2 module<a class="headerlink" href="#module-mlprimitives.cv2" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="mlprimitives.cv2.GaussianBlur">
-<code class="descclassname">mlprimitives.cv2.</code><code class="descname">GaussianBlur</code><span class="sig-paren">(</span><em>src</em>, <em>ksize</em>, <em>sigmaX</em><span class="optional">[</span>, <em>dst</em><span class="optional">[</span>, <em>sigmaY</em><span class="optional">[</span>, <em>borderType</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; dst<a class="headerlink" href="#mlprimitives.cv2.GaussianBlur" title="Permalink to this definition">¶</a></dt>
-<dd><p>.   &#64;brief Blurs an image using a Gaussian filter.
-.
-.   The function convolves the source image with the specified Gaussian kernel. In-place filtering is
-.   supported.
-.
-.   &#64;param src input image; the image can have any number of channels, which are processed
-.   independently, but the depth should be CV_8U, CV_16U, CV_16S, CV_32F or CV_64F.
-.   &#64;param dst output image of the same size and type as src.
-.   &#64;param ksize Gaussian kernel size. ksize.width and ksize.height can differ but they both must be
-.   positive and odd. Or, they can be zero’s and then they are computed from sigma.
-.   &#64;param sigmaX Gaussian kernel standard deviation in X direction.
-.   &#64;param sigmaY Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be
-.   equal to sigmaX, if both sigmas are zeros, they are computed from ksize.width and ksize.height,
-.   respectively (see #getGaussianKernel for details); to fully control the result regardless of
-.   possible future modifications of all this semantics, it is recommended to specify all of ksize,
-.   sigmaX, and sigmaY.
-.   &#64;param borderType pixel extrapolation method, see #BorderTypes
-.
-.   &#64;sa  sepFilter2D, filter2D, blur, boxFilter, bilateralFilter, medianBlur</p>
-</dd></dl>
+<div class="section" id="module-mlprimitives.audio_padding">
+<span id="mlprimitives-audio-padding-module"></span><h2>mlprimitives.audio_padding module<a class="headerlink" href="#module-mlprimitives.audio_padding" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.audio_padding.AudioPadder">
+<em class="property">class </em><code class="descclassname">mlprimitives.audio_padding.</code><code class="descname">AudioPadder</code><a class="reference internal" href="_modules/mlprimitives/audio_padding.html#AudioPadder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_padding.AudioPadder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.audio_padding.AudioPadder.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_padding.html#AudioPadder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_padding.AudioPadder.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="function">
-<dt id="mlprimitives.cv2.gaussian_blur">
-<code class="descclassname">mlprimitives.cv2.</code><code class="descname">gaussian_blur</code><span class="sig-paren">(</span><em>X</em>, <em>kernel_size</em>, <em>stddev</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/cv2.html#gaussian_blur"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.cv2.gaussian_blur" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply Gaussian blur to the given data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>X</strong> – data to blur</li>
-<li><strong>kernel_size</strong> – Gaussian kernel size</li>
-<li><strong>stddev</strong> – Gaussian kernel standard deviation (in both X and Y directions)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="method">
+<dt id="mlprimitives.audio_padding.AudioPadder.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/audio_padding.html#AudioPadder.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_padding.AudioPadder.produce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -522,146 +539,6 @@ and a numpy.ndarray.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-mlprimitives.featuretools">
-<span id="mlprimitives-featuretools-module"></span><h2>mlprimitives.featuretools module<a class="headerlink" href="#module-mlprimitives.featuretools" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="mlprimitives.featuretools.DeepFeatureSynthesis">
-<em class="property">class </em><code class="descclassname">mlprimitives.featuretools.</code><code class="descname">DeepFeatureSynthesis</code><span class="sig-paren">(</span><em>max_depth</em>, <em>features_only=True</em>, <em>remove_low_information=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="mlprimitives.featuretools.DeepFeatureSynthesis.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.featuretools.DeepFeatureSynthesis.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em>, <em>instance_ids=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/featuretools.html#DeepFeatureSynthesis.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.featuretools.DeepFeatureSynthesis.produce" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-mlprimitives.keras">
-<span id="mlprimitives-keras-module"></span><h2>mlprimitives.keras module<a class="headerlink" href="#module-mlprimitives.keras" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="mlprimitives.keras.Sequential">
-<em class="property">class </em><code class="descclassname">mlprimitives.keras.</code><code class="descname">Sequential</code><span class="sig-paren">(</span><em>layers</em>, <em>loss</em>, <em>optimizer</em>, <em>metrics=None</em>, <em>epochs=10</em>, <em>**hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A Wrapper around Sequential Keras models with a simpler interface.</p>
-<dl class="method">
-<dt id="mlprimitives.keras.Sequential.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.keras.Sequential.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/keras.html#Sequential.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.keras.Sequential.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-mlprimitives.lightfm">
-<span id="mlprimitives-lightfm-module"></span><h2>mlprimitives.lightfm module<a class="headerlink" href="#module-mlprimitives.lightfm" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="mlprimitives.lightfm.LightFM">
-<em class="property">class </em><code class="descclassname">mlprimitives.lightfm.</code><code class="descname">LightFM</code><span class="sig-paren">(</span><em>epochs=1</em>, <em>num_threads=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.lightfm.LightFM</span></code></p>
-<dl class="method">
-<dt id="mlprimitives.lightfm.LightFM.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the model.</p>
-<p>For details on how to use feature matrices, see the documentation
-on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>interactions</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em>) – the matrix containing
-user-item interactions. Will be converted to
-numpy.float32 dtype if it is not of that type.</li>
-<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
-<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
-<li><strong>sample_weight</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em><em>, </em><em>optional</em>) – matrix with entries expressing weights of individual
-interactions from the interactions matrix.
-Its row and col arrays must be the same as
-those of the interactions matrix. For memory
-efficiency its possible to use the same arrays
-for both weights and interaction matrices.
-Defaults to weight 1.0 for all interactions.
-Not implemented for the k-OS loss.</li>
-<li><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – number of epochs to run</li>
-<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
-not be higher than the number of physical cores.</li>
-<li><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to print progress messages.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the fitted model</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">LightFM instance</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.lightfm.LightFM.get_columns">
-<code class="descname">get_columns</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.get_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.get_columns" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.lightfm.LightFM.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/lightfm.html#LightFM.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.lightfm.LightFM.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute the recommendation score for user-item pairs.</p>
-<p>For details on how to use feature matrices, see the documentation
-on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>user_ids</strong> (<em>integer</em><em> or </em><em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – single user id or an array containing the user ids for the
-user-item pairs for which a prediction is to be computed</li>
-<li><strong>item_ids</strong> (<em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – an array containing the item ids for the user-item pairs for which
-a prediction is to be computed.</li>
-<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
-<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
-<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
-not be higher than the number of physical cores.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Numpy array containing the recommendation scores for pairs defined
-by the inputs.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.float32 array of shape [n_pairs,]</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-mlprimitives.networkx">
-<span id="mlprimitives-networkx-module"></span><h2>mlprimitives.networkx module<a class="headerlink" href="#module-mlprimitives.networkx" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="mlprimitives.networkx.graph_featurization">
-<code class="descclassname">mlprimitives.networkx.</code><code class="descname">graph_featurization</code><span class="sig-paren">(</span><em>X</em>, <em>graphs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/networkx.html#graph_featurization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.networkx.graph_featurization" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.networkx.link_prediction">
-<code class="descclassname">mlprimitives.networkx.</code><code class="descname">link_prediction</code><span class="sig-paren">(</span><em>X</em>, <em>node_columns</em>, <em>graphs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/networkx.html#link_prediction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.networkx.link_prediction" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
 <div class="section" id="module-mlprimitives.trivial">
 <span id="mlprimitives-trivial-module"></span><h2>mlprimitives.trivial module<a class="headerlink" href="#module-mlprimitives.trivial" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -689,6 +566,36 @@ by the inputs.</p>
 <div class="section" id="module-mlprimitives.utils">
 <span id="mlprimitives-utils-module"></span><h2>mlprimitives.utils module<a class="headerlink" href="#module-mlprimitives.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
+<dt id="mlprimitives.utils.graph_feature_extraction">
+<code class="descclassname">mlprimitives.utils.</code><code class="descname">graph_feature_extraction</code><span class="sig-paren">(</span><em>X</em>, <em>functions</em>, <em>graphs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#graph_feature_extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.graph_feature_extraction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.utils.graph_pairs_feature_extraction">
+<code class="descclassname">mlprimitives.utils.</code><code class="descname">graph_pairs_feature_extraction</code><span class="sig-paren">(</span><em>X</em>, <em>functions</em>, <em>node_columns</em>, <em>graphs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#graph_pairs_feature_extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.graph_pairs_feature_extraction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.utils.image_transform">
+<code class="descclassname">mlprimitives.utils.</code><code class="descname">image_transform</code><span class="sig-paren">(</span><em>X</em>, <em>function</em>, <em>reshape_before=False</em>, <em>reshape_after=False</em>, <em>image_shape=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#image_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.image_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a function image by image.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>reshape_before</strong> – whether 1d array needs to be reshaped to a 2d image</li>
+<li><strong>reshape_after</strong> – whether the returned values need to be reshaped back to a 1d array</li>
+<li><strong>width</strong> – image width used to rebuild the 2d images. Required if the image is not square.</li>
+<li><strong>heigth</strong> – image heigth used to rebuild the 2d images. Required if the image is not square.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="mlprimitives.utils.import_object">
 <code class="descclassname">mlprimitives.utils.</code><code class="descname">import_object</code><span class="sig-paren">(</span><em>object_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#import_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.import_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import an object from its Fully Qualified Name.</p>
@@ -709,7 +616,7 @@ by the inputs.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.audio.html" class="btn btn-neutral float-right" title="mlprimitives.audio package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.adapters.html" class="btn btn-neutral float-right" title="mlprimitives.adapters package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral" title="mlprimitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

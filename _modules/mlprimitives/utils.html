@@ -84,19 +84,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">mlprimitives</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../mlprimitives.html">mlprimitives package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../mlprimitives.audio.html">mlprimitives.audio package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../mlprimitives.image.html">mlprimitives.image package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mlprimitives.adapters.html">mlprimitives.adapters package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.community">mlprimitives.community module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.cv2">mlprimitives.cv2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.audio_featurization">mlprimitives.audio_featurization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.featuretools">mlprimitives.featuretools module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.keras">mlprimitives.keras module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.lightfm">mlprimitives.lightfm module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.networkx">mlprimitives.networkx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives">Module contents</a></li>
@@ -190,12 +185,113 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="import_object"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.utils.import_object">[docs]</a><span class="k">def</span> <span class="nf">import_object</span><span class="p">(</span><span class="n">object_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Import an object from its Fully Qualified Name.&quot;&quot;&quot;</span>
     <span class="n">package</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">object_name</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">package</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="image_transform"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.utils.image_transform">[docs]</a><span class="k">def</span> <span class="nf">image_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">reshape_before</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reshape_after</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">image_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply a function image by image.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        reshape_before: whether 1d array needs to be reshaped to a 2d image</span>
+<span class="sd">        reshape_after: whether the returned values need to be reshaped back to a 1d array</span>
+<span class="sd">        width: image width used to rebuild the 2d images. Required if the image is not square.</span>
+<span class="sd">        heigth: image heigth used to rebuild the 2d images. Required if the image is not square.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">import_object</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;function must be a str or a callable&quot;</span><span class="p">)</span>
+
+    <span class="n">image_length</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">reshape_before</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">image_shape</span><span class="p">:</span>
+        <span class="n">side_length</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">image_length</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">side_length</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span>
+            <span class="n">side_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">side_length</span><span class="p">)</span>
+            <span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">side_length</span><span class="p">,</span> <span class="n">side_length</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image sizes must be given for non-square images&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">apply_function</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">reshape_before</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">image_shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span>
+            <span class="n">image</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">reshape_after</span><span class="p">:</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">image_length</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">features</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">apply_function</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">X</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="graph_pairs_feature_extraction"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.utils.graph_pairs_feature_extraction">[docs]</a><span class="k">def</span> <span class="nf">graph_pairs_feature_extraction</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">node_columns</span><span class="p">,</span> <span class="n">graphs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">import_object</span><span class="p">(</span><span class="n">function</span><span class="p">)</span> <span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">]</span>
+
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">node_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">graph</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graphs</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">pairs</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">))[:,</span> <span class="mi">2</span><span class="p">]</span>
+
+            <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;ZeroDivisionError captured running </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span></div>
+
+
+<div class="viewcode-block" id="graph_feature_extraction"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.utils.graph_feature_extraction">[docs]</a><span class="k">def</span> <span class="nf">graph_feature_extraction</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">graphs</span><span class="p">):</span>
+    <span class="n">functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">import_object</span><span class="p">(</span><span class="n">function</span><span class="p">)</span> <span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">node_column</span><span class="p">,</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">graphs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">index_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">node_column</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">features</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">index_type</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+        <span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">node_column</span><span class="p">)</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="n">node_column</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+        <span class="n">graph_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">graph_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">graph_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">index_type</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">graph_data</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="n">node_column</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span></div>
 </pre></div>
 
            </div>

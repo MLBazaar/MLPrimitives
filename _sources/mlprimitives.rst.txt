@@ -6,24 +6,23 @@ Subpackages
 
 .. toctree::
 
-    mlprimitives.audio
-    mlprimitives.image
+    mlprimitives.adapters
 
 Submodules
 ----------
 
-mlprimitives.community module
------------------------------
+mlprimitives.audio\_featurization module
+----------------------------------------
 
-.. automodule:: mlprimitives.community
+.. automodule:: mlprimitives.audio_featurization
     :members:
     :undoc-members:
     :show-inheritance:
 
-mlprimitives.cv2 module
------------------------
+mlprimitives.audio\_padding module
+----------------------------------
 
-.. automodule:: mlprimitives.cv2
+.. automodule:: mlprimitives.audio_padding
     :members:
     :undoc-members:
     :show-inheritance:
@@ -40,38 +39,6 @@ mlprimitives.feature\_selection module
 --------------------------------------
 
 .. automodule:: mlprimitives.feature_selection
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mlprimitives.featuretools module
---------------------------------
-
-.. automodule:: mlprimitives.featuretools
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mlprimitives.keras module
--------------------------
-
-.. automodule:: mlprimitives.keras
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mlprimitives.lightfm module
----------------------------
-
-.. automodule:: mlprimitives.lightfm
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mlprimitives.networkx module
-----------------------------
-
-.. automodule:: mlprimitives.networkx
     :members:
     :undoc-members:
     :show-inheritance:

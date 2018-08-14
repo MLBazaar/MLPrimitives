@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.audio.padding &mdash; MLPrimitives 0.0.1-dev documentation</title>
+  <title>mlprimitives.adapters.lightfm &mdash; MLPrimitives 0.0.1-dev documentation</title>
   
 
   
@@ -84,19 +84,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">mlprimitives</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../mlprimitives.html">mlprimitives package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../mlprimitives.audio.html">mlprimitives.audio package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../mlprimitives.image.html">mlprimitives.image package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../mlprimitives.adapters.html">mlprimitives.adapters package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.community">mlprimitives.community module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.cv2">mlprimitives.cv2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.audio_featurization">mlprimitives.audio_featurization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.featuretools">mlprimitives.featuretools module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.keras">mlprimitives.keras module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.lightfm">mlprimitives.lightfm module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.networkx">mlprimitives.networkx module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives">Module contents</a></li>
@@ -171,7 +166,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>mlprimitives.audio.padding</li>
+      <li>mlprimitives.adapters.lightfm</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -186,38 +181,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for mlprimitives.audio.padding</h1><div class="highlight"><pre>
+  <h1>Source code for mlprimitives.adapters.lightfm</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">lightfm</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
 
 
-<div class="viewcode-block" id="AudioPadder"><a class="viewcode-back" href="../../../mlprimitives.audio.html#mlprimitives.audio.padding.AudioPadder">[docs]</a><span class="k">class</span> <span class="nc">AudioPadder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="viewcode-block" id="LightFM"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.lightfm.LightFM">[docs]</a><span class="k">class</span> <span class="nc">LightFM</span><span class="p">(</span><span class="n">lightfm</span><span class="o">.</span><span class="n">LightFM</span><span class="p">):</span>
 
-<div class="viewcode-block" id="AudioPadder.fit"><a class="viewcode-back" href="../../../mlprimitives.audio.html#mlprimitives.audio.padding.AudioPadder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="c1"># Just obtain padding.</span>
-        <span class="k">for</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_threads</span> <span class="o">=</span> <span class="n">num_threads</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LightFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
-                <span class="n">features</span><span class="p">,</span>
-                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
-                <span class="s1">&#39;constant&#39;</span><span class="p">,</span>
-                <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span>
-            <span class="p">)</span>
-
+<div class="viewcode-block" id="LightFM.get_columns"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.lightfm.LightFM.get_columns">[docs]</a>    <span class="k">def</span> <span class="nf">get_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s1">&#39;iloc&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">features</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="AudioPadder.produce"><a class="viewcode-back" href="../../../mlprimitives.audio.html#mlprimitives.audio.padding.AudioPadder.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">padded_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>
+<div class="viewcode-block" id="LightFM.fit"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.lightfm.LightFM.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">user_ids</span><span class="p">,</span> <span class="n">item_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="n">user_ids</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">)))</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LightFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_threads</span><span class="p">)</span></div>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">padded_features</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="LightFM.predict"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.lightfm.LightFM.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">user_ids</span><span class="p">,</span> <span class="n">item_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">predict</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LightFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span>
+        <span class="k">return</span> <span class="n">predict</span><span class="p">(</span><span class="n">user_ids</span><span class="p">,</span> <span class="n">item_ids</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_threads</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
