@@ -4,28 +4,12 @@
     "documentation": "http://link.to/the/primitive/docs",
     "description": "A human readable description.",
     "classifiers": {
-        "type": "estimator",
-        "subtype": "regression"
+        "type": "primitive_type",
+        "subtype": "primitive_subtype"
     },
-    "modalities": ["image", "text", "graph"],
-    "primitive": "full.python.path.to.AClass",
-    "fit": {
-        "method": "fit",
-        "args": [
-            {
-                "name": "X",
-                "description": "each input can be described",
-                "type": "DataFrame"
-            },
-            {
-                "name": "y",
-                "description": "each input can be described",
-                "type": "Series"
-            }
-        ]
-    },
+    "modalities": ["some", "modalities", "such", "as", "image", "or", "graph"],
+    "primitive": "full.python.path.to.a_function",
     "produce": {
-        "method": "predict",
         "args": [
             {
                 "name": "X",
