@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import importlib
+import logging
 import math
 
 import numpy as np
+import pandas as pd
+
+LOGGER = logging.getLogger(__name__)
 
 
 def import_object(object_name):
@@ -35,8 +39,6 @@ def image_transform(X, function, reshape_before=False, reshape_after=False,
         side_length = math.sqrt(image_length)
         if side_length.is_integer():
             side_length = int(side_length)
-            width = side_length
-            heigth = side_length
             image_shape = (side_length, side_length)
 
         else:
@@ -60,7 +62,7 @@ def image_transform(X, function, reshape_before=False, reshape_after=False,
 
 
 def graph_pairs_feature_extraction(X, functions, node_columns, graphs=None):
-    functions = [import_objecT(function) for function in functions]
+    functions = [import_object(function) for function in functions]
 
     pairs = X[node_columns].values
 
@@ -82,7 +84,7 @@ def graph_pairs_feature_extraction(X, functions, node_columns, graphs=None):
 
 
 def graph_feature_extraction(X, functions, graphs):
-    functions = [import_objecT(function) for function in functions]
+    functions = [import_object(function) for function in functions]
 
     for node_column, graph in graphs.items():
         index_type = type(X[node_column].values[0])
