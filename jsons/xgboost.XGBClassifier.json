@@ -27,6 +27,7 @@
         "args": [
             {
                 "name": "X",
+                "keyword": "data",
                 "type": "ndarray"
             }
         ],
