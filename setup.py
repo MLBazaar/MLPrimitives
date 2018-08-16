@@ -32,7 +32,7 @@ install_requires = [
 
 
 tests_require = [
-    # 'mlblocks>=0.2.0.dev0',
+    'mlblocks>=0.2.0.dev0',
     'pytest>=3.4.2',
 ]
 

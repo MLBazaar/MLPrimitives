@@ -5,9 +5,8 @@ import os
 from unittest.mock import patch
 
 import pandas as pd
-from sklearn import datasets
-
 from mlblocks import MLPipeline
+from sklearn import datasets
 
 PRIMITIVES_PATH = os.path.normpath(
     os.path.join(
