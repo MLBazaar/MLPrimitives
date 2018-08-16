@@ -7,7 +7,7 @@ from unittest.mock import patch
 import pandas as pd
 from sklearn import datasets
 
-from mlblocks import MLBlock, MLPipeline
+from mlblocks import MLPipeline
 
 PRIMITIVES_PATH = os.path.normpath(
     os.path.join(
@@ -40,7 +40,6 @@ DATASETS = {
 def test_jsons():
     """Validate MLBlocks primitive jsons"""
 
-    types = set()
     primitives = (f for f in os.listdir(PRIMITIVES_PATH) if f.endswith('.json'))
     for primitive_filename in primitives:
         try:
@@ -51,11 +50,9 @@ def test_jsons():
             primitive_name = primitive['name']
             fixed_hyperparameters = primitive.get('hyperparameters', dict()).get('fixed', dict())
 
-            has_required = False
             init_hyperparameters = dict()
             for name, hyperparameter in fixed_hyperparameters.items():
                 if 'default' not in hyperparameter:
-                    has_required = True
                     type_ = hyperparameter.get('type')
                     init_hyperparameters[name] = HYPERPARAMETER_DEFAULTS.get(type_)
 
