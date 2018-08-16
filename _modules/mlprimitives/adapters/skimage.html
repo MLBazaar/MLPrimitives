@@ -184,7 +184,7 @@
   <h1>Source code for mlprimitives.adapters.skimage</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">skimage</span>
+<span class="kn">import</span> <span class="nn">skimage.feature</span>
 
 <span class="kn">from</span> <span class="nn">mlprimitives.utils</span> <span class="k">import</span> <span class="n">image_transform</span>
 
@@ -193,6 +193,7 @@
         <span class="n">cells_per_block_x</span><span class="p">,</span> <span class="n">cells_per_block_y</span><span class="p">,</span> <span class="n">block_norm</span><span class="p">,</span> <span class="n">visualize</span><span class="p">,</span> <span class="n">multichannel</span><span class="p">):</span>
 
     <span class="k">return</span> <span class="n">image_transform</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span>
         <span class="n">skimage</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">hog</span><span class="p">,</span>
         <span class="n">reshape_before</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">image_shape</span><span class="o">=</span><span class="n">image_shape</span><span class="p">,</span>
