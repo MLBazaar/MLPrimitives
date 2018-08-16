@@ -67,12 +67,12 @@ extras_require = {
 }
 
 
-json_primitives = glob.glob('jsons/**/*.json', recursive=True)
+json_primitives = glob.glob('mlblocks_primitives/**/*.json', recursive=True)
 data_files = defaultdict(list)
 for primitive_path in json_primitives:
     parts = primitive_path.split('/')
     dir_path = parts[1:-1]
-    install_path = os.path.join('mlprimitives', *dir_path)
+    install_path = os.path.join('mlblocks_primitives', *dir_path)
     data_files[install_path].append(primitive_path)
 
 
@@ -96,7 +96,7 @@ setup(
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/markdown',
     include_package_data=True,
-    keywords='mlblocks mlprimitives',
+    keywords='mlblocks mlprimitives mlblocks_primitives',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
     python_requires='>=3.5',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import skimage
+import skimage.feature
 
 from mlprimitives.utils import image_transform
 
@@ -9,6 +9,7 @@ def hog(X, image_shape, orientations, pixels_per_cell_x, pixels_per_cell_y,
         cells_per_block_x, cells_per_block_y, block_norm, visualize, multichannel):
 
     return image_transform(
+        X,
         skimage.feature.hog,
         reshape_before=True,
         image_shape=image_shape,

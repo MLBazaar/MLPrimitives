@@ -1,0 +1,47 @@
+{
+    "name": "networkx.link_prediction_feature_extraction",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "description": "Graph feature extraction using functions from networkx.algorithms.link_prediction module",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["graph"],
+    "primitive": "mlprimitives.utils.graph_pairs_feature_extraction",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "node_columns",
+                "type": "list"
+            },
+            {
+                "name": "graphs",
+                "type": "list"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "functions": {
+                "type": "list",
+                "default": [
+                    "netowrkx.jaccard_coefficient",
+                    "netowrkx.resource_allocation_index",
+                    "netowrkx.adamic_adar_index",
+                    "netowrkx.preferential_attachment"
+                ]
+            }
+        },
+        "tunable": {}
+    }
+}

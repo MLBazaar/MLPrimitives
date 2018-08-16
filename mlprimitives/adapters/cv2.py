@@ -14,6 +14,7 @@ def GaussianBlur(X, ksize_width, ksize_height, sigma_x, sigma_y):
         stddev: Gaussian kernel standard deviation (in both X and Y directions)
     """
     return image_transform(
+        X,
         cv2.GaussianBlur,
         reshape_after=True,
         ksize=(ksize_width, ksize_height),
