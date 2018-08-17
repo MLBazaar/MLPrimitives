@@ -32,7 +32,7 @@ install_requires = [
 
 
 tests_require = [
-    'mlblocks>=0.2.0.dev0',
+    'mlblocks>=0.2.0',
     'pytest>=3.4.2',
 ]
 
@@ -104,6 +104,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.0.1-dev',
+    version='0.1.0-dev',
     zip_safe=False,
 )
