@@ -39,7 +39,7 @@
                 "default": true
             },
             "features": {
-                "type": "list or string",
+                "type": "str or list",
                 "default": "auto"
             }
         },

@@ -34,6 +34,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "features": {
+                "type": "str or list",
+                "default": "auto"
+            },
             "input": {
                 "type": "str",
                 "default": "content"
