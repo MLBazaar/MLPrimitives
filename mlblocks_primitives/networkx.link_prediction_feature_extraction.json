@@ -7,7 +7,7 @@
         "subtype": "feature_extractor"
     },
     "modalities": ["graph"],
-    "primitive": "mlprimitives.utils.graph_pairs_feature_extraction",
+    "primitive": "mlprimitives.adapters.networkx.graph_pairs_feature_extraction",
     "produce": {
         "args": [
             {
@@ -19,8 +19,8 @@
                 "type": "list"
             },
             {
-                "name": "graphs",
-                "type": "list"
+                "name": "graph",
+                "type": "Graph"
             }
         ],
         "output": [
@@ -35,10 +35,10 @@
             "functions": {
                 "type": "list",
                 "default": [
-                    "netowrkx.jaccard_coefficient",
-                    "netowrkx.resource_allocation_index",
-                    "netowrkx.adamic_adar_index",
-                    "netowrkx.preferential_attachment"
+                    "networkx.jaccard_coefficient",
+                    "networkx.resource_allocation_index",
+                    "networkx.adamic_adar_index",
+                    "networkx.preferential_attachment"
                 ]
             }
         },

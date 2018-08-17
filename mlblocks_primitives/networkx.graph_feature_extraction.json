@@ -7,7 +7,7 @@
         "subtype": "feature_extractor"
     },
     "modalities": ["graph"],
-    "primitive": "mlprimitives.utils.graph_feature_extraction",
+    "primitive": "mlprimitives.adapters.networkx.graph_feature_extraction",
     "produce": {
         "args": [
             {
