@@ -17,11 +17,13 @@
                 "type": "DataFrame"
             },
             {
-                "name": "partition",
+                "name": "best_partition",
+                "default": null,
                 "type": "dict"
             },
             {
                 "name": "graph",
+                "default": null,
                 "type": "Graph"
             }
         ],
