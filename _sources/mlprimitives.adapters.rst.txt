@@ -44,6 +44,14 @@ mlprimitives.adapters.lightfm module
     :undoc-members:
     :show-inheritance:
 
+mlprimitives.adapters.networkx module
+-------------------------------------
+
+.. automodule:: mlprimitives.adapters.networkx
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 mlprimitives.adapters.skimage module
 ------------------------------------
 

@@ -191,9 +191,9 @@
 
 <div class="viewcode-block" id="CommunityBestPartition"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.community.CommunityBestPartition">[docs]</a><span class="k">class</span> <span class="nc">CommunityBestPartition</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-<div class="viewcode-block" id="CommunityBestPartition.produce"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.community.CommunityBestPartition.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">partition</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">partition</span> <span class="o">=</span> <span class="n">partition</span> <span class="ow">or</span> <span class="n">co</span><span class="o">.</span><span class="n">best_partition</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">partition</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<div class="viewcode-block" id="CommunityBestPartition.produce"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.community.CommunityBestPartition.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">best_partition</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">best_partition</span> <span class="o">=</span> <span class="n">best_partition</span> <span class="ow">or</span> <span class="n">co</span><span class="o">.</span><span class="n">best_partition</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">best_partition</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
         <span class="n">missing_community_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
@@ -201,11 +201,11 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-            <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">:</span>
-                <span class="n">community</span> <span class="o">=</span> <span class="n">partition</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">best_partition</span><span class="p">:</span>
+                <span class="n">community</span> <span class="o">=</span> <span class="n">best_partition</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
 
-            <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">:</span>
-                <span class="n">community</span> <span class="o">=</span> <span class="n">partition</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="ow">in</span> <span class="n">best_partition</span><span class="p">:</span>
+                <span class="n">community</span> <span class="o">=</span> <span class="n">best_partition</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)]</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">community</span> <span class="o">=</span> <span class="n">missing_community_index</span>
