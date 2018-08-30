@@ -107,7 +107,7 @@ This is a community driven project and all contributions are more than welcome, 
 feeback to the most complex coding contributions.
 
 If you have anything that you want to ask, request or contribute, please check the
-[contributing section in the documentation](contributing-docs), and do not hesitate
+[contributing section in the documentation][contributing-docs], and do not hesitate
 to open [GitHub Issue](https://github.com/HDI-Project/MLPrimitives/issues), even if it is
 to ask a simple question.
 
