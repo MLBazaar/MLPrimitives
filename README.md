@@ -100,3 +100,15 @@ to them.
 
 This type of primitives consist of Python code from the `mlprimitives` module, as well as the
 corresponding JSON annotations, which can also be found in the `mlblocks_primitives` folder.
+
+## Constributing
+
+This is a community driven project and all contributions are more than welcome, from simple
+feeback to the most complex coding contributions.
+
+If you have anything that you want to ask, request or contribute, please check the
+[contributing section in the documentation](contributing-docs), and do not hesitate
+to open [GitHub Issue](https://github.com/HDI-Project/MLPrimitives/issues), even if it is
+to ask a simple question.
+
+[contributing-docs]: https://hdi-project.github.io/MLPrimitives/contributing.html
