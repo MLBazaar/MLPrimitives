@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing &mdash; MLPrimitives 0.1.0 documentation</title>
+  <title>Contributing &mdash; MLPrimitives 0.1.1-dev documentation</title>
   
 
   
@@ -103,11 +103,19 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#types-of-contributions">Types of Contributions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#report-bugs">Report Bugs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fix-bugs">Fix Bugs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#implement-features">Implement Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#write-documentation">Write Documentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#submit-feedback">Submit Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementing-changes">Implementing Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#integrate-new-primitives">Integrate new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implement-new-primitives">Implement new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-documentation">Write Documentation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started!</a></li>
@@ -194,42 +202,87 @@ helps, and credit will always be given.</p>
 <p>You can contribute in many ways:</p>
 <div class="section" id="types-of-contributions">
 <h2>Types of Contributions<a class="headerlink" href="#types-of-contributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reporting-issues">
+<h3>Reporting Issues<a class="headerlink" href="#reporting-issues" title="Permalink to this headline">¶</a></h3>
+<p>If there is something that you would like to see changed in the project, or that you just want
+to ask, please create an issue at <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/issues">https://github.com/HDI-Project/MLPrimitives/issues</a></p>
+<p>If you do so, please:</p>
+<ul class="simple">
+<li>Explain in detail what you are requesting.</li>
+<li>Keep the scope as narrow as possible, to make it easier to implement or respond.</li>
+<li>Remember that this is a volunteer-driven project and that the maintainers will attend every
+request as soon as possible, but that in some cases this might take some time.</li>
+</ul>
+<p>Below there are some examples of the types of issues that you might want to create.</p>
+<div class="section" id="request-new-primitives">
+<h4>Request new primitives<a class="headerlink" href="#request-new-primitives" title="Permalink to this headline">¶</a></h4>
+<p>Sometimes you will feel that a necessary primitive is missing and should be integrated.</p>
+<p>In this case, please create an issue indicating the name of the primitive and a link to
+its documentation.</p>
+<p>If the primitive documentation is unclear or not precise enough to know what needs to be
+integrated only by reading it, please add as many details as necessary in the issue description.</p>
+</div>
+<div class="section" id="request-new-features">
+<h4>Request new features<a class="headerlink" href="#request-new-features" title="Permalink to this headline">¶</a></h4>
+<p>If there is any other feature that you would like to see implemented, such as adding new
+functionalities to the existing custom primitives, or changing their behavior to cover
+a broader range of cases, you can also create an issue.</p>
+<p>If you do so, please indicate all the details about what you request as well as some use
+cases of the new feature.</p>
+</div>
 <div class="section" id="report-bugs">
-<h3>Report Bugs<a class="headerlink" href="#report-bugs" title="Permalink to this headline">¶</a></h3>
-<p>Report bugs at <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/issues">https://github.com/HDI-Project/MLPrimitives/issues</a>.</p>
-<p>If you are reporting a bug, please include:</p>
+<h4>Report Bugs<a class="headerlink" href="#report-bugs" title="Permalink to this headline">¶</a></h4>
+<p>If you find something that fails, please report it including:</p>
 <ul class="simple">
 <li>Your operating system name and version.</li>
 <li>Any details about your local setup that might be helpful in troubleshooting.</li>
 <li>Detailed steps to reproduce the bug.</li>
 </ul>
 </div>
-<div class="section" id="fix-bugs">
-<h3>Fix Bugs<a class="headerlink" href="#fix-bugs" title="Permalink to this headline">¶</a></h3>
-<p>Look through the GitHub issues for bugs. Anything tagged with “bug” and “help
-wanted” is open to whoever wants to implement it.</p>
+<div class="section" id="ask-for-documentation">
+<h4>Ask for Documentation<a class="headerlink" href="#ask-for-documentation" title="Permalink to this headline">¶</a></h4>
+<p>If there is something that is not documented well enough, do not hesitate to point at that
+in a new issue and request the necessary changes.</p>
 </div>
-<div class="section" id="implement-features">
-<h3>Implement Features<a class="headerlink" href="#implement-features" title="Permalink to this headline">¶</a></h3>
-<p>Look through the GitHub issues for features. Anything tagged with “enhancement”
-and “help wanted” is open to whoever wants to implement it.</p>
+</div>
+<div class="section" id="implementing-changes">
+<h3>Implementing Changes<a class="headerlink" href="#implementing-changes" title="Permalink to this headline">¶</a></h3>
+<p>If you want to contribute to the project with your own changes, you are more than welcome
+to do so! :)</p>
+<p>In this case, please do the following steps:</p>
+<ol class="arabic simple">
+<li>Indicate your intentions in a GitHub issue, by saying so in the project description or in
+a comment. If no issue exists yet for the changes that you want to implement, please
+create one.</li>
+<li>After you have done so, please wait for the feedback from the maintainers, who will approve
+the issue and assign it to you, before proceeding to implement any changes.</li>
+<li>Implement the necessary changes in your own fork of the project. Please implement them in
+a branch named after the issue number and title.</li>
+<li>Make sure that your changes include unit tests and that the existing tests and quality
+checks are all executed successfully.</li>
+<li>Push all your changes to GitHub and open a Pull Request, indicating what was implemented
+in the description.</li>
+</ol>
+<p>Below there are some more details about each type of contribution possible.</p>
+<div class="section" id="integrate-new-primitives">
+<h4>Integrate new primitives<a class="headerlink" href="#integrate-new-primitives" title="Permalink to this headline">¶</a></h4>
+<p>If you want to contribute integrating new third party primitives, you are welcome to contribute
+the necessary JSON annotations and Python adapters.</p>
+</div>
+<div class="section" id="implement-new-primitives">
+<h4>Implement new primitives<a class="headerlink" href="#implement-new-primitives" title="Permalink to this headline">¶</a></h4>
+<p>If what you want to implement is not available in any third party library, you can also contribute
+the necessary Python code directly in any of the <cite>mlprimitives</cite> sub-modules.</p>
+<p>In this case, please remember to also include the necessary JSON annotations, as well as the
+corresponding documentation.</p>
 </div>
 <div class="section" id="write-documentation">
-<h3>Write Documentation<a class="headerlink" href="#write-documentation" title="Permalink to this headline">¶</a></h3>
-<p>MLPrimitives could always use more documentation, whether as part of the
-official MLPrimitives docs, in docstrings, or even on the web in blog posts,
-articles, and such.</p>
+<h4>Write Documentation<a class="headerlink" href="#write-documentation" title="Permalink to this headline">¶</a></h4>
+<p>MLPrimitives could always use more documentation, whether as part of the official MLPrimitives
+docs, in docstrings, or even on the web in blog posts, articles, and such, so feel free to
+contribute any changes that you deem necessary, from fixing a simple typo, to writing whole
+new pages of documentation.</p>
 </div>
-<div class="section" id="submit-feedback">
-<h3>Submit Feedback<a class="headerlink" href="#submit-feedback" title="Permalink to this headline">¶</a></h3>
-<p>The best way to send feedback is to file an issue at <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/issues">https://github.com/HDI-Project/MLPrimitives/issues</a>.</p>
-<p>If you are proposing a feature:</p>
-<ul class="simple">
-<li>Explain in detail how it would work.</li>
-<li>Keep the scope as narrow as possible, to make it easier to implement.</li>
-<li>Remember that this is a volunteer-driven project, and that contributions
-are welcome :)</li>
-</ul>
 </div>
 </div>
 <div class="section" id="get-started">
@@ -416,7 +469,7 @@ git push
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0',
+            VERSION:'0.1.1-dev',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
