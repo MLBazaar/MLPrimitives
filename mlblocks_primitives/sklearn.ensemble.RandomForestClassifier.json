@@ -46,9 +46,14 @@
             }
         },
         "tunable": {
+            "n_estimators": {
+                "type": "int",
+                "default": 10,
+                "range": [1, 500]
+            },
             "criterion": {
                 "type": "str",
-                "default": "entropy",
+                "default": "gini",
                 "values": ["entropy", "gini"]
             },
             "max_features": {
@@ -62,19 +67,24 @@
                 "range": [1, 30]
             },
             "min_samples_split": {
-                "type": "float",
-                "default": 0.1,
-                "range": [0.0001, 0.5]
+                "type": "int",
+                "default": 2,
+                "range": [2, 100]
             },
             "min_samples_leaf": {
-                "type": "float",
-                "default": 0.1,
-                "range": [0.0001, 0.5]
-            },
-            "n_estimators": {
                 "type": "int",
-                "default": 30,
-                "values": [2, 500]
+                "default": 1,
+                "range": [1, 100]
+            },
+            "min_weight_fraction_leaf": {
+                "type": "float",
+                "default": 0.0,
+                "range": [0.0, 0.5]
+            },
+            "max_leaf_nodes": {
+                "type": "int",
+                "default": null,
+                "range": [1, 100]
             },
             "class_weight": {
                 "type": "str",
