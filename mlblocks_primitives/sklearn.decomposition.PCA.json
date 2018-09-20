@@ -9,7 +9,6 @@
     },
     "modalities": [],
     "primitive": "sklearn.decomposition.PCA",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [
@@ -35,10 +34,32 @@
         ]
     },
     "hyperparameters": {
-        "FIXME": "This needs to be reviewed",
         "fixed": {
+            "copy": {
+                "type": "bool",
+                "default": true
+            }
         },
         "tunable": {
+            "tol": {
+                "type": "float",
+                "default": 0.0,
+                "range": [0.0, 100.0]
+            },
+            "iterated_power":{
+                "type": "int",
+                "default": "auto",
+                "range": [0, 1000]
+            },
+            "whiten": {
+                "type": "bool",
+                "default": false
+            },
+            "svd_solver": {
+                "type": "str",
+                "default": "auto",
+                "values": ["auto", "arpack", "full", "randomized"]
+            }
         }
     }
 }

@@ -1,0 +1,96 @@
+{
+    "name": "sklearn.decomposition.DictionaryLearning",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.DictionaryLearning.html",
+    "description": "Dictionary learning.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_selector"
+    },
+    "modalities": [],
+    "primitive": "sklearn.decomposition.DictionaryLearning",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "split_sign": {
+                "type": "bool",
+                "default": false
+            },
+            "n_jobs": {
+                "type": "int",
+                "default": -1
+            }
+        },
+        "tunable": {
+            "n_components": {
+                "type": "int",
+                "default": null
+            },
+            "alpha": {
+                "type": "float",
+                "default": 1.0
+            },
+            "max_iter": {
+                "type": "int",
+                "default": 1000
+            },
+            "tol": {
+                "type": "float",
+                "default": 1e-08
+            },
+            "fit_algorithm": {
+                "type": "str",
+                "default": "lars",
+                "values": ["lars", "cd"]
+            },
+            "transform_algorithm": {
+                "type": "str",
+                "default": "omp",
+                "values": ["lasso_lars", "lasso_cd", "lars", "omp", "threshold"]
+            },
+            "transform_n_nonzero_coefs": {
+                "type": "int",
+                "default": null
+            },
+            "transform_alpha": {
+                "type": "float",
+                "default": 1.0
+            },
+            "code_init": {
+                "type": "iterable",
+                "default": null
+            },
+            "dict_init": {
+                "type": "iterable",
+                "default": null
+            },
+            "verbose": {
+                "type": "bool",
+                "default": false
+            }
+        }
+    }
+}
