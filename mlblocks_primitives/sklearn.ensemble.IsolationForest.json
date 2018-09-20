@@ -1,0 +1,77 @@
+{
+    "name": "sklearn.ensemble.IsolationForest",
+    "author": "Carles Sala <carles@pythiac.com>",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html",
+    "description": "Scikit-learn IsolationForest. The IsolationForest ‘isolates’ observations by randomly selecting a feature and then randomly selecting a split value between the maximum and minimum values of the selected feature.",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classifier"
+    },
+    "modalities": [],
+    "primitive": "sklearn.ensemble.IsolationForest",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "n_jobs": {
+                "type": "int",
+                "default": -1
+            },
+            "contamination": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0, 0.5]
+            }
+        },
+        "tunable": {
+            "n_estimators": {
+                "type": "int",
+                "default": 100,
+                "range": [1, 500]
+            },
+            "max_samples": {
+                "type": "str",
+                "default": "auto"
+            },
+            "max_features": {
+                "type": "float",
+                "default": 1.0
+            },
+            "bootstrap": {
+                "type": "bool",
+                "default": false
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0,
+                "range": [0, 100]
+            }
+        }
+    }
+}

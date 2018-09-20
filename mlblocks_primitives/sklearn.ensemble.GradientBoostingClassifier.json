@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.ensemble.RandomForestClassifier",
+    "name": "sklearn.ensemble.GradientBoostingClassifier",
     "author": "Carles Sala <carles@pythiac.com>",
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
-    "description": "Scikit-learn RandomForestClassifier.",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html",
+    "description": "Scikit-learn GradientBoostingClassifier.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "primitive": "sklearn.ensemble.GradientBoostingClassifier",
     "fit": {
         "method": "fit",
         "args": [
@@ -38,32 +38,31 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {
-            "n_jobs": {
-                "type": "int",
-                "default": -1
-            }
-        },
+        "fixed": {},
         "tunable": {
+            "loss": {
+                "type": "str",
+                "default": "deviance",
+                "values": ["deviance", "exponential"]
+            },
+            "learning_rate": {
+                "type": "float",
+                "default": 0.1
+            },
             "n_estimators": {
                 "type": "int",
                 "default": 10,
                 "range": [1, 500]
             },
-            "criterion": {
-                "type": "str",
-                "default": "gini",
-                "values": ["entropy", "gini"]
-            },
-            "max_features": {
-                "type": "str",
-                "default": null,
-                "values": [null, "auto", "log2", "sqrt"]
-            },
             "max_depth": {
                 "type": "int",
-                "default": null,
+                "default": 3,
                 "range": [1, 30]
+            },
+            "criterion": {
+                "type": "str",
+                "default": "friedman_mse",
+                "values": ["friedman_mse", "friedman_mae"]
             },
             "min_samples_split": {
                 "type": "int",
@@ -80,6 +79,15 @@
                 "default": 0.0,
                 "range": [0.0, 0.5]
             },
+            "subsample": {
+                "type": "float",
+                "default": 1.0
+            },
+            "max_features": {
+                "type": "str",
+                "default": null,
+                "values": [null, "auto", "log2", "sqrt"]
+            },
             "max_leaf_nodes": {
                 "type": "int",
                 "default": null,
@@ -90,26 +98,22 @@
                 "default": 0.0,
                 "range": [0.0, 1000.0]
             },
-            "bootstrap": {
-                "type": "bool",
-                "default": true
-            },
-            "oob_score": {
-                "type": "bool",
-                "default": false
+            "init": {
+                "type": "object",
+                "default": null
             },
             "verbose": {
                 "type": "int",
                 "default": 0,
-                "range": [0, 1000]
+                "range": [0, 100]
             },
             "warm_start": {
                 "type": "bool",
                 "default": false
             },
-            "class_weight": {
-                "type": "iterable",
-                "default": null
+            "presort": {
+                "type": "bool",
+                "default": "false"
             }
         }
     }
