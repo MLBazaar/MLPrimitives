@@ -7,7 +7,9 @@
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["image"],
+    "modalities": [
+        "image"
+    ],
     "primitive": "keras.applications.densenet.DenseNet121",
     "produce": {
         "method": "predict",

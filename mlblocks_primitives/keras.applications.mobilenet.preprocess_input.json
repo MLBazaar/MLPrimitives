@@ -1,7 +1,7 @@
 {
-    "name": "keras.applications.resnet50.preprocess_input",
+    "name": "keras.applications.mobilenet.preprocess_input",
     "author": "Carles Sala <carles@pythiac.com>",
-    "documentation": "https://www.tensorflow.org/api_docs/python/tf/keras/applications/resnet50/preprocess_input",
+    "documentation": "https://www.tensorflow.org/api_docs/python/tf/keras/applications/mobilenet/preprocess_input",
     "description": "Preprocesses a tensor or Numpy array encoding a batch of images.",
     "classifiers": {
         "type": "preprocessor",
@@ -10,7 +10,7 @@
     "modalities": [
         "image"
     ],
-    "primitive": "keras.applications.resnet50.preprocess_input",
+    "primitive": "keras.applications.mobilenet.preprocess_input",
     "produce": {
         "args": [
             {

@@ -1,8 +1,8 @@
 {
-    "name": "keras.applications.resnet50.ResNet50",
+    "name": "keras.applications.densenet.DenseNet201",
     "author": "Carles Sala <carles@pythiac.com>",
-    "documentation": "https://keras.io/applications/#resnet50",
-    "description": "ResNet50 model, with weights pre-trained on ImageNet.",
+    "documentation": "https://keras.io/applications/#densenet",
+    "description": "DenseNet models, with weights pre-trained on ImageNet.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
@@ -10,7 +10,7 @@
     "modalities": [
         "image"
     ],
-    "primitive": "keras.applications.resnet50.ResNet50",
+    "primitive": "keras.applications.densenet.DenseNet201",
     "produce": {
         "method": "predict",
         "args": [
