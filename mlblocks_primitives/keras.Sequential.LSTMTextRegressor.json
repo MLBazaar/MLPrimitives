@@ -66,6 +66,10 @@
                 "type": "int",
                 "description": "vocabulary size + 1: number of known words in input."
             },
+            "epochs": {
+                "type": "int",
+                "default": 10
+            },
             "layers": {
                 "type": "list",
                 "default": [
