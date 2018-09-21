@@ -16,14 +16,14 @@ def import_object(object_name):
 
 
 def image_transform(X, function, reshape_before=False, reshape_after=False,
-                    image_shape=None, **kwargs):
+                    width=None, height=None, **kwargs):
     """Apply a function image by image.
 
     Args:
         reshape_before: whether 1d array needs to be reshaped to a 2d image
         reshape_after: whether the returned values need to be reshaped back to a 1d array
         width: image width used to rebuild the 2d images. Required if the image is not square.
-        heigth: image heigth used to rebuild the 2d images. Required if the image is not square.
+        height: image height used to rebuild the 2d images. Required if the image is not square.
     """
 
     if not callable(function):
@@ -32,20 +32,25 @@ def image_transform(X, function, reshape_before=False, reshape_after=False,
     elif not callable(function):
         raise ValueError("function must be a str or a callable")
 
-    image_length = X.shape[1]
+    flat_image = len(X[0].shape) == 1
 
-    if reshape_before and not image_shape:
-        side_length = math.sqrt(image_length)
-        if side_length.is_integer():
-            side_length = int(side_length)
-            image_shape = (side_length, side_length)
+    if reshape_before and flat_image:
+        if not (width and height):
+            side_length = math.sqrt(X.shape[1])
+            if side_length.is_integer():
+                side_length = int(side_length)
+                width = side_length
+                height = side_length
 
-        else:
-            raise ValueError("Image sizes must be given for non-square images")
+            else:
+                raise ValueError("Image sizes must be given for non-square images")
+    else:
+        reshape_before = False
 
-    def apply_function(image):
+    new_X = []
+    for image in X:
         if reshape_before:
-            image = image.reshape(image_shape[:2])
+            image = image.reshape((width, height))
 
         features = function(
             image,
@@ -53,8 +58,8 @@ def image_transform(X, function, reshape_before=False, reshape_after=False,
         )
 
         if reshape_after:
-            features = np.reshape(features, image_length)
+            features = np.reshape(features, X.shape[1])
 
-        return features
+        new_X.append(features)
 
-    return np.apply_along_axis(apply_function, axis=1, arr=X)
+    return np.array(new_X)

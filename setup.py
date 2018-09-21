@@ -28,6 +28,9 @@ install_requires = [
     'scipy>=1.1.0',
     'tensorflow==1.8.0',
     'xgboost>=0.72.1',
+    'iso639>=0.1.4',
+    'langdetect>=1.0.7',
+    'nltk>=3.3'
 ]
 
 
