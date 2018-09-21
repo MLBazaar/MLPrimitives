@@ -107,7 +107,7 @@ class TextCleaner(object):
         if self.column:
             texts = X[self.column]
         else:
-            texts = pd.Series(texts)
+            texts = pd.Series(X)
 
         texts = texts.fillna('')
 
