@@ -41,7 +41,8 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1
+                "default": -1,
+                "range": [-1, 10]
             },
             "contamination": {
                 "type": "float",
@@ -56,12 +57,14 @@
                 "range": [1, 500]
             },
             "max_samples": {
-                "type": "str",
-                "default": "auto"
+                "type": "int",
+                "default": "1",
+                "range": [0, 100]
             },
             "max_features": {
                 "type": "float",
-                "default": 1.0
+                "default": 1.0,
+                "range": [1.0, 1000.0]
             },
             "bootstrap": {
                 "type": "bool",

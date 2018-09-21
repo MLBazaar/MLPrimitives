@@ -41,7 +41,8 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1
+                "default": -1,
+                "range": [-1, 10]
             }
         },
         "tunable": {

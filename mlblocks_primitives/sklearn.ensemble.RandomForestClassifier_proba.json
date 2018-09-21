@@ -19,7 +19,7 @@
             },
             {
                 "name": "y",
-                "type": "array"
+                "type": "ndarray"
             }
         ]
     },
@@ -34,7 +34,7 @@
         "output": [
             {
                 "name": "y",
-                "type": "array"
+                "type": "ndarray"
             }
         ]
     },
@@ -42,13 +42,14 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1
+                "default": -1,
+                "range": [-1, 10]
             }
         },
         "tunable": {
             "criterion": {
                 "type": "str",
-                "default": "entropy",
+                "default": "gini",
                 "values": ["entropy", "gini"]
             },
             "max_features": {

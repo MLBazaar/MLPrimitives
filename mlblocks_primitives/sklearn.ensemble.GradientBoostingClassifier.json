@@ -47,7 +47,8 @@
             },
             "learning_rate": {
                 "type": "float",
-                "default": 0.1
+                "default": 0.1,
+                "range": [0.01, 10.0]
             },
             "n_estimators": {
                 "type": "int",
@@ -77,11 +78,12 @@
             "min_weight_fraction_leaf": {
                 "type": "float",
                 "default": 0.0,
-                "range": [0.0, 0.5]
+                "range": [0.0, 10.0]
             },
             "subsample": {
                 "type": "float",
-                "default": 1.0
+                "default": 1.0,
+                "range": [0.001, 100.0]
             },
             "max_features": {
                 "type": "str",

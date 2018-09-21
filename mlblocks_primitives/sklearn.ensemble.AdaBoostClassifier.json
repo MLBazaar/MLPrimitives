@@ -52,7 +52,8 @@
             },
             "learning_rate": {
                 "type": "float",
-                "default": 1.0
+                "default": 1.0,
+                "range": [1.0, 10.0]
             },
             "algorithm": {
                 "type": "str",

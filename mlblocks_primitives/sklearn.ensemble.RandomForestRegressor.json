@@ -41,13 +41,15 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1
+                "default": -1,
+                "range": [-1, 10]
             }
         },
         "tunable": {
             "n_estimators": {
                 "type": "int",
-                "default": 10
+                "default": 10,
+                "range": [1, 500]
             },
             "criterion": {
                 "type": "str",
@@ -76,7 +78,8 @@
             },
             "min_weight_fraction_leaf": {
                 "type": "float",
-                "default": 0.0
+                "default": 0.0,
+                "range": [0.0, 100.0]
             },
             "max_leaf_nodes": {
                 "type": "int",
@@ -84,7 +87,8 @@
             },
             "min_impurity_decrease": {
                 "type": "float",
-                "default": 0.0
+                "default": 0.0,
+                "range": [0.0, 10.0]
             },
             "bootstrap": {
                 "type": "bool",
@@ -96,7 +100,8 @@
             },
             "verbose": {
                 "type": "int",
-                "default": 0
+                "default": 0,
+                "range": [0, 100]
             },
             "warm_start": {
                 "type": "bool",
