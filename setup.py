@@ -28,6 +28,9 @@ install_requires = [
     'scipy>=1.1.0',
     'tensorflow==1.8.0',
     'xgboost>=0.72.1',
+    'iso639>=0.1.4',
+    'langdetect>=1.0.7',
+    'nltk>=3.3'
 ]
 
 
@@ -104,6 +107,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.0',
+    version='0.1.1-dev',
     zip_safe=False,
 )

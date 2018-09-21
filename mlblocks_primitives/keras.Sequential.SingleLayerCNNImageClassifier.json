@@ -38,6 +38,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "epochs": {
+                "type": "int",
+                "default": 10
+            },
             "input_shape": {
                 "type": "list",
                 "default": [

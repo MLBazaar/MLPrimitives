@@ -25,10 +25,6 @@
     },
     "hyperparameters": {
         "fixed": {
-            "image_shape": {
-                "type": "tuple",
-                "description": "Tuple representing the shape of the original image."
-            },
             "multichannel": {
                 "type": "bool",
                 "default": false,
