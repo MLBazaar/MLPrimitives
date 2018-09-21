@@ -43,6 +43,14 @@ mlprimitives.feature\_selection module
     :undoc-members:
     :show-inheritance:
 
+mlprimitives.text module
+------------------------
+
+.. automodule:: mlprimitives.text
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 mlprimitives.trivial module
 ---------------------------
 

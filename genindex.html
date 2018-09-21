@@ -93,6 +93,7 @@
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.text">mlprimitives.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.html#module-mlprimitives">Module contents</a></li>
@@ -249,6 +250,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.detect_language">detect_language() (mlprimitives.text.TextCleaner static method)</a>
+</li>
       <li><a href="mlprimitives.adapters.html#mlprimitives.adapters.featuretools.DFS">DFS (class in mlprimitives.adapters.featuretools)</a>
 </li>
   </ul></td>
@@ -310,6 +313,8 @@
 </li>
         <li><a href="mlprimitives.html#mlprimitives.feature_selection.EstimatorFeatureSelector.fit">(mlprimitives.feature_selection.EstimatorFeatureSelector method)</a>
 </li>
+        <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.fit">(mlprimitives.text.TextCleaner method)</a>
+</li>
         <li><a href="mlprimitives.html#mlprimitives.trivial.TrivialPredictor.fit">(mlprimitives.trivial.TrivialPredictor method)</a>
 </li>
       </ul></li>
@@ -333,9 +338,11 @@
 </li>
       <li><a href="mlprimitives.adapters.html#mlprimitives.adapters.lightfm.LightFM.get_columns">get_columns() (mlprimitives.adapters.lightfm.LightFM method)</a>
 </li>
+      <li><a href="mlprimitives.html#mlprimitives.trivial.TrivialPredictor.get_length">get_length() (mlprimitives.trivial.TrivialPredictor method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="mlprimitives.html#mlprimitives.trivial.TrivialPredictor.get_length">get_length() (mlprimitives.trivial.TrivialPredictor method)</a>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.get_stopwords">get_stopwords() (mlprimitives.text.TextCleaner class method)</a>
 </li>
       <li><a href="mlprimitives.adapters.html#mlprimitives.adapters.networkx.graph_feature_extraction">graph_feature_extraction() (in module mlprimitives.adapters.networkx)</a>
 </li>
@@ -389,10 +396,10 @@
 </li>
       <li><a href="mlprimitives.adapters.html#module-mlprimitives.adapters.lightfm">mlprimitives.adapters.lightfm (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mlprimitives.adapters.html#module-mlprimitives.adapters.networkx">mlprimitives.adapters.networkx (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mlprimitives.adapters.html#module-mlprimitives.adapters.skimage">mlprimitives.adapters.skimage (module)</a>
 </li>
       <li><a href="mlprimitives.html#module-mlprimitives.audio_featurization">mlprimitives.audio_featurization (module)</a>
@@ -402,6 +409,8 @@
       <li><a href="mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction (module)</a>
 </li>
       <li><a href="mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection (module)</a>
+</li>
+      <li><a href="mlprimitives.html#module-mlprimitives.text">mlprimitives.text (module)</a>
 </li>
       <li><a href="mlprimitives.html#module-mlprimitives.trivial">mlprimitives.trivial (module)</a>
 </li>
@@ -438,6 +447,8 @@
 </li>
         <li><a href="mlprimitives.html#mlprimitives.audio_padding.AudioPadder.produce">(mlprimitives.audio_padding.AudioPadder method)</a>
 </li>
+        <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.produce">(mlprimitives.text.TextCleaner method)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -446,6 +457,16 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mlprimitives.html#mlprimitives.audio_featurization.rand_attr1">rand_attr1() (in module mlprimitives.audio_featurization)</a>
+</li>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.RE_ACCENTS">RE_ACCENTS (mlprimitives.text.TextCleaner attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.RE_NON_ALNUM">RE_NON_ALNUM (mlprimitives.text.TextCleaner attribute)</a>
+</li>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.RE_NON_ALPHA">RE_NON_ALPHA (mlprimitives.text.TextCleaner attribute)</a>
+</li>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.RE_SYMBOLS">RE_SYMBOLS (mlprimitives.text.TextCleaner attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -459,13 +480,15 @@
 </li>
       <li><a href="mlprimitives.html#mlprimitives.audio_featurization.spectral_centroid_and_spread">spectral_centroid_and_spread() (in module mlprimitives.audio_featurization)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mlprimitives.html#mlprimitives.audio_featurization.spectral_entropy">spectral_entropy() (in module mlprimitives.audio_featurization)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="mlprimitives.html#mlprimitives.audio_featurization.spectral_flux">spectral_flux() (in module mlprimitives.audio_featurization)</a>
 </li>
       <li><a href="mlprimitives.html#mlprimitives.audio_featurization.spectral_rolloff">spectral_rolloff() (in module mlprimitives.audio_featurization)</a>
+</li>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner.STOPWORDS">STOPWORDS (mlprimitives.text.TextCleaner attribute)</a>
 </li>
       <li><a href="mlprimitives.html#mlprimitives.feature_extraction.StringVectorizer">StringVectorizer (class in mlprimitives.feature_extraction)</a>
 </li>
@@ -475,6 +498,8 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="mlprimitives.html#mlprimitives.text.TextCleaner">TextCleaner (class in mlprimitives.text)</a>
+</li>
       <li><a href="mlprimitives.html#mlprimitives.feature_extraction.FeatureExtractor.transform">transform() (mlprimitives.feature_extraction.FeatureExtractor method)</a>
 
       <ul>
@@ -543,6 +568,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

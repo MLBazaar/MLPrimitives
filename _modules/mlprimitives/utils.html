@@ -92,6 +92,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.text">mlprimitives.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../mlprimitives.html#module-mlprimitives">Module contents</a></li>
@@ -208,14 +209,14 @@
 
 
 <div class="viewcode-block" id="image_transform"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.utils.image_transform">[docs]</a><span class="k">def</span> <span class="nf">image_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">reshape_before</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reshape_after</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                    <span class="n">image_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                    <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Apply a function image by image.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        reshape_before: whether 1d array needs to be reshaped to a 2d image</span>
 <span class="sd">        reshape_after: whether the returned values need to be reshaped back to a 1d array</span>
 <span class="sd">        width: image width used to rebuild the 2d images. Required if the image is not square.</span>
-<span class="sd">        heigth: image heigth used to rebuild the 2d images. Required if the image is not square.</span>
+<span class="sd">        height: image height used to rebuild the 2d images. Required if the image is not square.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
@@ -224,20 +225,25 @@
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;function must be a str or a callable&quot;</span><span class="p">)</span>
 
-    <span class="n">image_length</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">flat_image</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
 
-    <span class="k">if</span> <span class="n">reshape_before</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">image_shape</span><span class="p">:</span>
-        <span class="n">side_length</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">image_length</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">side_length</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span>
-            <span class="n">side_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">side_length</span><span class="p">)</span>
-            <span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">side_length</span><span class="p">,</span> <span class="n">side_length</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reshape_before</span> <span class="ow">and</span> <span class="n">flat_image</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">width</span> <span class="ow">and</span> <span class="n">height</span><span class="p">):</span>
+            <span class="n">side_length</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">side_length</span><span class="o">.</span><span class="n">is_integer</span><span class="p">():</span>
+                <span class="n">side_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">side_length</span><span class="p">)</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="n">side_length</span>
+                <span class="n">height</span> <span class="o">=</span> <span class="n">side_length</span>
 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image sizes must be given for non-square images&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image sizes must be given for non-square images&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">reshape_before</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">apply_function</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="n">new_X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">reshape_before</span><span class="p">:</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">image_shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
 
         <span class="n">features</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span>
             <span class="n">image</span><span class="p">,</span>
@@ -245,11 +251,11 @@
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">reshape_after</span><span class="p">:</span>
-            <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">image_length</span><span class="p">)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-        <span class="k">return</span> <span class="n">features</span>
+        <span class="n">new_X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="n">apply_function</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">X</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_X</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
@@ -295,6 +301,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

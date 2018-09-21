@@ -94,6 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.text">mlprimitives.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.trivial">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives.utils">mlprimitives.utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-mlprimitives">Module contents</a></li>
@@ -459,14 +460,30 @@ ExtraTreesClassifier and SelectFromModel solution.</p>
 <dl class="attribute">
 <dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.ESTIMATOR">
 <code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>class</em> – Estimator class to use. To be defined in subclasses.</p>
+<dd><p>Estimator class to use. To be defined in subclasses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">class</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.feature_selection.EstimatorFeatureSelector.selector">
 <code class="descname">selector</code><a class="headerlink" href="#mlprimitives.feature_selection.EstimatorFeatureSelector.selector" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>SelectFromModel</em> – sklearn.ensemble.SelectFromModel that will
+<dd><p>sklearn.ensemble.SelectFromModel that will
 perform the actual feature selection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">SelectFromModel</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Example</p>
@@ -548,6 +565,60 @@ and a numpy.ndarray.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-mlprimitives.text">
+<span id="mlprimitives-text-module"></span><h2>mlprimitives.text module<a class="headerlink" href="#module-mlprimitives.text" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mlprimitives.text.TextCleaner">
+<em class="property">class </em><code class="descclassname">mlprimitives.text.</code><code class="descname">TextCleaner</code><span class="sig-paren">(</span><em>column=None</em>, <em>language='multi'</em>, <em>lower=True</em>, <em>accents=True</em>, <em>stopwrods=True</em>, <em>non_alpha=True</em>, <em>single_chars=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/text.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.text.TextCleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="mlprimitives.text.TextCleaner.RE_ACCENTS">
+<code class="descname">RE_ACCENTS</code><em class="property"> = {'a': re.compile('[àâáäåã]'), 'e': re.compile('[èêéë]'), 'i': re.compile('[ìîíï]'), 'o': re.compile('[òôóö]'), 'u': re.compile('[ùûúü]')}</em><a class="headerlink" href="#mlprimitives.text.TextCleaner.RE_ACCENTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.text.TextCleaner.RE_NON_ALNUM">
+<code class="descname">RE_NON_ALNUM</code><em class="property"> = re.compile('[^\\w\\d]')</em><a class="headerlink" href="#mlprimitives.text.TextCleaner.RE_NON_ALNUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.text.TextCleaner.RE_NON_ALPHA">
+<code class="descname">RE_NON_ALPHA</code><em class="property"> = re.compile('[^a-z]+')</em><a class="headerlink" href="#mlprimitives.text.TextCleaner.RE_NON_ALPHA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.text.TextCleaner.RE_SYMBOLS">
+<code class="descname">RE_SYMBOLS</code><em class="property"> = re.compile('[-]')</em><a class="headerlink" href="#mlprimitives.text.TextCleaner.RE_SYMBOLS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.text.TextCleaner.STOPWORDS">
+<code class="descname">STOPWORDS</code><em class="property"> = {}</em><a class="headerlink" href="#mlprimitives.text.TextCleaner.STOPWORDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="mlprimitives.text.TextCleaner.detect_language">
+<em class="property">static </em><code class="descname">detect_language</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/text.html#TextCleaner.detect_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.text.TextCleaner.detect_language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.text.TextCleaner.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/text.html#TextCleaner.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.text.TextCleaner.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="mlprimitives.text.TextCleaner.get_stopwords">
+<em class="property">classmethod </em><code class="descname">get_stopwords</code><span class="sig-paren">(</span><em>language_code</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/text.html#TextCleaner.get_stopwords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.text.TextCleaner.get_stopwords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.text.TextCleaner.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/text.html#TextCleaner.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.text.TextCleaner.produce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-mlprimitives.trivial">
 <span id="mlprimitives-trivial-module"></span><h2>mlprimitives.trivial module<a class="headerlink" href="#module-mlprimitives.trivial" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -576,7 +647,7 @@ and a numpy.ndarray.</p>
 <span id="mlprimitives-utils-module"></span><h2>mlprimitives.utils module<a class="headerlink" href="#module-mlprimitives.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="mlprimitives.utils.image_transform">
-<code class="descclassname">mlprimitives.utils.</code><code class="descname">image_transform</code><span class="sig-paren">(</span><em>X</em>, <em>function</em>, <em>reshape_before=False</em>, <em>reshape_after=False</em>, <em>image_shape=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#image_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.image_transform" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">mlprimitives.utils.</code><code class="descname">image_transform</code><span class="sig-paren">(</span><em>X</em>, <em>function</em>, <em>reshape_before=False</em>, <em>reshape_after=False</em>, <em>width=None</em>, <em>height=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mlprimitives/utils.html#image_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.utils.image_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply a function image by image.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -586,7 +657,7 @@ and a numpy.ndarray.</p>
 <li><strong>reshape_before</strong> – whether 1d array needs to be reshaped to a 2d image</li>
 <li><strong>reshape_after</strong> – whether the returned values need to be reshaped back to a 1d array</li>
 <li><strong>width</strong> – image width used to rebuild the 2d images. Required if the image is not square.</li>
-<li><strong>heigth</strong> – image heigth used to rebuild the 2d images. Required if the image is not square.</li>
+<li><strong>height</strong> – image height used to rebuild the 2d images. Required if the image is not square.</li>
 </ul>
 </td>
 </tr>
@@ -660,6 +731,7 @@ and a numpy.ndarray.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
