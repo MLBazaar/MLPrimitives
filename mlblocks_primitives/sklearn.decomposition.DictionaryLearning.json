@@ -1,6 +1,6 @@
 {
     "name": "sklearn.decomposition.DictionaryLearning",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.DictionaryLearning.html",
     "description": "Dictionary learning.",
     "classifiers": {
@@ -41,7 +41,8 @@
             },
             "n_jobs": {
                 "type": "int",
-                "default": -1
+                "default": -1,
+                "range": [-1, 10]
             }
         },
         "tunable": {
@@ -51,15 +52,18 @@
             },
             "alpha": {
                 "type": "float",
-                "default": 1.0
+                "default": 1.0,
+                "range": [0.0, 10.0]
             },
             "max_iter": {
                 "type": "int",
-                "default": 1000
+                "default": 1000,
+                "range": [0, 10000]
             },
             "tol": {
                 "type": "float",
-                "default": 1e-08
+                "default": 1e-08,
+                "range": [0.0, 1.0]
             },
             "fit_algorithm": {
                 "type": "str",
@@ -73,11 +77,13 @@
             },
             "transform_n_nonzero_coefs": {
                 "type": "int",
-                "default": null
+                "default": null,
+                "range": [0, 100]
             },
             "transform_alpha": {
                 "type": "float",
-                "default": 1.0
+                "default": 1.0,
+                "range": [0.0, 10.0]
             },
             "code_init": {
                 "type": "iterable",

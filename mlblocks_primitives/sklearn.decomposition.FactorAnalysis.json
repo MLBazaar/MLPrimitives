@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.decomposition.PCA",
+    "name": "sklearn.decomposition.FactorAnalysis",
     "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
-    "description": "Principal component analysis (PCA)",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FactorAnalysis.html",
+    "description": "Factor Analysis. A simple linear generative model with Gaussian latent variables.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_selector"
     },
     "modalities": [],
-    "primitive": "sklearn.decomposition.PCA",
+    "primitive": "sklearn.decomposition.FactorAnalysis",
     "fit": {
         "method": "fit",
         "args": [
@@ -41,24 +41,34 @@
             }
         },
         "tunable": {
+            "n_components": {
+                "type": "int",
+                "default": null,
+                "range": [0, 500]
+            },
             "tol": {
                 "type": "float",
-                "default": 0.0,
-                "range": [0.0, 100.0]
+                "default": 0.01,
+                "range": [0.0, 0.5]
             },
-            "iterated_power":{
+            "max_iter": {
                 "type": "int",
-                "default": "auto",
-                "range": [0, 1000]
+                "default": 1000,
+                "range": [10, 10000]
             },
-            "whiten": {
-                "type": "bool",
-                "default": false
+            "noise_variance_init": {
+                "type": "iterable",
+                "default": null
             },
-            "svd_solver": {
+            "svd_method": {
                 "type": "str",
-                "default": "auto",
-                "values": ["auto", "arpack", "full", "randomized"]
+                "default": "randomized",
+                "values": ["lapack", "randomized"]
+            },
+            "iterated_power": {
+                "type": "int",
+                "default": 3,
+                "range": [0, 10]
             }
         }
     }
