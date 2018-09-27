@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.BaggingRegressor",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html",
     "description": "Scikit-learn BaggingRegressor.",
     "classifiers": {

@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.BaggingClassifier",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html",
     "description": "Scikit-learn BaggingClassifier.",
     "classifiers": {

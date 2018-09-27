@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.GradientBoostingClassifier",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html",
     "description": "Scikit-learn GradientBoostingClassifier.",
     "classifiers": {

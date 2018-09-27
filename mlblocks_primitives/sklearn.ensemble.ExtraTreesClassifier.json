@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.ExtraTreesClassifier",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html",
     "description": "Scikit-learn ExtraTreesClassifier. Implements a meta estimator that fits a number of randomized decision trees.",
     "classifiers": {

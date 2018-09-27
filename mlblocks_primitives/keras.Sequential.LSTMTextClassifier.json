@@ -72,6 +72,10 @@
                     "accuracy"
                 ]
             },
+            "epochs": {
+                "type": "int",
+                "default": 10
+            },
             "layers": {
                 "type": "list",
                 "default": [

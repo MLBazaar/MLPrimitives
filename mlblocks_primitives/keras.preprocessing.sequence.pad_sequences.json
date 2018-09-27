@@ -13,6 +13,7 @@
         "args": [
             {
                 "name": "X",
+                "keyword": "sequences",
                 "type": "ndarray"
             }
         ],
@@ -45,7 +46,7 @@
                 "default": "pre",
                 "values": ["pre", "post"]
             },
-            "truncate": {
+            "truncating": {
                 "type": "str",
                 "default": "pre",
                 "values": ["pre", "post"]
