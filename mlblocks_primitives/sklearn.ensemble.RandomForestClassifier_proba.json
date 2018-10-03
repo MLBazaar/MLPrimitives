@@ -41,7 +41,7 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": 1
+                "default": null
             },
             "verbose": {
                 "type": "int",
