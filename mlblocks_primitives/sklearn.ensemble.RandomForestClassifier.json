@@ -41,8 +41,19 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1,
-                "range": [-1, 10]
+                "default": 1
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0
+            },
+            "warm_start": {
+                "type": "bool",
+                "default": false
+            },
+            "class_weight": {
+                "type": "iterable",
+                "default": null
             }
         },
         "tunable": {
@@ -98,19 +109,6 @@
             "oob_score": {
                 "type": "bool",
                 "default": false
-            },
-            "verbose": {
-                "type": "int",
-                "default": 0,
-                "range": [0, 1000]
-            },
-            "warm_start": {
-                "type": "bool",
-                "default": false
-            },
-            "class_weight": {
-                "type": "iterable",
-                "default": null
             }
         }
     }

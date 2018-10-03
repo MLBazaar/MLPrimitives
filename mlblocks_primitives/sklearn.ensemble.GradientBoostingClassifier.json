@@ -38,7 +38,24 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "warm_start": {
+                "type": "bool",
+                "default": false
+            },
+            "init": {
+                "type": "object",
+                "default": null
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0
+            },
+            "presort": {
+                "type": "bool",
+                "default": "false"
+            }
+        },
         "tunable": {
             "loss": {
                 "type": "str",
@@ -99,23 +116,6 @@
                 "type": "float",
                 "default": 0.0,
                 "range": [0.0, 1000.0]
-            },
-            "init": {
-                "type": "object",
-                "default": null
-            },
-            "verbose": {
-                "type": "int",
-                "default": 0,
-                "range": [0, 100]
-            },
-            "warm_start": {
-                "type": "bool",
-                "default": false
-            },
-            "presort": {
-                "type": "bool",
-                "default": "false"
             }
         }
     }

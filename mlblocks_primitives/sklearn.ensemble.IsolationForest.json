@@ -41,13 +41,17 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": -1,
-                "range": [-1, 10]
+                "default": 1
             },
             "contamination": {
                 "type": "float",
                 "default": 0.1,
                 "range": [0.0, 0.5]
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0,
+                "range": [0, 100]
             }
         },
         "tunable": {
@@ -69,11 +73,6 @@
             "bootstrap": {
                 "type": "bool",
                 "default": false
-            },
-            "verbose": {
-                "type": "int",
-                "default": 0,
-                "range": [0, 100]
             }
         }
     }

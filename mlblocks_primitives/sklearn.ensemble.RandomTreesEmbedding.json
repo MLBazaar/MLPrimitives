@@ -47,6 +47,15 @@
             "sparse_output": {
                 "type": "bool",
                 "default": true
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0,
+                "range": [0, 1000]
+            },
+            "warm_start": {
+                "type": "bool",
+                "default": false
             }
         },
         "tunable": {
@@ -84,15 +93,6 @@
                 "type": "float",
                 "default": 0.0,
                 "range": [0.0, 1000.0]
-            },
-            "verbose": {
-                "type": "int",
-                "default": 0,
-                "range": [0, 1000]
-            },
-            "warm_start": {
-                "type": "bool",
-                "default": false
             }
         }
     }
