@@ -43,11 +43,6 @@
                 "type": "int",
                 "default": null
             },
-            "contamination": {
-                "type": "float",
-                "default": 0.1,
-                "range": [0.0, 0.5]
-            },
             "verbose": {
                 "type": "int",
                 "default": 0,
@@ -73,6 +68,11 @@
             "bootstrap": {
                 "type": "bool",
                 "default": false
+            },
+            "contamination": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0, 0.5]
             }
         }
     }
