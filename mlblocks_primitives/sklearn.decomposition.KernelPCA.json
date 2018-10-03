@@ -42,6 +42,10 @@
             "copy_X": {
                 "type": "bool",
                 "default": true
+           },
+           "kernel_params": {
+               "type": "str",
+               "default": null
            }
         },
         "tunable": {
@@ -71,10 +75,6 @@
                "type": "float",
                "default": 1.0,
                "range": [0.0, 10.0]
-           },
-           "kernel_params": {
-               "type": "str",
-               "default": null
            },
            "alpha": {
                "type": "int",

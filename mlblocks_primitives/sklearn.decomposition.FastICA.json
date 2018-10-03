@@ -34,7 +34,16 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "w_init": {
+                "type": "iterable",
+                "default": null
+            },
+            "fun_args": {
+                "type": "iterable",
+                "default": null
+            }
+        },
         "tunable": {
             "n_components": {
                 "type": "int",
@@ -55,10 +64,6 @@
                 "default": "logcosh",
                 "values": ["logcosh", "exp", "cube"]
             },
-            "fun_args": {
-                "type": "iterable",
-                "default": null
-            },
             "max_iter": {
                 "type": "int",
                 "default": 200,
@@ -68,10 +73,6 @@
                 "type": "float",
                 "default": 0.0001,
                 "range": [0.00001, 0.5]
-            },
-            "w_init": {
-                "type": "iterable",
-                "default": null
             }
         }
     }

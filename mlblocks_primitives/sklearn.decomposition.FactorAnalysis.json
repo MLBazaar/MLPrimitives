@@ -38,6 +38,10 @@
             "copy": {
                 "type": "bool",
                 "default": true
+            },
+            "noise_variance_init": {
+                "type": "iterable",
+                "default": null
             }
         },
         "tunable": {
@@ -55,10 +59,6 @@
                 "type": "int",
                 "default": 1000,
                 "range": [10, 10000]
-            },
-            "noise_variance_init": {
-                "type": "iterable",
-                "default": null
             },
             "svd_method": {
                 "type": "str",
