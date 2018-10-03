@@ -37,9 +37,12 @@
         "fixed": {
             "n_jobs": {
                 "type": "int",
-                "default": 1,
-                "range": [-1, 10]
-            }
+                "default": null
+            },
+            "copy_X": {
+                "type": "bool",
+                "default": true
+           }
         },
         "tunable": {
            "n_components": {
@@ -100,10 +103,6 @@
            "remove_zero_eig": {
                "type": "bool",
                "default": false
-           },
-           "copy_X": {
-               "type": "bool",
-               "default": true
            }
         }
     }

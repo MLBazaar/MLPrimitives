@@ -35,14 +35,29 @@
     },
     "hyperparameters": {
         "fixed": {
-            "split_sign": {
+            "n_jobs": {
+                "type": "int",
+                "default": null
+            },
+            "code_init": {
+                "type": "iterable",
+                "default": null
+            },
+            "dict_init": {
+                "type": "iterable",
+                "default": null
+            },
+            "verbose": {
                 "type": "bool",
                 "default": false
             },
-            "n_jobs": {
-                "type": "int",
-                "default": -1,
-                "range": [-1, 10]
+            "positive_code": {
+                "type": "bool",
+                "default": false
+            },
+            "positive_dict": {
+                "type": "bool",
+                "default": false
             }
         },
         "tunable": {
@@ -85,15 +100,7 @@
                 "default": 1.0,
                 "range": [0.0, 10.0]
             },
-            "code_init": {
-                "type": "iterable",
-                "default": null
-            },
-            "dict_init": {
-                "type": "iterable",
-                "default": null
-            },
-            "verbose": {
+            "split_sign": {
                 "type": "bool",
                 "default": false
             }
