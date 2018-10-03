@@ -121,6 +121,21 @@
                 "type": "float",
                 "default": 0.9,
                 "range": [0.01, 10]
+            },
+            "validation_fraction": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0, 1.0]
+            },
+            "n_iter_no_change": {
+                "type": "int",
+                "default": null,
+                "range": [1, 1000]
+            },
+            "tol": {
+                "type": "float",
+                "default": 1e-4,
+                "range": [0.0, 2.0]
             }
         }
     }
