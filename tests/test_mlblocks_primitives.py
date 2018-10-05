@@ -35,7 +35,7 @@ DATASETS = {
 }
 
 
-@patch('mlblocks.PRIMITIVES_PATHS', new=[PRIMITIVES_PATH])
+@patch('mlblocks.primitives._PRIMITIVES_PATHS', new=[PRIMITIVES_PATH])
 def test_jsons():
     """Validate MLBlocks primitive jsons"""
 
