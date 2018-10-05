@@ -49,7 +49,7 @@
         "tunable": {
             "n_estimators": {
                 "type": "int",
-                "default": 10,
+                "default": 100,
                 "range": [
                     10,
                     500
@@ -73,7 +73,7 @@
             },
             "gamma": {
                 "type": "float",
-                "default": 0,
+                "default": 0.1,
                 "range": [
                     0,
                     1
