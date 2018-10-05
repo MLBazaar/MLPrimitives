@@ -245,7 +245,7 @@
 
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="k">import</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">RegressorMixin</span>
-<span class="kn">from</span> <span class="nn">..externals.joblib</span> <span class="k">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="k">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 <span class="kn">from</span> <span class="nn">..externals</span> <span class="k">import</span> <span class="n">six</span>
 <span class="kn">from</span> <span class="nn">..metrics</span> <span class="k">import</span> <span class="n">r2_score</span>
 <span class="kn">from</span> <span class="nn">..preprocessing</span> <span class="k">import</span> <span class="n">OneHotEncoder</span>
@@ -328,11 +328,11 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">base_estimator</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                  <span class="n">estimator_params</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -368,7 +368,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_X_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-                           <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
+                           <span class="n">prefer</span><span class="o">=</span><span class="s2">&quot;threads&quot;</span><span class="p">)(</span>
             <span class="n">delayed</span><span class="p">(</span><span class="n">parallel_helper</span><span class="p">)(</span><span class="n">tree</span><span class="p">,</span> <span class="s1">&#39;apply&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
@@ -399,9 +399,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_X_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">indicators</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-                              <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
+                              <span class="n">prefer</span><span class="o">=</span><span class="s2">&quot;threads&quot;</span><span class="p">)(</span>
             <span class="n">delayed</span><span class="p">(</span><span class="n">parallel_helper</span><span class="p">)(</span><span class="n">tree</span><span class="p">,</span> <span class="s1">&#39;decision_path&#39;</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span>
-                                      <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                     <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
         <span class="n">n_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -416,8 +416,8 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        X : array-like or sparse matrix of shape = [n_samples, n_features]</span>
-<span class="sd">            The training input samples. Internally, its dtype will be converted to</span>
-<span class="sd">            ``dtype=np.float32``. If a sparse matrix is provided, it will be</span>
+<span class="sd">            The training input samples. Internally, its dtype will be converted</span>
+<span class="sd">            to ``dtype=np.float32``. If a sparse matrix is provided, it will be</span>
 <span class="sd">            converted into a sparse ``csc_matrix``.</span>
 
 <span class="sd">        y : array-like, shape = [n_samples] or [n_samples, n_outputs]</span>
@@ -434,8 +434,13 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        self : object</span>
-<span class="sd">            Returns self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">==</span> <span class="s1">&#39;warn&#39;</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The default value of n_estimators will change from &quot;</span>
+                          <span class="s2">&quot;10 in version 0.20 to 100 in 0.22.&quot;</span><span class="p">,</span> <span class="ne">FutureWarning</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">10</span>
+
         <span class="c1"># Validate or convert input data</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s2">&quot;csc&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">DTYPE</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="s1">&#39;csc&#39;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -509,12 +514,14 @@
                                             <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
                 <span class="n">trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
 
-            <span class="c1"># Parallel loop: we use the threading backend as the Cython code</span>
+            <span class="c1"># Parallel loop: we prefer the threading backend as the Cython code</span>
             <span class="c1"># for fitting the trees is internally releasing the Python GIL</span>
-            <span class="c1"># making threading always more efficient than multiprocessing in</span>
-            <span class="c1"># that case.</span>
+            <span class="c1"># making threading more efficient than multiprocessing in</span>
+            <span class="c1"># that case. However, we respect any parallel_backend contexts set</span>
+            <span class="c1"># at a higher level, since correctness does not rely on using</span>
+            <span class="c1"># threads.</span>
             <span class="n">trees</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-                             <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
+                             <span class="n">prefer</span><span class="o">=</span><span class="s2">&quot;threads&quot;</span><span class="p">)(</span>
                 <span class="n">delayed</span><span class="p">(</span><span class="n">_parallel_build_trees</span><span class="p">)(</span>
                     <span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trees</span><span class="p">),</span>
                     <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span><span class="p">)</span>
@@ -561,18 +568,19 @@
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;estimators_&#39;</span><span class="p">)</span>
 
         <span class="n">all_importances</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
-                                   <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
+                                   <span class="n">prefer</span><span class="o">=</span><span class="s2">&quot;threads&quot;</span><span class="p">)(</span>
             <span class="n">delayed</span><span class="p">(</span><span class="nb">getattr</span><span class="p">)(</span><span class="n">tree</span><span class="p">,</span> <span class="s1">&#39;feature_importances_&#39;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">all_importances</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
 
-<span class="c1"># This is a utility function for joblib&#39;s Parallel. It can&#39;t go locally in</span>
-<span class="c1"># ForestClassifier or ForestRegressor, because joblib complains that it cannot</span>
-<span class="c1"># pickle it when placed there.</span>
+<span class="k">def</span> <span class="nf">_accumulate_prediction</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is a utility function for joblib&#39;s Parallel.</span>
 
-<span class="k">def</span> <span class="nf">accumulate_prediction</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
+<span class="sd">    It can&#39;t go locally in ForestClassifier or ForestRegressor, because joblib</span>
+<span class="sd">    complains that it cannot pickle it when placed there.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -593,16 +601,15 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">base_estimator</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                  <span class="n">estimator_params</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">class_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
         <span class="nb">super</span><span class="p">(</span><span class="n">ForestClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">base_estimator</span><span class="p">,</span>
             <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
@@ -777,8 +784,9 @@
         <span class="n">all_proba</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">j</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
                      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span><span class="p">)]</span>
         <span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-        <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
-            <span class="n">delayed</span><span class="p">(</span><span class="n">accumulate_prediction</span><span class="p">)(</span><span class="n">e</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">all_proba</span><span class="p">,</span> <span class="n">lock</span><span class="p">)</span>
+        <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">require</span><span class="o">=</span><span class="s2">&quot;sharedmem&quot;</span><span class="p">)(</span>
+            <span class="n">delayed</span><span class="p">(</span><span class="n">_accumulate_prediction</span><span class="p">)(</span><span class="n">e</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">all_proba</span><span class="p">,</span>
+                                            <span class="n">lock</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">proba</span> <span class="ow">in</span> <span class="n">all_proba</span><span class="p">:</span>
@@ -832,11 +840,11 @@
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">base_estimator</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                  <span class="n">estimator_params</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(),</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -884,8 +892,8 @@
 
         <span class="c1"># Parallel loop</span>
         <span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-        <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">)(</span>
-            <span class="n">delayed</span><span class="p">(</span><span class="n">accumulate_prediction</span><span class="p">)(</span><span class="n">e</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="n">y_hat</span><span class="p">],</span> <span class="n">lock</span><span class="p">)</span>
+        <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">require</span><span class="o">=</span><span class="s2">&quot;sharedmem&quot;</span><span class="p">)(</span>
+            <span class="n">delayed</span><span class="p">(</span><span class="n">_accumulate_prediction</span><span class="p">)(</span><span class="n">e</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="n">y_hat</span><span class="p">],</span> <span class="n">lock</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
 
         <span class="n">y_hat</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
@@ -939,7 +947,7 @@
     <span class="sd">&quot;&quot;&quot;A random forest classifier.</span>
 
 <span class="sd">    A random forest is a meta estimator that fits a number of decision tree</span>
-<span class="sd">    classifiers on various sub-samples of the dataset and use averaging to</span>
+<span class="sd">    classifiers on various sub-samples of the dataset and uses averaging to</span>
 <span class="sd">    improve the predictive accuracy and control over-fitting.</span>
 <span class="sd">    The sub-sample size is always the same as the original</span>
 <span class="sd">    input sample size but the samples are drawn with replacement if</span>
@@ -952,16 +960,56 @@
 <span class="sd">    n_estimators : integer, optional (default=10)</span>
 <span class="sd">        The number of trees in the forest.</span>
 
+<span class="sd">        .. versionchanged:: 0.20</span>
+<span class="sd">           The default value of ``n_estimators`` will change from 10 in</span>
+<span class="sd">           version 0.20 to 100 in version 0.22.</span>
+
 <span class="sd">    criterion : string, optional (default=&quot;gini&quot;)</span>
 <span class="sd">        The function to measure the quality of a split. Supported criteria are</span>
 <span class="sd">        &quot;gini&quot; for the Gini impurity and &quot;entropy&quot; for the information gain.</span>
 <span class="sd">        Note: this parameter is tree-specific.</span>
 
+<span class="sd">    max_depth : integer or None, optional (default=None)</span>
+<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
+<span class="sd">        all leaves are pure or until all leaves contain less than</span>
+<span class="sd">        min_samples_split samples.</span>
+
+<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
+<span class="sd">        The minimum number of samples required to split an internal node:</span>
+
+<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_split` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each split.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+<span class="sd">        A split point at any depth will only be considered if it leaves at</span>
+<span class="sd">        least ``min_samples_leaf`` training samples in each of the left and</span>
+<span class="sd">        right branches.  This may have the effect of smoothing the model,</span>
+<span class="sd">        especially in regression.</span>
+
+<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_leaf` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each node.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
+<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
+<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
+<span class="sd">        equal weight when sample_weight is not provided.</span>
+
 <span class="sd">    max_features : int, float, string or None, optional (default=&quot;auto&quot;)</span>
 <span class="sd">        The number of features to consider when looking for the best split:</span>
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
-<span class="sd">        - If float, then `max_features` is a percentage and</span>
+<span class="sd">        - If float, then `max_features` is a fraction and</span>
 <span class="sd">          `int(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
@@ -973,51 +1021,10 @@
 <span class="sd">        valid partition of the node samples is found, even if it requires to</span>
 <span class="sd">        effectively inspect more than ``max_features`` features.</span>
 
-<span class="sd">    max_depth : integer or None, optional (default=None)</span>
-<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
-<span class="sd">        all leaves are pure or until all leaves contain less than</span>
-<span class="sd">        min_samples_split samples.</span>
-
-<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
-<span class="sd">        The minimum number of samples required to split an internal node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_split` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each split.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
-<span class="sd">        The minimum number of samples required to be at a leaf node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_leaf` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each node.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
-<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
-<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
-<span class="sd">        equal weight when sample_weight is not provided.</span>
-
 <span class="sd">    max_leaf_nodes : int or None, optional (default=None)</span>
 <span class="sd">        Grow trees with ``max_leaf_nodes`` in best-first fashion.</span>
 <span class="sd">        Best nodes are defined as relative reduction in impurity.</span>
 <span class="sd">        If None then unlimited number of leaf nodes.</span>
-
-<span class="sd">    min_impurity_split : float,</span>
-<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
-<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
-
-<span class="sd">        .. deprecated:: 0.19</span>
-<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
-<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
-<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    min_impurity_decrease : float, optional (default=0.)</span>
 <span class="sd">        A node will be split if this split induces a decrease of the impurity</span>
@@ -1037,6 +1044,15 @@
 
 <span class="sd">        .. versionadded:: 0.19</span>
 
+<span class="sd">    min_impurity_split : float,</span>
+<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
+<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
+
+<span class="sd">        .. deprecated:: 0.19</span>
+<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
+<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
+
 <span class="sd">    bootstrap : boolean, optional (default=True)</span>
 <span class="sd">        Whether bootstrap samples are used when building trees.</span>
 
@@ -1044,9 +1060,11 @@
 <span class="sd">        Whether to use out-of-bag samples to estimate</span>
 <span class="sd">        the generalization accuracy.</span>
 
-<span class="sd">    n_jobs : integer, optional (default=1)</span>
+<span class="sd">    n_jobs : int or None, optional (default=None)</span>
 <span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
-<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+<span class="sd">        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`</span>
+<span class="sd">        for more details.</span>
 
 <span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
 <span class="sd">        If int, random_state is the seed used by the random number generator;</span>
@@ -1055,15 +1073,15 @@
 <span class="sd">        by `np.random`.</span>
 
 <span class="sd">    verbose : int, optional (default=0)</span>
-<span class="sd">        Controls the verbosity of the tree building process.</span>
+<span class="sd">        Controls the verbosity when fitting and predicting.</span>
 
 <span class="sd">    warm_start : bool, optional (default=False)</span>
 <span class="sd">        When set to ``True``, reuse the solution of the previous call to fit</span>
 <span class="sd">        and add more estimators to the ensemble, otherwise, just fit a whole</span>
-<span class="sd">        new forest.</span>
+<span class="sd">        new forest. See :term:`the Glossary &lt;warm_start&gt;`.</span>
 
-<span class="sd">    class_weight : dict, list of dicts, &quot;balanced&quot;,</span>
-<span class="sd">        &quot;balanced_subsample&quot; or None, optional (default=None)</span>
+<span class="sd">    class_weight : dict, list of dicts, &quot;balanced&quot;, &quot;balanced_subsample&quot; or \</span>
+<span class="sd">    None, optional (default=None)</span>
 <span class="sd">        Weights associated with classes in the form ``{class_label: weight}``.</span>
 <span class="sd">        If not given, all classes are supposed to have weight one. For</span>
 <span class="sd">        multi-output problems, a list of dicts can be provided in the same</span>
@@ -1127,16 +1145,17 @@
 <span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_samples=1000, n_features=4,</span>
 <span class="sd">    ...                            n_informative=2, n_redundant=0,</span>
 <span class="sd">    ...                            random_state=0, shuffle=False)</span>
-<span class="sd">    &gt;&gt;&gt; clf = RandomForestClassifier(max_depth=2, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; clf = RandomForestClassifier(n_estimators=100, max_depth=2,</span>
+<span class="sd">    ...                              random_state=0)</span>
 <span class="sd">    &gt;&gt;&gt; clf.fit(X, y)</span>
 <span class="sd">    RandomForestClassifier(bootstrap=True, class_weight=None, criterion=&#39;gini&#39;,</span>
 <span class="sd">                max_depth=2, max_features=&#39;auto&#39;, max_leaf_nodes=None,</span>
 <span class="sd">                min_impurity_decrease=0.0, min_impurity_split=None,</span>
 <span class="sd">                min_samples_leaf=1, min_samples_split=2,</span>
-<span class="sd">                min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=1,</span>
+<span class="sd">                min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=None,</span>
 <span class="sd">                oob_score=False, random_state=0, verbose=0, warm_start=False)</span>
 <span class="sd">    &gt;&gt;&gt; print(clf.feature_importances_)</span>
-<span class="sd">    [ 0.17287856  0.80608704  0.01884792  0.00218648]</span>
+<span class="sd">    [0.14205973 0.76664038 0.0282433  0.06305659]</span>
 <span class="sd">    &gt;&gt;&gt; print(clf.predict([[0, 0, 0, 0]]))</span>
 <span class="sd">    [1]</span>
 
@@ -1165,7 +1184,7 @@
 <span class="sd">    DecisionTreeClassifier, ExtraTreesClassifier</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span>
                  <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span>
                  <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1177,7 +1196,7 @@
                  <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1213,7 +1232,7 @@
     <span class="sd">&quot;&quot;&quot;A random forest regressor.</span>
 
 <span class="sd">    A random forest is a meta estimator that fits a number of classifying</span>
-<span class="sd">    decision trees on various sub-samples of the dataset and use averaging</span>
+<span class="sd">    decision trees on various sub-samples of the dataset and uses averaging</span>
 <span class="sd">    to improve the predictive accuracy and control over-fitting.</span>
 <span class="sd">    The sub-sample size is always the same as the original</span>
 <span class="sd">    input sample size but the samples are drawn with replacement if</span>
@@ -1226,6 +1245,10 @@
 <span class="sd">    n_estimators : integer, optional (default=10)</span>
 <span class="sd">        The number of trees in the forest.</span>
 
+<span class="sd">        .. versionchanged:: 0.20</span>
+<span class="sd">           The default value of ``n_estimators`` will change from 10 in</span>
+<span class="sd">           version 0.20 to 100 in version 0.22.</span>
+
 <span class="sd">    criterion : string, optional (default=&quot;mse&quot;)</span>
 <span class="sd">        The function to measure the quality of a split. Supported criteria</span>
 <span class="sd">        are &quot;mse&quot; for the mean squared error, which is equal to variance</span>
@@ -1235,11 +1258,47 @@
 <span class="sd">        .. versionadded:: 0.18</span>
 <span class="sd">           Mean Absolute Error (MAE) criterion.</span>
 
+<span class="sd">    max_depth : integer or None, optional (default=None)</span>
+<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
+<span class="sd">        all leaves are pure or until all leaves contain less than</span>
+<span class="sd">        min_samples_split samples.</span>
+
+<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
+<span class="sd">        The minimum number of samples required to split an internal node:</span>
+
+<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_split` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each split.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+<span class="sd">        A split point at any depth will only be considered if it leaves at</span>
+<span class="sd">        least ``min_samples_leaf`` training samples in each of the left and</span>
+<span class="sd">        right branches.  This may have the effect of smoothing the model,</span>
+<span class="sd">        especially in regression.</span>
+
+<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_leaf` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each node.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
+<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
+<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
+<span class="sd">        equal weight when sample_weight is not provided.</span>
+
 <span class="sd">    max_features : int, float, string or None, optional (default=&quot;auto&quot;)</span>
 <span class="sd">        The number of features to consider when looking for the best split:</span>
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
-<span class="sd">        - If float, then `max_features` is a percentage and</span>
+<span class="sd">        - If float, then `max_features` is a fraction and</span>
 <span class="sd">          `int(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=n_features`.</span>
@@ -1251,51 +1310,10 @@
 <span class="sd">        valid partition of the node samples is found, even if it requires to</span>
 <span class="sd">        effectively inspect more than ``max_features`` features.</span>
 
-<span class="sd">    max_depth : integer or None, optional (default=None)</span>
-<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
-<span class="sd">        all leaves are pure or until all leaves contain less than</span>
-<span class="sd">        min_samples_split samples.</span>
-
-<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
-<span class="sd">        The minimum number of samples required to split an internal node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_split` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each split.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
-<span class="sd">        The minimum number of samples required to be at a leaf node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_leaf` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each node.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
-<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
-<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
-<span class="sd">        equal weight when sample_weight is not provided.</span>
-
 <span class="sd">    max_leaf_nodes : int or None, optional (default=None)</span>
 <span class="sd">        Grow trees with ``max_leaf_nodes`` in best-first fashion.</span>
 <span class="sd">        Best nodes are defined as relative reduction in impurity.</span>
 <span class="sd">        If None then unlimited number of leaf nodes.</span>
-
-<span class="sd">    min_impurity_split : float,</span>
-<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
-<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
-
-<span class="sd">        .. deprecated:: 0.19</span>
-<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
-<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
-<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    min_impurity_decrease : float, optional (default=0.)</span>
 <span class="sd">        A node will be split if this split induces a decrease of the impurity</span>
@@ -1315,6 +1333,15 @@
 
 <span class="sd">        .. versionadded:: 0.19</span>
 
+<span class="sd">    min_impurity_split : float,</span>
+<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
+<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
+
+<span class="sd">        .. deprecated:: 0.19</span>
+<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
+<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
+
 <span class="sd">    bootstrap : boolean, optional (default=True)</span>
 <span class="sd">        Whether bootstrap samples are used when building trees.</span>
 
@@ -1322,9 +1349,11 @@
 <span class="sd">        whether to use out-of-bag samples to estimate</span>
 <span class="sd">        the R^2 on unseen data.</span>
 
-<span class="sd">    n_jobs : integer, optional (default=1)</span>
+<span class="sd">    n_jobs : int or None, optional (default=None)</span>
 <span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
-<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+<span class="sd">        `None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`</span>
+<span class="sd">        for more details.</span>
 
 <span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
 <span class="sd">        If int, random_state is the seed used by the random number generator;</span>
@@ -1333,12 +1362,12 @@
 <span class="sd">        by `np.random`.</span>
 
 <span class="sd">    verbose : int, optional (default=0)</span>
-<span class="sd">        Controls the verbosity of the tree building process.</span>
+<span class="sd">        Controls the verbosity when fitting and predicting.</span>
 
 <span class="sd">    warm_start : bool, optional (default=False)</span>
 <span class="sd">        When set to ``True``, reuse the solution of the previous call to fit</span>
 <span class="sd">        and add more estimators to the ensemble, otherwise, just fit a whole</span>
-<span class="sd">        new forest.</span>
+<span class="sd">        new forest. See :term:`the Glossary &lt;warm_start&gt;`.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -1367,18 +1396,19 @@
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; X, y = make_regression(n_features=4, n_informative=2,</span>
 <span class="sd">    ...                        random_state=0, shuffle=False)</span>
-<span class="sd">    &gt;&gt;&gt; regr = RandomForestRegressor(max_depth=2, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; regr = RandomForestRegressor(max_depth=2, random_state=0,</span>
+<span class="sd">    ...                              n_estimators=100)</span>
 <span class="sd">    &gt;&gt;&gt; regr.fit(X, y)</span>
 <span class="sd">    RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=2,</span>
 <span class="sd">               max_features=&#39;auto&#39;, max_leaf_nodes=None,</span>
 <span class="sd">               min_impurity_decrease=0.0, min_impurity_split=None,</span>
 <span class="sd">               min_samples_leaf=1, min_samples_split=2,</span>
-<span class="sd">               min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=1,</span>
+<span class="sd">               min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=None,</span>
 <span class="sd">               oob_score=False, random_state=0, verbose=0, warm_start=False)</span>
 <span class="sd">    &gt;&gt;&gt; print(regr.feature_importances_)</span>
-<span class="sd">    [ 0.17339552  0.81594114  0.          0.01066333]</span>
+<span class="sd">    [0.18146984 0.81473937 0.00145312 0.00233767]</span>
 <span class="sd">    &gt;&gt;&gt; print(regr.predict([[0, 0, 0, 0]]))</span>
-<span class="sd">    [-2.50699856]</span>
+<span class="sd">    [-8.32987858]</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -1395,17 +1425,24 @@
 <span class="sd">    search of the best split. To obtain a deterministic behaviour during</span>
 <span class="sd">    fitting, ``random_state`` has to be fixed.</span>
 
+<span class="sd">    The default value ``max_features=&quot;auto&quot;`` uses ``n_features`` </span>
+<span class="sd">    rather than ``n_features / 3``. The latter was originally suggested in</span>
+<span class="sd">    [1], whereas the former was more recently justified empirically in [2].</span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 
 <span class="sd">    .. [1] L. Breiman, &quot;Random Forests&quot;, Machine Learning, 45(1), 5-32, 2001.</span>
+
+<span class="sd">    .. [2] P. Geurts, D. Ernst., and L. Wehenkel, &quot;Extremely randomized </span>
+<span class="sd">           trees&quot;, Machine Learning, 63(1), 3-42, 2006.</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
 <span class="sd">    DecisionTreeRegressor, ExtraTreesRegressor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span>
                  <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span>
                  <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1417,7 +1454,7 @@
                  <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1452,7 +1489,7 @@
 
 <span class="sd">    This class implements a meta estimator that fits a number of</span>
 <span class="sd">    randomized decision trees (a.k.a. extra-trees) on various sub-samples</span>
-<span class="sd">    of the dataset and use averaging to improve the predictive accuracy</span>
+<span class="sd">    of the dataset and uses averaging to improve the predictive accuracy</span>
 <span class="sd">    and control over-fitting.</span>
 
 <span class="sd">    Read more in the :ref:`User Guide &lt;forest&gt;`.</span>
@@ -1462,15 +1499,55 @@
 <span class="sd">    n_estimators : integer, optional (default=10)</span>
 <span class="sd">        The number of trees in the forest.</span>
 
+<span class="sd">        .. versionchanged:: 0.20</span>
+<span class="sd">           The default value of ``n_estimators`` will change from 10 in</span>
+<span class="sd">           version 0.20 to 100 in version 0.22.</span>
+
 <span class="sd">    criterion : string, optional (default=&quot;gini&quot;)</span>
 <span class="sd">        The function to measure the quality of a split. Supported criteria are</span>
 <span class="sd">        &quot;gini&quot; for the Gini impurity and &quot;entropy&quot; for the information gain.</span>
+
+<span class="sd">    max_depth : integer or None, optional (default=None)</span>
+<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
+<span class="sd">        all leaves are pure or until all leaves contain less than</span>
+<span class="sd">        min_samples_split samples.</span>
+
+<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
+<span class="sd">        The minimum number of samples required to split an internal node:</span>
+
+<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_split` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each split.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+<span class="sd">        A split point at any depth will only be considered if it leaves at</span>
+<span class="sd">        least ``min_samples_leaf`` training samples in each of the left and</span>
+<span class="sd">        right branches.  This may have the effect of smoothing the model,</span>
+<span class="sd">        especially in regression.</span>
+
+<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_leaf` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each node.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
+<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
+<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
+<span class="sd">        equal weight when sample_weight is not provided.</span>
 
 <span class="sd">    max_features : int, float, string or None, optional (default=&quot;auto&quot;)</span>
 <span class="sd">        The number of features to consider when looking for the best split:</span>
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
-<span class="sd">        - If float, then `max_features` is a percentage and</span>
+<span class="sd">        - If float, then `max_features` is a fraction and</span>
 <span class="sd">          `int(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
@@ -1482,51 +1559,10 @@
 <span class="sd">        valid partition of the node samples is found, even if it requires to</span>
 <span class="sd">        effectively inspect more than ``max_features`` features.</span>
 
-<span class="sd">    max_depth : integer or None, optional (default=None)</span>
-<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
-<span class="sd">        all leaves are pure or until all leaves contain less than</span>
-<span class="sd">        min_samples_split samples.</span>
-
-<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
-<span class="sd">        The minimum number of samples required to split an internal node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_split` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each split.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
-<span class="sd">        The minimum number of samples required to be at a leaf node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_leaf` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each node.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
-<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
-<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
-<span class="sd">        equal weight when sample_weight is not provided.</span>
-
 <span class="sd">    max_leaf_nodes : int or None, optional (default=None)</span>
 <span class="sd">        Grow trees with ``max_leaf_nodes`` in best-first fashion.</span>
 <span class="sd">        Best nodes are defined as relative reduction in impurity.</span>
 <span class="sd">        If None then unlimited number of leaf nodes.</span>
-
-<span class="sd">    min_impurity_split : float,</span>
-<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
-<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
-
-<span class="sd">        .. deprecated:: 0.19</span>
-<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
-<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
-<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    min_impurity_decrease : float, optional (default=0.)</span>
 <span class="sd">        A node will be split if this split induces a decrease of the impurity</span>
@@ -1546,6 +1582,15 @@
 
 <span class="sd">        .. versionadded:: 0.19</span>
 
+<span class="sd">    min_impurity_split : float,</span>
+<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
+<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
+
+<span class="sd">        .. deprecated:: 0.19</span>
+<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
+<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
+
 <span class="sd">    bootstrap : boolean, optional (default=False)</span>
 <span class="sd">        Whether bootstrap samples are used when building trees.</span>
 
@@ -1553,9 +1598,11 @@
 <span class="sd">        Whether to use out-of-bag samples to estimate</span>
 <span class="sd">        the generalization accuracy.</span>
 
-<span class="sd">    n_jobs : integer, optional (default=1)</span>
+<span class="sd">    n_jobs : int or None, optional (default=None)</span>
 <span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
-<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+<span class="sd">        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`</span>
+<span class="sd">        for more details.</span>
 
 <span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
 <span class="sd">        If int, random_state is the seed used by the random number generator;</span>
@@ -1564,14 +1611,15 @@
 <span class="sd">        by `np.random`.</span>
 
 <span class="sd">    verbose : int, optional (default=0)</span>
-<span class="sd">        Controls the verbosity of the tree building process.</span>
+<span class="sd">        Controls the verbosity when fitting and predicting.</span>
 
 <span class="sd">    warm_start : bool, optional (default=False)</span>
 <span class="sd">        When set to ``True``, reuse the solution of the previous call to fit</span>
 <span class="sd">        and add more estimators to the ensemble, otherwise, just fit a whole</span>
-<span class="sd">        new forest.</span>
+<span class="sd">        new forest. See :term:`the Glossary &lt;warm_start&gt;`.</span>
 
-<span class="sd">    class_weight : dict, list of dicts, &quot;balanced&quot;, &quot;balanced_subsample&quot; or None, optional (default=None)</span>
+<span class="sd">    class_weight : dict, list of dicts, &quot;balanced&quot;, &quot;balanced_subsample&quot; or \</span>
+<span class="sd">    None, optional (default=None)</span>
 <span class="sd">        Weights associated with classes in the form ``{class_label: weight}``.</span>
 <span class="sd">        If not given, all classes are supposed to have weight one. For</span>
 <span class="sd">        multi-output problems, a list of dicts can be provided in the same</span>
@@ -1637,8 +1685,8 @@
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 
-<span class="sd">    .. [1] P. Geurts, D. Ernst., and L. Wehenkel, &quot;Extremely randomized trees&quot;,</span>
-<span class="sd">           Machine Learning, 63(1), 3-42, 2006.</span>
+<span class="sd">    .. [1] P. Geurts, D. Ernst., and L. Wehenkel, &quot;Extremely randomized </span>
+<span class="sd">           trees&quot;, Machine Learning, 63(1), 3-42, 2006.</span>
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
@@ -1647,7 +1695,7 @@
 <span class="sd">        splits.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span>
                  <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span>
                  <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1659,7 +1707,7 @@
                  <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1696,7 +1744,7 @@
 
 <span class="sd">    This class implements a meta estimator that fits a number of</span>
 <span class="sd">    randomized decision trees (a.k.a. extra-trees) on various sub-samples</span>
-<span class="sd">    of the dataset and use averaging to improve the predictive accuracy</span>
+<span class="sd">    of the dataset and uses averaging to improve the predictive accuracy</span>
 <span class="sd">    and control over-fitting.</span>
 
 <span class="sd">    Read more in the :ref:`User Guide &lt;forest&gt;`.</span>
@@ -1705,6 +1753,10 @@
 <span class="sd">    ----------</span>
 <span class="sd">    n_estimators : integer, optional (default=10)</span>
 <span class="sd">        The number of trees in the forest.</span>
+
+<span class="sd">        .. versionchanged:: 0.20</span>
+<span class="sd">           The default value of ``n_estimators`` will change from 10 in</span>
+<span class="sd">           version 0.20 to 100 in version 0.22.</span>
 
 <span class="sd">    criterion : string, optional (default=&quot;mse&quot;)</span>
 <span class="sd">        The function to measure the quality of a split. Supported criteria</span>
@@ -1715,11 +1767,47 @@
 <span class="sd">        .. versionadded:: 0.18</span>
 <span class="sd">           Mean Absolute Error (MAE) criterion.</span>
 
+<span class="sd">    max_depth : integer or None, optional (default=None)</span>
+<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
+<span class="sd">        all leaves are pure or until all leaves contain less than</span>
+<span class="sd">        min_samples_split samples.</span>
+
+<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
+<span class="sd">        The minimum number of samples required to split an internal node:</span>
+
+<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_split` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each split.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+<span class="sd">        A split point at any depth will only be considered if it leaves at</span>
+<span class="sd">        least ``min_samples_leaf`` training samples in each of the left and</span>
+<span class="sd">        right branches.  This may have the effect of smoothing the model,</span>
+<span class="sd">        especially in regression.</span>
+
+<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
+<span class="sd">        - If float, then `min_samples_leaf` is a fraction and</span>
+<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
+<span class="sd">          number of samples for each node.</span>
+
+<span class="sd">        .. versionchanged:: 0.18</span>
+<span class="sd">           Added float values for fractions.</span>
+
+<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
+<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
+<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
+<span class="sd">        equal weight when sample_weight is not provided.</span>
+
 <span class="sd">    max_features : int, float, string or None, optional (default=&quot;auto&quot;)</span>
 <span class="sd">        The number of features to consider when looking for the best split:</span>
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
-<span class="sd">        - If float, then `max_features` is a percentage and</span>
+<span class="sd">        - If float, then `max_features` is a fraction and</span>
 <span class="sd">          `int(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=n_features`.</span>
@@ -1731,51 +1819,10 @@
 <span class="sd">        valid partition of the node samples is found, even if it requires to</span>
 <span class="sd">        effectively inspect more than ``max_features`` features.</span>
 
-<span class="sd">    max_depth : integer or None, optional (default=None)</span>
-<span class="sd">        The maximum depth of the tree. If None, then nodes are expanded until</span>
-<span class="sd">        all leaves are pure or until all leaves contain less than</span>
-<span class="sd">        min_samples_split samples.</span>
-
-<span class="sd">    min_samples_split : int, float, optional (default=2)</span>
-<span class="sd">        The minimum number of samples required to split an internal node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_split` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_split * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each split.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
-<span class="sd">        The minimum number of samples required to be at a leaf node:</span>
-
-<span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_leaf` is a percentage and</span>
-<span class="sd">          `ceil(min_samples_leaf * n_samples)` are the minimum</span>
-<span class="sd">          number of samples for each node.</span>
-
-<span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
-
-<span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
-<span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
-<span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
-<span class="sd">        equal weight when sample_weight is not provided.</span>
-
 <span class="sd">    max_leaf_nodes : int or None, optional (default=None)</span>
 <span class="sd">        Grow trees with ``max_leaf_nodes`` in best-first fashion.</span>
 <span class="sd">        Best nodes are defined as relative reduction in impurity.</span>
 <span class="sd">        If None then unlimited number of leaf nodes.</span>
-
-<span class="sd">    min_impurity_split : float,</span>
-<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
-<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
-
-<span class="sd">        .. deprecated:: 0.19</span>
-<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
-<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
-<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    min_impurity_decrease : float, optional (default=0.)</span>
 <span class="sd">        A node will be split if this split induces a decrease of the impurity</span>
@@ -1795,15 +1842,26 @@
 
 <span class="sd">        .. versionadded:: 0.19</span>
 
+<span class="sd">    min_impurity_split : float,</span>
+<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
+<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
+
+<span class="sd">        .. deprecated:: 0.19</span>
+<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
+<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
+
 <span class="sd">    bootstrap : boolean, optional (default=False)</span>
 <span class="sd">        Whether bootstrap samples are used when building trees.</span>
 
 <span class="sd">    oob_score : bool, optional (default=False)</span>
 <span class="sd">        Whether to use out-of-bag samples to estimate the R^2 on unseen data.</span>
 
-<span class="sd">    n_jobs : integer, optional (default=1)</span>
+<span class="sd">    n_jobs : int or None, optional (default=None)</span>
 <span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
-<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+<span class="sd">        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`</span>
+<span class="sd">        for more details.</span>
 
 <span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
 <span class="sd">        If int, random_state is the seed used by the random number generator;</span>
@@ -1812,12 +1870,12 @@
 <span class="sd">        by `np.random`.</span>
 
 <span class="sd">    verbose : int, optional (default=0)</span>
-<span class="sd">        Controls the verbosity of the tree building process.</span>
+<span class="sd">        Controls the verbosity when fitting and predicting.</span>
 
 <span class="sd">    warm_start : bool, optional (default=False)</span>
 <span class="sd">        When set to ``True``, reuse the solution of the previous call to fit</span>
 <span class="sd">        and add more estimators to the ensemble, otherwise, just fit a whole</span>
-<span class="sd">        new forest.</span>
+<span class="sd">        new forest. See :term:`the Glossary &lt;warm_start&gt;`.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -1859,7 +1917,7 @@
 <span class="sd">    RandomForestRegressor: Ensemble regressor using trees with optimal splits.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span>
                  <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span>
                  <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1871,7 +1929,7 @@
                  <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">oob_score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1921,6 +1979,10 @@
 <span class="sd">    n_estimators : integer, optional (default=10)</span>
 <span class="sd">        Number of trees in the forest.</span>
 
+<span class="sd">        .. versionchanged:: 0.20</span>
+<span class="sd">           The default value of ``n_estimators`` will change from 10 in</span>
+<span class="sd">           version 0.20 to 100 in version 0.22.</span>
+
 <span class="sd">    max_depth : integer, optional (default=5)</span>
 <span class="sd">        The maximum depth of each tree. If None, then nodes are expanded until</span>
 <span class="sd">        all leaves are pure or until all leaves contain less than</span>
@@ -1930,23 +1992,27 @@
 <span class="sd">        The minimum number of samples required to split an internal node:</span>
 
 <span class="sd">        - If int, then consider `min_samples_split` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_split` is a percentage and</span>
+<span class="sd">        - If float, then `min_samples_split` is a fraction and</span>
 <span class="sd">          `ceil(min_samples_split * n_samples)` is the minimum</span>
 <span class="sd">          number of samples for each split.</span>
 
 <span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
+<span class="sd">           Added float values for fractions.</span>
 
 <span class="sd">    min_samples_leaf : int, float, optional (default=1)</span>
-<span class="sd">        The minimum number of samples required to be at a leaf node:</span>
+<span class="sd">        The minimum number of samples required to be at a leaf node.</span>
+<span class="sd">        A split point at any depth will only be considered if it leaves at</span>
+<span class="sd">        least ``min_samples_leaf`` training samples in each of the left and</span>
+<span class="sd">        right branches.  This may have the effect of smoothing the model,</span>
+<span class="sd">        especially in regression.</span>
 
 <span class="sd">        - If int, then consider `min_samples_leaf` as the minimum number.</span>
-<span class="sd">        - If float, then `min_samples_leaf` is a percentage and</span>
+<span class="sd">        - If float, then `min_samples_leaf` is a fraction and</span>
 <span class="sd">          `ceil(min_samples_leaf * n_samples)` is the minimum</span>
 <span class="sd">          number of samples for each node.</span>
 
 <span class="sd">        .. versionchanged:: 0.18</span>
-<span class="sd">           Added float values for percentages.</span>
+<span class="sd">           Added float values for fractions.</span>
 
 <span class="sd">    min_weight_fraction_leaf : float, optional (default=0.)</span>
 <span class="sd">        The minimum weighted fraction of the sum total of weights (of all</span>
@@ -1957,15 +2023,6 @@
 <span class="sd">        Grow trees with ``max_leaf_nodes`` in best-first fashion.</span>
 <span class="sd">        Best nodes are defined as relative reduction in impurity.</span>
 <span class="sd">        If None then unlimited number of leaf nodes.</span>
-
-<span class="sd">    min_impurity_split : float,</span>
-<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
-<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
-
-<span class="sd">        .. deprecated:: 0.19</span>
-<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
-<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
-<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    min_impurity_decrease : float, optional (default=0.)</span>
 <span class="sd">        A node will be split if this split induces a decrease of the impurity</span>
@@ -1985,16 +2042,24 @@
 
 <span class="sd">        .. versionadded:: 0.19</span>
 
-<span class="sd">    bootstrap : boolean, optional (default=True)</span>
-<span class="sd">        Whether bootstrap samples are used when building trees.</span>
+<span class="sd">    min_impurity_split : float,</span>
+<span class="sd">        Threshold for early stopping in tree growth. A node will split</span>
+<span class="sd">        if its impurity is above the threshold, otherwise it is a leaf.</span>
+
+<span class="sd">        .. deprecated:: 0.19</span>
+<span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
+<span class="sd">           ``min_impurity_decrease`` in 0.19 and will be removed in 0.21.</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    sparse_output : bool, optional (default=True)</span>
 <span class="sd">        Whether or not to return a sparse CSR matrix, as default behavior,</span>
 <span class="sd">        or to return a dense array compatible with dense pipeline operators.</span>
 
-<span class="sd">    n_jobs : integer, optional (default=1)</span>
+<span class="sd">    n_jobs : int or None, optional (default=None)</span>
 <span class="sd">        The number of jobs to run in parallel for both `fit` and `predict`.</span>
-<span class="sd">        If -1, then the number of jobs is set to the number of cores.</span>
+<span class="sd">        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors. See :term:`Glossary &lt;n_jobs&gt;`</span>
+<span class="sd">        for more details.</span>
 
 <span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
 <span class="sd">        If int, random_state is the seed used by the random number generator;</span>
@@ -2003,12 +2068,12 @@
 <span class="sd">        by `np.random`.</span>
 
 <span class="sd">    verbose : int, optional (default=0)</span>
-<span class="sd">        Controls the verbosity of the tree building process.</span>
+<span class="sd">        Controls the verbosity when fitting and predicting.</span>
 
 <span class="sd">    warm_start : bool, optional (default=False)</span>
 <span class="sd">        When set to ``True``, reuse the solution of the previous call to fit</span>
 <span class="sd">        and add more estimators to the ensemble, otherwise, just fit a whole</span>
-<span class="sd">        new forest.</span>
+<span class="sd">        new forest. See :term:`the Glossary &lt;warm_start&gt;`.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -2026,7 +2091,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                 <span class="n">n_estimators</span><span class="o">=</span><span class="s1">&#39;warn&#39;</span><span class="p">,</span>
                  <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                  <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                  <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -2035,7 +2100,7 @@
                  <span class="n">min_impurity_decrease</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
                  <span class="n">min_impurity_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -2088,7 +2153,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        self : object</span>
-<span class="sd">            Returns self.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
@@ -2126,7 +2190,8 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">RandomTreesEmbedding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
                                               <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">one_hot_encoder_</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sparse_output</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_hot_encoder_</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sparse_output</span><span class="p">,</span>
+                                              <span class="n">categories</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">one_hot_encoder_</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -2157,7 +2222,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, MIT Data To AI Lab.
+        &copy; Copyright 2018, MIT Data To AI Lab
 
     </p>
   </div>
@@ -2176,21 +2241,14 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'0.1.2-dev',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
