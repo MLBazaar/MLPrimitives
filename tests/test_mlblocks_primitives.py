@@ -4,7 +4,6 @@ import json
 import os
 from unittest.mock import patch
 
-import pandas as pd
 from mlblocks import MLPipeline
 
 PRIMITIVES_PATH = os.path.normpath(
