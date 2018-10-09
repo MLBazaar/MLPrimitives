@@ -8,10 +8,13 @@ of a pipeline over a given dataset.
 """
 
 import json
+import logging
 from copy import copy
 
 import numpy as np
 from mlblocks import MLPipeline, datasets
+
+LOGGER = logging.getLogger(__name__)
 
 
 def build_pipeline(pipeline_spec):
@@ -56,19 +59,26 @@ def get_context(dataset, context_spec):
 
 def score_pipeline(pipeline_metadata, n_splits=5):
     if isinstance(pipeline_metadata, str):
+        LOGGER.info('Loading pipeline %s', pipeline_metadata)
         with open(pipeline_metadata, 'r') as pipeline_file:
             pipeline_metadata = json.load(pipeline_file)
 
     validation = pipeline_metadata['validation']
-    dataset = load_dataset(validation['dataset'])
+    dataset = validation['dataset']
+    LOGGER.info('Loading dataset %s', dataset)
+    dataset = load_dataset(dataset)
 
     scores = list()
-    for X_train, X_test, y_train, y_test in dataset.get_splits(n_splits):
+    for split, (X_train, X_test, y_train, y_test) in enumerate(dataset.get_splits(n_splits)):
+        LOGGER.info('Scoring split %s', split + 1)
         context = get_context(dataset, validation.get('context', dict()))
         pipeline = build_pipeline(pipeline_metadata)
         pipeline.fit(X_train, y_train, **context)
         predictions = pipeline.predict(X_test, **context)
 
-        scores.append(dataset.score(y_test, predictions))
+        score = dataset.score(y_test, predictions)
+        LOGGER.info('Obtained score %s', score)
+
+        scores.append(score)
 
     return np.mean(scores), np.std(scores)
