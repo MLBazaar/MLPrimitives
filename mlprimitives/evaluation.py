@@ -69,7 +69,11 @@ def score_pipeline(pipeline_metadata, n_splits=5):
     dataset = load_dataset(dataset)
 
     scores = list()
-    for split, (X_train, X_test, y_train, y_test) in enumerate(dataset.get_splits(n_splits)):
+    splits = dataset.get_splits(n_splits)
+    if n_splits == 1:
+        splits = [splits]
+
+    for split, (X_train, X_test, y_train, y_test) in enumerate(splits):
         LOGGER.info('Scoring split %s', split + 1)
         context = get_context(dataset, validation.get('context', dict()))
         pipeline = build_pipeline(pipeline_metadata)

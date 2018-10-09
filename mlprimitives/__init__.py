@@ -68,7 +68,7 @@ def _parse_args():
     subparser = subparsers.add_parser('test', help='Test a single pipeline.')
     subparser.set_defaults(action=_test)
     subparser.add_argument('pipeline')
-    subparser.add_argument('-s', '--splits', default=5, type=int,
+    subparser.add_argument('-s', '--splits', default=1, type=int,
                            help='Number of splits to use for Cross Validation')
 
     subparser = subparsers.add_parser('list', help='List available primitives')
