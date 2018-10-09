@@ -18,6 +18,16 @@
             {
                 "name": "y",
                 "type": "array"
+            },
+            {
+                "name": "classes",
+                "type": "int",
+                "description": "Number of classes"
+            },
+            {
+                "name": "vocabulary_size",
+                "type": "int",
+                "description": "vocabulary size + 1: number of known words in input."
             }
         ]
     },
@@ -38,21 +48,16 @@
     },
     "hyperparameters": {
         "fixed": {
-            "pad_length": {
-                "type": "int",
-                "default": 1500
+            "input_length": {
+                "type": "int"
+            },
+            "classification": {
+                "type": "bool",
+                "default": true
             },
             "conv_activation": {
                 "type": "str",
                 "default": "relu"
-            },
-            "dense_units": {
-                "type": "int",
-                "description": "Number of classes"
-            },
-            "embedding_input_dim": {
-                "type": "int",
-                "description": "vocabulary size + 1: number of known words in input."
             },
             "dense_activation": {
                 "type": "str",
@@ -82,9 +87,9 @@
                     {
                         "class": "keras.layers.Embedding",
                         "parameters": {
-                            "input_dim": "embedding_input_dim",
+                            "input_dim": "vocabulary_size",
                             "output_dim": "embedding_output_dim",
-                            "input_length": "pad_length"
+                            "input_length": "input_length"
                         }
                     },
                     {
@@ -116,7 +121,7 @@
                     {
                         "class": "keras.layers.Dense",
                         "parameters": {
-                            "units": "dense_units",
+                            "units": "classes",
                             "activation": "dense_activation"
                         }
                     }
