@@ -90,6 +90,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.audio_featurization">mlprimitives.audio_featurization module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.audio_padding">mlprimitives.audio_padding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.evaluation">mlprimitives.evaluation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.feature_extraction">mlprimitives.feature_extraction module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.feature_selection">mlprimitives.feature_selection module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../mlprimitives.html#module-mlprimitives.text">mlprimitives.text module</a></li>
@@ -205,6 +206,8 @@
 
 <div class="viewcode-block" id="graph_pairs_feature_extraction"><a class="viewcode-back" href="../../../mlprimitives.adapters.html#mlprimitives.adapters.networkx.graph_pairs_feature_extraction">[docs]</a><span class="k">def</span> <span class="nf">graph_pairs_feature_extraction</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">functions</span><span class="p">,</span> <span class="n">node_columns</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">import_object</span><span class="p">(</span><span class="n">function</span><span class="p">)</span> <span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">]</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="n">pairs</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">node_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 

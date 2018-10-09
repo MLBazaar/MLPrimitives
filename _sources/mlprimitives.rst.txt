@@ -27,6 +27,14 @@ mlprimitives.audio\_padding module
     :undoc-members:
     :show-inheritance:
 
+mlprimitives.evaluation module
+------------------------------
+
+.. automodule:: mlprimitives.evaluation
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 mlprimitives.feature\_extraction module
 ---------------------------------------
 
