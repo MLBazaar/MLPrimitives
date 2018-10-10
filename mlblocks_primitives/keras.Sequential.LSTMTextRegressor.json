@@ -38,9 +38,13 @@
     },
     "hyperparameters": {
         "fixed": {
-            "pad_length": {
+            "input_length": {
                 "type": "int",
                 "default": 1500
+            },
+            "classification": {
+                "type": "bool",
+                "default": false
             },
             "conv_activation": {
                 "type": "str",
@@ -62,7 +66,7 @@
                 "type": "str",
                 "default": "keras.losses.mean_squared_error"
             },
-            "embedding_input_dim": {
+            "vocabulary_size": {
                 "type": "int",
                 "description": "vocabulary size + 1: number of known words in input."
             },
@@ -76,9 +80,9 @@
                     {
                         "class": "keras.layers.Embedding",
                         "parameters": {
-                            "input_dim": "embedding_input_dim",
+                            "input_dim": "vocabulary_size",
                             "output_dim": "embedding_output_dim",
-                            "input_length": "pad_length"
+                            "input_length": "input_length"
                         }
                     },
                     {

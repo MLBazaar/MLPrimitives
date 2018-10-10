@@ -52,7 +52,7 @@
                 "default": 100,
                 "range": [
                     10,
-                    500
+                    1000
                 ]
             },
             "max_depth": {

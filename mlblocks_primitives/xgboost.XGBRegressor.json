@@ -52,7 +52,7 @@
                 "default": 100,
                 "range": [
                     10,
-                    500
+                    1000
                 ]
             },
             "max_depth": {
@@ -65,7 +65,7 @@
             },
             "learning_rate": {
                 "type": "float",
-                "default": 0,
+                "default": 0.1,
                 "range": [
                     0,
                     1

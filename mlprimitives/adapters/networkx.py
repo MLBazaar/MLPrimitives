@@ -13,6 +13,8 @@ LOGGER = logging.getLogger(__name__)
 def graph_pairs_feature_extraction(X, functions, node_columns, graph=None):
     functions = [import_object(function) for function in functions]
 
+    X = X.copy()
+
     pairs = X[node_columns].values
 
     # for i, graph in enumerate(graphs):
