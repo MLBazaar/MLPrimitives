@@ -20,11 +20,12 @@ install_requires = [
     'featuretools>=0.1.17',
     'lightfm>=1.15',
     'networkx>=2.0',
-    'numpy>=1.14.0',
+    'numpy>=1.15.2',
+    'pandas>=0.23.4',
     'opencv-python>=3.4.0.12',
     'python-louvain>=0.10',
     'scikit-image>=0.13.1',
-    'scikit-learn>=0.19.1',
+    'scikit-learn>=0.20.0',
     'scipy>=1.1.0',
     'tensorflow==1.8.0',
     'xgboost>=0.72.1',
@@ -46,21 +47,32 @@ setup_requires = [
 
 
 development_requires = [
-    'Sphinx>=1.7.1',
-    'autoflake>=1.1',
-    'autopep8>=1.3.5',
+    # general
     'bumpversion>=0.5.3',
-    'coverage>=4.5.1',
+    'pip>=9.0.1',
+    'watchdog>=0.8.3',
+
+    # docs
+    'm2r>=0.2.0',
+    'Sphinx>=1.7.1',
+    'sphinx_rtd_theme>=0.2.4',
+    'recommonmark>=0.4.0',
+
+    # style check
     'flake8>=3.5.0',
     'isort>=4.3.4',
-    'pip>=10.0.1',
-    'pycodestyle==2.3.1',
-    'pyflakes==1.6.0',
-    'recommonmark>=0.4.0',
-    'sphinx_rtd_theme>=0.2.4',
-    'tox>=2.9.1',
+
+    # fix style issues
+    'autoflake>=1.1',
+    'autopep8>=1.3.5',
+
+    # distribute on PyPI
     'twine>=1.10.0',
     'wheel>=0.30.0',
+
+    # Advanced testing
+    'coverage>=4.5.1',
+    'tox>=2.9.1',
 ]
 
 
@@ -93,6 +105,11 @@ setup(
     ],
     data_files = list(data_files.items()),
     description="MLBlocks Primitives",
+    entry_points = {
+        'console_scripts': [
+            'mlprimitives=mlprimitives:_main'
+        ],
+    },
     extras_require=extras_require,
     install_requires=install_requires,
     license="MIT license",
@@ -107,6 +124,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.1',
+    version='0.1.2-dev',
     zip_safe=False,
 )
