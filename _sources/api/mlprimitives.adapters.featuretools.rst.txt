@@ -1,0 +1,7 @@
+mlprimitives.adapters.featuretools module
+=========================================
+
+.. automodule:: mlprimitives.adapters.featuretools
+    :members:
+    :undoc-members:
+    :show-inheritance:

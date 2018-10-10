@@ -1,0 +1,7 @@
+mlprimitives.evaluation module
+==============================
+
+.. automodule:: mlprimitives.evaluation
+    :members:
+    :undoc-members:
+    :show-inheritance:

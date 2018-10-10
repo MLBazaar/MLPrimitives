@@ -1,0 +1,31 @@
+mlprimitives package
+====================
+
+.. automodule:: mlprimitives
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    mlprimitives.adapters
+
+Submodules
+----------
+
+.. toctree::
+
+   mlprimitives.audio_featurization
+   mlprimitives.audio_padding
+   mlprimitives.counters
+   mlprimitives.evaluation
+   mlprimitives.feature_extraction
+   mlprimitives.feature_selection
+   mlprimitives.preprocessing
+   mlprimitives.text
+   mlprimitives.trivial
+   mlprimitives.utils
+

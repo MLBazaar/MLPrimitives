@@ -1,0 +1,7 @@
+mlprimitives.text module
+========================
+
+.. automodule:: mlprimitives.text
+    :members:
+    :undoc-members:
+    :show-inheritance:

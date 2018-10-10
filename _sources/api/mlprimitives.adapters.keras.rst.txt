@@ -1,0 +1,7 @@
+mlprimitives.adapters.keras module
+==================================
+
+.. automodule:: mlprimitives.adapters.keras
+    :members:
+    :undoc-members:
+    :show-inheritance:

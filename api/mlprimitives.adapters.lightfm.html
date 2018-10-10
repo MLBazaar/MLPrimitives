@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mlprimitives.adapters.lightfm module &mdash; MLPrimitives 0.1.2-dev documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mlprimitives.adapters.networkx module" href="mlprimitives.adapters.networkx.html" />
+    <link rel="prev" title="mlprimitives.adapters.keras module" href="mlprimitives.adapters.keras.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced Usage</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="mlprimitives.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.audio_featurization.html">mlprimitives.audio_featurization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.audio_padding.html">mlprimitives.audio_padding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.counters.html">mlprimitives.counters module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.feature_extraction.html">mlprimitives.feature_extraction module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.feature_selection.html">mlprimitives.feature_selection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.preprocessing.html">mlprimitives.preprocessing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.text.html">mlprimitives.text module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.trivial.html">mlprimitives.trivial module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Development Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#implementing-changes">Implementing Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#integrate-new-primitives">Integrate new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#implement-new-primitives">Implement new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#write-documentation">Write Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#release-workflow">Release Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id5">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.adapters.html">mlprimitives.adapters package</a> &raquo;</li>
+        
+      <li>mlprimitives.adapters.lightfm module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.adapters.lightfm.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mlprimitives.adapters.lightfm">
+<span id="mlprimitives-adapters-lightfm-module"></span><h1>mlprimitives.adapters.lightfm module<a class="headerlink" href="#module-mlprimitives.adapters.lightfm" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mlprimitives.adapters.lightfm.LightFM">
+<em class="property">class </em><code class="descclassname">mlprimitives.adapters.lightfm.</code><code class="descname">LightFM</code><span class="sig-paren">(</span><em>epochs=1</em>, <em>num_threads=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/lightfm.html#LightFM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.lightfm.LightFM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.lightfm.LightFM</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.adapters.lightfm.LightFM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/lightfm.html#LightFM.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.lightfm.LightFM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model.</p>
+<p>For details on how to use feature matrices, see the documentation
+on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>interactions</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em>) – the matrix containing
+user-item interactions. Will be converted to
+numpy.float32 dtype if it is not of that type.</li>
+<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
+<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
+<li><strong>sample_weight</strong> (<em>np.float32 coo_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_items</em><em>]</em><em>, </em><em>optional</em>) – matrix with entries expressing weights of individual
+interactions from the interactions matrix.
+Its row and col arrays must be the same as
+those of the interactions matrix. For memory
+efficiency its possible to use the same arrays
+for both weights and interaction matrices.
+Defaults to weight 1.0 for all interactions.
+Not implemented for the k-OS loss.</li>
+<li><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – number of epochs to run</li>
+<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
+not be higher than the number of physical cores.</li>
+<li><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to print progress messages.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the fitted model</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">LightFM instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.adapters.lightfm.LightFM.get_columns">
+<code class="descname">get_columns</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/lightfm.html#LightFM.get_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.lightfm.LightFM.get_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.adapters.lightfm.LightFM.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/lightfm.html#LightFM.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.lightfm.LightFM.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the recommendation score for user-item pairs.</p>
+<p>For details on how to use feature matrices, see the documentation
+on the <code class="xref py py-class docutils literal notranslate"><span class="pre">lightfm.LightFM</span></code> class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_ids</strong> (<em>integer</em><em> or </em><em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – single user id or an array containing the user ids for the
+user-item pairs for which a prediction is to be computed</li>
+<li><strong>item_ids</strong> (<em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – an array containing the item ids for the user-item pairs for which
+a prediction is to be computed.</li>
+<li><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</li>
+<li><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</li>
+<li><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
+not be higher than the number of physical cores.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Numpy array containing the recommendation scores for pairs defined
+by the inputs.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.float32 array of shape [n_pairs,]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mlprimitives.adapters.networkx.html" class="btn btn-neutral float-right" title="mlprimitives.adapters.networkx module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mlprimitives.adapters.keras.html" class="btn btn-neutral" title="mlprimitives.adapters.keras module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

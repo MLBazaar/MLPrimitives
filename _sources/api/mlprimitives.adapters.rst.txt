@@ -1,0 +1,21 @@
+mlprimitives.adapters package
+=============================
+
+.. automodule:: mlprimitives.adapters
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   mlprimitives.adapters.community
+   mlprimitives.adapters.cv2
+   mlprimitives.adapters.featuretools
+   mlprimitives.adapters.keras
+   mlprimitives.adapters.lightfm
+   mlprimitives.adapters.networkx
+   mlprimitives.adapters.skimage
+

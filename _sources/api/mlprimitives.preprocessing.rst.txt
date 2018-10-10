@@ -1,0 +1,7 @@
+mlprimitives.preprocessing module
+=================================
+
+.. automodule:: mlprimitives.preprocessing
+    :members:
+    :undoc-members:
+    :show-inheritance:

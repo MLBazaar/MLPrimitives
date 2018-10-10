@@ -1,0 +1,7 @@
+mlprimitives.adapters.skimage module
+====================================
+
+.. automodule:: mlprimitives.adapters.skimage
+    :members:
+    :undoc-members:
+    :show-inheritance:

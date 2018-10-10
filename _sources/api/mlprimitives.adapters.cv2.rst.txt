@@ -1,0 +1,7 @@
+mlprimitives.adapters.cv2 module
+================================
+
+.. automodule:: mlprimitives.adapters.cv2
+    :members:
+    :undoc-members:
+    :show-inheritance:

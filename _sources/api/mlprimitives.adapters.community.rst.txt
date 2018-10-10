@@ -1,0 +1,7 @@
+mlprimitives.adapters.community module
+======================================
+
+.. automodule:: mlprimitives.adapters.community
+    :members:
+    :undoc-members:
+    :show-inheritance:

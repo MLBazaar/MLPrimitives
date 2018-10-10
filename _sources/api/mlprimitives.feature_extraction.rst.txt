@@ -1,0 +1,7 @@
+mlprimitives.feature\_extraction module
+=======================================
+
+.. automodule:: mlprimitives.feature_extraction
+    :members:
+    :undoc-members:
+    :show-inheritance:
