@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.audio_padding &mdash; MLPrimitives 0.1.2-dev documentation</title>
+  <title>mlprimitives.preprocessing &mdash; MLPrimitives 0.1.2-dev documentation</title>
   
 
   
@@ -178,7 +178,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>mlprimitives.audio_padding</li>
+      <li>mlprimitives.preprocessing</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -193,38 +193,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for mlprimitives.audio_padding</h1><div class="highlight"><pre>
+  <h1>Source code for mlprimitives.preprocessing</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelEncoder</span>
 
 
-<div class="viewcode-block" id="AudioPadder"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.audio_padding.AudioPadder">[docs]</a><span class="k">class</span> <span class="nc">AudioPadder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ClassEncoder"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassEncoder">[docs]</a><span class="k">class</span> <span class="nc">ClassEncoder</span><span class="p">():</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 
-<div class="viewcode-block" id="AudioPadder.fit"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.audio_padding.AudioPadder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="c1"># Just obtain padding.</span>
-        <span class="k">for</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span></div>
+<div class="viewcode-block" id="ClassEncoder.fit"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassEncoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
-                <span class="n">features</span><span class="p">,</span>
-                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
-                <span class="s1">&#39;constant&#39;</span><span class="p">,</span>
-                <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span>
-            <span class="p">)</span>
+<div class="viewcode-block" id="ClassEncoder.encode"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">classes_</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">classes</span></div></div>
 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">features</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">]</span>
 
-<div class="viewcode-block" id="AudioPadder.produce"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.audio_padding.AudioPadder.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">padded_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>
+<div class="viewcode-block" id="ClassDecoder"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassDecoder">[docs]</a><span class="k">class</span> <span class="nc">ClassDecoder</span><span class="p">():</span>
 
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">padded_features</span><span class="p">)</span></div></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ClassDecoder.fit"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassDecoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="n">classes</span></div>
+
+<div class="viewcode-block" id="ClassDecoder.decode"><a class="viewcode-back" href="../../mlprimitives.html#mlprimitives.preprocessing.ClassDecoder.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

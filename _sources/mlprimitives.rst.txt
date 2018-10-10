@@ -59,6 +59,14 @@ mlprimitives.feature\_selection module
     :undoc-members:
     :show-inheritance:
 
+mlprimitives.preprocessing module
+---------------------------------
+
+.. automodule:: mlprimitives.preprocessing
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 mlprimitives.text module
 ------------------------
 
