@@ -18,6 +18,11 @@
             {
                 "name": "y",
                 "type": "array"
+            },
+            {
+                "name": "classes",
+                "type": "int",
+                "description": "Number of classes"
             }
         ]
     },
@@ -38,6 +43,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": true
+            },
             "epochs": {
                 "type": "int",
                 "default": 10
@@ -57,10 +66,6 @@
             "conv_activation": {
                 "type": "str",
                 "default": "relu"
-            },
-            "dense_units": {
-                "type": "int",
-                "description": "Number of classes"
             },
             "dense_activation": {
                 "type": "str",

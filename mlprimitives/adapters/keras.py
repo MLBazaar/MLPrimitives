@@ -32,29 +32,45 @@ class Sequential(object):
 
         self.__dict__ = state
 
-    def __init__(self, layers, loss, optimizer, metrics=None, epochs=10, **hyperparameters):
+    def _build_model(self, **kwargs):
+        model = keras.models.Sequential()
 
-        self.epochs = epochs
-        self.is_classification = hyperparameters['dense_units'] > 1
+        hyperparameters = self.hyperparameters.copy()
+        hyperparameters.update(kwargs)
 
-        self.model = keras.models.Sequential()
-
-        for layer in layers:
-            layer_class = import_object(layer['class'])
-            layer_kwargs = layer['parameters']
-
+        for layer in self.layers:
+            layer_kwargs = layer['parameters'].copy()
             for key, value in layer_kwargs.items():
                 if isinstance(value, str):
                     layer_kwargs[key] = hyperparameters.get(value, value)
 
-            self.model.add(layer_class(**layer_kwargs))
+            model.add(layer['class'](**layer_kwargs))
 
-        optimizer = import_object(optimizer)()
-        loss = import_object(loss)
-        self.model.compile(loss=loss, optimizer=optimizer, metrics=metrics)
+        model.compile(loss=self.loss, optimizer=self.optimizer(), metrics=self.metrics)
 
-    def fit(self, X, y):
-        if self.is_classification:
+        return model
+
+    def __init__(self, layers, loss, optimizer, classification,
+                 metrics=None, epochs=10, **hyperparameters):
+
+        self.layers = list()
+        for layer in layers:
+            layer = layer.copy()
+            layer['class'] = import_object(layer['class'])
+            self.layers.append(layer)
+
+        self.optimizer = import_object(optimizer)
+        self.loss = import_object(loss)
+        self.metrics = metrics
+
+        self.epochs = epochs
+        self.classification = classification
+        self.hyperparameters = hyperparameters
+
+    def fit(self, X, y, **kwargs):
+        self.model = self._build_model(**kwargs)
+
+        if self.classification:
             y = keras.utils.to_categorical(y)
 
         self.model.fit(X, y, epochs=self.epochs)
@@ -62,7 +78,7 @@ class Sequential(object):
     def predict(self, X):
         y = self.model.predict(X)
 
-        if self.is_classification:
+        if self.classification:
             y = np.argmax(y, axis=1)
 
         return y
