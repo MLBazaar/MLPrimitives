@@ -27,6 +27,14 @@ mlprimitives.audio\_padding module
     :undoc-members:
     :show-inheritance:
 
+mlprimitives.counters module
+----------------------------
+
+.. automodule:: mlprimitives.counters
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 mlprimitives.evaluation module
 ------------------------------
 
