@@ -24,7 +24,7 @@ install_requires = [
     'opencv-python>=3.4.0.12',
     'python-louvain>=0.10',
     'scikit-image>=0.13.1',
-    'scikit-learn>=0.19.1',
+    'scikit-learn>=0.20',
     'scipy>=1.1.0',
     'tensorflow==1.8.0',
     'xgboost>=0.72.1',
