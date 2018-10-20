@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import featuretools as ft
-import pandas as pd
-from featuretools import variable_types
 from featuretools.selection import remove_low_information_features
 
 
