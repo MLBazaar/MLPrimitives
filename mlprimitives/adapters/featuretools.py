@@ -73,8 +73,10 @@ class DFS(object):
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
-        return ft.calculate_feature_matrix(
+        X = ft.calculate_feature_matrix(
             self.features,
             entityset=entityset,
             instance_ids=X.index.values
         )
+
+        return X
