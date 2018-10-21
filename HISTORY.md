@@ -1,5 +1,11 @@
 # History
 
+## 0.1.3
+
+### New Features
+
+* Fix and re-enable featuretools.dfs primitive.
+
 ## 0.1.2
 
 ### New Features
