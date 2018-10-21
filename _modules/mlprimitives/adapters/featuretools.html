@@ -216,61 +216,85 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">featuretools</span> <span class="k">as</span> <span class="nn">ft</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">featuretools</span> <span class="k">import</span> <span class="n">variable_types</span> <span class="k">as</span> <span class="n">vtypes</span>
 <span class="kn">from</span> <span class="nn">featuretools.selection</span> <span class="k">import</span> <span class="n">remove_low_information_features</span>
 
 
 <div class="viewcode-block" id="DFS"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS">[docs]</a><span class="k">class</span> <span class="nc">DFS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">features_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">features_only</span> <span class="o">=</span> <span class="n">features_only</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="o">=</span> <span class="n">encode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span> <span class="o">=</span> <span class="n">remove_low_information</span>
 
-<div class="viewcode-block" id="DFS.fit"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="s2">&quot;DFS(max_depth=</span><span class="si">{max_depth}</span><span class="s2">, encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    remove_low_information=</span><span class="si">{remove_low_information}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_entityset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">target_entity</span><span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">relationships</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">relationships</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">EntitySet</span><span class="p">(</span><span class="s1">&#39;entityset&#39;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DFS.dfs"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.dfs">[docs]</a>    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+        <span class="n">target</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">target_entity</span><span class="p">]</span>
+        <span class="n">time_index</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">time_index</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">time_index</span><span class="p">:</span>
+            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">df</span><span class="p">[[</span><span class="n">index</span><span class="p">,</span> <span class="n">time_index</span><span class="p">]]</span>
+
+        <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span>
-            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
-            <span class="n">features_only</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">features_only</span><span class="p">,</span>
+            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
             <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span></div>
+            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+            <span class="n">target_entity</span><span class="o">=</span><span class="n">target_entity</span><span class="p">,</span>
+            <span class="n">features_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="DFS.produce"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">instance_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="c1"># TODO: review this</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span>
+        <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">instance_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">feature_matrix</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
-                <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
-                <span class="o">**</span><span class="n">kwargs</span>
-            <span class="p">)</span>
-
-            <span class="n">feature_matrix</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_matrix</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-                                            <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">instance_ids</span><span class="p">,</span> <span class="p">:]</span>
-                                            <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">feature_matrix</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">cutoff_time</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">variable_type</span><span class="p">,</span> <span class="n">vtypes</span><span class="o">.</span><span class="n">Discrete</span><span class="p">):</span>
-                <span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span> <span class="o">=</span> <span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">variable_type</span><span class="p">,</span> <span class="n">vtypes</span><span class="o">.</span><span class="n">Numeric</span><span class="p">):</span>
-                <span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()])</span>
-            <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">variable_type</span><span class="p">,</span> <span class="n">vtypes</span><span class="o">.</span><span class="n">Datetime</span><span class="p">):</span>
-                <span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">feature_matrix</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">get_name</span><span class="p">()])</span>
-
-        <span class="n">encoded_fm</span><span class="p">,</span> <span class="n">encoded_fl</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">encode_features</span><span class="p">(</span><span class="n">feature_matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">:</span>
+            <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">encode_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
-            <span class="n">encoded_fm</span><span class="p">,</span> <span class="n">encoded_fl</span> <span class="o">=</span> <span class="n">remove_low_information_features</span><span class="p">(</span><span class="n">encoded_fm</span><span class="p">,</span> <span class="n">encoded_fl</span><span class="p">)</span>
+            <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">remove_low_information_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span></div>
 
-        <span class="n">encoded_fm</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="DFS.calculate_feature_matrix"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.calculate_feature_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_feature_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-        <span class="k">return</span> <span class="n">encoded_fm</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div></div>
+        <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span></div></div>
 </pre></div>
 
            </div>

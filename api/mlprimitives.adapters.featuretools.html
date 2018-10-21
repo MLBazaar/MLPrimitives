@@ -226,16 +226,21 @@
 <span id="mlprimitives-adapters-featuretools-module"></span><h1>mlprimitives.adapters.featuretools module<a class="headerlink" href="#module-mlprimitives.adapters.featuretools" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mlprimitives.adapters.featuretools.DFS">
-<em class="property">class </em><code class="descclassname">mlprimitives.adapters.featuretools.</code><code class="descname">DFS</code><span class="sig-paren">(</span><em>max_depth</em>, <em>features_only=True</em>, <em>remove_low_information=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mlprimitives.adapters.featuretools.</code><code class="descname">DFS</code><span class="sig-paren">(</span><em>max_depth=None</em>, <em>encode=True</em>, <em>remove_low_information=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
-<dt id="mlprimitives.adapters.featuretools.DFS.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="mlprimitives.adapters.featuretools.DFS.calculate_feature_matrix">
+<code class="descname">calculate_feature_matrix</code><span class="sig-paren">(</span><em>X</em>, <em>target_entity=None</em>, <em>entityset=None</em>, <em>entities=None</em>, <em>relationships=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS.calculate_feature_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS.calculate_feature_matrix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="mlprimitives.adapters.featuretools.DFS.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em>, <em>instance_ids=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS.produce" title="Permalink to this definition">¶</a></dt>
+<dt id="mlprimitives.adapters.featuretools.DFS.dfs">
+<code class="descname">dfs</code><span class="sig-paren">(</span><em>X=None</em>, <em>target_entity=None</em>, <em>entityset=None</em>, <em>entities=None</em>, <em>relationships=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/featuretools.html#DFS.dfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS.dfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.adapters.featuretools.DFS.features">
+<code class="descname">features</code><em class="property"> = None</em><a class="headerlink" href="#mlprimitives.adapters.featuretools.DFS.features" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
