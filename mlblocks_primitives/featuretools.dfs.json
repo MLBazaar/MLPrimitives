@@ -10,24 +10,61 @@
     "modalities": [],
     "primitive": "mlprimitives.adapters.featuretools.DFS",
     "fit": {
-        "method": "fit",
+        "method": "dfs",
         "args": [
             {
                 "name": "X",
+                "default": null,
                 "type": "DataFrame"
+            },
+            {
+                "name": "target_entity",
+                "default": "X",
+                "type": "str"
+            },
+            {
+                "name": "entityset",
+                "default": null,
+                "type": "entityset"
+            },
+            {
+                "name": "entities",
+                "default": null,
+                "type": "dict"
+            },
+            {
+                "name": "relationships",
+                "default": null,
+                "type": "list"
             }
         ]
     },
     "produce": {
-        "method": "produce",
+        "method": "calculate_feature_matrix",
         "args": [
             {
                 "name": "X",
                 "type": "array"
             },
             {
-                "name": "instance_ids",
-                "type": "array"
+                "name": "target_entity",
+                "default": "X",
+                "type": "str"
+            },
+            {
+                "name": "entityset",
+                "default": null,
+                "type": "entityset"
+            },
+            {
+                "name": "entities",
+                "default": null,
+                "type": "dict"
+            },
+            {
+                "name": "relationships",
+                "default": null,
+                "type": "list"
             }
         ],
         "output": [
@@ -38,7 +75,6 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
         "tunable": {
             "max_depth": {
                 "type": "int",
@@ -49,7 +85,7 @@
                 ],
                 "values": null
             },
-            "features_only": {
+            "encode": {
                 "type": "bool",
                 "default": true
             },

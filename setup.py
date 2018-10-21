@@ -17,7 +17,7 @@ with open('HISTORY.md') as history_file:
 
 install_requires = [
     'Keras>=2.1.6',
-    'featuretools>=0.1.17',
+    'featuretools>=0.3.1',
     'lightfm>=1.15',
     'networkx>=2.0',
     'numpy>=1.15.2',
@@ -27,11 +27,12 @@ install_requires = [
     'scikit-image>=0.13.1',
     'scikit-learn>=0.20.0',
     'scipy>=1.1.0',
-    'tensorflow==1.8.0',
+    'tensorflow>=1.11.0',
     'xgboost>=0.72.1',
     'iso639>=0.1.4',
     'langdetect>=1.0.7',
-    'nltk>=3.3'
+    'nltk>=3.3',
+    'urllib3==1.23',    # Otherwise, botocore from featuretools fails
 ]
 
 
@@ -64,7 +65,7 @@ development_requires = [
 
     # fix style issues
     'autoflake>=1.1',
-    'autopep8>=1.3.5',
+    'autopep8==1.3.4',    # Keep fixed because of flake8 and pycodestyle
 
     # distribute on PyPI
     'twine>=1.10.0',
@@ -124,6 +125,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.2',
+    version='0.1.3-dev',
     zip_safe=False,
 )
