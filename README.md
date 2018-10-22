@@ -101,7 +101,7 @@ This type of primitives consist of Python code from the `mlprimitives` module, a
 corresponding JSON annotations, which can also be found in the `mlblocks_primitives` folder.
 
 
-## Constributing
+## Contributing
 
 This is a community driven project and all contributions are more than welcome, from simple
 feeback to the most complex coding contributions.
