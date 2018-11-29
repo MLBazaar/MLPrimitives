@@ -1,17 +1,27 @@
-Welcome to MLPrimitives's documentation!
-======================================
+.. mdinclude:: ../README.md
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :hidden:
+   :titlesonly:
 
-   readme
+   Overview <self>
    installation
    usage
-   modules
+
+.. toctree::
+   :caption: Advanced Usage
+   :hidden:
+
+   API Reference <api/mlprimitives>
+
+.. toctree::
+   :caption: Development Notes
+   :hidden:
+
    contributing
    authors
    history
+
 
 Indices and tables
 ==================

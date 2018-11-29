@@ -1,4 +1,6 @@
-[![][pypi-img]][pypi-url] [![][travis-img]][travis-url]
+[![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
+[![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
+
 
 # MLPrimitives
 
@@ -6,11 +8,6 @@ MLBlocks Primitives
 
 - Free software: MIT license
 - Documentation: https://HDI-Project.github.io/MLPrimitives
-
-[travis-img]: https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master
-[travis-url]: https://travis-ci.org/HDI-Project/MLPrimitives
-[pypi-img]: https://img.shields.io/pypi/v/mlprimitives.svg
-[pypi-url]: https://pypi.python.org/pypi/mlprimitives
 
 
 ## Overview
@@ -20,6 +17,7 @@ necessary Python code to make some of them fully compatible with the MLBlocks AP
 
 There is also a collection of custom primitives contributed directly to this library, which
 either combine third party tools or implement new functionalities from scratch.
+
 
 ## Project Structure
 
@@ -47,6 +45,7 @@ party tools that do not directly fit the MLBlocks requirements.
 
 Here are the unit tests for the Python code, as well as some validation tests for the JSON
 annotations.
+
 
 ## Primitive Types
 
@@ -101,10 +100,11 @@ to them.
 This type of primitives consist of Python code from the `mlprimitives` module, as well as the
 corresponding JSON annotations, which can also be found in the `mlblocks_primitives` folder.
 
-## Constributing
+
+## Contributing
 
 This is a community driven project and all contributions are more than welcome, from simple
-feeback to the most complex coding contributions.
+feedback to the most complex coding contributions.
 
 If you have anything that you want to ask, request or contribute, please check the
 [contributing section in the documentation][contributing-docs], and do not hesitate

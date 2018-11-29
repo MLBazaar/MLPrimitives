@@ -1,0 +1,46 @@
+{
+    "metadata": {
+        "name": "text/classification/default",
+        "data_type": "text",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "newsgroups",
+        "context": {}
+    },
+    "primitives": [
+        "mlprimitives.counters.UniqueCounter",
+        "mlprimitives.text.TextCleaner",
+        "mlprimitives.counters.VocabularyCounter",
+        "keras.preprocessing.text.Tokenizer",
+        "keras.preprocessing.sequence.pad_sequences",
+        "keras.Sequential.LSTMTextClassifier"
+    ],
+    "input_names": {
+        "mlprimitives.counters.UniqueCounter#1": {
+            "X": "y"
+        }
+    },
+    "output_names": {
+        "mlprimitives.counters.UniqueCounter#1": {
+            "counts": "classes"
+        },
+        "mlprimitives.counters.VocabularyCounter#1": {
+            "counts": "vocabulary_size"
+        }
+    },
+    "init_params": {
+        "mlprimitives.counters.VocabularyCounter#1": {
+            "add": 1
+        },
+        "mlprimitives.text.TextCleaner#1": {
+            "language": "en"
+        },
+        "keras.preprocessing.sequence.pad_sequences#1": {
+            "maxlen": 100
+        },
+        "keras.Sequential.LSTMTextClassifier#1": {
+            "input_length": 100
+        }
+    }
+}

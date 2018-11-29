@@ -4,9 +4,7 @@ import json
 import os
 from unittest.mock import patch
 
-import pandas as pd
 from mlblocks import MLPipeline
-from sklearn import datasets
 
 PRIMITIVES_PATH = os.path.normpath(
     os.path.join(
@@ -25,17 +23,8 @@ HYPERPARAMETER_DEFAULTS = {
     'dict': dict(),
 }
 
-BOSTON = datasets.load_boston()
-DIGITS = datasets.load_digits()
-WINE = datasets.load_wine()
-DATASETS = {
-    'boston': (pd.DataFrame(BOSTON.data), pd.Series(BOSTON.target)),
-    'digits': (pd.DataFrame(DIGITS.data), pd.Series(DIGITS.target)),
-    'wine': (pd.DataFrame(WINE.data), pd.Series(WINE.target)),
-}
 
-
-@patch('mlblocks.PRIMITIVES_PATHS', new=[PRIMITIVES_PATH])
+@patch('mlblocks.primitives._PRIMITIVES_PATHS', new=[PRIMITIVES_PATH])
 def test_jsons():
     """Validate MLBlocks primitive jsons"""
 
@@ -67,13 +56,6 @@ def test_jsons():
 
                 produce = primitive['produce']
                 assert hasattr(mlblock.instance, produce['method'])
-
-            # Run pipeline, when possible
-            validation_dataset = primitive.get('validation_dataset')
-            if validation_dataset:
-                X, y = DATASETS[validation_dataset]
-                mlpipeline.fit(X, y)
-                mlpipeline.predict(X)
 
         except Exception:
             raise ValueError("Invalid JSON primitive: {}".format(primitive_filename))
