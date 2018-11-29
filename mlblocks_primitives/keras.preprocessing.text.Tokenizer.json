@@ -14,6 +14,7 @@
         "args": [
             {
                 "name": "X",
+                "keyword": "texts",
                 "description": "list of strings, or list of list of strings.",
                 "type": "list"
             }
@@ -24,6 +25,7 @@
         "args": [
             {
                 "name": "X",
+                "keyword": "texts",
                 "description": "list of strings, or list of list of strings.",
                 "type": "list"
             }

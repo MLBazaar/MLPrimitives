@@ -38,6 +38,14 @@
     },
     "hyperparameters": {
         "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": false
+            },
+            "epochs": {
+                "type": "int",
+                "default": 10
+            },
             "input_shape": {
                 "type": "list",
                 "default": [

@@ -4,6 +4,7 @@ import logging
 import types
 
 import numpy as np
+import pandas as pd
 
 LOGGER = logging.getLogger(__name__)
 
@@ -24,6 +25,9 @@ class TrivialPredictor(object):
     def fit(self, y):
         if self._method:
             try:
+                if not isinstance(y, pd.Series):
+                    y = pd.Series(y)
+
                 self.prediction = self._method(y)
             except Exception:
                 LOGGER.error('Could not compute y.%s(). Using default.', self.method)

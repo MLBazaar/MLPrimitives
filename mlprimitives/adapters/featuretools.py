@@ -1,58 +1,82 @@
 # -*- coding: utf-8 -*-
 
 import featuretools as ft
-import pandas as pd
-from featuretools import variable_types as vtypes
 from featuretools.selection import remove_low_information_features
 
 
 class DFS(object):
 
-    def __init__(self, max_depth, features_only=True, remove_low_information=True):
+    features = None
+
+    def __init__(self, max_depth=None, encode=True, remove_low_information=True):
         self.max_depth = max_depth
-        self.features_only = features_only
-        self.features = None
+        self.encode = encode
         self.remove_low_information = remove_low_information
 
-    def fit(self, X, **kwargs):
+    def __repr__(self):
+        return (
+            "DFS(max_depth={max_depth}, encode={encode},\n"
+            "    remove_low_information={remove_low_information})"
+        ).format(**self.__dict__)
+
+    def _get_entityset(self, X, target_entity, entities, relationships):
+        if entities is None:
+            index = X.index.name
+            X = X.reset_index()
+            entities = {
+                target_entity: (X, index)
+            }
+
+        if relationships is None:
+            relationships = []
+
+        return ft.EntitySet('entityset', entities, relationships)
+
+    def dfs(self, X=None, target_entity=None, entityset=None, entities=None, relationships=None):
+        if entityset is None:
+            entityset = self._get_entityset(X, target_entity, entities, relationships)
+
+        target = entityset[target_entity]
+        time_index = target.time_index
+        index = target.index
+
+        cutoff_time = None
+        if time_index:
+            cutoff_time = target.df[[index, time_index]]
+
+        instance_ids = X.index.values.copy()
+
         self.features = ft.dfs(
-            cutoff_time=X,
-            features_only=self.features_only,
+            cutoff_time=cutoff_time,
             max_depth=self.max_depth,
-            **kwargs
+            entityset=entityset,
+            target_entity=target_entity,
+            features_only=True,
+            instance_ids=instance_ids
         )
 
-    def produce(self, X, instance_ids=None, **kwargs):
-        # TODO: review this
+        X = ft.calculate_feature_matrix(
+            self.features,
+            entityset=entityset,
+            instance_ids=instance_ids
+        )
 
-        if instance_ids is not None:
-            feature_matrix = ft.calculate_feature_matrix(
-                self.features,
-                instance_ids=instance_ids,
-                **kwargs
-            )
-
-            feature_matrix = (feature_matrix.reset_index('time')
-                                            .loc[instance_ids, :]
-                                            .set_index('time', append=True))
-
-        else:
-            feature_matrix = ft.calculate_feature_matrix(
-                self.features, cutoff_time=X, **kwargs)
-
-        for f in self.features:
-            if issubclass(f.variable_type, vtypes.Discrete):
-                feature_matrix[f.get_name()] = feature_matrix[f.get_name()].astype(object)
-            elif issubclass(f.variable_type, vtypes.Numeric):
-                feature_matrix[f.get_name()] = pd.to_numeric(feature_matrix[f.get_name()])
-            elif issubclass(f.variable_type, vtypes.Datetime):
-                feature_matrix[f.get_name()] = pd.to_datetime(feature_matrix[f.get_name()])
-
-        encoded_fm, encoded_fl = ft.encode_features(feature_matrix, self.features)
+        if self.encode:
+            X, self.features = ft.encode_features(X, self.features)
 
         if self.remove_low_information:
-            encoded_fm, encoded_fl = remove_low_information_features(encoded_fm, encoded_fl)
+            X, self.features = remove_low_information_features(X, self.features)
 
-        encoded_fm.reset_index('time', drop=True, inplace=True)
+    def calculate_feature_matrix(self, X, target_entity=None, entityset=None,
+                                 entities=None, relationships=None):
 
-        return encoded_fm.fillna(0)
+        if entityset is None:
+            entityset = self._get_entityset(X, target_entity, entities, relationships)
+
+        X = ft.calculate_feature_matrix(
+            self.features,
+            entityset=entityset,
+            instance_ids=X.index.values
+        )
+
+        return X
