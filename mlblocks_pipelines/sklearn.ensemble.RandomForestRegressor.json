@@ -1,0 +1,23 @@
+{
+    "metadata": {
+        "name": "RandomForestRegressor/regression/default",
+        "data_type": "tabular",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston",
+        "context": {}
+    },
+    "primitives": [
+        "sklearn.preprocessing.Imputer",
+        "sklearn.preprocessing.StandardScaler",
+        "sklearn.ensemble.RandomForestRegressor"
+    ],
+    "hyperparameters": {
+        "sklearn.ensemble.RandomForestRegressor#1": {
+            "n_jobs": -1,
+            "warm_start": true,
+            "n_estimators": 300
+        }
+    }
+}

@@ -53,7 +53,7 @@
             },
             "presort": {
                 "type": "bool",
-                "default": "false"
+                "default": false
             }
         },
         "tunable": {
