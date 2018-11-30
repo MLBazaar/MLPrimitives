@@ -56,9 +56,8 @@
                 "range": [1, 500]
             },
             "max_samples": {
-                "type": "int",
-                "default": "1",
-                "range": [0, 100]
+                "type": "str",
+                "default": "auto"
             },
             "max_features": {
                 "type": "float",
