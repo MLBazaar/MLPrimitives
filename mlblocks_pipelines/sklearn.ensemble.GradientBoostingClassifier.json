@@ -15,12 +15,6 @@
         "sklearn.ensemble.GradientBoostingClassifier"
     ],
     "hyperparameters": {
-        "sklearn.ensemble.GradientBoostingClassifier#1": {
-            "warm_start": true,
-            "presort": true,
-            "learning_rate": 0.1,
-            "n_estimators": 300,
-            "max_depth": 5
-        }
+        "sklearn.ensemble.GradientBoostingClassifier#1": {}
     }
 }

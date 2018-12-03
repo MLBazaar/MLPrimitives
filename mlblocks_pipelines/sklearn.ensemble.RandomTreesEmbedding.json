@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "name": "AdaBoostClassifier/classification/default",
+        "name": "RandomTreesEmbedding/classification/default",
         "data_type": "tabular",
         "task_type": "classification"
     },
@@ -12,9 +12,10 @@
         "mlprimitives.preprocessing.ClassEncoder",
         "sklearn.preprocessing.Imputer",
         "sklearn.preprocessing.StandardScaler",
-        "sklearn.ensemble.AdaBoostClassifier"
+        "sklearn.ensemble.RandomTreesEmbedding",
+        "sklearn.ensemble.RandomForestClassifier"
     ],
     "hyperparameters": {
-        "sklearn.ensemble.AdaBoostClassifier#1": {}
+        "sklearn.ensemble.RandomTreesEmbedding#1": {}
     }
 }

@@ -15,11 +15,6 @@
         "sklearn.ensemble.RandomForestClassifier"
     ],
     "hyperparameters": {
-        "sklearn.ensemble.RandomForestClassifier#1": {
-            "n_jobs": -1,
-            "n_estimators": 300,
-            "criterion": "entropy",
-            "warm_start": true
-        }
+        "sklearn.ensemble.RandomForestClassifier#1": {}
     }
 }

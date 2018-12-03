@@ -14,9 +14,6 @@
         "sklearn.ensemble.AdaBoostRegressor"
     ],
     "hyperparameters": {
-        "sklearn.ensemble.AdaBoostRegressor#1": {
-            "learning_rate": 0.1,
-            "n_estimators": 300
-        }
+        "sklearn.ensemble.AdaBoostRegressor#1": {}
     }
 }

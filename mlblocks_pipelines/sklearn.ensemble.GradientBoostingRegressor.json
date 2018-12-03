@@ -14,10 +14,6 @@
         "sklearn.ensemble.GradientBoostingRegressor"
     ],
     "hyperparameters": {
-        "sklearn.ensemble.GradientBoostingRegressor#1": {
-            "learning_rate": 0.1,
-            "n_estimators": 300,
-            "verbose": 1
-        }
+        "sklearn.ensemble.GradientBoostingRegressor#1": {}
     }
 }
