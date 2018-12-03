@@ -12,8 +12,7 @@
         "mlprimitives.preprocessing.ClassEncoder",
         "sklearn.preprocessing.Imputer",
         "sklearn.preprocessing.StandardScaler",
-        "sklearn.ensemble.ExtraTreesClassifier",
-        "mlprimitives.preprocessing.ClassDecoder"
+        "sklearn.ensemble.ExtraTreesClassifier"
     ],
     "hyperparameters": {
         "sklearn.ensemble.ExtraTreesClassifier#1": {

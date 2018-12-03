@@ -12,8 +12,7 @@
         "mlprimitives.preprocessing.ClassEncoder",
         "sklearn.preprocessing.Imputer",
         "sklearn.preprocessing.StandardScaler",
-        "sklearn.ensemble.AdaBoostClassifier",
-        "mlprimitives.preprocessing.ClassDecoder"
+        "sklearn.ensemble.AdaBoostClassifier"
     ],
     "hyperparameters": {
         "sklearn.ensemble.AdaBoostClassifier#1": {
