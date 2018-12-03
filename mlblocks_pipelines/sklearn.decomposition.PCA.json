@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "name": "PCA/classification/default",
+        "data_type": "tabular",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris",
+        "context": {}
+    },
+    "primitives": [
+        "sklearn.decomposition.DictionaryLearning",
+        "sklearn.decomposition.PCA",
+        "sklearn.preprocessing.StandardScaler",
+        "sklearn.ensemble.RandomForestClassifier"
+    ],
+    "hyperparameters": {
+        "sklearn.decomposition.PCA#1": {}
+    }
+}
