@@ -63,13 +63,13 @@
             "leaf_size": {
                 "type": "int",
                 "default": 30,
-                "range": [5, 100],
+                "range": [5, 100]
             },
             "p": {
                 "type": "int",
                 "default": 2,
-                "range": [1, 10],
-            },
+                "range": [1, 10]
+            }
         }
     }
 }
