@@ -226,18 +226,18 @@
 
 
 <div class="viewcode-block" id="TextCleaner"><a class="viewcode-back" href="../../api/mlprimitives.text.html#mlprimitives.text.TextCleaner">[docs]</a><span class="k">class</span> <span class="nc">TextCleaner</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">RE_NON_ALPHA</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^a-z]+&#39;</span><span class="p">)</span>
+    <span class="n">RE_NON_ALPHA</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]+&#39;</span><span class="p">)</span>
 
-    <span class="n">RE_SYMBOLS</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[-]&#39;</span><span class="p">)</span>
+    <span class="n">RE_SYMBOLS</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[-]&#39;</span><span class="p">)</span>
 
-    <span class="n">RE_NON_ALNUM</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^\w\d]&#39;</span><span class="p">)</span>
+    <span class="n">RE_NON_ALNUM</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\d]&#39;</span><span class="p">)</span>
 
     <span class="n">RE_ACCENTS</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[àâáäåã]&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[èêéë]&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[ìîíï]&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[òôóö]&#39;</span><span class="p">),</span>
-        <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[ùûúü]&#39;</span><span class="p">)</span>
+        <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[àâáäåã]&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[èêéë]&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[ìîíï]&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[òôóö]&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[ùûúü]&#39;</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="n">STOPWORDS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -388,7 +388,6 @@
         <script type="text/javascript" src="../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   
