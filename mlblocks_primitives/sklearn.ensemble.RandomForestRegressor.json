@@ -9,7 +9,6 @@
     },
     "modalities": [],
     "primitive": "sklearn.ensemble.RandomForestRegressor",
-    "validation_dataset": "boston",
     "fit": {
         "method": "fit",
         "args": [
