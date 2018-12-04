@@ -7,18 +7,18 @@ from nltk.corpus import stopwords
 
 
 class TextCleaner(object):
-    RE_NON_ALPHA = re.compile('[^a-z]+')
+    RE_NON_ALPHA = re.compile(r'[^a-z]+')
 
-    RE_SYMBOLS = re.compile('[-]')
+    RE_SYMBOLS = re.compile(r'[-]')
 
-    RE_NON_ALNUM = re.compile('[^\w\d]')
+    RE_NON_ALNUM = re.compile(r'[^\w\d]')
 
     RE_ACCENTS = {
-        'a': re.compile('[àâáäåã]'),
-        'e': re.compile('[èêéë]'),
-        'i': re.compile('[ìîíï]'),
-        'o': re.compile('[òôóö]'),
-        'u': re.compile('[ùûúü]')
+        'a': re.compile(r'[àâáäåã]'),
+        'e': re.compile(r'[èêéë]'),
+        'i': re.compile(r'[ìîíï]'),
+        'o': re.compile(r'[òôóö]'),
+        'u': re.compile(r'[ùûúü]')
     }
 
     STOPWORDS = dict()
