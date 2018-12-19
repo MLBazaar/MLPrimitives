@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.timeseries.create_window_sequence",
+    "name": "mlprimitives.timeseries.create_window_sequences",
     "author": "Ihssan Tinawi <itinawi@mit.edu>",
-    "description": "mlprimitives.timeseries.create_window_sequence",
+    "description": "mlprimitives.timeseries.create_window_sequences",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries.create_window_sequence",
+    "primitive": "mlprimitives.timeseries.create_window_sequences",
     "produce": {
         "args": [
             {
