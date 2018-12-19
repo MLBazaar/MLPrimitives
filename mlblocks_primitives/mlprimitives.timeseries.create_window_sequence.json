@@ -1,0 +1,41 @@
+{
+    "name": "mlprimitives.timeseries.create_window_sequence",
+    "author": "Ihssan Tinawi <itinawi@mit.edu>",
+    "description": "mlprimitives.timeseries.create_window_sequence",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.timeseries.create_window_sequence",
+    "produce": {
+        "args": [
+            {
+                "name": "df_timeseries",
+                "type": "Pandas.DataFrame"
+            },
+            {
+                "name": "window_size",
+                "type": "int"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "Y",
+                "type": "ndarray"
+            },
+            {
+                "name": "time",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}
