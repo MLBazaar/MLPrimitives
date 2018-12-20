@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.audio_featurization module &mdash; MLPrimitives 0.1.4-dev documentation</title>
+  <title>mlprimitives.timeseries module &mdash; MLPrimitives 0.1.4-dev documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.audio_padding module" href="mlprimitives.audio_padding.html" />
-    <link rel="prev" title="mlprimitives.adapters.skimage module" href="mlprimitives.adapters.skimage.html" /> 
+    <link rel="next" title="mlprimitives.trivial module" href="mlprimitives.trivial.html" />
+    <link rel="prev" title="mlprimitives.text module" href="mlprimitives.text.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -93,7 +93,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.audio_featurization module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.audio_featurization.html">mlprimitives.audio_featurization module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.audio_padding.html">mlprimitives.audio_padding module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.counters.html">mlprimitives.counters module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
@@ -101,7 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.feature_selection.html">mlprimitives.feature_selection module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.preprocessing.html">mlprimitives.preprocessing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.text.html">mlprimitives.text module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.timeseries.html">mlprimitives.timeseries module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.timeseries module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.trivial.html">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
 </ul>
@@ -204,14 +204,14 @@
         
           <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
         
-      <li>mlprimitives.audio_featurization module</li>
+      <li>mlprimitives.timeseries module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.audio_featurization.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.timeseries.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -225,68 +225,87 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.audio_featurization">
-<span id="mlprimitives-audio-featurization-module"></span><h1>mlprimitives.audio_featurization module<a class="headerlink" href="#module-mlprimitives.audio_featurization" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-mlprimitives.timeseries">
+<span id="mlprimitives-timeseries-module"></span><h1>mlprimitives.timeseries module<a class="headerlink" href="#module-mlprimitives.timeseries" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="mlprimitives.audio_featurization.FFT">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">FFT</code><span class="sig-paren">(</span><em>data</em>, <em>nFFT</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#FFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.FFT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.energy">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">energy</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.energy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes signal energy of data</p>
+<dt id="mlprimitives.timeseries.rolling_window_sequences">
+<code class="descclassname">mlprimitives.timeseries.</code><code class="descname">rolling_window_sequences</code><span class="sig-paren">(</span><em>X</em>, <em>window_size</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Function that takes in a pandas.DataFrame and a window_size then creates</dt>
+<dd>output arrays that correspond to a timeseries sequence with window_size overlap.
+The output arrays can be fed into a timeseries forecasting model.
+Assumes the input is timeseries sorted.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>pandas.DataFrame</em>) – a pandas dataframe which has ‘timestamp’
+and ‘value’ columns, and is sorted based on timestamp.
+The timestamp column is in UNIX format (in seconds).</li>
+<li><strong>window_size</strong> (<em>int</em>) – number of values that overlap to create the sequence.</li>
+<li><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</li>
+<li><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>contains the time series sequenced data with each</dt>
+<dd><p class="first last">entry having window_size rows.</p>
+</dd>
+<dt>(numpy.ndarray): acts as the label for the forecasting problem with</dt>
+<dd><p class="first last">each entry having window_size rows.</p>
+</dd>
+</dl>
+<p>(numpy.ndarray): the corresponding timestamps series.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(numpy.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
-<dt id="mlprimitives.audio_featurization.energy_entropy">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">energy_entropy</code><span class="sig-paren">(</span><em>data</em>, <em>fs</em>, <em>numOfShortBlocks=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#energy_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.energy_entropy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes entropy of energy</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.featurize_audio">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">featurize_audio</code><span class="sig-paren">(</span><em>X</em>, <em>sample_frequencies</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#featurize_audio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.featurize_audio" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.featurize_segments">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">featurize_segments</code><span class="sig-paren">(</span><em>segments</em>, <em>sample_frequency</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#featurize_segments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.featurize_segments" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.rand_attr1">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">rand_attr1</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#rand_attr1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.rand_attr1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.spectral_centroid_and_spread">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_centroid_and_spread</code><span class="sig-paren">(</span><em>data</em>, <em>fs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#spectral_centroid_and_spread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_centroid_and_spread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes spectral centroid of frame (given abs(FFT))</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.spectral_entropy">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_entropy</code><span class="sig-paren">(</span><em>data</em>, <em>numOfShortBlocks=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#spectral_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_entropy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the spectral entropy</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.spectral_flux">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_flux</code><span class="sig-paren">(</span><em>d0</em>, <em>d1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#spectral_flux"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_flux" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the spectral flux feature of the current frame</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.spectral_rolloff">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">spectral_rolloff</code><span class="sig-paren">(</span><em>data</em>, <em>coeff</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#spectral_rolloff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.spectral_rolloff" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes spectral roll-off</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.audio_featurization.zcr">
-<code class="descclassname">mlprimitives.audio_featurization.</code><code class="descname">zcr</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/audio_featurization.html#zcr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.audio_featurization.zcr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes zero crossing rate of segment</p>
+<dt id="mlprimitives.timeseries.time_segments_average">
+<code class="descclassname">mlprimitives.timeseries.</code><code class="descname">time_segments_average</code><span class="sig-paren">(</span><em>X</em>, <em>interval</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries.time_segments_average" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>function that aggregates data in a pandas dataframe by averaging over a given interval.</dt>
+<dd>it starts averaging from the smallest timestamp in the dataframe and ends at the
+largest timestamp. assumes the input is timeseries sorted.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>pandas.dataframe</em>) – a pandas dataframe which has ‘timestamp’
+and ‘value’ columns, and is sorted based on timestamp. the timestamp
+column is in unix format (in seconds).</li>
+<li><strong>interval</strong> (<em>int</em>) – an integer denoting the number of seconds
+in the desired interval.</li>
+<li><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</li>
+<li><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>a pandas dataframe with two colums</dt>
+<dd><p class="first last">(‘timestamp’ and ‘value’), where each <cite>timestamp</cite> is the starting time of
+an interval and the <cite>value</cite> is the result of aggregation.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">pandas.dataframe</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -299,10 +318,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.audio_padding.html" class="btn btn-neutral float-right" title="mlprimitives.audio_padding module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.trivial.html" class="btn btn-neutral float-right" title="mlprimitives.trivial module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.adapters.skimage.html" class="btn btn-neutral" title="mlprimitives.adapters.skimage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.text.html" class="btn btn-neutral" title="mlprimitives.text module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
