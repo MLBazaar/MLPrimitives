@@ -2,7 +2,7 @@
     "name": "keras.Sequential.LSTMTimeSeriesRegressor",
     "author": "Ihssan Tinawi <itinawi@mit.edu>",
     "documentation": "",
-    "description": "This primitive consists of multiple Keras layers that can pass time-series data through an LSTM in order to predict the value at x_{t+1}",
+    "description": "This primitive consists of multiple Keras layers that can pass time-series data through an LSTM in order to predict the next n values.",
     "classifiers": {
         "type": "estimator",
         "subtype": "regressor"
@@ -45,7 +45,8 @@
             },
             "dense_units": {
                 "type": "int",
-                "description": "Number of classes"
+                "description": "Number of values ahead to predict",
+                "default": 1
             },
             "classification": {
                 "type": "bool",
