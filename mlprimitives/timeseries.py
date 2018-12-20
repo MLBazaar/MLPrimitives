@@ -2,62 +2,66 @@ import pandas as pd
 import numpy as np
 
 
-def create_window_sequences(df_timeseries, window_size):
+def rolling_window_sequences(X, window_size, value_column, time_column):
     """
-        Function that takes in a Pandas.DataFrame and a window_size then creates
+        Function that takes in a pandas.DataFrame and a window_size then creates
             output arrays that correspond to a timeseries sequence with window_size overlap.
             The output arrays can be fed into a timeseries forecasting model.
-        Inputs:
-            df_timeseries (Pandas.DataFrame): a Pandas dataframe which has 'timestamp'
+            Assumes the input is timeseries sorted.
+        Args:
+            X (pandas.DataFrame): a pandas dataframe which has 'timestamp'
                 and 'value' columns, and is sorted based on timestamp. 
                 The timestamp column is in UNIX format (in seconds).
             window_size (int): number of values that overlap to create the sequence.
-        Outputs:
-            x (numpy.ndarray): contains the time series sequenced data.
-            y (numpy.ndarray): acts as the label for the forecasting problem.
-            time (numpy.ndarray): the corresponding timestamps series.
+            value_column (string): name of column that has the value field.
+            time_column (string): name of column that has the time field.
+        Returns:
+            (numpy.ndarray): contains the time series sequenced data with each 
+                entry having window_size rows.
+            (numpy.ndarray): acts as the label for the forecasting problem with 
+                each entry having window_size rows.
+            (numpy.ndarray): the corresponding timestamps series.
     """
-    X = []
+    output_X = []
     Y = []
     time = []
-    for i in range(len(df_timeseries) - window_size):
-        X.append(df_timeseries[i: i + window_size]['value'].values.copy().reshape([-1, 1]))
-        Y.append(df_timeseries[i + 1: i + window_size + 1]['value'].values.copy().reshape([-1, 1]))
-        time.append(df_timeseries.iloc[i + window_size]['timestamp'])
-    return np.asarray(X), np.asarray(Y), np.asarray(time)
+    for i in range(len(X) - window_size):
+        # reshape into a vector to fit into a neural network model (vectorize it)
+        output_X.append(X[i: i + window_size][value_column].values.copy().reshape([-1, 1])) 
+        Y.append(X[i + window_size + 1][value_column].values.copy().reshape([-1, 1]))
+        time.append(X.iloc[i + window_size][time_column])
+
+    return np.asarray(output_X), np.asarray(Y), np.asarray(time)
 
 
-def aggregate_average_time(df_time_value, interval_time_delta, start_time, end_time):
+def time_segments_average(X, interval, value_column, time_column):
     """
-        Function that aggregates data in a Pandas dataframe by averaging over a given interval. 
-            It starts averaging from specified start_time.
-        Inputs:
-            df_time_value (Pandas.DataFrame): a Pandas dataframe which has 'timestamp' 
-                and 'value' columns, and is sorted based on timestamp. The timestamp
-                column is in UNIX format (in seconds).
-            interval_time_delta (int): an Integer denoting the number of seconds 
+        function that aggregates data in a pandas dataframe by averaging over a given interval. 
+            it starts averaging from the smallest timestamp in the dataframe and ends at the
+            largest timestamp. assumes the input is timeseries sorted.
+        args:
+            X (pandas.dataframe): a pandas dataframe which has 'timestamp' 
+                and 'value' columns, and is sorted based on timestamp. the timestamp
+                column is in unix format (in seconds).
+            interval (int): an integer denoting the number of seconds 
                 in the desired interval.
-            start_time (int): a UNIX time stamp indicating the time to start
-                aggregating. Can be smaller than the smallest time stamp value in the dataframe.
-            end_time (int): a UNIX time stamp indicating the time to end aggregating. 
-                Can be larger than the largest time stamp value in the dataframe.
-        Outputs:
-            aggregated_df (Pandas.DataFrame): a Pandas dataframe with two colums 
+            value_column (string): name of column that has the value field.
+            time_column (string): name of column that has the time field.
+        returns:
+            pandas.dataframe: a pandas dataframe with two colums 
                 ('timestamp' and 'value'), where each `timestamp` is the starting time of 
-                an interval and the `value` is the result of aggregation. For intervals that 
-                don't have data in df_time_value but are still included in start_time 
-                and end_time then the value will be NaN.
+                an interval and the `value` is the result of aggregation.
     """
-    start_ts = start_time
+    start_ts = X[time_column].iloc[0]   # min value
+    end_time = X[time_column].iloc[-1]  # max value in dataframe
     accepted_points = []
     while start_ts < end_time:
         # average the values between start_ts, [start_ts + timedelta (e.g. 6hrs)]
-        upper_ts = start_ts + interval_time_delta
-        mask = (df_time_value['timestamp'] > start_ts) & (df_time_value['timestamp'] <= upper_ts)
-        average_value = df_time_value.loc[mask]['value'].mean(skipna=True)
+        upper_ts = start_ts + interval
+        mask = (X[time_column] > start_ts) & (X[time_column] <= upper_ts)
+        average_value = X.loc[mask][value_column].mean(skipna=True)
 
         accepted_points.append([start_ts, average_value])
         start_ts = upper_ts  # update the timestamp
 
-    new_df = pd.DataFrame(accepted_points, columns=['timestamp', 'value'])
-    return new_df
+    return pd.DataFrame(accepted_points, columns=[time_column, value_column])

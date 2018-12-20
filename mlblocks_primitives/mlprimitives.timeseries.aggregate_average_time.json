@@ -1,42 +1,43 @@
 {
-    "name": "mlprimitives.timeseries.aggregate_average_time",
+    "name": "mlprimitives.timeseries.time_segments_average",
     "author": "Ihssan Tinawi <itinawi@mit.edu>",
-    "description": "mlprimitives.timeseries.aggregate_average_time",
+    "description": "mlprimitives.timeseries.time_segments_average",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries.aggregate_average_time",
+    "primitive": "mlprimitives.timeseries.time_segments_average",
     "produce": {
         "args": [
             {
-                "name": "df_time_value",
-                "type": "Pandas.DataFrame"
+                "name": "X",
+                "keyword": "time_value",
+                "type": "pandas.DataFrame"
             },
             {
-                "name": "interval_time_delta",
-                "type": "int"
+                "name": "value_column",
+                "type": "str"
             },
             {
-                "name": "start_time",
-                "type": "int"
-            },
-            {
-                "name": "end_time",
-                "type": "int"
+                "name": "name_column",
+                "type": "str"
             }
-
         ],
         "output": [
             {
                 "name": "aggregated_df",
-                "type": "Pandas.DataFrame"
+                "type": "pandas.DataFrame"
             }
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "interval": {
+                "type": "int",
+                "default": 3600
+            }
+        },
         "tunable": {}
     }
 }

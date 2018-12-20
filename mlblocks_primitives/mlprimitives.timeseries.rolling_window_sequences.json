@@ -1,22 +1,19 @@
 {
-    "name": "mlprimitives.timeseries.create_window_sequences",
+    "name": "mlprimitives.timeseries.rolling_window_sequences",
     "author": "Ihssan Tinawi <itinawi@mit.edu>",
-    "description": "mlprimitives.timeseries.create_window_sequences",
+    "description": "mlprimitives.timeseries.rolling_window_sequences",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries.create_window_sequences",
+    "primitive": "mlprimitives.timeseries.rolling_window_sequences",
     "produce": {
         "args": [
             {
-                "name": "df_timeseries",
-                "type": "Pandas.DataFrame"
-            },
-            {
-                "name": "window_size",
-                "type": "int"
+                "name": "X",
+                "keyword": "time_value",
+                "type": "pandas.DataFrame"
             }
         ],
         "output": [
@@ -35,7 +32,12 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {},
+        "fixed": {
+            "window_size": {
+                "type": "int",
+                "default": 50
+            }
+        },
         "tunable": {}
     }
 }
