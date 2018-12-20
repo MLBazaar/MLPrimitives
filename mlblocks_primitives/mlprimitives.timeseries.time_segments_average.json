@@ -1,0 +1,43 @@
+{
+    "name": "mlprimitives.timeseries.time_segments_average",
+    "author": "Ihssan Tinawi <itinawi@mit.edu>",
+    "description": "mlprimitives.timeseries.time_segments_average",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.timeseries.time_segments_average",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "time_value",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "value_column",
+                "type": "str"
+            },
+            {
+                "name": "name_column",
+                "type": "str"
+            }
+        ],
+        "output": [
+            {
+                "name": "aggregated_df",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "interval": {
+                "type": "int",
+                "default": 3600
+            }
+        },
+        "tunable": {}
+    }
+}
