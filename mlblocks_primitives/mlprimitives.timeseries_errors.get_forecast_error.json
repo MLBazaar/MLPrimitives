@@ -1,0 +1,66 @@
+{
+    "name": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "author": "Ihssan Tinawi <itinawi@mit.edu>",
+    "description": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "produce": {
+        "args": [
+            {
+                "name": "y_hat",
+                "type": "np.array"
+            },
+            {
+                "name": "y_true",
+                "type": "np.array"
+            },
+            {
+                "name": "window_size",
+                "type": "int"
+            },
+            {
+                "name": "batch_size",
+                "type": "int"
+            },
+            {
+                "name": "smoothing_percent",
+                "type": "float"
+            },
+            {
+                "name": "smoothed",
+                "type": "bool"
+            }
+        ],
+        "output": [
+            {
+                "name": "moving_avg",
+                "type": "list"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "window_size": {
+                "type": "int",
+                "default": 5
+            },
+            "batch_size": {
+                "type": "int",
+                "default": 30
+            },
+            "smoothing_percent": {
+                "type": "float",
+                "default": 0.05
+            },
+            "smoothed": {
+                "type": "bool",
+                "default": True
+            }
+        },
+        "tunable": {}
+    }
+}

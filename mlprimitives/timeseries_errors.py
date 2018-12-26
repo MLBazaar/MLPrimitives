@@ -1,10 +1,9 @@
-"""
-Methods to do dynamic error thresholding on timeseries data.
-Implementation inspired by: https://arxiv.org/pdf/1802.04431.pdf
-"""
-
-import numpy as np
 import more_itertools as mit
+import numpy as np
+
+# Methods to do dynamic error thresholding on timeseries data
+# Implementation inspired by: https://arxiv.org/pdf/1802.04431.pdf
+
 
 def get_forecast_error(y_hat, y_true, window_size=5, batch_size=30, smoothing_percent=0.05, smoothed=True):
     """
@@ -38,6 +37,7 @@ def get_forecast_error(y_hat, y_true, window_size=5, batch_size=30, smoothing_pe
 
     return moving_avg
 
+
 def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_buffer):
     """
         Extracts anomalies from the errors.
@@ -55,7 +55,6 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
 
     anomalies_indices = []
 
-
     for i in range(num_windows + 1):
         prev_index = i * batch_size
         curr_index = (window_size * batch_size) + (i * batch_size)
@@ -63,25 +62,26 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
         if i == num_windows + 1:
             curr_index = len(y_true)
 
-
         window_smoothed_errors = smoothed_errors[prev_index:curr_index]
         window_y_true = y_true[prev_index:curr_index]
 
         epsilon, sd_threshold = compute_threshold(window_smoothed_errors, error_buffer)
-        window_anom_indices = get_anomalies(window_smoothed_errors, window_y_true, sd_threshold, i, anomalies_indices, len(y_true))
+
+        window_anom_indices = get_anomalies(window_smoothed_errors, window_y_true, sd_threshold, i, anomalies_indices, error_buffer)
 
         # get anomalies from inverse of smoothed errors
         # This was done in the implementation of NASA paper but
         # wasn't referenced in the paper
-        
+
         # we get the inverse by flipping around the mean
-        smoothed_errors_inv = [mu + (mu-e) for e in window_smoothed_errors]
+        mu = np.mean(window_smoothed_errors)
+        smoothed_errors_inv = [mu + (mu - e) for e in window_smoothed_errors]
         epsilon_inv, sd_inv = compute_threshold(smoothed_errors_inv, error_buffer)
         inv_anom_indices = get_anomalies(smoothed_errors_inv, window_y_true, sd_inv, i, anomalies_indices, len(y_true))
 
         anomalies_indices = list(set(anomalies_indices + inv_anom_indices))
 
-        anomalies_indices.extend([i_a + i*batch_size for i_a in window_anom_indices])
+        anomalies_indices.extend([i_a + i * batch_size for i_a in window_anom_indices])
 
     # group anomalies
     anomalies_indices = sorted(list(set(anomalies_indices)))
@@ -98,6 +98,7 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
 
     return anomaly_sequences, anomalies_scores
 
+
 def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
     """
         Helper method for extract_anomalies().
@@ -107,10 +108,10 @@ def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
     sigma = np.std(smoothed_errors)
 
     max_epsilon = 0
-    sigma_threshold = sd_limit
+    sd_threshold = sd_limit
 
     # The treshold is determined dynamically by testing multiple Zs.
-    # z is drawn from an ordered set of positive values representing the 
+    # z is drawn from an ordered set of positive values representing the
     # number of standard deviations above mean(smoothed_errors)
 
     # here we iterate in increments of 0.5 on the range that the NASA paper found to be good
@@ -140,10 +141,10 @@ def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
         above_epsilon = sorted(list(set(above_epsilon)))
         groups = [list(group) for group in mit.consecutive_groups(above_epsilon)]
         above_sequences = [(g[0], g[-1]) for g in groups if not g[0] == g[-1]]
-            
-        mean_perc_decrease = (mu - np.mean(pruned_errors)) / mu
-        sd_perc_decrease = (sigma - np.std(pruned_errors)) / sd
-        epsilon = (mean_perc_decrease + sd_perc_decrease) / (len(above_sequences)**2 + len(anomaly_indices))
+
+        mean_perc_decrease = (mu - np.mean(below_epsilon)) / mu
+        sd_perc_decrease = (sigma - np.std(below_epsilon)) / sigma
+        epsilon = (mean_perc_decrease + sd_perc_decrease) / (len(above_sequences)**2 + len(above_epsilon))
 
         # update the largest epsilon we've seen so far
         if epsilon > max_epsilon:
@@ -154,7 +155,7 @@ def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
     return max_epsilon, sd_threshold
 
 
-def get_anomalies(smoothed_errors, y_true, z):
+def get_anomalies(smoothed_errors, y_true, z, window, all_anomalies, error_buffer):
     """
         Helper method to get anomalies.
     """
@@ -162,28 +163,28 @@ def get_anomalies(smoothed_errors, y_true, z):
     mu = np.mean(smoothed_errors)
     sigma = np.std(smoothed_errors)
 
-    epsilon = mu + z*sigma
+    epsilon = mu + (z * sigma)
 
     # compare to epsilon
     errors_seq, anomaly_indices, max_error_below_e = group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, window, all_anomalies)
 
     if len(errors_seq) > 0:
-        anomaly_indices = prune_anomalies(errors_seq, smoothed_errors, non_anomaly_max, anomaly_indices)
+        anomaly_indices = prune_anomalies(errors_seq, smoothed_errors, max_error_below_e, anomaly_indices)
     else:
         print("No anomalies found.")
 
     return anomaly_indices
 
+
 def group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, window, all_anomalies, batch_size=30):
-    channel_std = np.std(y_true)
-    upper_percentile, lower_percentile = np.percentile(y_true, [95, 5]
+    upper_percentile, lower_percentile = np.percentile(y_true, [95, 5])
     accepted_range = upper_percentile - lower_percentile
 
     anomaly_indices = []
     max_error_below_e = 0
-    
+
     for i in range(len(smoothed_errors)):
-        if smoothed_errors[i] <= epsilon or smoothed_errors[i] <= 0.05*accepted_range:
+        if smoothed_errors[i] <= epsilon or smoothed_errors[i] <= 0.05 * accepted_range:
             # not an anomaly
             continue
         for j in range(error_buffer):
@@ -192,18 +193,21 @@ def group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, 
             if (i - j) < len(smoothed_errors) and (i - j) not in anomaly_indices:
                 anomaly_indices.append(i - j)
 
-    # get all the errors that are below epsilon and which weren't identified as anomalies to process them
+    # get all the errors that are below epsilon and which
+    #  weren't identified as anomalies to process them
     for i in range(len(smoothed_errors)):
         adjusted_index = i + (window - 1) * batch_size
-        if smoothed_errors[i] > max_error_below_e and adjusted_index not in all_anomalies and i not in anomaly_indices:
-            max_error_below_e = smoothed_errors[i]
+        if smoothed_errors[i] > max_error_below_e and adjusted_index not in all_anomalies:
+            if i not in anomaly_indices:
+                max_error_below_e = smoothed_errors[i]
 
     # group anomalies into continuous sequences
     anomaly_indices = sorted(list(set(anomaly_indices)))
     groups = [list(group) for group in mit.consecutive_groups(anomaly_indices)]
-    E_seq = [(g[0], g[-1]) for g in group if g[0] != g[-1]]
+    E_seq = [(g[0], g[-1]) for g in groups if g[0] != g[-1]]
 
     return E_seq, anomaly_indices, max_error_below_e
+
 
 def prune_anomalies(E_seq, smoothed_errors, max_error_below_e, anomaly_indices):
     """ Helper method that removes anomalies which don't meet
@@ -231,7 +235,7 @@ def prune_anomalies(E_seq, smoothed_errors, max_error_below_e, anomaly_indices):
             if perc_change < MIN_PERCENT_DECREASE:
                 indices_remove.append(E_seq_max.index(smoothed_errors_max[i]))
 
-    for index in sorted(indices_remove, reverse = True):
+    for index in sorted(indices_remove, reverse=True):
         del E_seq[index]
 
     pruned_indices = []
@@ -239,6 +243,6 @@ def prune_anomalies(E_seq, smoothed_errors, max_error_below_e, anomaly_indices):
     for i in anomaly_indices:
         for error_seq in E_seq:
             if i >= error_seq[0] and i <= error_seq[1]:
-                pruned_indices.append(i) 
+                pruned_indices.append(i)
 
     return pruned_indices
