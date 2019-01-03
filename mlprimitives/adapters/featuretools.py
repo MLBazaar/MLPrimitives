@@ -8,7 +8,8 @@ class DFS(object):
 
     features = None
 
-    def __init__(self, max_depth=None, encode=True, remove_low_information=True):
+    def __init__(self, max_depth=None, encode=True, remove_low_information=True, copy=False):
+        self.copy = copy
         self.max_depth = max_depth
         self.encode = encode
         self.remove_low_information = remove_low_information
@@ -19,10 +20,22 @@ class DFS(object):
             "    remove_low_information={remove_low_information})"
         ).format(**self.__dict__)
 
+    def _get_index(self, X):
+        if self.copy:
+            X = X.copy()
+
+        index = X.index.name or 'index'
+        while index in X.columns:
+            index = '_' + index
+
+        X.index.name = index
+        X.reset_index(inplace=True)
+
+        return X, index
+
     def _get_entityset(self, X, target_entity, entities, relationships):
         if entities is None:
-            index = X.index.name
-            X = X.reset_index()
+            X, index = self._get_index(X)
             entities = {
                 target_entity: (X, index)
             }
@@ -32,7 +45,7 @@ class DFS(object):
 
         return ft.EntitySet('entityset', entities, relationships)
 
-    def dfs(self, X=None, target_entity=None, entityset=None, entities=None, relationships=None):
+    def dfs(self, X=None, target_entity='X', entityset=None, entities=None, relationships=None):
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
@@ -44,7 +57,7 @@ class DFS(object):
         if time_index:
             cutoff_time = target.df[[index, time_index]]
 
-        instance_ids = X.index.values.copy()
+        instance_ids = X[index].values.copy()
 
         self.features = ft.dfs(
             cutoff_time=cutoff_time,
