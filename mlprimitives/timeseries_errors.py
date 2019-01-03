@@ -6,11 +6,11 @@ import numpy as np
 
 
 def get_forecast_errors(y_hat,
-                       y_true,
-                       window_size=5,
-                       batch_size=30,
-                       smoothing_percent=0.05,
-                       smoothed=True):
+                        y_true,
+                        window_size=5,
+                        batch_size=30,
+                        smoothing_percent=0.05,
+                        smoothed=True):
     """
     Calculates the forecasting error for two arrays of data. If smoothed errors desired,
         runs EWMA.
