@@ -17,18 +17,6 @@
             {
                 "name": "smoothed_errors",
                 "type": "list"
-            },
-            {
-                "name": "window_size",
-                "type": "int"
-            },
-            {
-                "name": "batch_size",
-                "type": "int"
-            },
-            {
-                "name": "error_buffer",
-                "type": "int"
             }
         ],
         "output": [
@@ -43,7 +31,7 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {
+        "tunable": {
             "window_size": {
                 "type": "int",
                 "default": 50
@@ -57,6 +45,6 @@
                 "default": 10
             }
         },
-        "tunable": {}
+        "fixed": {}
     }
 }

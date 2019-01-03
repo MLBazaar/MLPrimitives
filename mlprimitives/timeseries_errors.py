@@ -5,7 +5,12 @@ import numpy as np
 # Implementation inspired by: https://arxiv.org/pdf/1802.04431.pdf
 
 
-def get_forecast_error(y_hat, y_true, window_size=5, batch_size=30, smoothing_percent=0.05, smoothed=True):
+def get_forecast_error(y_hat,
+                       y_true,
+                       window_size=5,
+                       batch_size=30,
+                       smoothing_percent=0.05,
+                       smoothed=True):
     """
     Calculates the forecasting error for two arrays of data. If smoothed errors desired,
         runs EWMA.
@@ -31,8 +36,10 @@ def get_forecast_error(y_hat, y_true, window_size=5, batch_size=30, smoothing_pe
         right_window = i + historical_error_window + 1
         if left_window < 0:
             left_window = 0
+
         if right_window > len(errors):
             right_window = len(errors)
+
         moving_avg.append(np.mean(errors[left_window:right_window]))
 
     return moving_avg
@@ -50,7 +57,9 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
         Returns:
     """
     if len(y_true) <= batch_size * window_size:
-        raise ValueError("Window size (%s) larger than y_true (len=%s)." % (batch_size, len(y_true)))
+        raise ValueError("Window size (%s) larger than y_true (len=%s)."
+                         % (batch_size, len(y_true)))
+
     num_windows = (len(y_true) - (batch_size * window_size)) / batch_size
 
     anomalies_indices = []
@@ -67,7 +76,14 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
 
         epsilon, sd_threshold = compute_threshold(window_smoothed_errors, error_buffer)
 
-        window_anom_indices = get_anomalies(window_smoothed_errors, window_y_true, sd_threshold, i, anomalies_indices, error_buffer)
+        window_anom_indices = get_anomalies(
+            window_smoothed_errors,
+            window_y_true,
+            sd_threshold,
+            i,
+            anomalies_indices,
+            error_buffer
+        )
 
         # get anomalies from inverse of smoothed errors
         # This was done in the implementation of NASA paper but
@@ -77,7 +93,14 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
         mu = np.mean(window_smoothed_errors)
         smoothed_errors_inv = [mu + (mu - e) for e in window_smoothed_errors]
         epsilon_inv, sd_inv = compute_threshold(smoothed_errors_inv, error_buffer)
-        inv_anom_indices = get_anomalies(smoothed_errors_inv, window_y_true, sd_inv, i, anomalies_indices, len(y_true))
+        inv_anom_indices = get_anomalies(
+            smoothed_errors_inv,
+            window_y_true,
+            sd_inv,
+            i,
+            anomalies_indices,
+            len(y_true)
+        )
 
         anomalies_indices = list(set(anomalies_indices + inv_anom_indices))
 
@@ -92,17 +115,19 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
     anomalies_scores = []
     for e_seq in anomaly_sequences:
         denominator = np.mean(smoothed_errors) + np.std(smoothed_errors)
-        score = max([abs(smoothed_errors[x] - epsilon) / denominator
-                    for x in range(e_seq[0], e_seq[1])])
+        score = max([
+            abs(smoothed_errors[x] - epsilon) / denominator
+            for x in range(e_seq[0], e_seq[1])
+        ])
+
         anomalies_scores.append(score)
 
     return anomaly_sequences, anomalies_scores
 
 
 def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
-    """
-        Helper method for extract_anomalies().
-            Calculates the epsilon (threshold) for anomalies.
+    """Helper method for `extract_anomalies` method.
+    Calculates the epsilon (threshold) for anomalies.
     """
     mu = np.mean(smoothed_errors)
     sigma = np.std(smoothed_errors)
@@ -126,11 +151,13 @@ def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
                 # these are important for epsilon calculation
                 below_epsilon.append(e)
                 below_indices.append(i)
+
             if e > epsilon:
                 # above_epsilon values are anomalies
                 for j in range(0, error_buffer):
                     if (i + j) not in above_epsilon and (i + j) < len(smoothed_errors):
                         above_epsilon.append(i + j)
+
                     if (i - j) not in above_epsilon and (i - j) >= 0:
                         above_epsilon.append(i - j)
 
@@ -144,7 +171,8 @@ def compute_threshold(smoothed_errors, error_buffer, sd_limit=12.0):
 
         mean_perc_decrease = (mu - np.mean(below_epsilon)) / mu
         sd_perc_decrease = (sigma - np.std(below_epsilon)) / sigma
-        epsilon = (mean_perc_decrease + sd_perc_decrease) / (len(above_sequences)**2 + len(above_epsilon))
+        epsilon = (mean_perc_decrease + sd_perc_decrease) /\
+                  (len(above_sequences)**2 + len(above_epsilon))
 
         # update the largest epsilon we've seen so far
         if epsilon > max_epsilon:
@@ -166,17 +194,35 @@ def get_anomalies(smoothed_errors, y_true, z, window, all_anomalies, error_buffe
     epsilon = mu + (z * sigma)
 
     # compare to epsilon
-    errors_seq, anomaly_indices, max_error_below_e = group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, window, all_anomalies)
+    errors_seq, anomaly_indices, max_error_below_e = group_consecutive_anomalies(
+        smoothed_errors,
+        epsilon,
+        y_true,
+        error_buffer,
+        window,
+        all_anomalies
+    )
 
     if len(errors_seq) > 0:
-        anomaly_indices = prune_anomalies(errors_seq, smoothed_errors, max_error_below_e, anomaly_indices)
+        anomaly_indices = prune_anomalies(
+            errors_seq,
+            smoothed_errors,
+            max_error_below_e,
+            anomaly_indices
+        )
     else:
         print("No anomalies found.")
 
     return anomaly_indices
 
 
-def group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, window, all_anomalies, batch_size=30):
+def group_consecutive_anomalies(smoothed_errors,
+                                epsilon,
+                                y_true,
+                                error_buffer,
+                                window,
+                                all_anomalies,
+                                batch_size=30):
     upper_percentile, lower_percentile = np.percentile(y_true, [95, 5])
     accepted_range = upper_percentile - lower_percentile
 
@@ -187,9 +233,11 @@ def group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, 
         if smoothed_errors[i] <= epsilon or smoothed_errors[i] <= 0.05 * accepted_range:
             # not an anomaly
             continue
+
         for j in range(error_buffer):
             if (i + j) < len(smoothed_errors) and (i + j) not in anomaly_indices:
                 anomaly_indices.append(i + j)
+
             if (i - j) < len(smoothed_errors) and (i - j) not in anomaly_indices:
                 anomaly_indices.append(i - j)
 
@@ -204,22 +252,22 @@ def group_consecutive_anomalies(smoothed_errors, epsilon, y_true, error_buffer, 
     # group anomalies into continuous sequences
     anomaly_indices = sorted(list(set(anomaly_indices)))
     groups = [list(group) for group in mit.consecutive_groups(anomaly_indices)]
-    E_seq = [(g[0], g[-1]) for g in groups if g[0] != g[-1]]
+    e_seq = [(g[0], g[-1]) for g in groups if g[0] != g[-1]]
 
-    return E_seq, anomaly_indices, max_error_below_e
+    return e_seq, anomaly_indices, max_error_below_e
 
 
-def prune_anomalies(E_seq, smoothed_errors, max_error_below_e, anomaly_indices):
+def prune_anomalies(e_seq, smoothed_errors, max_error_below_e, anomaly_indices):
     """ Helper method that removes anomalies which don't meet
         a minimum separation from next anomaly.
     """
     # min accepted perc decrease btwn max errors in anomalous sequences
     MIN_PERCENT_DECREASE = 0.05
-    E_seq_max, smoothed_errors_max = [], []
+    e_seq_max, smoothed_errors_max = [], []
 
-    for error_seq in E_seq:
+    for error_seq in e_seq:
         sliced_errors = smoothed_errors[error_seq[0]:error_seq[1]]
-        E_seq_max.append(max(sliced_errors))
+        e_seq_max.append(max(sliced_errors))
         smoothed_errors_max.append(max(sliced_errors))
 
     smoothed_errors_max.sort(reverse=True)
@@ -233,15 +281,15 @@ def prune_anomalies(E_seq, smoothed_errors, max_error_below_e, anomaly_indices):
             delta = smoothed_errors_max[i] - smoothed_errors_max[i + 1]
             perc_change = delta / smoothed_errors_max[i]
             if perc_change < MIN_PERCENT_DECREASE:
-                indices_remove.append(E_seq_max.index(smoothed_errors_max[i]))
+                indices_remove.append(e_seq_max.index(smoothed_errors_max[i]))
 
     for index in sorted(indices_remove, reverse=True):
-        del E_seq[index]
+        del e_seq[index]
 
     pruned_indices = []
 
     for i in anomaly_indices:
-        for error_seq in E_seq:
+        for error_seq in e_seq:
             if i >= error_seq[0] and i <= error_seq[1]:
                 pruned_indices.append(i)
 

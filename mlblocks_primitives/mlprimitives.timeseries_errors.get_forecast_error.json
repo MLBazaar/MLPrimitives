@@ -17,22 +17,6 @@
             {
                 "name": "y_true",
                 "type": "np.array"
-            },
-            {
-                "name": "window_size",
-                "type": "int"
-            },
-            {
-                "name": "batch_size",
-                "type": "int"
-            },
-            {
-                "name": "smoothing_percent",
-                "type": "float"
-            },
-            {
-                "name": "smoothed",
-                "type": "bool"
             }
         ],
         "output": [
@@ -43,7 +27,7 @@
         ]
     },
     "hyperparameters": {
-        "fixed": {
+        "tunable": {
             "window_size": {
                 "type": "int",
                 "default": 5
@@ -55,12 +39,13 @@
             "smoothing_percent": {
                 "type": "float",
                 "default": 0.05
-            },
-            "smoothed": {
-                "type": "bool",
-                "default": True
             }
         },
-        "tunable": {}
+        "fixed": {
+            "smoothed": {
+                "type": "bool",
+                "default": true
+            }
+        }
     }
 }
