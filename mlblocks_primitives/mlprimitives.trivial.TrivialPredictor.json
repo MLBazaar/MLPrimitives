@@ -6,7 +6,6 @@
         "type": "estimator"
     },
     "primitive": "mlprimitives.trivial.TrivialPredictor",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [

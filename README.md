@@ -1,3 +1,10 @@
+<p align="left">
+<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DAI-Lab” />
+<i>An open source project from Data to AI Lab at MIT.</i>
+</p>
+
+
+
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
 [![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
 

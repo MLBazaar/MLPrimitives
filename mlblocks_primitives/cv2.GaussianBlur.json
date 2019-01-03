@@ -9,7 +9,6 @@
     },
     "modalities": ["image"],
     "primitive": "mlprimitives.adapters.cv2.GaussianBlur",
-    "validation_dataset": "digits",
     "produce": {
         "args": [
             {

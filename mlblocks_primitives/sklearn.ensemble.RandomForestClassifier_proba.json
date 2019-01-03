@@ -8,7 +8,7 @@
         "subtype": "classifier"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier_proba",
+    "primitive": "sklearn.ensemble.RandomForestClassifier",
     "fit": {
         "method": "fit",
         "args": [

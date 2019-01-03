@@ -8,7 +8,6 @@
     },
     "modalities": [],
     "primitive": "mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector",
-    "validation_dataset": "boston",
     "fit": {
         "method": "fit",
         "args": [
