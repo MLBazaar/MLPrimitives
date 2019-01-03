@@ -5,7 +5,7 @@ import numpy as np
 # Implementation inspired by: https://arxiv.org/pdf/1802.04431.pdf
 
 
-def get_forecast_error(y_hat,
+def get_forecast_errors(y_hat,
                        y_true,
                        window_size=5,
                        batch_size=30,
