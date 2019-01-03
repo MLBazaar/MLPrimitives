@@ -9,7 +9,6 @@
     },
     "modalities": [],
     "primitive": "sklearn.preprocessing.StandardScaler",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [

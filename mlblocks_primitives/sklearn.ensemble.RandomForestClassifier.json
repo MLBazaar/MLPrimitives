@@ -9,7 +9,6 @@
     },
     "modalities": [],
     "primitive": "sklearn.ensemble.RandomForestClassifier",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [
