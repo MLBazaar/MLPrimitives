@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "name": "tabular/classification/default",
-        "data_type": "tabular",
+        "name": "single_table/classification/default",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
