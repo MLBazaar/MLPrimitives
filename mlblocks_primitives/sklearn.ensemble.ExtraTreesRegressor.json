@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.ensemble.RandomForestClassifier",
+    "name": "sklearn.ensemble.ExtraTreesRegressor",
     "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
-    "description": "Scikit-learn RandomForestClassifier.",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html",
+    "description": "Scikit-learn ExtraTreesRegressor. Implements a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting.",
     "classifiers": {
         "type": "estimator",
-        "subtype": "classifier"
+        "subtype": "regressor"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "primitive": "sklearn.ensemble.ExtraTreesRegressor",
     "fit": {
         "method": "fit",
         "args": [
@@ -50,10 +50,6 @@
             "warm_start": {
                 "type": "bool",
                 "default": false
-            },
-            "class_weight": {
-                "type": "iterable",
-                "default": null
             }
         },
         "tunable": {
@@ -64,8 +60,8 @@
             },
             "criterion": {
                 "type": "str",
-                "default": "gini",
-                "values": ["entropy", "gini"]
+                "default": "mse",
+                "values": ["mae", "mse"]
             },
             "max_features": {
                 "type": "str",
@@ -104,7 +100,7 @@
             },
             "bootstrap": {
                 "type": "bool",
-                "default": true
+                "default": false
             },
             "oob_score": {
                 "type": "bool",

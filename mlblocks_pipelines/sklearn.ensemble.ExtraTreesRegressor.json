@@ -1,0 +1,19 @@
+{
+    "metadata": {
+        "name": "ExtraTreesRegressor/regression/default",
+        "data_type": "tabular",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston",
+        "context": {}
+    },
+    "primitives": [
+        "sklearn.preprocessing.Imputer",
+        "sklearn.preprocessing.StandardScaler",
+        "sklearn.ensemble.ExtraTreesRegressor"
+    ],
+    "hyperparameters": {
+        "sklearn.ensemble.ExtraTreesRegressor#1": {}
+    }
+}

@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.ensemble.RandomForestClassifier",
+    "name": "sklearn.ensemble.RandomTreesEmbedding",
     "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
-    "description": "Scikit-learn RandomForestClassifier.",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomTreesEmbedding.html",
+    "description": "Scikit-learn RandomTreesEmbedding. An unsupervised transformation of a dataset to a high-dimensional sparse representation.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "primitive": "sklearn.ensemble.RandomTreesEmbedding",
     "fit": {
         "method": "fit",
         "args": [
@@ -23,7 +23,7 @@
         ]
     },
     "produce": {
-        "method": "predict",
+        "method": "transform",
         "args": [
             {
                 "name": "X",
@@ -32,8 +32,8 @@
         ],
         "output": [
             {
-                "name": "y",
-                "type": "ndarray"
+                "name": "X",
+                "type": "Sparse"
             }
         ]
     },
@@ -43,17 +43,18 @@
                 "type": "int",
                 "default": null
             },
+            "sparse_output": {
+                "type": "bool",
+                "default": true
+            },
             "verbose": {
                 "type": "int",
-                "default": 0
+                "default": 0,
+                "range": [0, 1000]
             },
             "warm_start": {
                 "type": "bool",
                 "default": false
-            },
-            "class_weight": {
-                "type": "iterable",
-                "default": null
             }
         },
         "tunable": {
@@ -62,19 +63,9 @@
                 "default": 10,
                 "range": [1, 500]
             },
-            "criterion": {
-                "type": "str",
-                "default": "gini",
-                "values": ["entropy", "gini"]
-            },
-            "max_features": {
-                "type": "str",
-                "default": null,
-                "values": [null, "auto", "log2", "sqrt"]
-            },
             "max_depth": {
                 "type": "int",
-                "default": null,
+                "default": 5,
                 "range": [1, 30]
             },
             "min_samples_split": {
@@ -101,14 +92,6 @@
                 "type": "float",
                 "default": 0.0,
                 "range": [0.0, 1000.0]
-            },
-            "bootstrap": {
-                "type": "bool",
-                "default": true
-            },
-            "oob_score": {
-                "type": "bool",
-                "default": false
             }
         }
     }

@@ -1,0 +1,19 @@
+{
+    "metadata": {
+        "name": "AdaBoostRegressor/regression/default",
+        "data_type": "tabular",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston",
+        "context": {}
+    },
+    "primitives": [
+        "sklearn.preprocessing.Imputer",
+        "sklearn.preprocessing.StandardScaler",
+        "sklearn.ensemble.AdaBoostRegressor"
+    ],
+    "hyperparameters": {
+        "sklearn.ensemble.AdaBoostRegressor#1": {}
+    }
+}
