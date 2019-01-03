@@ -24,7 +24,7 @@ class TextCleaner(object):
     STOPWORDS = dict()
 
     def __init__(self, column=None, language='multi', lower=True, accents=True,
-                 stopwrods=True, non_alpha=True, single_chars=True):
+                 stopwords=True, non_alpha=True, single_chars=True):
         self.column = column
         self.language = language
         self.language_code = None

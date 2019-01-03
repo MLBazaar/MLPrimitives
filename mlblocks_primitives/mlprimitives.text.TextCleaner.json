@@ -52,7 +52,7 @@
                 "type": "bool",
                 "default": true
             },
-            "stopwrods": {
+            "stopwords": {
                 "type": "bool",
                 "default": true
             },
