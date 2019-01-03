@@ -110,7 +110,7 @@
                     {
                         "class": "keras.layers.Dense",
                         "parameters": {
-                            "units": "dense_units",
+                            "units": "classes",
                             "activation": "dense_activation"
                         }
                     }
