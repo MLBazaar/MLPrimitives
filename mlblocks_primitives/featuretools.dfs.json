@@ -75,6 +75,12 @@
         ]
     },
     "hyperparameters": {
+        "fixed": {
+            "copy": {
+                "type": "bool",
+                "default": false
+            }
+        },
         "tunable": {
             "max_depth": {
                 "type": "int",

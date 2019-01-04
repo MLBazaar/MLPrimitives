@@ -37,8 +37,9 @@ install_requires = [
 
 
 tests_require = [
-    'mlblocks>=0.2.0',
+    'mlblocks>=0.2.4',
     'pytest>=3.4.2',
+    'google-compute-engine==2.8.12',    # required by travis
 ]
 
 

@@ -1,0 +1,34 @@
+{
+    "metadata": {
+        "name": "multi_table/classification/default",
+        "data_type": "multi_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "wikiqa",
+        "context": {
+            "entities": "$entities",
+            "relationships": "$relationships",
+            "target_entity": "data"
+        }
+    },
+    "primitives": [
+        "mlprimitives.preprocessing.ClassEncoder",
+        "featuretools.dfs",
+        "xgboost.XGBClassifier",
+        "mlprimitives.preprocessing.ClassDecoder"
+    ],
+    "hyperparameters": {
+        "featuretools.dfs#1": {
+            "encode": true
+        },
+        "xgboost.XGBClassifier#1": {
+            "n_jobs": -1,
+            "learning_rate": 0.1,
+            "n_estimators": 300,
+            "max_depth": 3,
+            "gamma": 0,
+            "min_child_weight": 1
+        }
+    }
+}

@@ -1,14 +1,14 @@
 {
-    "name": "sklearn.ensemble.RandomForestClassifier",
+    "name": "sklearn.ensemble.GradientBoostingRegressor",
     "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
-    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html",
-    "description": "Scikit-learn RandomForestClassifier.",
+    "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html",
+    "description": "Scikit-learn GradientBoostingRegressor.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
     },
     "modalities": [],
-    "primitive": "sklearn.ensemble.RandomForestClassifier",
+    "primitive": "sklearn.ensemble.GradientBoostingRegressor",
     "fit": {
         "method": "fit",
         "args": [
@@ -39,8 +39,8 @@
     },
     "hyperparameters": {
         "fixed": {
-            "n_jobs": {
-                "type": "int",
+            "init": {
+                "type": "object",
                 "default": null
             },
             "verbose": {
@@ -51,31 +51,36 @@
                 "type": "bool",
                 "default": false
             },
-            "class_weight": {
-                "type": "iterable",
-                "default": null
+            "presort": {
+                "type": "bool",
+                "default": false
             }
         },
         "tunable": {
+            "loss": {
+                "type": "str",
+                "default": "ls",
+                "values": ["ls", "lad", "huber", "quantile"]
+            },
+            "learning_rate": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.01, 10.0]
+            },
             "n_estimators": {
                 "type": "int",
-                "default": 10,
+                "default": 100,
                 "range": [1, 500]
-            },
-            "criterion": {
-                "type": "str",
-                "default": "gini",
-                "values": ["entropy", "gini"]
-            },
-            "max_features": {
-                "type": "str",
-                "default": null,
-                "values": [null, "auto", "log2", "sqrt"]
             },
             "max_depth": {
                 "type": "int",
-                "default": null,
+                "default": 3,
                 "range": [1, 30]
+            },
+            "criterion": {
+                "type": "str",
+                "default": "friedman_mse",
+                "values": ["friedman_mse", "friedman_mae"]
             },
             "min_samples_split": {
                 "type": "int",
@@ -90,7 +95,17 @@
             "min_weight_fraction_leaf": {
                 "type": "float",
                 "default": 0.0,
-                "range": [0.0, 0.5]
+                "range": [0.0, 10.5]
+            },
+            "subsample": {
+                "type": "float",
+                "default": 1.0,
+                "range": [0.01, 100.0]
+            },
+            "max_features": {
+                "type": "str",
+                "default": null,
+                "values": [null, "auto", "log2", "sqrt"]
             },
             "max_leaf_nodes": {
                 "type": "int",
@@ -100,15 +115,27 @@
             "min_impurity_decrease": {
                 "type": "float",
                 "default": 0.0,
-                "range": [0.0, 1000.0]
+                "range": [0.0, 100.0]
             },
-            "bootstrap": {
-                "type": "bool",
-                "default": true
+            "alpha": {
+                "type": "float",
+                "default": 0.9,
+                "range": [0.01, 10]
             },
-            "oob_score": {
-                "type": "bool",
-                "default": false
+            "validation_fraction": {
+                "type": "float",
+                "default": 0.1,
+                "range": [0.0, 1.0]
+            },
+            "n_iter_no_change": {
+                "type": "int",
+                "default": null,
+                "range": [1, 1000]
+            },
+            "tol": {
+                "type": "float",
+                "default": 1e-4,
+                "range": [0.0, 2.0]
             }
         }
     }
