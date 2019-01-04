@@ -101,6 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.preprocessing.html">mlprimitives.preprocessing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.text.html">mlprimitives.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.timeseries.html">mlprimitives.timeseries module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.timeseries_errors.html">mlprimitives.timeseries_errors module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.trivial.html">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
 </ul>
@@ -272,11 +273,13 @@
 </li>
       <li><a href="api/mlprimitives.preprocessing.html#mlprimitives.preprocessing.ClassDecoder">ClassDecoder (class in mlprimitives.preprocessing)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.preprocessing.html#mlprimitives.preprocessing.ClassEncoder">ClassEncoder (class in mlprimitives.preprocessing)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.adapters.community.html#mlprimitives.adapters.community.CommunityBestPartition">CommunityBestPartition (class in mlprimitives.adapters.community)</a>
+</li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.compute_threshold">compute_threshold() (in module mlprimitives.timeseries_errors)</a>
 </li>
       <li><a href="api/mlprimitives.counters.html#mlprimitives.counters.Counter.count">count() (mlprimitives.counters.Counter method)</a>
 </li>
@@ -329,6 +332,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.feature_selection.html#mlprimitives.feature_selection.EstimatorFeatureSelector">EstimatorFeatureSelector (class in mlprimitives.feature_selection)</a>
+</li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.extract_anomalies">extract_anomalies() (in module mlprimitives.timeseries_errors)</a>
 </li>
       <li><a href="api/mlprimitives.feature_selection.html#mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector">ExtraTreesClassifierFeatureSelector (class in mlprimitives.feature_selection)</a>
 </li>
@@ -394,11 +399,15 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.adapters.cv2.html#mlprimitives.adapters.cv2.GaussianBlur">GaussianBlur() (in module mlprimitives.adapters.cv2)</a>
 </li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.get_anomalies">get_anomalies() (in module mlprimitives.timeseries_errors)</a>
+</li>
       <li><a href="api/mlprimitives.adapters.lightfm.html#mlprimitives.adapters.lightfm.LightFM.get_columns">get_columns() (mlprimitives.adapters.lightfm.LightFM method)</a>
 </li>
       <li><a href="api/mlprimitives.evaluation.html#mlprimitives.evaluation.get_context">get_context() (in module mlprimitives.evaluation)</a>
 </li>
       <li><a href="api/mlprimitives.counters.html#mlprimitives.counters.Counter.get_counts">get_counts() (mlprimitives.counters.Counter method)</a>
+</li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.get_forecast_errors">get_forecast_errors() (in module mlprimitives.timeseries_errors)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -411,6 +420,8 @@
       <li><a href="api/mlprimitives.adapters.networkx.html#mlprimitives.adapters.networkx.graph_feature_extraction">graph_feature_extraction() (in module mlprimitives.adapters.networkx)</a>
 </li>
       <li><a href="api/mlprimitives.adapters.networkx.html#mlprimitives.adapters.networkx.graph_pairs_feature_extraction">graph_pairs_feature_extraction() (in module mlprimitives.adapters.networkx)</a>
+</li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.group_consecutive_anomalies">group_consecutive_anomalies() (in module mlprimitives.timeseries_errors)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -488,6 +499,8 @@
 </li>
       <li><a href="api/mlprimitives.timeseries.html#module-mlprimitives.timeseries">mlprimitives.timeseries (module)</a>
 </li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#module-mlprimitives.timeseries_errors">mlprimitives.timeseries_errors (module)</a>
+</li>
       <li><a href="api/mlprimitives.trivial.html#module-mlprimitives.trivial">mlprimitives.trivial (module)</a>
 </li>
       <li><a href="api/mlprimitives.utils.html#module-mlprimitives.utils">mlprimitives.utils (module)</a>
@@ -524,6 +537,8 @@
         <li><a href="api/mlprimitives.text.html#mlprimitives.text.TextCleaner.produce">(mlprimitives.text.TextCleaner method)</a>
 </li>
       </ul></li>
+      <li><a href="api/mlprimitives.timeseries_errors.html#mlprimitives.timeseries_errors.prune_anomalies">prune_anomalies() (in module mlprimitives.timeseries_errors)</a>
+</li>
   </ul></td>
 </tr></table>
 

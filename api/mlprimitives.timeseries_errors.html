@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.trivial module &mdash; MLPrimitives 0.1.4-dev documentation</title>
+  <title>mlprimitives.timeseries_errors module &mdash; MLPrimitives 0.1.4-dev documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.utils module" href="mlprimitives.utils.html" />
-    <link rel="prev" title="mlprimitives.timeseries_errors module" href="mlprimitives.timeseries_errors.html" /> 
+    <link rel="next" title="mlprimitives.trivial module" href="mlprimitives.trivial.html" />
+    <link rel="prev" title="mlprimitives.timeseries module" href="mlprimitives.timeseries.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -102,8 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.preprocessing.html">mlprimitives.preprocessing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.text.html">mlprimitives.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.timeseries.html">mlprimitives.timeseries module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.timeseries_errors.html">mlprimitives.timeseries_errors module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.trivial module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.timeseries_errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.trivial.html">mlprimitives.trivial module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
 </ul>
 </li>
@@ -205,14 +205,14 @@
         
           <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
         
-      <li>mlprimitives.trivial module</li>
+      <li>mlprimitives.timeseries_errors module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.trivial.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.timeseries_errors.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -226,27 +226,77 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.trivial">
-<span id="mlprimitives-trivial-module"></span><h1>mlprimitives.trivial module<a class="headerlink" href="#module-mlprimitives.trivial" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="mlprimitives.trivial.TrivialPredictor">
-<em class="property">class </em><code class="descclassname">mlprimitives.trivial.</code><code class="descname">TrivialPredictor</code><span class="sig-paren">(</span><em>default=0</em>, <em>method=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/trivial.html#TrivialPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="mlprimitives.trivial.TrivialPredictor.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/trivial.html#TrivialPredictor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.fit" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="module-mlprimitives.timeseries_errors">
+<span id="mlprimitives-timeseries-errors-module"></span><h1>mlprimitives.timeseries_errors module<a class="headerlink" href="#module-mlprimitives.timeseries_errors" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.compute_threshold">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">compute_threshold</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>error_buffer</em>, <em>sd_limit=12.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#compute_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.compute_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method for <cite>extract_anomalies</cite> method.
+Calculates the epsilon (threshold) for anomalies.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.extract_anomalies">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">extract_anomalies</code><span class="sig-paren">(</span><em>y_true</em>, <em>smoothed_errors</em>, <em>window_size</em>, <em>batch_size</em>, <em>error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#extract_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.extract_anomalies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts anomalies from the errors.
+:param y_true ():
+:param smoothed_errors ():
+:param window_size:
+:type window_size: int
+:param batch_size:
+:type batch_size: int
+:param error_buffer:
+:type error_buffer: int</p>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.get_anomalies">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">get_anomalies</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>y_true</em>, <em>z</em>, <em>window</em>, <em>all_anomalies</em>, <em>error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#get_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.get_anomalies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method to get anomalies.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.get_forecast_errors">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">get_forecast_errors</code><span class="sig-paren">(</span><em>y_hat</em>, <em>y_true</em>, <em>window_size=5</em>, <em>batch_size=30</em>, <em>smoothing_percent=0.05</em>, <em>smoothed=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#get_forecast_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.get_forecast_errors" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Calculates the forecasting error for two arrays of data. If smoothed errors desired,</dt>
+<dd>runs EWMA.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>y_hat</strong> (<em>list</em>) – forecasted values. len(y_hat)==len(y_true).</li>
+<li><strong>y_true</strong> (<em>list</em>) – true values. len(y_hat)==len(y_true).</li>
+<li><strong>window_size</strong> (<em>int</em>) – </li>
+<li><strong>batch_size</strong> (<em>int</em>) – </li>
+<li><strong>smoothing_percent</strong> (<em>float</em>) – </li>
+<li><strong>smoothed</strong> (<em>bool</em>) – whether the returned errors should be smoothed with EWMA.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">error residuals. Smoothed if specified by user.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(list)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.group_consecutive_anomalies">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">group_consecutive_anomalies</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>epsilon</em>, <em>y_true</em>, <em>error_buffer</em>, <em>window</em>, <em>all_anomalies</em>, <em>batch_size=30</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#group_consecutive_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.group_consecutive_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="mlprimitives.trivial.TrivialPredictor.get_length">
-<code class="descname">get_length</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/trivial.html#TrivialPredictor.get_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.get_length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.trivial.TrivialPredictor.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/trivial.html#TrivialPredictor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.trivial.TrivialPredictor.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="function">
+<dt id="mlprimitives.timeseries_errors.prune_anomalies">
+<code class="descclassname">mlprimitives.timeseries_errors.</code><code class="descname">prune_anomalies</code><span class="sig-paren">(</span><em>e_seq</em>, <em>smoothed_errors</em>, <em>max_error_below_e</em>, <em>anomaly_indices</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/timeseries_errors.html#prune_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.timeseries_errors.prune_anomalies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method that removes anomalies which don’t meet
+a minimum separation from next anomaly.</p>
 </dd></dl>
 
 </div>
@@ -259,10 +309,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.utils.html" class="btn btn-neutral float-right" title="mlprimitives.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.trivial.html" class="btn btn-neutral float-right" title="mlprimitives.trivial module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.timeseries_errors.html" class="btn btn-neutral" title="mlprimitives.timeseries_errors module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.timeseries.html" class="btn btn-neutral" title="mlprimitives.timeseries module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

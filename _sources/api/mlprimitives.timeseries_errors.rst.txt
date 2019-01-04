@@ -1,0 +1,7 @@
+mlprimitives.timeseries\_errors module
+======================================
+
+.. automodule:: mlprimitives.timeseries_errors
+    :members:
+    :undoc-members:
+    :show-inheritance:

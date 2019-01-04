@@ -27,6 +27,7 @@ Submodules
    mlprimitives.preprocessing
    mlprimitives.text
    mlprimitives.timeseries
+   mlprimitives.timeseries_errors
    mlprimitives.trivial
    mlprimitives.utils
 
