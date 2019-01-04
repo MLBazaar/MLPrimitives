@@ -9,7 +9,6 @@
     },
     "modalities": ["text"],
     "primitive": "sklearn.naive_bayes.MultinomialNB",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [

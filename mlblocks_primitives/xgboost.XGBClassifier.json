@@ -9,7 +9,6 @@
     },
     "modalities": [],
     "primitive": "xgboost.XGBClassifier",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [

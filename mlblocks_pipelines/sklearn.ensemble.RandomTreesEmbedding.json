@@ -1,0 +1,21 @@
+{
+    "metadata": {
+        "name": "RandomTreesEmbedding/classification/default",
+        "data_type": "tabular",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris",
+        "context": {}
+    },
+    "primitives": [
+        "mlprimitives.preprocessing.ClassEncoder",
+        "sklearn.preprocessing.Imputer",
+        "sklearn.preprocessing.StandardScaler",
+        "sklearn.ensemble.RandomTreesEmbedding",
+        "sklearn.ensemble.RandomForestClassifier"
+    ],
+    "hyperparameters": {
+        "sklearn.ensemble.RandomTreesEmbedding#1": {}
+    }
+}

@@ -1,3 +1,10 @@
+<p align="left">
+<img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DAI-Lab” />
+<i>An open source project from Data to AI Lab at MIT.</i>
+</p>
+
+
+
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
 [![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
 
@@ -101,10 +108,10 @@ This type of primitives consist of Python code from the `mlprimitives` module, a
 corresponding JSON annotations, which can also be found in the `mlblocks_primitives` folder.
 
 
-## Constributing
+## Contributing
 
 This is a community driven project and all contributions are more than welcome, from simple
-feeback to the most complex coding contributions.
+feedback to the most complex coding contributions.
 
 If you have anything that you want to ask, request or contribute, please check the
 [contributing section in the documentation][contributing-docs], and do not hesitate

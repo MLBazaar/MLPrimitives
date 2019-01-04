@@ -1,5 +1,23 @@
 # History
 
+## 0.1.4
+
+### New Primitives
+
+* mlprimitives.timeseries primitives for timeseries data preprocessing
+* mlprimitives.timeseres_error primitives for timeseries anomaly detection
+* keras.Sequential.LSTMTimeSeriesRegressor
+* sklearn.neighbors.KNeighbors Classifier and Regressor
+* several sklearn.decomposition primitives
+* several sklearn.ensemble primitives
+
+### Bug Fixes
+
+* Fix typo in mlprimitives.text.TextCleaner primitive
+* Fix bug in index handling in featuretools.dfs primitive
+* Fix bug in SingleLayerCNNImageClassifier annotation
+* Remove old vlaidation tags from JSON annotations
+
 ## 0.1.3
 
 ### New Features

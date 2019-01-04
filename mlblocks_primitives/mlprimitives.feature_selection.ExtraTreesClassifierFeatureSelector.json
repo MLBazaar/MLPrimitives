@@ -8,7 +8,6 @@
     },
     "modalities": [],
     "primitive": "mlprimitives.feature_selection.ExtraTreesClassifierFeatureSelector",
-    "validation_dataset": "wine",
     "fit": {
         "method": "fit",
         "args": [

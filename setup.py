@@ -37,8 +37,9 @@ install_requires = [
 
 
 tests_require = [
-    'mlblocks>=0.2.0',
+    'mlblocks>=0.2.4',
     'pytest>=3.4.2',
+    'google-compute-engine==2.8.12',    # required by travis
 ]
 
 
@@ -125,6 +126,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.3',
+    version='0.1.4-dev',
     zip_safe=False,
 )
