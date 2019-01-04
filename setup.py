@@ -126,6 +126,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.4-dev',
+    version='0.1.4',
     zip_safe=False,
 )
