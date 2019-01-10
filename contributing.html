@@ -137,6 +137,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors.html#development-lead">Development Lead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
 </ul>
 </li>
@@ -334,8 +335,7 @@ new pages of documentation.</p>
 this is how you set up your fork for local development:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkvirtualenv MLPrimitives
 $ <span class="nb">cd</span> MLPrimitives/
-$ pip install -e .
-$ pip install -r requirements_dev.txt
+$ make install-develop
 </pre></div>
 </div>
 </li>
@@ -355,13 +355,13 @@ $ make coverage   <span class="c1"># Get the coverage report</span>
 </li>
 <li><p class="first">When you’re done making changes, check that your changes pass flake8 and the
 tests, including testing other Python versions with tox:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make test-all
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make lint       <span class="c1"># Check code styling</span>
+$ make test-all   <span class="c1"># Execute tests on all python versions</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Make also sure to include the necessary documentation in the code as docstrings following
-the [google](<a class="reference external" href="https://google.github.io/styleguide/pyguide.html?showone=Comments#Comments">https://google.github.io/styleguide/pyguide.html?showone=Comments#Comments</a>)
-or the [numpy](<a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">https://numpydoc.readthedocs.io/en/latest/format.html</a>) docstring style.
+the <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">google docstring</a> style.
 If you want to view how your documentation will look like when it is published, you can
 generate and view the docs with this command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ make viewdocs
@@ -443,21 +443,12 @@ mocked.</li>
 development interation.</li>
 </ol>
 <p><strong>Note:</strong> Before starting the process, make sure that <code class="docutils literal notranslate"><span class="pre">HISTORY.md</span></code> has a section titled
-<strong>Unreleased</strong> with the list of changes that will be included in the new version, and that
-these changes are committed and available in <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.
-Normally this is just a list of the Pull Requests that have been merged since the latest version.</p>
-<p>Once this is done, just run the following commands:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout stable
-git merge --no-ff master    <span class="c1"># This creates a merge commit</span>
-bumpversion release   <span class="c1"># This creates a new commit and a TAG</span>
-git push --tags origin stable
-make release
-git checkout master
-git merge stable
-bumpversion --no-tag patch
-git push
-</pre></div>
-</div>
+after thew new version that is about to be released with the list of changes that will be
+included in the new version, and that these changes are all committed and available in the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> branch.
+Normally this is just a list of the Issues that have been closed since the latest version.</p>
+<p>Once this is done, just run the commands <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">release</span></code> and insert the PyPi username and
+password when required.</p>
 </div>
 </div>
 
