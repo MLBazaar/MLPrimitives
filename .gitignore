@@ -67,6 +67,7 @@ docs/_build/
 docs/mlprimitives.rst
 docs/mlprimitives.*.rst
 docs/modules.rst
+docs/api
 
 # PyBuilder
 target/
