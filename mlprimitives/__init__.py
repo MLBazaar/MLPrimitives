@@ -15,6 +15,7 @@ from mlblocks import add_primitives_path, get_primitives_paths
 
 from mlprimitives.evaluation import score_pipeline
 
+MLPRIMITIVES_JSONS_PATH = os.path.join(os.path.dirname(__file__), 'jsons')
 LOGGER = logging.getLogger(__name__)
 
 

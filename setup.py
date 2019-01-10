@@ -84,15 +84,6 @@ extras_require = {
 }
 
 
-json_primitives = glob.glob('mlblocks_primitives/**/*.json', recursive=True)
-data_files = defaultdict(list)
-for primitive_path in json_primitives:
-    parts = primitive_path.split('/')
-    dir_path = parts[1:-1]
-    install_path = os.path.join('mlblocks_primitives', *dir_path)
-    data_files[install_path].append(primitive_path)
-
-
 setup(
     author="MIT Data To AI Lab",
     author_email='dailabmit@gmail.com',
@@ -105,12 +96,14 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    data_files = list(data_files.items()),
     description="MLBlocks Primitives",
     entry_points = {
         'console_scripts': [
             'mlprimitives=mlprimitives:_main'
         ],
+        'mlprimitives': [
+            'jsons_path=mlprimitives:MLPRIMITIVES_JSONS_PATH'
+        ]
     },
     extras_require=extras_require,
     install_requires=install_requires,
