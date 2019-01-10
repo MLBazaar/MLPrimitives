@@ -2,18 +2,10 @@
 
 import json
 import os
-from unittest.mock import patch
 
 from mlblocks import MLPipeline
 
-PRIMITIVES_PATH = os.path.normpath(
-    os.path.join(
-        os.path.dirname(__file__),
-        os.pardir,
-        'mlblocks_primitives'
-    )
-)
-
+from mlprimitives import MLPRIMITIVES_JSONS_PATH
 
 HYPERPARAMETER_DEFAULTS = {
     'int': 1,
@@ -24,14 +16,13 @@ HYPERPARAMETER_DEFAULTS = {
 }
 
 
-@patch('mlblocks.primitives._PRIMITIVES_PATHS', new=[PRIMITIVES_PATH])
 def test_jsons():
     """Validate MLBlocks primitive jsons"""
 
-    primitives = (f for f in os.listdir(PRIMITIVES_PATH) if f.endswith('.json'))
+    primitives = (f for f in os.listdir(MLPRIMITIVES_JSONS_PATH) if f.endswith('.json'))
     for primitive_filename in primitives:
         try:
-            primitive_path = os.path.join(PRIMITIVES_PATH, primitive_filename)
+            primitive_path = os.path.join(MLPRIMITIVES_JSONS_PATH, primitive_filename)
             with open(primitive_path, 'r') as f:
                 primitive = json.load(f)
 
