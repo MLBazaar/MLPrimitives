@@ -1,6 +1,6 @@
 {
     "name": "sklearn.neighbors.KNeighborsClassifier",
-    "author": "Sze Nga Wong (wsnalice@mit.edu)",
+    "contributors": ["Sze Nga Wong <wsnalice@mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html",
     "description": "Scikit-learn KNeighborsClassifier that uses predict_proba as the produce method.",
     "classifiers": {

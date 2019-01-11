@@ -1,6 +1,6 @@
 {
     "name": "networkx.link_prediction_feature_extraction",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Graph feature extraction using functions from networkx.algorithms.link_prediction module",
     "classifiers": {
         "type": "preprocessor",

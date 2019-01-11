@@ -1,6 +1,6 @@
 {
     "name": "xgboost.XGBRegressor",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBRegressor",
     "description": "Implementation of the scikit-learn API for XGBoost regression.",
     "classifiers": {

@@ -1,6 +1,6 @@
 {
     "name": "sklearn.naive_bayes.MultinomialNB",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html",
     "description": "Naive Bayes classifier for multinomial models",
     "classifiers": {

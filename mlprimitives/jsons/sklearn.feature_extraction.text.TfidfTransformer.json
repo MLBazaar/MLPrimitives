@@ -1,6 +1,6 @@
 {
     "name": "sklearn.feature_extraction.text.TfidfTransformer",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html",
     "description": "Transform a count matrix to a normalized tf or tf-idf representation",
     "classifiers": {

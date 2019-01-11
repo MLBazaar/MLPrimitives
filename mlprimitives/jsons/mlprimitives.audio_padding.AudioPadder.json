@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.audio_padding.AudioPadder",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "mlprimitives.audio_padding.AudioPadder",
     "classifiers": {
         "type": "preprocessor",

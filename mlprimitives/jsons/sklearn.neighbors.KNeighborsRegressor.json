@@ -1,6 +1,6 @@
 {
     "name": "sklearn.neighbors.KNeighborsRegressor",
-    "author": "Sze Nga Wong (wsnalice@mit.edu)",
+    "contributors": ["Sze Nga Wong <wsnalice@mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html",
     "description": "Regression based on k-nearest neighbors. The target is predicted by local interpolation of the targets associated of the nearest neighbors in the training set.",
     "classifiers": {

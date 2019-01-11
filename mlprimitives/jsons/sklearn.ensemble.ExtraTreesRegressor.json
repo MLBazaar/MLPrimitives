@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.ExtraTreesRegressor",
-    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html",
     "description": "Scikit-learn ExtraTreesRegressor. Implements a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting.",
     "classifiers": {

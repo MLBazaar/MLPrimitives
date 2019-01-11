@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.counters.UniqueCounter",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Count the number of unique values in each column of a matrix.",
     "classifiers": {
         "type": "preprocessor",

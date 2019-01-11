@@ -1,6 +1,6 @@
 {
     "name": "cv2.GaussianBlur",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://docs.opencv.org/2.4/modules/imgproc/doc/filtering.html#gaussianblur",
     "description": "Blurs an image using a Gaussian filter.",
     "classifiers": {

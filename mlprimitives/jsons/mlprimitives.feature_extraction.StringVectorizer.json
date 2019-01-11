@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.feature_extraction.StringVectorizer",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "mlprimitives.feature_extraction.StringVectorizer",
     "classifiers": {
         "type": "preprocessor",

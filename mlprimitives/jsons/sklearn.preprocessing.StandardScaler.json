@@ -1,6 +1,6 @@
 {
     "name": "sklearn.preprocessing.StandardScaler",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html",
     "description": "Standardize features by removing the mean and scaling to unit variance",
     "classifiers": {

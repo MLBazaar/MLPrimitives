@@ -1,6 +1,6 @@
 {
     "name": "sklearn.ensemble.RandomTreesEmbedding",
-    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomTreesEmbedding.html",
     "description": "Scikit-learn RandomTreesEmbedding. An unsupervised transformation of a dataset to a high-dimensional sparse representation.",
     "classifiers": {

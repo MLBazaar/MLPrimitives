@@ -1,6 +1,6 @@
 {
     "name": "keras.preprocessing.sequence.pad_sequences",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://keras.io/preprocessing/sequence/#pad_sequences",
     "description": "Pads sequences to the same length.",
     "classifiers": {

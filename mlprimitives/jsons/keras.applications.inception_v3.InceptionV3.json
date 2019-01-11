@@ -1,6 +1,6 @@
 {
     "name": "keras.applications.inception_v3.InceptionV3",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://keras.io/applications/#inception_v3",
     "description": "Inception V3 model, with weights pre-trained on ImageNet.",
     "classifiers": {

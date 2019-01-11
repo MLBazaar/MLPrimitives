@@ -1,6 +1,6 @@
 {
     "name": "keras.preprocessing.text.Tokenizer",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://keras.io/preprocessing/text/#tokenizer",
     "description": "Text tokenization utility class.",
     "classifiers": {

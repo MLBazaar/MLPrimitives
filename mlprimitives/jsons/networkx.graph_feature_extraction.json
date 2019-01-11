@@ -1,6 +1,6 @@
 {
     "name": "networkx.graph_feature_extraction",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Apply multiple networkx functions to extract features form a list of graphs.",
     "classifiers": {
         "type": "preprocessor",

@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.counters.VocabularyCounter",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Count the number of different words in a collection of texts.",
     "classifiers": {
         "type": "preprocessor",

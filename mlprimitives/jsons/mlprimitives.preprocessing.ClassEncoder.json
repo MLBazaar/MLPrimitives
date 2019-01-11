@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.preprocessing.ClassEncoder",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Encode an array of strings using integers.",
     "classifiers": {
         "type": "preprocessor",
