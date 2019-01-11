@@ -251,20 +251,20 @@ either combine third party tools or implement new functionalities from scratch.<
 <div class="section" id="project-structure">
 <h2>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
 <p>The project is divided in three parts:</p>
-<div class="section" id="the-mlblocks-primitives-folder">
-<h3>The <code class="docutils literal notranslate"><span class="pre">mlblocks_primitives</span></code> folder<a class="headerlink" href="#the-mlblocks-primitives-folder" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">mlblocks_primitives</span></code> folder contains the JSON annotations for the MLBlocks primitives.</p>
-<p>This folder has a flat structure, without subfolders, and all the primitive JSONs are named
-after the Fully Qualified Name of the annotated primitive (function or class).</p>
-<p>As a result of this, sorting the JSON files alphabetically shows them grouped by library, which
-makes browsing them and seeing what tools are implemented easy.</p>
-</div>
 <div class="section" id="the-mlprimitives-package">
 <h3>The <code class="docutils literal notranslate"><span class="pre">mlprimitives</span></code> package<a class="headerlink" href="#the-mlprimitives-package" title="Permalink to this headline">¶</a></h3>
 <p>The mlprimitives folder is where all the Python code can be found.</p>
 <p>Several sub-modules exist inside it, for the different types of primitives implemented, including
 the <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters</span></code> module, which has a special role in the integration of third
 party tools that do not directly fit the MLBlocks requirements.</p>
+</div>
+<div class="section" id="the-mlprimitives-jsons-folder">
+<h3>The <code class="docutils literal notranslate"><span class="pre">mlprimitives/jsons</span></code> folder<a class="headerlink" href="#the-mlprimitives-jsons-folder" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">mlprimitives/jsons</span></code> folder contains the JSON annotations for the primitives.</p>
+<p>This folder has a flat structure, without subfolders, and all the primitive JSONs are named
+after the Fully Qualified Name of the annotated primitive (function or class).</p>
+<p>As a result of this, sorting the JSON files alphabetically shows them grouped by library, which
+makes browsing them and seeing what tools are implemented easy.</p>
 </div>
 <div class="section" id="the-tests-folder">
 <h3>The <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder<a class="headerlink" href="#the-tests-folder" title="Permalink to this headline">¶</a></h3>
