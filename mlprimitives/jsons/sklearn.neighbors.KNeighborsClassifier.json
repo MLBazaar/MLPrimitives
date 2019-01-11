@@ -1,6 +1,6 @@
 {
     "name": "sklearn.neighbors.KNeighborsClassifier",
-    "author": "Sze Nga Wong (wsnalice@mit.edu)",
+    "contributors": ["Sze Nga Wong <wsnalice@mit.edu>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html",
     "description": "Classification is computed from a simple majority vote of the nearest neighbors of each point: a query point is assigned the data class which has the most representatives within the nearest neighbors of the point.",
     "classifiers": {

@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.text.TextCleaner",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Text Cleanup: set text to lowercase and remove accents, stopwords, non alhpanumeric characters and single character words.",
     "classifiers": {
         "type": "preprocessor",

@@ -1,6 +1,6 @@
 {
     "name": "sklearn.decomposition.FastICA",
-    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html",
     "description": "FastICA: a fast algorithm for Independent Component Analysis.",
     "classifiers": {

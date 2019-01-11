@@ -1,6 +1,6 @@
 {
     "name": "keras.Sequential.SingleLayerCNNImageRegressor",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "keras.Sequential.SingleLayerCNNImageRegressor",
     "classifiers": {
         "type": "estimator",

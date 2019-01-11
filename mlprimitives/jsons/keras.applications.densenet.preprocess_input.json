@@ -1,6 +1,6 @@
 {
     "name": "keras.applications.densenet.preprocess_input",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://www.tensorflow.org/api_docs/python/tf/keras/applications/densenet/preprocess_input",
     "description": "Preprocesses a tensor or Numpy array encoding a batch of images.",
     "classifiers": {

@@ -1,6 +1,6 @@
 {
     "name": "skimage.feature.hog",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "http://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.hog",
     "description": "Extract Histogram of Oriented Gradients (HOG) for a given image.",
     "classifiers": {

@@ -1,6 +1,6 @@
 {
     "name": "community.CommunityBestPartition",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://perso.crans.org/aynaud/communities/api.html#community.best_partition",
     "description": "Compute the partition of the graph nodes which maximises the modularity (or try..) using the Louvain heuristices.",
     "classifiers": {

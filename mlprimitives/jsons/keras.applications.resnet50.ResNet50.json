@@ -1,6 +1,6 @@
 {
     "name": "keras.applications.resnet50.ResNet50",
-    "author": "Carles Sala <carles@pythiac.com>",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "documentation": "https://keras.io/applications/#resnet50",
     "description": "ResNet50 model, with weights pre-trained on ImageNet.",
     "classifiers": {

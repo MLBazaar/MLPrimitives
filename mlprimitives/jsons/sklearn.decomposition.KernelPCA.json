@@ -1,6 +1,6 @@
 {
     "name": "sklearn.decomposition.KernelPCA",
-    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.KernelPCA.html",
     "description": "Kernel Principal Component Analysis.",
     "classifiers": {

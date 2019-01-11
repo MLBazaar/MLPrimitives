@@ -1,6 +1,6 @@
 {
     "name": "sklearn.decomposition.FactorAnalysis",
-    "contributors": ["Carles Sala <carles@pythiac.com>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FactorAnalysis.html",
     "description": "Factor Analysis. A simple linear generative model with Gaussian latent variables.",
     "classifiers": {

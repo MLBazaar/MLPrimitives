@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.timeseries.time_segments_average",
-    "author": "Ihssan Tinawi <itinawi@mit.edu>",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
     "description": "mlprimitives.timeseries.time_segments_average",
     "classifiers": {
         "type": "preprocessor",
