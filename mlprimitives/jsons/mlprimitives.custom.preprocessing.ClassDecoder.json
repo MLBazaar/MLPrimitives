@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.preprocessing.ClassDecoder",
+    "name": "mlprimitives.custom.preprocessing.ClassDecoder",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Decode an array of strings using integers.",
     "classifiers": {
@@ -7,7 +7,7 @@
         "subtype": "data_cleanup"
     },
     "modalities": [],
-    "primitive": "mlprimitives.preprocessing.ClassDecoder",
+    "primitive": "mlprimitives.custom.preprocessing.ClassDecoder",
     "fit": {
         "method": "fit",
         "args": [
