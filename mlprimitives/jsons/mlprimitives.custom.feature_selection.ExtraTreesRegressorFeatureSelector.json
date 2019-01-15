@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector",
+    "name": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
-    "description": "mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector",
+    "description": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_selector"
     },
     "modalities": [],
-    "primitive": "mlprimitives.feature_selection.ExtraTreesRegressorFeatureSelector",
+    "primitive": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
     "fit": {
         "method": "fit",
         "args": [
@@ -31,8 +31,8 @@
         ],
         "output": [
             {
-                "name": "y",
-                "type": "Series"
+                "name": "X",
+                "type": "DataFrame"
             }
         ]
     },
@@ -41,7 +41,7 @@
         "tunable": {
             "bypass": {
                 "type": "bool",
-                "default": true
+                "default": false
             },
             "threshold": {
                 "type": "str",
