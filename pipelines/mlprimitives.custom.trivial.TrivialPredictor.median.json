@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.trivial.TrivialPredictor.median",
+        "data_type": "tabular",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "mlprimitives.custom.trivial.TrivialPredictor"
+    ],
+    "hyperparameters": {
+        "mlprimitives.custom.trivial.TrivialPredictor#1": {
+            "method": "median"
+        }
+    }
+}
