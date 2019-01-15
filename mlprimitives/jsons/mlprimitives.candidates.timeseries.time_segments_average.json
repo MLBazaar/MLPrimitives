@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.timeseries.time_segments_average",
+    "name": "mlprimitives.candidates.timeseries.time_segments_average",
     "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "description": "mlprimitives.timeseries.time_segments_average",
+    "description": "mlprimitives.candidates.timeseries.time_segments_average",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries.time_segments_average",
+    "primitive": "mlprimitives.candidates.timeseries.time_segments_average",
     "produce": {
         "args": [
             {

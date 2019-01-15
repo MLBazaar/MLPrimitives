@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.timeseries.rolling_window_sequences",
+    "name": "mlprimitives.candidates.timeseries.rolling_window_sequences",
     "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "description": "mlprimitives.timeseries.rolling_window_sequences",
+    "description": "mlprimitives.candidates.timeseries.rolling_window_sequences",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries.rolling_window_sequences",
+    "primitive": "mlprimitives.candidates.timeseries.rolling_window_sequences",
     "produce": {
         "args": [
             {
