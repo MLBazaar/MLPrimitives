@@ -127,6 +127,7 @@ class TextCleaner(object):
             texts = texts.apply(self._remove_single_chars)
 
         if self.column:
+            X = X.copy()
             X[self.column] = texts
             return X
 
