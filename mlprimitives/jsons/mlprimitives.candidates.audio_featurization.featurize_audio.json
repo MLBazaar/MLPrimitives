@@ -1,28 +1,22 @@
 {
-    "name": "mlprimitives.audio_padding.AudioPadder",
+    "name": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
-    "description": "mlprimitives.audio_padding.AudioPadder",
+    "description": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "classifiers": {
         "type": "preprocessor",
-        "subtype": "transformer"
+        "subtype": "feature_extractor"
     },
     "modalities": ["audio"],
-    "primitive": "mlprimitives.audio_padding.AudioPadder",
-    "fit": {
-        "method": "fit",
-        "args": [
-            {
-                "name": "X",
-                "type": "ndarray"
-            }
-        ]
-    },
+    "primitive": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "produce": {
-        "method": "produce",
         "args": [
             {
                 "name": "X",
                 "type": "ndarray"
+            },
+            {
+                "name": "sample_frequencies",
+                "type": "list"
             }
         ],
         "output": [
