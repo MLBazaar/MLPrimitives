@@ -1,21 +1,14 @@
 {
     "metadata": {
         "name": "RandomTreesEmbedding/classification/default",
-        "data_type": "tabular",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.RandomTreesEmbedding",
         "sklearn.ensemble.RandomForestClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.RandomTreesEmbedding#1": {}
-    }
+    ]
 }

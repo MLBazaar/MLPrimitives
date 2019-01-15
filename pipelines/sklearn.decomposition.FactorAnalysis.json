@@ -1,20 +1,14 @@
 {
     "metadata": {
-        "name": "FactorAnalysis/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.decomposition.FactorAnalysis",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "sklearn.decomposition.DictionaryLearning",
         "sklearn.decomposition.FactorAnalysis",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.RandomForestClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.decomposition.FactorAnalysis#1": {}
-    }
+    ]
 }

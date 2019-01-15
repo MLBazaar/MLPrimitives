@@ -1,20 +1,13 @@
 {
     "metadata": {
-        "name": "AdaBoostClassifier/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.ensemble.AdaBoostClassifier",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.AdaBoostClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.AdaBoostClassifier#1": {}
-    }
+    ]
 }

@@ -1,19 +1,13 @@
 {
     "metadata": {
-        "name": "GradientBoostingRegressor/regression/default",
-        "data_type": "tabular",
+        "name": "sklearn.ensemble.GradientBoostingRegressor",
+        "data_type": "single_table",
         "task_type": "regression"
     },
     "validation": {
-        "dataset": "boston",
-        "context": {}
+        "dataset": "boston"
     },
     "primitives": [
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.GradientBoostingRegressor"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.GradientBoostingRegressor#1": {}
-    }
+    ]
 }

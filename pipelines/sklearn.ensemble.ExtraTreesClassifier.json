@@ -1,20 +1,13 @@
 {
     "metadata": {
-        "name": "ExtraTreesClassifier/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.ensemble.ExtraTreesClassifier",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.ExtraTreesClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.ExtraTreesClassifier#1": {}
-    }
+    ]
 }

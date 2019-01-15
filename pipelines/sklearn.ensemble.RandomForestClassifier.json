@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "name": "RandomForestClassifier/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.ensemble.RandomForestClassifier",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
@@ -9,12 +9,6 @@
         "context": {}
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.RandomForestClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.RandomForestClassifier#1": {}
-    }
+    ]
 }

@@ -1,19 +1,14 @@
 {
     "metadata": {
-        "name": "KernelPCA/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.decomposition.KernelPCA",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
         "sklearn.decomposition.KernelPCA",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.RandomForestClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.decomposition.KernelPCA#1": {}
-    }
+    ]
 }

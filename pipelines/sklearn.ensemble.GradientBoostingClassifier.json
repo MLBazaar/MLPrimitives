@@ -1,20 +1,13 @@
 {
     "metadata": {
-        "name": "GradientBoosting/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.ensemble.GradientBoostingClassifier",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
-        "sklearn.preprocessing.StandardScaler",
         "sklearn.ensemble.GradientBoostingClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.ensemble.GradientBoostingClassifier#1": {}
-    }
+    ]
 }
