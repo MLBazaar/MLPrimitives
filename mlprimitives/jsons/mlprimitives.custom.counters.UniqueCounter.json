@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.counters.UniqueCounter",
+    "name": "mlprimitives.custom.counters.UniqueCounter",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Count the number of unique values in each column of a matrix.",
     "classifiers": {
@@ -7,7 +7,7 @@
         "subtype": "feature_extractor"
     },
     "modalities": [],
-    "primitive": "mlprimitives.counters.UniqueCounter",
+    "primitive": "mlprimitives.custom.counters.UniqueCounter",
     "fit": {
         "method": "count",
         "args": [
