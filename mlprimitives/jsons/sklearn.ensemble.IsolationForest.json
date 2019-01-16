@@ -39,6 +39,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "behaviour": {
+                "type": "str",
+                "default": "new"
+            },
             "n_jobs": {
                 "type": "int",
                 "default": null

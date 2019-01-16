@@ -1,19 +1,14 @@
 {
     "metadata": {
-        "name": "FastICA/classification/default",
-        "data_type": "tabular",
+        "name": "sklearn.decomposition.FastICA",
+        "data_type": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "iris",
-        "context": {}
+        "dataset": "iris"
     },
     "primitives": [
-        "sklearn.decomposition.DictionaryLearning",
         "sklearn.decomposition.FastICA",
         "sklearn.ensemble.RandomForestClassifier"
-    ],
-    "hyperparameters": {
-        "sklearn.decomposition.FastICA#1": {}
-    }
+    ]
 }
