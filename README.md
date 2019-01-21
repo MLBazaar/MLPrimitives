@@ -30,16 +30,6 @@ either combine third party tools or implement new functionalities from scratch.
 
 The project is divided in three parts:
 
-### The `mlblocks_primitives` folder
-
-The `mlblocks_primitives` folder contains the JSON annotations for the MLBlocks primitives.
-
-This folder has a flat structure, without subfolders, and all the primitive JSONs are named
-after the Fully Qualified Name of the annotated primitive (function or class).
-
-As a result of this, sorting the JSON files alphabetically shows them grouped by library, which
-makes browsing them and seeing what tools are implemented easy.
-
 ### The `mlprimitives` package
 
 The mlprimitives folder is where all the Python code can be found.
@@ -47,6 +37,16 @@ The mlprimitives folder is where all the Python code can be found.
 Several sub-modules exist inside it, for the different types of primitives implemented, including
 the `mlprimitives.adapters` module, which has a special role in the integration of third
 party tools that do not directly fit the MLBlocks requirements.
+
+### The `mlprimitives/jsons` folder
+
+The `mlprimitives/jsons` folder contains the JSON annotations for the primitives.
+
+This folder has a flat structure, without subfolders, and all the primitive JSONs are named
+after the Fully Qualified Name of the annotated primitive (function or class).
+
+As a result of this, sorting the JSON files alphabetically shows them grouped by library, which
+makes browsing them and seeing what tools are implemented easy.
 
 ### The `tests` folder
 

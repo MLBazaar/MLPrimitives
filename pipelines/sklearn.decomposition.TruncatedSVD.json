@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "sklearn.decomposition.TruncatedSVD",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "sklearn.decomposition.TruncatedSVD",
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}

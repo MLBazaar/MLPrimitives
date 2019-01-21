@@ -1,0 +1,48 @@
+{
+    "name": "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "description": "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "copy": {
+                "type": "bool",
+                "default": true
+            },
+            "features": {
+                "type": "str or list",
+                "default": "auto"
+            }
+        },
+        "tunable": {}
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "sklearn.decomposition.PCA",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "sklearn.decomposition.PCA",
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}

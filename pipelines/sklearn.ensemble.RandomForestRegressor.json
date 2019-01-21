@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "name": "sklearn.ensemble.RandomForestRegressor",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.ensemble.RandomForestRegressor"
+    ]
+}

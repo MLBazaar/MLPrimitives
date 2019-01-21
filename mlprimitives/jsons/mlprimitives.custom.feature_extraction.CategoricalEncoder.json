@@ -1,0 +1,57 @@
+{
+    "name": "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "description": "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "copy": {
+                "type": "bool",
+                "default": true
+            },
+            "features": {
+                "type": "str or list",
+                "default": "auto"
+            }
+        },
+        "tunable": {
+            "max_labels": {
+                "type": "int",
+                "default": 0,
+                "range": [
+                    0,
+                    100
+                ]
+            }
+        }
+    }
+}
