@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mlprimitives.custom.text module &mdash; MLPrimitives 0.1.5-dev documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mlprimitives.custom.trivial module" href="mlprimitives.custom.trivial.html" />
+    <link rel="prev" title="mlprimitives.custom.preprocessing module" href="mlprimitives.custom.preprocessing.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Advanced Usage</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="mlprimitives.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Development Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#types-of-contributions">Types of Contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#implementing-changes">Implementing Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#integrate-new-primitives">Integrate new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#implement-new-primitives">Implement new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../contributing.html#write-documentation">Write Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#tips">Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#release-workflow">Release Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-primitives">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-features">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id3">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id5">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id8">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id9">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.custom.html">mlprimitives.custom package</a> &raquo;</li>
+        
+      <li>mlprimitives.custom.text module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.text.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mlprimitives.custom.text">
+<span id="mlprimitives-custom-text-module"></span><h1>mlprimitives.custom.text module<a class="headerlink" href="#module-mlprimitives.custom.text" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mlprimitives.custom.text.TextCleaner">
+<em class="property">class </em><code class="descclassname">mlprimitives.custom.text.</code><code class="descname">TextCleaner</code><span class="sig-paren">(</span><em>column=None</em>, <em>language='multi'</em>, <em>lower=True</em>, <em>accents=True</em>, <em>stopwords=True</em>, <em>non_alpha=True</em>, <em>single_chars=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="mlprimitives.custom.text.TextCleaner.RE_ACCENTS">
+<code class="descname">RE_ACCENTS</code><em class="property"> = {'a': re.compile('[àâáäåã]'), 'e': re.compile('[èêéë]'), 'i': re.compile('[ìîíï]'), 'o': re.compile('[òôóö]'), 'u': re.compile('[ùûúü]')}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_ACCENTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM">
+<code class="descname">RE_NON_ALNUM</code><em class="property"> = re.compile('[^\\w\\d]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA">
+<code class="descname">RE_NON_ALPHA</code><em class="property"> = re.compile('[^a-z]+')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.custom.text.TextCleaner.RE_SYMBOLS">
+<code class="descname">RE_SYMBOLS</code><em class="property"> = re.compile('[-]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_SYMBOLS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.custom.text.TextCleaner.STOPWORDS">
+<code class="descname">STOPWORDS</code><em class="property"> = {}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.STOPWORDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="mlprimitives.custom.text.TextCleaner.detect_language">
+<em class="property">static </em><code class="descname">detect_language</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.detect_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.detect_language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.custom.text.TextCleaner.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="mlprimitives.custom.text.TextCleaner.get_stopwords">
+<em class="property">classmethod </em><code class="descname">get_stopwords</code><span class="sig-paren">(</span><em>language_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.get_stopwords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.get_stopwords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.custom.text.TextCleaner.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.produce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mlprimitives.custom.trivial.html" class="btn btn-neutral float-right" title="mlprimitives.custom.trivial module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mlprimitives.custom.preprocessing.html" class="btn btn-neutral" title="mlprimitives.custom.preprocessing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

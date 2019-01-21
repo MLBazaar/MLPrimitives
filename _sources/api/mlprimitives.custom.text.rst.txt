@@ -1,0 +1,7 @@
+mlprimitives.custom.text module
+===============================
+
+.. automodule:: mlprimitives.custom.text
+    :members:
+    :undoc-members:
+    :show-inheritance:

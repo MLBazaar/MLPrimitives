@@ -1,7 +1,0 @@
-mlprimitives.feature\_selection module
-======================================
-
-.. automodule:: mlprimitives.feature_selection
-    :members:
-    :undoc-members:
-    :show-inheritance:

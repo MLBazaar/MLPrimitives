@@ -1,0 +1,7 @@
+mlprimitives.candidates.audio\_featurization module
+===================================================
+
+.. automodule:: mlprimitives.candidates.audio_featurization
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,20 @@
+mlprimitives.custom package
+===========================
+
+.. automodule:: mlprimitives.custom
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   mlprimitives.custom.counters
+   mlprimitives.custom.feature_extraction
+   mlprimitives.custom.feature_selection
+   mlprimitives.custom.preprocessing
+   mlprimitives.custom.text
+   mlprimitives.custom.trivial
+

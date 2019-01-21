@@ -1,7 +1,0 @@
-mlprimitives.timeseries module
-==============================
-
-.. automodule:: mlprimitives.timeseries
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -12,22 +12,14 @@ Subpackages
 .. toctree::
 
     mlprimitives.adapters
+    mlprimitives.candidates
+    mlprimitives.custom
 
 Submodules
 ----------
 
 .. toctree::
 
-   mlprimitives.audio_featurization
-   mlprimitives.audio_padding
-   mlprimitives.counters
    mlprimitives.evaluation
-   mlprimitives.feature_extraction
-   mlprimitives.feature_selection
-   mlprimitives.preprocessing
-   mlprimitives.text
-   mlprimitives.timeseries
-   mlprimitives.timeseries_errors
-   mlprimitives.trivial
    mlprimitives.utils
 

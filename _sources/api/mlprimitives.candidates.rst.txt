@@ -1,0 +1,18 @@
+mlprimitives.candidates package
+===============================
+
+.. automodule:: mlprimitives.candidates
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   mlprimitives.candidates.audio_featurization
+   mlprimitives.candidates.audio_padding
+   mlprimitives.candidates.timeseries
+   mlprimitives.candidates.timeseries_errors
+

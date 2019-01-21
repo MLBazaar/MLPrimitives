@@ -1,7 +1,0 @@
-mlprimitives.audio\_featurization module
-========================================
-
-.. automodule:: mlprimitives.audio_featurization
-    :members:
-    :undoc-members:
-    :show-inheritance:
