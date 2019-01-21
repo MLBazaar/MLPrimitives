@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.text.TextCleaner",
+    "name": "mlprimitives.custom.text.TextCleaner",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Text Cleanup: set text to lowercase and remove accents, stopwords, non alhpanumeric characters and single character words.",
     "classifiers": {
@@ -7,7 +7,7 @@
         "subtype": "feature_extractor"
     },
     "modalities": ["text"],
-    "primitive": "mlprimitives.text.TextCleaner",
+    "primitive": "mlprimitives.custom.text.TextCleaner",
     "fit": {
         "method": "fit",
         "args": [

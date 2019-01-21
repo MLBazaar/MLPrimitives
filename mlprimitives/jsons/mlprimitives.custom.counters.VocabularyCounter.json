@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.counters.VocabularyCounter",
+    "name": "mlprimitives.custom.counters.VocabularyCounter",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
     "description": "Count the number of different words in a collection of texts.",
     "classifiers": {
@@ -7,7 +7,7 @@
         "subtype": "feature_extractor"
     },
     "modalities": [],
-    "primitive": "mlprimitives.counters.VocabularyCounter",
+    "primitive": "mlprimitives.custom.counters.VocabularyCounter",
     "fit": {
         "method": "count",
         "args": [

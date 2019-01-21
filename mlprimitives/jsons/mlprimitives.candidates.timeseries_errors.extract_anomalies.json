@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.timeseries_errors.extract_anomalies",
+    "name": "mlprimitives.candidates.timeseries_errors.extract_anomalies",
     "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "description": "mlprimitives.timeseries_errors.extract_anomalies",
+    "description": "mlprimitives.candidates.timeseries_errors.extract_anomalies",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries_errors.extract_anomalies",
+    "primitive": "mlprimitives.candidates.timeseries_errors.extract_anomalies",
     "produce": {
         "args": [
             {

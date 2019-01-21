@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.audio_featurization.featurize_audio",
+    "name": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
-    "description": "mlprimitives.audio_featurization.featurize_audio",
+    "description": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["audio"],
-    "primitive": "mlprimitives.audio_featurization.featurize_audio",
+    "primitive": "mlprimitives.candidates.audio_featurization.featurize_audio",
     "produce": {
         "args": [
             {

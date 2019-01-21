@@ -1,33 +1,33 @@
 {
-    "name": "mlprimitives.audio_padding.AudioPadder",
+    "name": "mlprimitives.custom.preprocessing.ClassDecoder",
     "contributors": ["Carles Sala <csala@csail.mit.edu>"],
-    "description": "mlprimitives.audio_padding.AudioPadder",
+    "description": "Decode an array of strings using integers.",
     "classifiers": {
         "type": "preprocessor",
-        "subtype": "transformer"
+        "subtype": "data_cleanup"
     },
-    "modalities": ["audio"],
-    "primitive": "mlprimitives.audio_padding.AudioPadder",
+    "modalities": [],
+    "primitive": "mlprimitives.custom.preprocessing.ClassDecoder",
     "fit": {
         "method": "fit",
         "args": [
             {
-                "name": "X",
+                "name": "classes",
                 "type": "ndarray"
             }
         ]
     },
     "produce": {
-        "method": "produce",
+        "method": "decode",
         "args": [
             {
-                "name": "X",
+                "name": "y",
                 "type": "ndarray"
             }
         ],
         "output": [
             {
-                "name": "X",
+                "name": "y",
                 "type": "ndarray"
             }
         ]

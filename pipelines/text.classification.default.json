@@ -5,42 +5,41 @@
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "newsgroups",
-        "context": {}
+        "dataset": "newsgroups"
     },
     "primitives": [
-        "mlprimitives.counters.UniqueCounter",
-        "mlprimitives.text.TextCleaner",
-        "mlprimitives.counters.VocabularyCounter",
+        "mlprimitives.custom.counters.UniqueCounter",
+        "mlprimitives.custom.text.TextCleaner",
+        "mlprimitives.custom.counters.VocabularyCounter",
         "keras.preprocessing.text.Tokenizer",
         "keras.preprocessing.sequence.pad_sequences",
         "keras.Sequential.LSTMTextClassifier"
     ],
     "input_names": {
-        "mlprimitives.counters.UniqueCounter#1": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
             "X": "y"
         }
     },
     "output_names": {
-        "mlprimitives.counters.UniqueCounter#1": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
             "counts": "classes"
         },
-        "mlprimitives.counters.VocabularyCounter#1": {
+        "mlprimitives.custom.counters.VocabularyCounter#1": {
             "counts": "vocabulary_size"
         }
     },
     "init_params": {
-        "mlprimitives.counters.VocabularyCounter#1": {
+        "mlprimitives.custom.counters.VocabularyCounter#1": {
             "add": 1
         },
-        "mlprimitives.text.TextCleaner#1": {
-            "language": "en"
+        "mlprimitives.custom.text.TextCleaner#1": {
+            "stopwords": false
         },
         "keras.preprocessing.sequence.pad_sequences#1": {
-            "maxlen": 100
+            "maxlen": 300
         },
         "keras.Sequential.LSTMTextClassifier#1": {
-            "input_length": 100
+            "input_length": 300
         }
     }
 }

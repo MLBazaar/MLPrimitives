@@ -13,10 +13,10 @@
         }
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
+        "mlprimitives.custom.preprocessing.ClassEncoder",
         "featuretools.dfs",
         "xgboost.XGBClassifier",
-        "mlprimitives.preprocessing.ClassDecoder"
+        "mlprimitives.custom.preprocessing.ClassDecoder"
     ],
     "hyperparameters": {
         "featuretools.dfs#1": {

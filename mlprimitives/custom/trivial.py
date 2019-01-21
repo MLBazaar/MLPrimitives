@@ -22,6 +22,9 @@ class TrivialPredictor(object):
     def _median(self, y):
         return y.median()
 
+    def _mean(self, y):
+        return y.mean()
+
     def fit(self, y):
         if self._method:
             try:

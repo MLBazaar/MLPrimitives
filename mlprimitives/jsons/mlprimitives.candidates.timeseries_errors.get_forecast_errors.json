@@ -1,13 +1,13 @@
 {
-    "name": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "name": "mlprimitives.candidates.timeseries_errors.get_forecast_errors",
     "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "description": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "description": "mlprimitives.candidates.timeseries_errors.get_forecast_errors",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.timeseries_errors.get_forecast_errors",
+    "primitive": "mlprimitives.candidates.timeseries_errors.get_forecast_errors",
     "produce": {
         "args": [
             {

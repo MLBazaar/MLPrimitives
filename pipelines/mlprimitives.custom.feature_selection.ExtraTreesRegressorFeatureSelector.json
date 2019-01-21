@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
+        "data_type": "tabular",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
+        "sklearn.ensemble.RandomForestRegressor"
+    ]
+}
