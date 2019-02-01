@@ -27,8 +27,8 @@ def rolling_window_sequences(X, window_size, value_column, time_column):
     time = []
     for i in range(len(X) - window_size):
         # reshape into a vector to fit into a neural network model (vectorize it)
-        output_X.append(X[i: i + window_size][value_column].values.reshape([-1, 1]))
-        y.append(X[i + window_size + 1][value_column].values.reshape([-1, 1]))
+        output_X.append(X[i: i + window_size][value_column].values.copy().reshape([-1, 1]))
+        y.append(X[i + 1:i + window_size + 1][value_column].values.copy().reshape([-1, 1]))
         time.append(X.iloc[i + window_size][time_column])
 
     return np.asarray(output_X), np.asarray(y), np.asarray(time)

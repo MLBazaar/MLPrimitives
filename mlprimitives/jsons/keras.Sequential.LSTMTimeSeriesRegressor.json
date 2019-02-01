@@ -41,12 +41,21 @@
         "fixed": {
             "input_length": {
                 "type": "int",
-                "default": 1500
+                "default": 50
+            },
+            "input_dim": {
+                "type": "int",
+                "default": 1
             },
             "dense_units": {
                 "type": "int",
                 "description": "Number of values ahead to predict",
                 "default": 1
+            },
+            "dense_units_1": {
+                "type": "int",
+                "description": "Number of values ahead to predict",
+                "default": 50
             },
             "classification": {
                 "type": "bool",
@@ -67,28 +76,25 @@
             "metrics": {
                 "type": "list",
                 "default": [
-                    "accuracy"
+                    "mse"
                 ]
             },
             "layers": {
                 "type": "list",
                 "default": [
                     {
-                        "class": "keras.layers.Input",
+                        "class": "keras.layers.LSTM",
                         "parameters": {
-                            "shape": "input_shape"
+                            "input_dim": "input_dim",
+                            "input_length": "input_length",
+                            "units": "lstm_hidden_units",
+                            "return_sequences": "return_sequences"
                         }
                     },
                     {
                         "class": "keras.layers.Dropout",
                         "parameters": {
                             "rate": "dropout_rate"
-                        }
-                    },
-                    {
-                        "class": "keras.layers.LSTM",
-                        "parameters": {
-                            "units": "lstm_units"
                         }
                     },
                     {
@@ -102,13 +108,17 @@
             }
         },
         "tunable": {
-            "lstm_units": {
+            "lstm_hidden_units": {
                 "type": "int",
-                "default": 50,
+                "default": 100,
                 "range": [
                     1,
                     500
                 ]
+            },
+            "return_sequences": {
+                "type": "bool",
+                "default": true
             },
             "dropout_rate": {
                 "type": "float",
