@@ -39,6 +39,10 @@
             "time_column": {
                 "type": "str"
             },
+            "return_sequences": {
+                "type": "bool",
+                "default": true
+            },
             "value_column": {
                 "type": "str"
             }
