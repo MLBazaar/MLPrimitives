@@ -87,7 +87,7 @@
                         "parameters": {
                             "input_dim": "input_dim",
                             "input_length": "input_length",
-                            "units": "lstm_hidden_units",
+                            "units": "lstm_units",
                             "return_sequences": "return_sequences"
                         }
                     },
@@ -108,7 +108,7 @@
             }
         },
         "tunable": {
-            "lstm_hidden_units": {
+            "lstm_units": {
                 "type": "int",
                 "default": 100,
                 "range": [

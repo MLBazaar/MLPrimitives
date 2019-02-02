@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.candidates.timeseries.rolling_window_sequences",
-    "author": "Ihssan Tinawi <itinawi@mit.edu>",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
     "description": "mlprimitives.candidates.timeseries.rolling_window_sequences",
     "classifiers": {
         "type": "preprocessor",
