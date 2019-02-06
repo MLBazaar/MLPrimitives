@@ -39,6 +39,10 @@
         "type": "int, float, str, np.nan or None",
         "default": NaN
       },
+      "fill_value": {
+        "type": "str, int or float",
+        "default": null
+      },
       "verbose": {
         "type": "bool",
         "default": false
@@ -58,10 +62,6 @@
           "most_frequent",
           "constant"
         ]
-      },
-      "fill_value": {
-        "type": "str, int or float",
-        "default": null
       }
     }
   }
