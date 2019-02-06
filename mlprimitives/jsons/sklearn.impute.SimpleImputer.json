@@ -37,7 +37,7 @@
     "fixed": {
       "missing_values": {
         "type": "int, float, str, np.nan or None",
-        "default": 0
+        "default": NaN
       },
       "verbose": {
         "type": "bool",
