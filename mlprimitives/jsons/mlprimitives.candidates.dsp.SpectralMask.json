@@ -1,0 +1,65 @@
+{
+    "name": "mlprimitives.candidates.dsp.SpectralMask",
+    "author": "Rodrigo Diez <rjdiez@mit.edu>",
+    "documentation": "",
+    "description": "Anomalies detection in satellite telemetry data using a spectral mask",
+    "modalities": [],
+    "primitive": "mlprimitives.candidates.dsp.SpectralMask",
+    "fit": {
+        "method": "fit",        
+        "args": [
+            {
+                "name": "X",
+                "description": "Training vector",
+                "type": "ndarray"
+            }
+        ]
+    },
+
+    "produce": {
+        "method": "produce",
+        "args": [
+            {
+                "name": "X",
+                "description": "Telemetry data vector",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                
+                "name": "anomalies",
+                "description": "Data vector consisting of the anomalies detected in the telemetry data",
+                "type": "ndarray"
+            }
+        ]
+    },
+
+    "hyperparameters": {
+        "tunable": {
+            "method": {
+                "description": "Method used to calculate the Spectral Mask: 'std_dev' uses the standard deviation of each frequency component and 'min_max' uses the minimum and maximum values",
+                "default": "std_dev",
+                "type": "str"            
+            },
+            "gain": {
+                "description": "Multiplication factor used in the comparison between the spectral mask defined using the training data and the Fourier transform of the telemetry data vector",
+                "default": 1,
+                "type": "float",
+                "range": [0, 1000]            
+            },
+            "window_length": {
+                "description": "Length of the sliding window in number of samples",
+                "default": 128,
+                "type": "int",
+                "range": [0, 1000]            
+            },
+            "beta": {
+                "description": "Beta value for Kaiser window design",
+                "default": 4,
+                "type": "float",
+                "range": [0, 100]            
+            }
+        }
+     }
+}
