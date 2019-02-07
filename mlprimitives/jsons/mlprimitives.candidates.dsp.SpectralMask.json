@@ -21,7 +21,7 @@
         "args": [
             {
                 "name": "X",
-                "description": "Telemetry data vector",
+                "description": "Telemetry data",
                 "type": "ndarray"
             }
         ],
@@ -43,22 +43,22 @@
                 "type": "str"            
             },
             "gain": {
-                "description": "Multiplication factor used in the comparison between the spectral mask defined using the training data and the Fourier transform of the telemetry data vector",
-                "default": 1,
+                "description": "Multiplication factor used in the comparison between the spectral mask defined using the training data and the Fourier transform of the telemetry data",
+                "default": 6,
                 "type": "float",
-                "range": [0, 1000]            
+                "range": [0, 100]            
             },
             "window_length": {
                 "description": "Length of the sliding window in number of samples",
                 "default": 128,
                 "type": "int",
-                "range": [0, 1000]            
+                "range": [2, 1024]            
             },
             "beta": {
                 "description": "Beta value for Kaiser window design",
                 "default": 4,
                 "type": "float",
-                "range": [0, 100]            
+                "range": [1, 10]            
             }
         }
      }
