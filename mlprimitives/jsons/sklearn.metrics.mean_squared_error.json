@@ -1,0 +1,34 @@
+{
+    "name": "sklearn.metrics.mean_squared_error",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
+    "documentation": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html",
+    "description": "Computes the Mean Squared Error.",
+    "classifiers": {
+        "type": "metrics",
+        "subtype": "loss"
+    },
+    "modalities": [],
+    "primitive": "sklearn.metrics.mean_squared_error",
+    "produce": {
+        "args": [
+            {
+                "name": "y_true",
+                "type": "ndarray"
+            },
+            {
+                "name": "y_pred",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "loss",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {}
+    }
+}

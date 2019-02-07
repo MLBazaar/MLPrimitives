@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def rolling_window_sequences(X, window_size, value_column, time_column):
+def rolling_window_sequences(X, window_size, value_column, time_column, flatten=False):
     """
         Function that takes in a pandas.DataFrame and a window_size then creates
             output arrays that correspond to a timeseries sequence with window_size overlap.
@@ -15,6 +15,7 @@ def rolling_window_sequences(X, window_size, value_column, time_column):
             window_size (int): number of values that overlap to create the sequence.
             value_column (string): name of column that has the value field.
             time_column (string): name of column that has the time field.
+            flatten (bool): whether to flatten the sequences to (num_features, seq_length).
         Returns:
             (numpy.ndarray): contains the time series sequenced data with each
                 entry having window_size rows.
@@ -30,6 +31,11 @@ def rolling_window_sequences(X, window_size, value_column, time_column):
         output_X.append(X[i: i + window_size][value_column].values.reshape([-1, 1]))
         y.append(X[i + window_size + 1][value_column].values.reshape([-1, 1]))
         time.append(X.iloc[i + window_size][time_column])
+
+    if flatten:
+        y = [y_elem.flatten() for y_elem in y]
+        output_X = [x.flatten() for x in output_X]
+        time = [t.flatten() for t in time]
 
     return np.asarray(output_X), np.asarray(y), np.asarray(time)
 
