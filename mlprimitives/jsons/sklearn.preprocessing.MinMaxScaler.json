@@ -36,18 +36,17 @@
   },
   "hyperparameters": {
     "fixed": {
+      "feature_range": {
+        "description": "Desired range of transformed data",
+        "type": "tuple",
+        "default": [0, 1]
+      },
       "copy": {
         "description": "Set to False to perform inplace row normalization and avoid a copy (if the input is already a numpy array)",
         "type": "bool",
         "default": true
       }
     },
-    "tunable": {
-      "feature_range": {
-        "description": "Desired range of transformed data",
-        "type": "tuple",
-        "default": [0, 1]
-      }
-    }
+    "tunable": {}
   }
 }
