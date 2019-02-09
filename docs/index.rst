@@ -32,6 +32,7 @@ Why did we create this library?
    getting_started/install
    getting_started/quickstart
    getting_started/concepts
+   getting_started/development
 
 .. toctree::
    :caption: Community
