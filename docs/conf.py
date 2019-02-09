@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# MLBlocks documentation build configuration file, created by
+# MLPrimitives documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  9 13:47:02 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -18,14 +18,9 @@
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 
-# import os
-# import sys
-
 import sphinx_rtd_theme # For read the docs theme
 from recommonmark.parser import CommonMarkParser
 # from recommonmark.transform import AutoStructify
-
-# sys.path.insert(0, os.path.abspath('..'))
 
 import mlprimitives
 
@@ -44,18 +39,18 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     # 'sphinx.ext.graphviz',
-    # 'IPython.sphinxext.ipython_console_highlighting',
-    # 'IPython.sphinxext.ipython_directive',
+    'IPython.sphinxext.ipython_console_highlighting',
+    'IPython.sphinxext.ipython_directive',
 ]
 
-# ipython_execlines = ["import pandas as pd", "pd.set_option('display.width', 1000000)"]
+ipython_execlines = ["import pandas as pd", "pd.set_option('display.width', 1000000)"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
-source_suffix = ['.rst', '.md'] #, '.ipynb']
+source_suffix = ['.rst', '.md', '.ipynb']
 
 # source_parsers = {
 #     '.md': CommonMarkParser,
