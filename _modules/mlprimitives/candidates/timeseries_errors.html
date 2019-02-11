@@ -254,7 +254,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">smoothed</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">errors</span>
 
-    <span class="n">historical_error_window</span> <span class="o">=</span> <span class="n">window_size</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">smoothing_percent</span>
+    <span class="n">historical_error_window</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">window_size</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">smoothing_percent</span><span class="p">)</span>
     <span class="n">moving_avg</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)):</span>
         <span class="n">left_window</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">historical_error_window</span>
@@ -285,7 +285,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Window size (</span><span class="si">%s</span><span class="s2">) larger than y_true (len=</span><span class="si">%s</span><span class="s2">).&quot;</span>
                          <span class="o">%</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)))</span>
 
-    <span class="n">num_windows</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">window_size</span><span class="p">))</span> <span class="o">/</span> <span class="n">batch_size</span>
+    <span class="n">num_windows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">window_size</span><span class="p">))</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
 
     <span class="n">anomalies_indices</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -435,8 +435,6 @@
             <span class="n">max_error_below_e</span><span class="p">,</span>
             <span class="n">anomaly_indices</span>
         <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No anomalies found.&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">anomaly_indices</span></div>
 
@@ -451,6 +449,8 @@
     <span class="n">upper_percentile</span><span class="p">,</span> <span class="n">lower_percentile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
     <span class="n">accepted_range</span> <span class="o">=</span> <span class="n">upper_percentile</span> <span class="o">-</span> <span class="n">lower_percentile</span>
 
+    <span class="n">minimum_index</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># have a cutoff value for anomalies until model is trained enough</span>
+
     <span class="n">anomaly_indices</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">max_error_below_e</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -461,10 +461,12 @@
 
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">error_buffer</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">smoothed_errors</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anomaly_indices</span><span class="p">:</span>
-                <span class="n">anomaly_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">minimum_index</span><span class="p">:</span>
+                    <span class="n">anomaly_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">smoothed_errors</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">anomaly_indices</span><span class="p">:</span>
-                <span class="n">anomaly_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">minimum_index</span><span class="p">:</span>
+                    <span class="n">anomaly_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span>
 
     <span class="c1"># get all the errors that are below epsilon and which</span>
     <span class="c1">#  weren&#39;t identified as anomalies to process them</span>
@@ -491,9 +493,10 @@
     <span class="n">e_seq_max</span><span class="p">,</span> <span class="n">smoothed_errors_max</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">error_seq</span> <span class="ow">in</span> <span class="n">e_seq</span><span class="p">:</span>
-        <span class="n">sliced_errors</span> <span class="o">=</span> <span class="n">smoothed_errors</span><span class="p">[</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-        <span class="n">e_seq_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sliced_errors</span><span class="p">))</span>
-        <span class="n">smoothed_errors_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sliced_errors</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">smoothed_errors</span><span class="p">[</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sliced_errors</span> <span class="o">=</span> <span class="n">smoothed_errors</span><span class="p">[</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">error_seq</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">e_seq_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sliced_errors</span><span class="p">))</span>
+            <span class="n">smoothed_errors_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sliced_errors</span><span class="p">))</span>
 
     <span class="n">smoothed_errors_max</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
