@@ -12,7 +12,6 @@
         "args": [
             {
                 "name": "X",
-                "keyword": "time_value",
                 "type": "pandas.DataFrame"
             }
         ],
@@ -22,7 +21,7 @@
                 "type": "ndarray"
             },
             {
-                "name": "Y",
+                "name": "y",
                 "type": "ndarray"
             },
             {
@@ -36,8 +35,17 @@
             "window_size": {
                 "type": "int",
                 "default": 50
+            },
+            "target_size": {
+                "type": "int",
+                "default": 1
+            },
+            "time_column": {
+                "type": "str"
+            },
+            "value_column": {
+                "type": "str"
             }
-        },
-        "tunable": {}
+        }
     }
 }
