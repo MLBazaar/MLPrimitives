@@ -15,8 +15,8 @@
     "primitives": [
         "networkx.link_prediction_feature_extraction",
         "networkx.graph_feature_extraction",
-        "mlprimitives.feature_extraction.CategoricalEncoder",
-        "sklearn.preprocessing.Imputer",
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "sklearn.impute.SimpleImputer",
         "xgboost.XGBClassifier"
     ],
     "hyperparameters": {

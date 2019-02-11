@@ -9,25 +9,25 @@
         "context": {}
     },
     "primitives": [
-        "mlprimitives.counters.UniqueCounter",
+        "mlprimitives.custom.counters.UniqueCounter",
         "keras.Sequential.SingleLayerCNNImageClassifier"
     ],
     "input_names": {
-        "mlprimitives.counters.UniqueCounter#1": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
             "X": "y"
         }
     },
     "output_names": {
-        "mlprimitives.counters.UniqueCounter#1": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
             "counts": "classes"
         }
     },
     "init_params": {
-        "mlprimitives.counters.UniqueCounter#1": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
             "add": 1
         },
         "keras.Sequential.SingleLayerCNNImageClassifier#1": {
-            "epochs": 5
+            "epochs": 1
         }
     }
 }

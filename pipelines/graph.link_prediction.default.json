@@ -13,7 +13,7 @@
     },
     "primitives": [
         "networkx.link_prediction_feature_extraction",
-        "mlprimitives.feature_extraction.CategoricalEncoder",
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
         "sklearn.preprocessing.StandardScaler",
         "xgboost.XGBClassifier"
     ],
