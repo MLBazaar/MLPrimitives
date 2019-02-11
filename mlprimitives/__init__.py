@@ -33,9 +33,10 @@ def _logging_setup(verbosity=1):
 
 
 def _test(args):
-    print('Scoring pipeline: {}'.format(args.pipeline))
-    score, stdev = score_pipeline(args.pipeline, args.splits)
-    print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, stdev))
+    for pipeline in args.pipeline:
+        print('Scoring pipeline: {}'.format(pipeline))
+        score, stdev = score_pipeline(pipeline, args.splits)
+        print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, stdev))
 
 
 def _get_primitives(pattern):
@@ -68,9 +69,9 @@ def _parse_args():
 
     subparser = subparsers.add_parser('test', help='Test a single pipeline.')
     subparser.set_defaults(action=_test)
-    subparser.add_argument('pipeline')
     subparser.add_argument('-s', '--splits', default=1, type=int,
                            help='Number of splits to use for Cross Validation')
+    subparser.add_argument('pipeline', nargs='+')
 
     subparser = subparsers.add_parser('list', help='List available primitives')
     subparser.set_defaults(action=_list)
