@@ -39,23 +39,14 @@
     },
     "hyperparameters": {
         "fixed": {
-            "input_length": {
-                "type": "int",
-                "default": 50
-            },
-            "input_dim": {
-                "type": "int",
-                "default": 1
+            "input_shape": {
+                "type": "tuple",
+                "default": [50, 1]
             },
             "dense_units": {
                 "type": "int",
                 "description": "Number of values ahead to predict",
                 "default": 1
-            },
-            "dense_units_1": {
-                "type": "int",
-                "description": "Number of values ahead to predict",
-                "default": 50
             },
             "classification": {
                 "type": "bool",
@@ -79,14 +70,17 @@
                     "mse"
                 ]
             },
+            "return_sequences": {
+                "type": "bool",
+                "default": false
+            },
             "layers": {
                 "type": "list",
                 "default": [
                     {
                         "class": "keras.layers.LSTM",
                         "parameters": {
-                            "input_dim": "input_dim",
-                            "input_length": "input_length",
+                            "input_shape": "input_shape",
                             "units": "lstm_units",
                             "return_sequences": "return_sequences"
                         }
@@ -115,10 +109,6 @@
                     1,
                     500
                 ]
-            },
-            "return_sequences": {
-                "type": "bool",
-                "default": true
             },
             "dropout_rate": {
                 "type": "float",

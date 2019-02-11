@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def rolling_window_sequences(X, window_size, value_column, time_column):
+def rolling_window_sequences(X, window_size, target_size, value_column, time_column):
     """
         Function that takes in a pandas.DataFrame and a window_size then creates
             output arrays that correspond to a timeseries sequence with window_size overlap.
@@ -25,11 +25,11 @@ def rolling_window_sequences(X, window_size, value_column, time_column):
     output_X = []
     y = []
     time = []
-    for i in range(len(X) - window_size):
-        # reshape into a vector to fit into a neural network model (vectorize it)
-        output_X.append(X[i: i + window_size][value_column].values.copy().reshape([-1, 1]))
-        y.append(X[i + window_size + 1][value_column].values.copy().reshape([-1, 1]))
-        time.append(X.iloc[i + window_size][time_column])
+    for start in range(len(X) - window_size - target_size):
+        end = start + window_size
+        output_X.append(X.iloc[start:end][value_column].values.reshape([-1, 1]))
+        y.append(X.iloc[end:end + target_size][value_column].values)
+        time.append(X.iloc[end + 1][time_column])
 
     return np.asarray(output_X), np.asarray(y), np.asarray(time)
 
