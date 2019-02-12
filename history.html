@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>History &mdash; MLPrimitives 0.1.5-dev documentation</title>
+  <title>History &mdash; MLPrimitives 0.1.6-dev documentation</title>
   
 
   
@@ -139,26 +139,32 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.4</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-primitives">New Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#new-primitives">New Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-improvements">General Improvements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.1.3</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.1.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">New Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Bug Fixes</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">0.1.1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.1.2</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id7">New Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -230,9 +236,43 @@
   <div class="section" id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.1.4<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.1.5<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="new-primitives">
-<h3>New Primitives<a class="headerlink" href="#new-primitives" title="Permalink to this headline">¶</a></h3>
+<h2>New Primitives<a class="headerlink" href="#new-primitives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>sklearn.impute.SimpleImputer</li>
+<li>sklearn.preprocessing.MinMaxScaler</li>
+<li>sklearn.preprocessing.MaxAbsScaler</li>
+<li>sklearn.preprocessing.RobustScaler</li>
+<li>sklearn.linear_model.LinearRegression</li>
+</ul>
+<div class="section" id="general-improvements">
+<h3>General Improvements<a class="headerlink" href="#general-improvements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Separate curated from candidate primitives</li>
+<li>Setup <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> in setup.py to improve compaitibility with MLBlocks</li>
+<li>Add a test-pipelines command to test all the existing pipelines</li>
+<li>Clean sklearn example pipelines</li>
+<li>Change the <code class="docutils literal notranslate"><span class="pre">author</span></code> entry to a <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list</li>
+<li>Change the name of <code class="docutils literal notranslate"><span class="pre">mlblocks_primitives</span></code> folder</li>
+<li>Pip install <code class="docutils literal notranslate"><span class="pre">requirements_dev.txt</span></code> fail documentation</li>
+</ul>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fix LSTMTimeSeriesRegressor primitive. Issue #90</li>
+<li>Fix timeseries primitives. Issue #91</li>
+<li>Negative index anomalies in <code class="docutils literal notranslate"><span class="pre">timeseries_errors</span></code>. Issue #89</li>
+<li>Keep pandas version below 0.24.0. Issue #87</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>0.1.4<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>New Primitives<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>mlprimitives.timeseries primitives for timeseries data preprocessing</li>
 <li>mlprimitives.timeseres_error primitives for timeseries anomaly detection</li>
@@ -242,8 +282,8 @@
 <li>several sklearn.ensemble primitives</li>
 </ul>
 </div>
-<div class="section" id="bug-fixes">
-<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Bug Fixes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix typo in mlprimitives.text.TextCleaner primitive</li>
 <li>Fix bug in index handling in featuretools.dfs primitive</li>
@@ -252,8 +292,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>0.1.3<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>0.1.3<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="new-features">
 <h3>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -261,10 +301,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>0.1.2<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id4">
-<h3>New Features<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h2>0.1.2<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>New Features<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add pipeline specification language and Evaluation utilities.</li>
 <li>Add pipelines for graph, text and tabular problems.</li>
@@ -272,25 +312,25 @@
 <li>New primitives UniqueCounter and VocabularyCounter</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h3>Bug Fixes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Bug Fixes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix TrivialPredictor bug when working with numpy arrays</li>
 <li>Change XGB default learning rate and number of estimators</li>
 </ul>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>0.1.1<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id7">
-<h3>New Features<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h2>0.1.1<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>New Features<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add more keras.applications primitives.</li>
 <li>Add a Text Cleanup primitive.</li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h3>Bug Fixes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Bug Fixes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add keywords to <code class="docutils literal notranslate"><span class="pre">keras.preprocessing</span></code> primtives.</li>
 <li>Fix the <code class="docutils literal notranslate"><span class="pre">image_transform</span></code> method.</li>
@@ -298,8 +338,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>0.1.0<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>0.1.0<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>First release on PyPI.</li>
 </ul>
