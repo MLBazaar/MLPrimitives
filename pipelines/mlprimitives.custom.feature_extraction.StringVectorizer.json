@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "data_type": "text",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "personae"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}

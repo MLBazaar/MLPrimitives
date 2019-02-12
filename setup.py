@@ -21,7 +21,7 @@ install_requires = [
     'lightfm>=1.15',
     'networkx>=2.0',
     'numpy>=1.15.2',
-    'pandas>=0.23.4',
+    'pandas>=0.23.4,<0.24',
     'opencv-python>=3.4.0.12',
     'python-louvain>=0.10',
     'scikit-image>=0.13.1',
@@ -37,7 +37,7 @@ install_requires = [
 
 
 tests_require = [
-    'mlblocks>=0.2.4',
+    'mlblocks>=0.3.0',
     'pytest>=3.4.2',
     'google-compute-engine==2.8.12',    # required by travis
 ]
@@ -84,15 +84,6 @@ extras_require = {
 }
 
 
-json_primitives = glob.glob('mlblocks_primitives/**/*.json', recursive=True)
-data_files = defaultdict(list)
-for primitive_path in json_primitives:
-    parts = primitive_path.split('/')
-    dir_path = parts[1:-1]
-    install_path = os.path.join('mlblocks_primitives', *dir_path)
-    data_files[install_path].append(primitive_path)
-
-
 setup(
     author="MIT Data To AI Lab",
     author_email='dailabmit@gmail.com',
@@ -105,12 +96,14 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    data_files = list(data_files.items()),
     description="MLBlocks Primitives",
     entry_points = {
         'console_scripts': [
             'mlprimitives=mlprimitives:_main'
         ],
+        'mlprimitives': [
+            'jsons_path=mlprimitives:MLPRIMITIVES_JSONS_PATH'
+        ]
     },
     extras_require=extras_require,
     install_requires=install_requires,
@@ -126,6 +119,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.4',
+    version='0.1.5-dev',
     zip_safe=False,
 )

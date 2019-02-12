@@ -1,0 +1,51 @@
+{
+    "name": "mlprimitives.candidates.timeseries.rolling_window_sequences",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
+    "description": "mlprimitives.candidates.timeseries.rolling_window_sequences",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.candidates.timeseries.rolling_window_sequences",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "ndarray"
+            },
+            {
+                "name": "time",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "window_size": {
+                "type": "int",
+                "default": 50
+            },
+            "target_size": {
+                "type": "int",
+                "default": 1
+            },
+            "time_column": {
+                "type": "str"
+            },
+            "value_column": {
+                "type": "str"
+            }
+        }
+    }
+}

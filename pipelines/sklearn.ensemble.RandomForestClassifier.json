@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "sklearn.ensemble.RandomForestClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris",
+        "context": {}
+    },
+    "primitives": [
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}

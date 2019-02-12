@@ -1,0 +1,123 @@
+{
+    "name": "keras.Sequential.LSTMTimeSeriesRegressor",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
+    "documentation": "",
+    "description": "This primitive consists of multiple Keras layers that can pass time-series data through an LSTM in order to predict the next n values.",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "regressor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "input_shape": {
+                "type": "tuple",
+                "default": [50, 1]
+            },
+            "dense_units": {
+                "type": "int",
+                "description": "Number of values ahead to predict",
+                "default": 1
+            },
+            "classification": {
+                "type": "bool",
+                "default": false
+            },
+            "dense_activation": {
+                "type": "str",
+                "default": "tanh"
+            },
+            "optimizer": {
+                "type": "str",
+                "default": "keras.optimizers.Adam"
+            },
+            "loss": {
+                "type": "str",
+                "default": "keras.losses.mean_squared_error"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "mse"
+                ]
+            },
+            "return_sequences": {
+                "type": "bool",
+                "default": false
+            },
+            "layers": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.layers.LSTM",
+                        "parameters": {
+                            "input_shape": "input_shape",
+                            "units": "lstm_units",
+                            "return_sequences": "return_sequences"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "dense_units",
+                            "activation": "dense_activation"
+                        }
+                    }
+                ]
+            }
+        },
+        "tunable": {
+            "lstm_units": {
+                "type": "int",
+                "default": 100,
+                "range": [
+                    1,
+                    500
+                ]
+            },
+            "dropout_rate": {
+                "type": "float",
+                "default": 0.1,
+                "range": [
+                    0.01,
+                    0.75
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+        "data_type": "text",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "wikiqa"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}

@@ -123,8 +123,7 @@ Ready to contribute? Here's how to set up `MLPrimitives` for local development.
 
     $ mkvirtualenv MLPrimitives
     $ cd MLPrimitives/
-    $ pip install -e .
-    $ pip install -r requirements_dev.txt
+    $ make install-develop
 
 4. Create a branch for local development::
 
@@ -142,11 +141,11 @@ Ready to contribute? Here's how to set up `MLPrimitives` for local development.
 6. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
 
-    $ make test-all
+    $ make lint       # Check code styling
+    $ make test-all   # Execute tests on all python versions
 
 7. Make also sure to include the necessary documentation in the code as docstrings following
-   the [google](https://google.github.io/styleguide/pyguide.html?showone=Comments#Comments)
-   or the [numpy](https://numpydoc.readthedocs.io/en/latest/format.html) docstring style.
+   the `google docstring`_ style.
    If you want to view how your documentation will look like when it is published, you can
    generate and view the docs with this command::
 
@@ -159,6 +158,8 @@ Ready to contribute? Here's how to set up `MLPrimitives` for local development.
     $ git push origin name-of-your-bugfix-or-feature
 
 9. Submit a pull request through the GitHub website.
+
+.. _google docstring: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
 
 Pull Request Guidelines
 =======================
@@ -231,18 +232,10 @@ The process of releasing a new version involves several steps combining both ``g
    development interation.
 
 **Note:** Before starting the process, make sure that ``HISTORY.md`` has a section titled
-**Unreleased** with the list of changes that will be included in the new version, and that
-these changes are committed and available in ``master`` branch.
-Normally this is just a list of the Pull Requests that have been merged since the latest version.
+after thew new version that is about to be released with the list of changes that will be
+included in the new version, and that these changes are all committed and available in the
+``master`` branch.
+Normally this is just a list of the Issues that have been closed since the latest version.
 
-Once this is done, just run the following commands::
-
-    git checkout stable
-    git merge --no-ff master    # This creates a merge commit
-    bumpversion release   # This creates a new commit and a TAG
-    git push --tags origin stable
-    make release
-    git checkout master
-    git merge stable
-    bumpversion --no-tag patch
-    git push
+Once this is done, just run the commands ``make release`` and insert the PyPi username and
+password when required.

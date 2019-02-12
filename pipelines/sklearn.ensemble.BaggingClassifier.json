@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "name": "sklearn.ensemble.BaggingClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "sklearn.ensemble.BaggingClassifier"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.text.TextCleaner",
+        "data_type": "text",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "personae"
+    },
+    "primitives": [
+        "mlprimitives.custom.text.TextCleaner",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "sklearn.ensemble.RandomForestClassifier"
+    ],
+    "hyperparameters": {
+        "mlprimitives.custom.text.TextCleaner#1": {
+            "column": "text",
+            "stopwords": false
+        }
+    }
+}

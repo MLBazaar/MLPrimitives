@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "name": "sklearn.ensemble.AdaBoostClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "sklearn.ensemble.AdaBoostClassifier"
+    ]
+}

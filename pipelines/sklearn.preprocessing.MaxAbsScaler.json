@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "name": "sklearn.preprocessing.MaxAbsScaler",
+    "data_type": "single_table",
+    "task_type": "regression"
+  },
+  "validation": {
+    "dataset": "boston"
+  },
+  "primitives": [
+    "sklearn.preprocessing.MaxAbsScaler",
+    "sklearn.ensemble.RandomForestRegressor"
+  ]
+}

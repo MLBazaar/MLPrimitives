@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "sklearn.ensemble.BaggingRegressor",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.ensemble.BaggingRegressor"
+    ]
+}
+

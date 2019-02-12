@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector",
+        "data_type": "tabular",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector",
+        "sklearn.ensemble.RandomForestClassifier"
+    ]
+}
