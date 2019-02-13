@@ -1,6 +1,6 @@
 {
     "name": "mlprimitives.candidates.dsp.SpectralMask",
-    "author": "Rodrigo Diez <rjdiez@mit.edu>",
+    "contributors": ["Rodrigo Diez <rjdiez@mit.edu>"],
     "documentation": "",
     "description": "Anomalies detection in satellite telemetry data using a spectral mask",
     "modalities": [],
@@ -15,7 +15,6 @@
             }
         ]
     },
-
     "produce": {
         "method": "produce",
         "args": [
@@ -26,22 +25,23 @@
             }
         ],
         "output": [
-            {
-                
+            {    
                 "name": "anomalies",
                 "description": "Data vector consisting of the anomalies detected in the telemetry data",
                 "type": "ndarray"
             }
         ]
     },
-
     "hyperparameters": {
-        "tunable": {
+		"fixed": {
             "method": {
                 "description": "Method used to calculate the Spectral Mask: 'std_dev' uses the standard deviation of each frequency component and 'min_max' uses the minimum and maximum values",
                 "default": "std_dev",
-                "type": "str"            
-            },
+                "type": "str",
+                "values": ["std_dev", "min_max"]           
+            }
+        },			
+        "tunable": {
             "gain": {
                 "description": "Multiplication factor used in the comparison between the spectral mask defined using the training data and the Fourier transform of the telemetry data",
                 "default": 6,

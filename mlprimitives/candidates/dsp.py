@@ -41,7 +41,7 @@ class SpectralMask:
         self.method = method
         self.window_length = next_power_of_2(window_length)
 
-    def window_design(self, window_length=None, beta=None):
+    def window_design(self, window_length, beta):
         """Kaiser window design
 
         Args:
@@ -53,63 +53,28 @@ class SpectralMask:
 
         """
 
-        if window_length is None:
-            window_length = self.window_length
-        else:
-            self.window_length = window_length
-
-        if beta is None:
-            beta = self.beta
-        else:
-            self.beta = beta
-
         self.window = np.kaiser(window_length, beta)
 
         return self.window
 
-    def fit(self, X, method=None, gain=None, window_length=None, beta=None):
+    def fit(self, X):
         """Defines a spectral mask based on training data
 
         Args:
             X: Training data
-            method: Method used to calculate the Spectral Mask: 'std_dev' uses the standard
-              deviation of each frequency component and 'min_max' uses the minimum and maximum
-              values
-            gain: Multiplication factor used in the comparison between the spectral mask defined
-              using the training data and the Fourier transform of the telemetry data vector
-            window_length: Length of the sliding window in number of samples
-            beta: Beta value for Kaiser window design
 
         """
 
         training_signal = X
 
-        if gain is None:
-            gain = self.gain
-        else:
-            self.gain = gain
+        self.window_design(self.window_length, self.beta)
 
-        if window_length is None:
-            window_length = self.window_length
-        else:
-            self.window_length = window_length
-
-        if beta is None:
-            beta = self.beta
-        else:
-            self.beta = beta
-
-        if method is None:
-            method = self.method
-        else:
-            self.method = method
-
-        self.window_design(window_length, beta)
-
-        if method == 'std_dev':
+        if self.method == 'std_dev':
             self.fit_freq_std_dev(training_signal)
-        else:
+        elif self.method == 'min_max':
             self.fit_freq_min_max(training_signal)
+        else:
+            raise ValueError('Unknown method: {}'.format(method))
 
     def fit_freq_min_max(self, training_signal):
         """Defines a spectral mask based on training data using min and max values of each
@@ -126,8 +91,8 @@ class SpectralMask:
         min_mask = np.zeros(int(window_length / 2) + 1)
 
         for i in range(0, len(training_signal) - window_length - 1):
-            temp = np.abs(np.fft.rfft(training_signal[i:i + window_length] * self.window)) \
-                / window_weight
+            rfft = np.fft.rfft(training_signal[i:i + window_length] * self.window)
+            temp = np.abs(rfft) / window_weight
             max_mask = np.maximum(max_mask, temp)
             min_mask = np.minimum(min_mask, temp)
 
@@ -149,13 +114,13 @@ class SpectralMask:
         mean = np.zeros(int(window_length / 2) + 1)
         pow = np.zeros(int(window_length / 2) + 1)
         temp = np.zeros(int(window_length / 2) + 1)
-        max = np.abs(np.fft.rfft(training_signal[0:0 + window_length] * self.window)) \
-            / window_weight
+        rfft = np.fft.rfft(training_signal[0:0 + window_length] * self.window)
+        max = np.abs(rfft) / window_weight
         min = max
 
         for i in range(0, num_of_windows):
-            temp = np.abs(np.fft.rfft(training_signal[i:i + window_length] * self.window)) \
-                / window_weight
+            rfft = np.fft.rfft(training_signal[i:i + window_length] * self.window)
+            temp = np.abs(rfft) / window_weight
             max = np.maximum(temp, max)
             min = np.minimum(temp, min)
             mean = mean + temp
@@ -168,16 +133,11 @@ class SpectralMask:
         self.mask_bottom = np.maximum(mean - self.gain * std_dev,
                                       np.zeros(int(window_length / 2) + 1))
 
-    def produce(self, X, mask_top=None, mask_bottom=None, window=None):
+    def produce(self, X):
         """Detects anomalies in telemetry data based on its power spectral density
 
         Args:
             X: Telemetry data
-            mask_top: Spectral mask used to detect anomalies. A new anomaly is detected when a
-              frequency component of the telemetry data is above this mask
-            mask_bottom: Spectral mask used to detect anomalies. A new anomaly is detected when a
-              frequency component of the telemetry data is below this mask.
-            window: Window used to calculate the power spectral density of the telemetry data
 
         Returns:
             anomalies: Data vector consisting of the anomalies detected in the telemetry data
@@ -186,25 +146,14 @@ class SpectralMask:
 
         signal = X
 
-        if window is None:
-            if self.window is None:
-                return
-            window = self.window
-
-        if mask_top is None:
-            if self.mask_top is None:
-                return
-            mask_top = self.mask_top
-            mask_bottom = self.mask_bottom
-
-        window_length = len(window)
+        window_length = len(self.window)
         anomalies = np.zeros(len(signal))
         window_weight = sum(self.window)
         for i in range(0, len(signal) - window_length - 1):
-            sig_freq = np.abs(np.fft.rfft(signal[i:i + window_length] * window)) / window_weight
+            sig_freq = np.abs(np.fft.rfft(signal[i:i + window_length] * self.window)) / window_weight
             anomalies[i] = 0
             for m in range(0, int(window_length / 2) - 1):
-                if ((sig_freq[m] > mask_top[m]) or (sig_freq[m] < mask_bottom[m])):
+                if ((sig_freq[m] > self.mask_top[m]) or (sig_freq[m] < self.mask_bottom[m])):
                     anomalies[i] = 1
                     break
 
