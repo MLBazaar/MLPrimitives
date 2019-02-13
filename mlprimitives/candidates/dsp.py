@@ -74,7 +74,7 @@ class SpectralMask:
         elif self.method == 'min_max':
             self.fit_freq_min_max(training_signal)
         else:
-            raise ValueError('Unknown method: {}'.format(method))
+            raise ValueError('Unknown method: {}'.format(self.method))
 
     def fit_freq_min_max(self, training_signal):
         """Defines a spectral mask based on training data using min and max values of each
@@ -150,7 +150,8 @@ class SpectralMask:
         anomalies = np.zeros(len(signal))
         window_weight = sum(self.window)
         for i in range(0, len(signal) - window_length - 1):
-            sig_freq = np.abs(np.fft.rfft(signal[i:i + window_length] * self.window)) / window_weight
+            rfft = np.fft.rfft(signal[i:i + window_length] * self.window)
+            sig_freq = np.abs(rfft) / window_weight
             anomalies[i] = 0
             for m in range(0, int(window_length / 2) - 1):
                 if ((sig_freq[m] > self.mask_top[m]) or (sig_freq[m] < self.mask_bottom[m])):
