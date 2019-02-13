@@ -33,7 +33,7 @@
         ]
     },
     "hyperparameters": {
-		"fixed": {
+        "fixed": {
             "method": {
                 "description": "Method used to calculate the Spectral Mask: 'std_dev' uses the standard deviation of each frequency component and 'min_max' uses the minimum and maximum values",
                 "default": "std_dev",
