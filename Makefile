@@ -110,6 +110,10 @@ test: ## run tests quickly with the default Python
 test-all: ## run tests on every Python version with tox
 	tox
 
+.PHONY: test-pipelines
+test-pipelines: ## Test all the pipelines from the pipelines folder
+	mlprimitives test pipelines/*.json
+
 .PHONY: coverage
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source mlprimitives -m pytest

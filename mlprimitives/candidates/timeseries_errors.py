@@ -29,7 +29,7 @@ def get_forecast_errors(y_hat,
     if not smoothed:
         return errors
 
-    historical_error_window = window_size * batch_size * smoothing_percent
+    historical_error_window = int(window_size * batch_size * smoothing_percent)
     moving_avg = []
     for i in range(len(errors)):
         left_window = i - historical_error_window
@@ -60,7 +60,7 @@ def extract_anomalies(y_true, smoothed_errors, window_size, batch_size, error_bu
         raise ValueError("Window size (%s) larger than y_true (len=%s)."
                          % (batch_size, len(y_true)))
 
-    num_windows = (len(y_true) - (batch_size * window_size)) / batch_size
+    num_windows = int((len(y_true) - (batch_size * window_size)) / batch_size)
 
     anomalies_indices = []
 
@@ -210,8 +210,6 @@ def get_anomalies(smoothed_errors, y_true, z, window, all_anomalies, error_buffe
             max_error_below_e,
             anomaly_indices
         )
-    else:
-        print("No anomalies found.")
 
     return anomaly_indices
 
@@ -226,6 +224,8 @@ def group_consecutive_anomalies(smoothed_errors,
     upper_percentile, lower_percentile = np.percentile(y_true, [95, 5])
     accepted_range = upper_percentile - lower_percentile
 
+    minimum_index = 100  # have a cutoff value for anomalies until model is trained enough
+
     anomaly_indices = []
     max_error_below_e = 0
 
@@ -236,10 +236,12 @@ def group_consecutive_anomalies(smoothed_errors,
 
         for j in range(error_buffer):
             if (i + j) < len(smoothed_errors) and (i + j) not in anomaly_indices:
-                anomaly_indices.append(i + j)
+                if (i + j) > minimum_index:
+                    anomaly_indices.append(i + j)
 
             if (i - j) < len(smoothed_errors) and (i - j) not in anomaly_indices:
-                anomaly_indices.append(i - j)
+                if (i - j) > minimum_index:
+                    anomaly_indices.append(i - j)
 
     # get all the errors that are below epsilon and which
     #  weren't identified as anomalies to process them
@@ -266,9 +268,10 @@ def prune_anomalies(e_seq, smoothed_errors, max_error_below_e, anomaly_indices):
     e_seq_max, smoothed_errors_max = [], []
 
     for error_seq in e_seq:
-        sliced_errors = smoothed_errors[error_seq[0]:error_seq[1]]
-        e_seq_max.append(max(sliced_errors))
-        smoothed_errors_max.append(max(sliced_errors))
+        if len(smoothed_errors[error_seq[0]:error_seq[1]]) > 0:
+            sliced_errors = smoothed_errors[error_seq[0]:error_seq[1]]
+            e_seq_max.append(max(sliced_errors))
+            smoothed_errors_max.append(max(sliced_errors))
 
     smoothed_errors_max.sort(reverse=True)
 

@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "name": "sklearn.preprocessing.RobustScaler",
+    "data_type": "single_table",
+    "task_type": "regression"
+  },
+  "validation": {
+    "dataset": "boston"
+  },
+  "primitives": [
+    "sklearn.preprocessing.RobustScaler",
+    "sklearn.ensemble.RandomForestRegressor"
+  ]
+}

@@ -39,9 +39,9 @@
     },
     "hyperparameters": {
         "fixed": {
-            "input_length": {
-                "type": "int",
-                "default": 1500
+            "input_shape": {
+                "type": "tuple",
+                "default": [50, 1]
             },
             "dense_units": {
                 "type": "int",
@@ -67,28 +67,28 @@
             "metrics": {
                 "type": "list",
                 "default": [
-                    "accuracy"
+                    "mse"
                 ]
+            },
+            "return_sequences": {
+                "type": "bool",
+                "default": false
             },
             "layers": {
                 "type": "list",
                 "default": [
                     {
-                        "class": "keras.layers.Input",
+                        "class": "keras.layers.LSTM",
                         "parameters": {
-                            "shape": "input_shape"
+                            "input_shape": "input_shape",
+                            "units": "lstm_units",
+                            "return_sequences": "return_sequences"
                         }
                     },
                     {
                         "class": "keras.layers.Dropout",
                         "parameters": {
                             "rate": "dropout_rate"
-                        }
-                    },
-                    {
-                        "class": "keras.layers.LSTM",
-                        "parameters": {
-                            "units": "lstm_units"
                         }
                     },
                     {
@@ -104,7 +104,7 @@
         "tunable": {
             "lstm_units": {
                 "type": "int",
-                "default": 50,
+                "default": 100,
                 "range": [
                     1,
                     500

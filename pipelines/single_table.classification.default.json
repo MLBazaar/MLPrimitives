@@ -9,11 +9,11 @@
         "context": {}
     },
     "primitives": [
-        "mlprimitives.preprocessing.ClassEncoder",
-        "sklearn.preprocessing.Imputer",
+        "mlprimitives.custom.preprocessing.ClassEncoder",
+        "sklearn.impute.SimpleImputer",
         "sklearn.preprocessing.StandardScaler",
         "xgboost.XGBClassifier",
-        "mlprimitives.preprocessing.ClassDecoder"
+        "mlprimitives.custom.preprocessing.ClassDecoder"
     ],
     "hyperparameters": {
         "xgboost.XGBClassifier#1": {

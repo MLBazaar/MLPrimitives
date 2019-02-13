@@ -1,5 +1,32 @@
 # History
 
+## 0.1.5
+
+## New Primitives
+
+* sklearn.impute.SimpleImputer
+* sklearn.preprocessing.MinMaxScaler
+* sklearn.preprocessing.MaxAbsScaler
+* sklearn.preprocessing.RobustScaler
+* sklearn.linear_model.LinearRegression
+
+### General Improvements
+
+* Separate curated from candidate primitives
+* Setup `entry_points` in setup.py to improve compaitibility with MLBlocks
+* Add a test-pipelines command to test all the existing pipelines
+* Clean sklearn example pipelines
+* Change the `author` entry to a `contributors` list
+* Change the name of `mlblocks_primitives` folder
+* Pip install `requirements_dev.txt` fail documentation
+
+### Bug Fixes
+
+* Fix LSTMTimeSeriesRegressor primitive. Issue #90
+* Fix timeseries primitives. Issue #91
+* Negative index anomalies in `timeseries_errors`. Issue #89
+* Keep pandas version below 0.24.0. Issue #87
+
 ## 0.1.4
 
 ### New Primitives
