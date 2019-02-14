@@ -1,0 +1,7 @@
+mlprimitives.candidates.dsp module
+==================================
+
+.. automodule:: mlprimitives.candidates.dsp
+    :members:
+    :undoc-members:
+    :show-inheritance:

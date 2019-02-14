@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.custom.text module &mdash; MLPrimitives 0.1.6-dev documentation</title>
+  <title>mlprimitives.candidates.dsp module &mdash; MLPrimitives 0.1.6-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.custom.trivial module" href="mlprimitives.custom.trivial.html" />
-    <link rel="prev" title="mlprimitives.custom.preprocessing module" href="mlprimitives.custom.preprocessing.html" /> 
+    <link rel="next" title="mlprimitives.candidates.timeseries module" href="mlprimitives.candidates.timeseries.html" />
+    <link rel="prev" title="mlprimitives.candidates.audio_padding module" href="mlprimitives.candidates.audio_padding.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,12 +92,12 @@
 <li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
@@ -217,16 +217,16 @@
         
           <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
         
-          <li><a href="mlprimitives.custom.html">mlprimitives.custom package</a> &raquo;</li>
+          <li><a href="mlprimitives.candidates.html">mlprimitives.candidates package</a> &raquo;</li>
         
-      <li>mlprimitives.custom.text module</li>
+      <li>mlprimitives.candidates.dsp module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.text.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.candidates.dsp.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -240,57 +240,121 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.custom.text">
-<span id="mlprimitives-custom-text-module"></span><h1>mlprimitives.custom.text module<a class="headerlink" href="#module-mlprimitives.custom.text" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-mlprimitives.candidates.dsp">
+<span id="mlprimitives-candidates-dsp-module"></span><h1>mlprimitives.candidates.dsp module<a class="headerlink" href="#module-mlprimitives.candidates.dsp" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="mlprimitives.custom.text.TextCleaner">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.text.</code><code class="descname">TextCleaner</code><span class="sig-paren">(</span><em>column=None</em>, <em>language='multi'</em>, <em>lower=True</em>, <em>accents=True</em>, <em>stopwords=True</em>, <em>non_alpha=True</em>, <em>single_chars=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner" title="Permalink to this definition">¶</a></dt>
+<dt id="mlprimitives.candidates.dsp.SpectralMask">
+<em class="property">class </em><code class="descclassname">mlprimitives.candidates.dsp.</code><code class="descname">SpectralMask</code><span class="sig-paren">(</span><em>method='std_dev'</em>, <em>gain=1</em>, <em>window_length=128</em>, <em>beta=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="mlprimitives.custom.text.TextCleaner.RE_ACCENTS">
-<code class="descname">RE_ACCENTS</code><em class="property"> = {'a': re.compile('[àâáäåã]'), 'e': re.compile('[èêéë]'), 'i': re.compile('[ìîíï]'), 'o': re.compile('[òôóö]'), 'u': re.compile('[ùûúü]')}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_ACCENTS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM">
-<code class="descname">RE_NON_ALNUM</code><em class="property"> = re.compile('[^\\w\\d]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA">
-<code class="descname">RE_NON_ALPHA</code><em class="property"> = re.compile('[^a-z]+')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mlprimitives.custom.text.TextCleaner.RE_SYMBOLS">
-<code class="descname">RE_SYMBOLS</code><em class="property"> = re.compile('[-]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_SYMBOLS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="mlprimitives.custom.text.TextCleaner.STOPWORDS">
-<code class="descname">STOPWORDS</code><em class="property"> = {}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.STOPWORDS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="staticmethod">
-<dt id="mlprimitives.custom.text.TextCleaner.detect_language">
-<em class="property">static </em><code class="descname">detect_language</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.detect_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.detect_language" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<p>Anomalies detection in satellite telemetry data using a spectral mask</p>
+<dl class="method">
+<dt id="mlprimitives.candidates.dsp.SpectralMask.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a spectral mask based on training data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> – Training data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
-<dt id="mlprimitives.custom.text.TextCleaner.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="classmethod">
-<dt id="mlprimitives.custom.text.TextCleaner.get_stopwords">
-<em class="property">classmethod </em><code class="descname">get_stopwords</code><span class="sig-paren">(</span><em>language_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.get_stopwords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.get_stopwords" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max">
+<code class="descname">fit_freq_min_max</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_min_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Defines a spectral mask based on training data using min and max values of each</dt>
+<dd>frequency component</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>training_signal</strong> – Training data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
-<dt id="mlprimitives.custom.text.TextCleaner.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.produce" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev">
+<code class="descname">fit_freq_std_dev</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_std_dev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Defines a spectral mask based on training data using the standard deviation values of</dt>
+<dd>each frequency component</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>training_signal</strong> – Training data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
+<dl class="method">
+<dt id="mlprimitives.candidates.dsp.SpectralMask.produce">
+<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.produce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects anomalies in telemetry data based on its power spectral density</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> – Telemetry data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Data vector consisting of the anomalies detected in the telemetry data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">anomalies</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.candidates.dsp.SpectralMask.window_design">
+<code class="descname">window_design</code><span class="sig-paren">(</span><em>window_length</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.window_design"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.window_design" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kaiser window design</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>window_length</strong> – Length of the window in number of samples</li>
+<li><strong>beta</strong> – Beta value for Kaiser window design</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Window designed using the beta and length provided as inputs</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">window</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.candidates.dsp.next_power_of_2">
+<code class="descclassname">mlprimitives.candidates.dsp.</code><code class="descname">next_power_of_2</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#next_power_of_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.next_power_of_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the next power of 2 value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> – Input value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Next power of 2 value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">power_of_2</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -303,10 +367,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.custom.trivial.html" class="btn btn-neutral float-right" title="mlprimitives.custom.trivial module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.candidates.timeseries.html" class="btn btn-neutral float-right" title="mlprimitives.candidates.timeseries module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.custom.preprocessing.html" class="btn btn-neutral float-left" title="mlprimitives.custom.preprocessing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.candidates.audio_padding.html" class="btn btn-neutral float-left" title="mlprimitives.candidates.audio_padding module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
