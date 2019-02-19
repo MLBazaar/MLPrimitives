@@ -17,7 +17,7 @@ with open('HISTORY.md') as history_file:
 
 install_requires = [
     'Keras>=2.1.6',
-    'featuretools>=0.3.1',
+    'featuretools>=0.6.1',
     'lightfm>=1.15',
     'networkx>=2.0',
     'numpy>=1.15.2',
