@@ -44,11 +44,6 @@
                 "description": "If True, X will be copied; else, it may be overwritten.",
                 "default": true
             },
-            "max_iter": {
-                "type": "int",
-                "description": "The maximum number of iterations",
-                "default": 1000
-            },
             "warm_start": {
                 "type": "bool",
                 "description": "When set to True, reuse solution of the previous call to fit as initialization, otherwise, erase the previous solution.",
@@ -79,15 +74,12 @@
                     },
                     "array":{
                         "description": "Gram matrix to speed up calculations"
+                    },
+                    "str":{
+                        "description": "If set to 'auto' it is automaically decided whether to use the precomputed matrix."
                     }
                 },
                 "default": false
-            },
-            "selection": {
-                "type": "str",
-                "description": "If set to ‘random’, a random coefficient is updated every iteration rather than looping over features sequentially by default.",
-                "values": ["cyclic", "random"],
-                "default": "cyclic"
             }
         },
         "tunable": {
@@ -102,27 +94,33 @@
                 "description" : "Whether to calculate the intercept for this model. If set to False, no intercept will be used in calculations (e.g. data is expected to be already centered)."
             },
             "alpha": {
-                "type": "multitype",
-                "description": "Regularization strength. Alpha corresponds to C^-1 in other linear models such as LogisticRegression or LinearSVC.",
-                "types": {
-                    "float":{
-                        "description": "Must be a positive float. Larger values specify stronger regularization"
-                    },
-                    "array":{
-                        "description": "If an array is passed, penalties are assumed to be specific to the targets. Hence they must correspond in number."
-                    }
-                },
-                "default": 1.0
+                "type": "float",
+                "description": "Regularization strength. Alpha corresponds to C^-1 in other linear models such as LogisticRegression or LinearSVC. Must be a positive float.",
+                "default": 1.0,
+                "range": [0.0, 10.0]
+            },
+            "max_iter": {
+                "type": "int",
+                "description": "The maximum number of iterations",
+                "default": 1000,
+                "range": [0, 100000]
             },
             "tol": {
                 "type": "float",
                 "description": "The tolerance for the optimization: if the updates are smaller than tol, the optimization code checks the dual gap for optimality and continues until it is smaller than tol.",
-                "default": 0.0001
+                "default": 0.0001,
+                "range": [0.0, 1.0]
             },
             "positive": {
                 "type": "bool",
                 "description": "When set to True, forces the coefficients to be positive.",
                 "default": false
+            },
+            "selection": {
+                "type": "str",
+                "description": "If set to ‘random’, a random coefficient is updated every iteration rather than looping over features sequentially by default.",
+                "values": ["cyclic", "random"],
+                "default": "cyclic"
             }
         }
     }
