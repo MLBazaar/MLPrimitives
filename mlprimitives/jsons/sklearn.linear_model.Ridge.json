@@ -82,7 +82,7 @@
                 "type": "float",
                 "description": "Precision of the solution",
                 "default": 0.001,
-                "range": [0.0, 1.0]
+                "range": [0.00001, 0.1]
             },
             "max_iter": {
                 "type": "int",
@@ -94,7 +94,7 @@
                 "type": "float",
                 "description": "Regularization strength. Alpha corresponds to C^-1 in other linear models such as LogisticRegression or LinearSVC. Must be a positive float.",
                 "default": 1.0,
-                "range": [0.0, 10.0]
+                "range": [0.01, 20.0]
             }
         }
     }
