@@ -4,9 +4,9 @@ import pandas as pd
 
 def rolling_window_sequences(X, index, window_size, target_size, target_column):
     """Create rolling window sequences out of timeseries data."""
-    out_X = []
-    out_y = []
-    out_index = []
+    out_X = list()
+    out_y = list()
+    out_index = list()
 
     target = X[:, target_column]
 

@@ -23,7 +23,7 @@ def regression_errors(y, y_hat, smoothing_window=0.01, smooth=True):
     Returns:
         (array): errors
     """
-    errors = [abs(y_h - y_t) for y_h, y_t in zip(y_hat, y)]
+    errors = np.abs(y - y_hat)[:, 0]
 
     if not smooth:
         return errors
@@ -65,18 +65,20 @@ def count_above(errors, epsilon):
     return total_above, total_consecutive
 
 
-def z_goodness(z, errors, mean, std):
-    """Compute how good a z value is.
+def z_cost(z, errors, mean, std):
+    """Compute how bad a z value is.
 
-    The original goodness formula is::
+    The original formula is::
 
                  (delta_mean/mean) + (delta_std/std)
         ------------------------------------------------------
         number of errors above + (number of sequences above)^2
 
-    In this case, we return this value inverted (we make it negative),
-    to later on use scipy to minimize this function (instead of maximizing,
-    which was the original paper proposal).
+    which computes the "goodness" of `z`, meaning that the higher the value
+    the better the `z`.
+
+    In this case, we return this value inverted (we make it negative), to convert
+    it into a cost function, as later on we will use scipy to minimize it.
     """
 
     epsilon = mean + z * std
@@ -84,36 +86,32 @@ def z_goodness(z, errors, mean, std):
     delta_mean, delta_std = deltas(errors, epsilon, mean, std)
     above, consecutive = count_above(errors, epsilon)
 
-    numerator = delta_mean / mean + delta_std / std
+    numerator = -(delta_mean / mean + delta_std / std)
     denominator = above + consecutive ** 2
 
     if denominator == 0:
         return np.inf
 
-    return -numerator / denominator
+    return numerator / denominator
 
 
-def find_threshold(errors, min_z=0, max_z=10):
+def find_threshold(errors, z_range=(0, 10)):
     """Find the ideal threshold.
 
-    The ideal threshold is the one that minimizes the z_goodness function.
+    The ideal threshold is the one that minimizes the z_cost function.
     """
 
     mean = errors.mean()
     std = errors.std()
 
-    candidates = list()
+    min_z, max_z = z_range
+    best_z = min_z
+    best_cost = np.inf
     for z in range(min_z, max_z):
-        best = fmin(z_goodness, z, args=(errors, mean, std), disp=False)
-        candidates.append(best[0])
-
-    best_z = candidates[0]
-    best_goodness = np.inf
-    for z in candidates:
-        goodness = z_goodness(z, errors, mean, std)
-        if goodness < best_goodness:
+        best = fmin(z_cost, z, args=(errors, mean, std), full_output=True, disp=False)
+        z, cost = best[0:2]
+        if cost < best_cost:
             best_z = z
-            best_goodness = goodness
 
     return mean + best_z * std
 
@@ -156,7 +154,7 @@ def find_anomalies(errors, index, z_range=(0, 10)):
     mean = errors.mean()
     std = errors.std()
 
-    threshold = find_threshold(errors, z_range[0], z_range[1])
+    threshold = find_threshold(errors, z_range)
     sequences = find_sequences(errors, threshold)
 
     anomalies = list()
