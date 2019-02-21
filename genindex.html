@@ -297,6 +297,8 @@
 </li>
       <li><a href="api/mlprimitives.custom.counters.html#mlprimitives.custom.counters.Counter.count">count() (mlprimitives.custom.counters.Counter method)</a>
 </li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.count_above">count_above() (in module mlprimitives.custom.timeseries_anomalies)</a>
+</li>
       <li><a href="api/mlprimitives.custom.counters.html#mlprimitives.custom.counters.Counter">Counter (class in mlprimitives.custom.counters)</a>
 </li>
   </ul></td>
@@ -308,6 +310,8 @@
       <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer">DatetimeFeaturizer (class in mlprimitives.custom.feature_extraction)</a>
 </li>
       <li><a href="api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassDecoder.decode">decode() (mlprimitives.custom.preprocessing.ClassDecoder method)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.deltas">deltas() (in module mlprimitives.custom.timeseries_anomalies)</a>
 </li>
       <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features">detect_features() (mlprimitives.custom.feature_extraction.DatetimeFeaturizer method)</a>
 
@@ -368,6 +372,12 @@
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.featurize_segments">featurize_segments() (in module mlprimitives.candidates.audio_featurization)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.FFT">FFT() (in module mlprimitives.candidates.audio_featurization)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_anomalies">find_anomalies() (in module mlprimitives.custom.timeseries_anomalies)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_sequences">find_sequences() (in module mlprimitives.custom.timeseries_anomalies)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_threshold">find_threshold() (in module mlprimitives.custom.timeseries_anomalies)</a>
 </li>
       <li><a href="api/mlprimitives.adapters.keras.html#mlprimitives.adapters.keras.Sequential.fit">fit() (mlprimitives.adapters.keras.Sequential method)</a>
 
@@ -505,10 +515,10 @@
 </li>
       <li><a href="api/mlprimitives.candidates.audio_padding.html#module-mlprimitives.candidates.audio_padding">mlprimitives.candidates.audio_padding (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.dsp.html#module-mlprimitives.candidates.dsp">mlprimitives.candidates.dsp (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.timeseries.html#module-mlprimitives.candidates.timeseries">mlprimitives.candidates.timeseries (module)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.timeseries_errors.html#module-mlprimitives.candidates.timeseries_errors">mlprimitives.candidates.timeseries_errors (module)</a>
@@ -524,6 +534,10 @@
       <li><a href="api/mlprimitives.custom.preprocessing.html#module-mlprimitives.custom.preprocessing">mlprimitives.custom.preprocessing (module)</a>
 </li>
       <li><a href="api/mlprimitives.custom.text.html#module-mlprimitives.custom.text">mlprimitives.custom.text (module)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#module-mlprimitives.custom.timeseries_anomalies">mlprimitives.custom.timeseries_anomalies (module)</a>
+</li>
+      <li><a href="api/mlprimitives.custom.timeseries_preprocessing.html#module-mlprimitives.custom.timeseries_preprocessing">mlprimitives.custom.timeseries_preprocessing (module)</a>
 </li>
       <li><a href="api/mlprimitives.custom.trivial.html#module-mlprimitives.custom.trivial">mlprimitives.custom.trivial (module)</a>
 </li>
@@ -587,14 +601,20 @@
 </li>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM">RE_NON_ALNUM (mlprimitives.custom.text.TextCleaner attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA">RE_NON_ALPHA (mlprimitives.custom.text.TextCleaner attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner.RE_SYMBOLS">RE_SYMBOLS (mlprimitives.custom.text.TextCleaner attribute)</a>
 </li>
-      <li><a href="api/mlprimitives.candidates.timeseries.html#mlprimitives.candidates.timeseries.rolling_window_sequences">rolling_window_sequences() (in module mlprimitives.candidates.timeseries)</a>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.regression_errors">regression_errors() (in module mlprimitives.custom.timeseries_anomalies)</a>
 </li>
+      <li><a href="api/mlprimitives.candidates.timeseries.html#mlprimitives.candidates.timeseries.rolling_window_sequences">rolling_window_sequences() (in module mlprimitives.candidates.timeseries)</a>
+
+      <ul>
+        <li><a href="api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences">(in module mlprimitives.custom.timeseries_preprocessing)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -632,7 +652,13 @@
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner">TextCleaner (class in mlprimitives.custom.text)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.timeseries.html#mlprimitives.candidates.timeseries.time_segments_average">time_segments_average() (in module mlprimitives.candidates.timeseries)</a>
+
+      <ul>
+        <li><a href="api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.time_segments_average">(in module mlprimitives.custom.timeseries_preprocessing)</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.transform">transform() (mlprimitives.custom.feature_extraction.FeatureExtractor method)</a>
 
       <ul>
@@ -641,8 +667,6 @@
         <li><a href="api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.transform">(mlprimitives.custom.feature_selection.EstimatorFeatureSelector method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.custom.trivial.html#mlprimitives.custom.trivial.TrivialPredictor">TrivialPredictor (class in mlprimitives.custom.trivial)</a>
 </li>
   </ul></td>
@@ -674,6 +698,10 @@
 
 <h2 id="Z">Z</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.z_cost">z_cost() (in module mlprimitives.custom.timeseries_anomalies)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.zcr">zcr() (in module mlprimitives.candidates.audio_featurization)</a>
 </li>

@@ -1,0 +1,7 @@
+mlprimitives.custom.timeseries\_preprocessing module
+====================================================
+
+.. automodule:: mlprimitives.custom.timeseries_preprocessing
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.custom.trivial module &mdash; MLPrimitives 0.1.6-dev documentation</title>
+  <title>mlprimitives.custom.timeseries_anomalies module &mdash; MLPrimitives 0.1.6-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.evaluation module" href="mlprimitives.evaluation.html" />
-    <link rel="prev" title="mlprimitives.custom.timeseries_preprocessing module" href="mlprimitives.custom.timeseries_preprocessing.html" /> 
+    <link rel="next" title="mlprimitives.custom.timeseries_preprocessing module" href="mlprimitives.custom.timeseries_preprocessing.html" />
+    <link rel="prev" title="mlprimitives.custom.text module" href="mlprimitives.custom.text.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -219,14 +219,14 @@
         
           <li><a href="mlprimitives.custom.html">mlprimitives.custom package</a> &raquo;</li>
         
-      <li>mlprimitives.custom.trivial module</li>
+      <li>mlprimitives.custom.timeseries_anomalies module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.trivial.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.timeseries_anomalies.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -240,27 +240,103 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.custom.trivial">
-<span id="mlprimitives-custom-trivial-module"></span><h1>mlprimitives.custom.trivial module<a class="headerlink" href="#module-mlprimitives.custom.trivial" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="mlprimitives.custom.trivial.TrivialPredictor">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.trivial.</code><code class="descname">TrivialPredictor</code><span class="sig-paren">(</span><em>default=0</em>, <em>method=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/trivial.html#TrivialPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.trivial.TrivialPredictor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="mlprimitives.custom.trivial.TrivialPredictor.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/trivial.html#TrivialPredictor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.trivial.TrivialPredictor.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+  <div class="section" id="module-mlprimitives.custom.timeseries_anomalies">
+<span id="mlprimitives-custom-timeseries-anomalies-module"></span><h1>mlprimitives.custom.timeseries_anomalies module<a class="headerlink" href="#module-mlprimitives.custom.timeseries_anomalies" title="Permalink to this headline">¶</a></h1>
+<p>Time Series anomaly detection functions.
+Implementation inspired by the paper <a class="reference external" href="https://arxiv.org/pdf/1802.04431.pdf">https://arxiv.org/pdf/1802.04431.pdf</a></p>
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.count_above">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">count_above</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#count_above"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.count_above" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count number of errors and continuous sequences above epsilon.</p>
+<p>Continuous sequences are counted by shifting and counting the number
+of positions where there was a change and the original value was true,
+which means that a sequence started at that position.</p>
+</dd></dl>
 
-<dl class="method">
-<dt id="mlprimitives.custom.trivial.TrivialPredictor.get_length">
-<code class="descname">get_length</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/trivial.html#TrivialPredictor.get_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.trivial.TrivialPredictor.get_length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.deltas">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">deltas</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#deltas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.deltas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute mean and std deltas.</p>
+<p>delta_mean = mean(errors) - mean(all errors below epsilon)
+delta_std = std(errors) - std(all errors below epsilon)</p>
+</dd></dl>
 
-<dl class="method">
-<dt id="mlprimitives.custom.trivial.TrivialPredictor.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/trivial.html#TrivialPredictor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.trivial.TrivialPredictor.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.find_anomalies">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_anomalies</code><span class="sig-paren">(</span><em>errors</em>, <em>index</em>, <em>z_range=(0</em>, <em>10)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find sequences of values that are anomalous.</p>
+<p>We first find the ideal threshold for the set of errors that we have,
+and then find the sequences of values that are above this threshold.</p>
+<p>Lastly, we compute a score proportional to the maximum error in the
+sequence, and finally return the index pairs that correspond to
+each sequence, along with its score.</p>
+</dd></dl>
 
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.find_sequences">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_sequences</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find sequences of values that are above epsilon.</p>
+<p>This is done following this steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li>create a boolean mask that indicates which value are above epsilon.</li>
+<li>shift this mask by one place, filing the empty gap with a False</li>
+<li>compare the shifted mask with the original one to see if there are changes.</li>
+<li>Consider a sequence start any point which was true and has changed</li>
+<li>Consider a sequence end any point which was false and has changed</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.find_threshold">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_threshold</code><span class="sig-paren">(</span><em>errors</em>, <em>z_range=(0</em>, <em>10)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the ideal threshold.</p>
+<p>The ideal threshold is the one that minimizes the z_cost function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.regression_errors">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">regression_errors</code><span class="sig-paren">(</span><em>y</em>, <em>y_hat</em>, <em>smoothing_window=0.01</em>, <em>smooth=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#regression_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.regression_errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute an array of absolute errors comparing predictions and expected output.</p>
+<p>If smooth is True, apply EWMA to the resulting array of errors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>y</strong> (<em>array</em>) – Ground truth.</li>
+<li><strong>y_hat</strong> (<em>array</em>) – Predictions array.</li>
+<li><strong>smoothing_window</strong> (<em>float</em>) – Size of the smoothing window, expressed as a proportion
+of the total length of y.</li>
+<li><strong>smooth</strong> (<em>bool</em>) – whether the returned errors should be smoothed with EWMA.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">errors</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(array)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_anomalies.z_cost">
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">z_cost</code><span class="sig-paren">(</span><em>z</em>, <em>errors</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#z_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.z_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute how bad a z value is.</p>
+<p>The original formula is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="p">(</span><span class="n">delta_mean</span><span class="o">/</span><span class="n">mean</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">delta_std</span><span class="o">/</span><span class="n">std</span><span class="p">)</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">number</span> <span class="n">of</span> <span class="n">errors</span> <span class="n">above</span> <span class="o">+</span> <span class="p">(</span><span class="n">number</span> <span class="n">of</span> <span class="n">sequences</span> <span class="n">above</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>which computes the “goodness” of <cite>z</cite>, meaning that the higher the value
+the better the <cite>z</cite>.</p>
+<p>In this case, we return this value inverted (we make it negative), to convert
+it into a cost function, as later on we will use scipy to minimize it.</p>
 </dd></dl>
 
 </div>
@@ -273,10 +349,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.evaluation.html" class="btn btn-neutral float-right" title="mlprimitives.evaluation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.custom.timeseries_preprocessing.html" class="btn btn-neutral float-right" title="mlprimitives.custom.timeseries_preprocessing module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.custom.timeseries_preprocessing.html" class="btn btn-neutral float-left" title="mlprimitives.custom.timeseries_preprocessing module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.custom.text.html" class="btn btn-neutral float-left" title="mlprimitives.custom.text module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

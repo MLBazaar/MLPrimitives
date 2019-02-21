@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.custom package &mdash; MLPrimitives 0.1.6-dev documentation</title>
+  <title>mlprimitives.custom.timeseries_preprocessing module &mdash; MLPrimitives 0.1.6-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.custom.counters module" href="mlprimitives.custom.counters.html" />
-    <link rel="prev" title="mlprimitives.candidates.timeseries_errors module" href="mlprimitives.candidates.timeseries_errors.html" /> 
+    <link rel="next" title="mlprimitives.custom.trivial module" href="mlprimitives.custom.trivial.html" />
+    <link rel="prev" title="mlprimitives.custom.timeseries_anomalies module" href="mlprimitives.custom.timeseries_anomalies.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,8 +96,8 @@
 <li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.custom package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
@@ -217,14 +217,16 @@
         
           <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
         
-      <li>mlprimitives.custom package</li>
+          <li><a href="mlprimitives.custom.html">mlprimitives.custom package</a> &raquo;</li>
+        
+      <li>mlprimitives.custom.timeseries_preprocessing module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.custom.timeseries_preprocessing.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -238,23 +240,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.custom">
-<span id="mlprimitives-custom-package"></span><h1>mlprimitives.custom package<a class="headerlink" href="#module-mlprimitives.custom" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.counters.html">mlprimitives.custom.counters module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.feature_extraction.html">mlprimitives.custom.feature_extraction module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.feature_selection.html">mlprimitives.custom.feature_selection module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.preprocessing.html">mlprimitives.custom.preprocessing module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.text.html">mlprimitives.custom.text module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.timeseries_anomalies.html">mlprimitives.custom.timeseries_anomalies module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.timeseries_preprocessing.html">mlprimitives.custom.timeseries_preprocessing module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.trivial.html">mlprimitives.custom.trivial module</a></li>
-</ul>
-</div>
-</div>
+  <div class="section" id="module-mlprimitives.custom.timeseries_preprocessing">
+<span id="mlprimitives-custom-timeseries-preprocessing-module"></span><h1>mlprimitives.custom.timeseries_preprocessing module<a class="headerlink" href="#module-mlprimitives.custom.timeseries_preprocessing" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences">
+<code class="descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="descname">rolling_window_sequences</code><span class="sig-paren">(</span><em>X</em>, <em>index</em>, <em>window_size</em>, <em>target_size</em>, <em>target_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create rolling window sequences out of timeseries data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.custom.timeseries_preprocessing.time_segments_average">
+<code class="descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="descname">time_segments_average</code><span class="sig-paren">(</span><em>X</em>, <em>interval</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.time_segments_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute average of values over fixed length time segments.</p>
+</dd></dl>
+
 </div>
 
 
@@ -265,10 +264,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.custom.counters.html" class="btn btn-neutral float-right" title="mlprimitives.custom.counters module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.custom.trivial.html" class="btn btn-neutral float-right" title="mlprimitives.custom.trivial module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.candidates.timeseries_errors.html" class="btn btn-neutral float-left" title="mlprimitives.candidates.timeseries_errors module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.custom.timeseries_anomalies.html" class="btn btn-neutral float-left" title="mlprimitives.custom.timeseries_anomalies module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

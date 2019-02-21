@@ -16,5 +16,7 @@ Submodules
    mlprimitives.custom.feature_selection
    mlprimitives.custom.preprocessing
    mlprimitives.custom.text
+   mlprimitives.custom.timeseries_anomalies
+   mlprimitives.custom.timeseries_preprocessing
    mlprimitives.custom.trivial
 
