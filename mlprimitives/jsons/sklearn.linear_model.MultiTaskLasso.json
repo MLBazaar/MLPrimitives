@@ -108,7 +108,7 @@
             },
             "selection": {
                 "type": "str",
-                "description": "If set to \u2018random\u2019, a random coefficient is updated every iteration rather than looping over features sequentially by default",
+                "description": "If set to random, a random coefficient is updated every iteration rather than looping over features sequentially by default",
                 "values": [
                     "cyclic",
                     "random"
