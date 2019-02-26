@@ -1,18 +1,22 @@
 {
-    "name": "mlprimitives.candidates.timeseries.rolling_window_sequences",
-    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "description": "mlprimitives.candidates.timeseries.rolling_window_sequences",
+    "name": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "description": "Create rolling window sequences out of timeseries data.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
     "modalities": ["timeseries"],
-    "primitive": "mlprimitives.candidates.timeseries.rolling_window_sequences",
+    "primitive": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
     "produce": {
         "args": [
             {
                 "name": "X",
-                "type": "pandas.DataFrame"
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
+                "type": "ndarray"
             }
         ],
         "output": [
@@ -25,7 +29,7 @@
                 "type": "ndarray"
             },
             {
-                "name": "time",
+                "name": "index",
                 "type": "ndarray"
             }
         ]
@@ -34,17 +38,15 @@
         "fixed": {
             "window_size": {
                 "type": "int",
-                "default": 50
+                "default": 250
             },
             "target_size": {
                 "type": "int",
                 "default": 1
             },
-            "time_column": {
-                "type": "str"
-            },
-            "value_column": {
-                "type": "str"
+            "target_column": {
+                "type": "str or int",
+                "default": 1
             }
         }
     }

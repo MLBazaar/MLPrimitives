@@ -12,21 +12,12 @@
         "args": [
             {
                 "name": "X",
-                "keyword": "time_value",
                 "type": "pandas.DataFrame"
-            },
-            {
-                "name": "value_column",
-                "type": "str"
-            },
-            {
-                "name": "name_column",
-                "type": "str"
             }
         ],
         "output": [
             {
-                "name": "aggregated_df",
+                "name": "X",
                 "type": "pandas.DataFrame"
             }
         ]
@@ -36,6 +27,12 @@
             "interval": {
                 "type": "int",
                 "default": 3600
+            },
+            "value_column": {
+                "type": "str"
+            },
+            "time_column": {
+                "type": "str"
             }
         },
         "tunable": {}

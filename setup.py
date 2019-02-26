@@ -17,11 +17,11 @@ with open('HISTORY.md') as history_file:
 
 install_requires = [
     'Keras>=2.1.6',
-    'featuretools>=0.3.1',
+    'featuretools>=0.6.1',
     'lightfm>=1.15',
     'networkx>=2.0',
-    'numpy>=1.15.2,<1.16.0a0',
-    'pandas>=0.23.4,<0.24',
+    'numpy>=1.15.2',
+    'pandas>=0.23.4',
     'opencv-python>=3.4.0.12',
     'python-louvain>=0.10',
     'scikit-image>=0.13.1',
@@ -120,6 +120,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.5-dev',
+    version='0.1.6-dev',
     zip_safe=False,
 )

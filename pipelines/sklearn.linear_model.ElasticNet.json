@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "name": "sklearn.linear_model.ElasticNet",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.linear_model.ElasticNet"
+    ]
+}

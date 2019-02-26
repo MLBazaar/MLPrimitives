@@ -9,7 +9,7 @@
     },
     "primitives": [
         "mlprimitives.custom.text.TextCleaner",
-        "mlprimitives.feature_extraction.StringVectorizer",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
         "sklearn.ensemble.RandomForestClassifier"
     ],
     "hyperparameters": {
