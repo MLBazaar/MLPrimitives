@@ -59,6 +59,7 @@ development_requires = [
     'Sphinx>=1.7.1',
     'sphinx_rtd_theme>=0.2.4',
     'recommonmark>=0.4.0',
+    'ipython==6.5.0',
 
     # style check
     'flake8>=3.5.0',
