@@ -15,7 +15,7 @@ and that can be directly integrated by writing a simple JSON annotation.
 In this case, please follow these steps:
 
 1. If it does not exist yet, create a new GitHub issue requesting the new primitive. As indicated
-   previuosly, provide as many details as possible about the new primitive, like links to the
+   previously, provide as many details as possible about the new primitive, like links to the
    documentation, what it does and what it is useful for.
 2. Indicate in the issue description or in a comment that you are available to apply the changes
    yourself.
@@ -35,15 +35,17 @@ In this case, please follow these steps:
        the file should be ``super.cool.module.CoolPrimitive.json``.
     3. Add proper description of what the primitive does in the corresponding entry, as well as a
        link to its documentation. If there is no documentation available, put the link to its
-       source code. And don't forget to add you name and e-mail address to the `contributors` list!
-    4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named exactly
-       like your primitive. If adding a pipeline is not possible for any reason, please infirm the
-       maintainers, as this probably means that a new dataset might need to be added.
+       source code. And don't forget to add you name and e-mail address to the ``contributors`` list!
+    4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+       exactly like your primitive, and test it with the command
+       ``mlprimitives test pipelines/your.pipeline.json``.
+       If adding a pipeline is not possible for any reason, please inform the maintainers, as
+       this probably means that a new dataset needs to be added.
 
 5. Review your changes and make sure that everything continues to work properly by executing the
    ``make test-all`` command.
 6. Push all your changes to GitHub and open a Pull Request, indicating in the description which
-   issue you are resolving and what the changes consit of.
+   issue you are resolving and what the changes consist of.
 
 Modifying an existing annotation
 --------------------------------
@@ -69,11 +71,13 @@ In this case, please follow these steps:
 4. Once the issue has been approved and assigned to you, implement the necessary changes in your
    own fork of the project. Please implement them in a branch named after the issue number and
    title, as this makes keeping track of the history of the project easier in the long run. Don't
-   forget to add you name and e-mail address to the `contributors` list while you are at it!
-5. Review your changes and make sure that everything continues to work properly by executing the
+   forget to add you name and e-mail address to the ``contributors`` list while you are at it!
+5. Make sure that the annotation still works by testing the corresponding pipeline. Normally,
+   this can be done by running the command ``mlprimitives test pipelines/your.pipeline.json``.
+6. Review your changes and make sure that everything continues to work properly by executing the
    ``make test-all`` command.
-6. Push all your changes to GitHub and open a Pull Request, indicating in the description which
-   issue you are resolving and what the changes consit of.
+7. Push all your changes to GitHub and open a Pull Request, indicating in the description which
+   issue you are resolving and what the changes consist of.
 
 Creating a new version of an existing annotation
 ------------------------------------------------
@@ -98,7 +102,7 @@ In this case, please follow these steps:
    yourself.
 3. Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
    before proceeding to implement any changes. As always, be open to discussion, as sometimes you
-   might find that the behavior which you want to cover is already achievabe by using certain
+   might find that the behavior which you want to cover is already achievable by using certain
    ``init_params``.
 4. Once the issue has been approved and assigned to you, implement the necessary changes in your
    own fork of the project. Please implement them in a branch named after the issue number and
@@ -111,9 +115,14 @@ In this case, please follow these steps:
        performance on huge datasets, you might name the new file
        ``some.cool.primitive.huge_datasets.json``.
     3. Apply the necessary changes to the new file and add it to the repository. Don't forget to
-       add you name and e-mail address to the `contributors` list while you are at it!
+       add you name and e-mail address to the ``contributors`` list while you are at it!
+    4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+       exactly like your primitive, and test it with the command
+       ``mlprimitives test pipelines/your.pipeline.json``.
+       If adding a pipeline is not possible for any reason, please inform the maintainers, as
+       this probably means that a new dataset needs to be added.
 
 5. Review your changes and make sure that everything continues to work properly by executing the
    ``make test-all`` command.
 6. Push all your changes to GitHub and open a Pull Request, indicating in the description which
-   issue you are resolving and what the changes consit of.
+   issue you are resolving and what the changes consist of.

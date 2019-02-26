@@ -1,84 +1,83 @@
-Contributing to the Project
-===========================
+.. _contributing:
 
-MLPrimitive library is an open source compendium of all possible data transforms that are used by
-machine learning practitioners. It is a community driven effort, so it relies on the community.
-We designed it thoughtfully so much of the contributions here can have shelf life greater than
-any of the machine learning libraries it integrates. It represents the combined knowledge of all
-the contributors and allows many systems to be built using the annotations themselves. A few
-examples of such systems in healthcare, education will be soon released. You can contribute to
-the library in several ways:
+Contributing Guidelines
+=======================
 
-Reporting Issues
-----------------
+Ready to contribute with your own code? Great!
 
-If there is something that you would like to see changed in the project, or that you just want
-to ask, please create an issue at https://github.com/HDI-Project/MLPrimitives/issues
+Before diving deeper into the contributing guidelines, please make sure to having read
+the :ref:`concepts` section and to have gone through the :ref:`development` guide.
 
-If you do so, please:
+Afterwards, please make sure to read the following contributing guidelines carefully, and
+later on head to the step-by-step guides for each possible type of contribution.
 
-* Explain in detail what you are requesting.
-* Keep the scope as narrow as possible, to make it easier to implement or respond.
-* Remember that this is a volunteer-driven project and that the maintainers will attend every
-  request as soon as possible, but that in some cases this might take some time.
+General Coding Guidelines
+*************************
 
-Below there are some examples of the types of issues that you might want to create.
+Once you have set up your development environment, you are ready to start working on your
+python code.
 
-Request new primitives
-~~~~~~~~~~~~~~~~~~~~~~
+When doing so, make sure to follow these guidelines:
 
-Sometimes you will feel that a necessary primitive is missing and should be integrated.
+1. If it does not exist yet, create a new GitHub issue requesting the new primitive. As indicated
+   previously, provide as many details as possible about the new primitive, like links to the
+   documentation, what it does and what it is useful for.
 
-In this case, please create an issue indicating the name of the primitive and a link to
-its documentation.
+2. Indicate in the issue description or in a comment that you are available to apply the changes
+   yourself.
 
-If the primitive documentation is unclear or not precise enough to know what needs to be
-integrated only by reading it, please add as many details as necessary in the issue description.
+3. Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+   before proceeding to implement any changes. Be open to discuss with them about the need
+   of adding this primitive, as maybe there are other primitive that offer the same functionality,
+   and about the best approach to add it.
 
-Request new features
-~~~~~~~~~~~~~~~~~~~~
+4. Once the issue has been approved and assigned to you, implement the necessary changes in your
+   own fork of the project. Please implement them in a branch named after the issue number and
+   title, as this makes keeping track of the history of the project easier in the long run.
 
-If there is any other feature that you would like to see implemented, such as adding new
-functionalities to the existing custom primitives, or changing their behavior to cover
-a broader range of cases, you can also create an issue.
+   You can create such a branch with the following command::
 
-If you do so, please indicate all the details about what you request as well as some use
-cases of the new feature.
+    $ git checkout -b name-of-your-bugfix-or-feature
 
-Report Bugs
-~~~~~~~~~~~
+5. While hacking your changes, make sure to cover all your developments with the required
+   unit tests, and that none of the old tests fail as a consequence of your changes.
+   For this, make sure to run the tests suite and check the code coverage::
 
-If you find something that fails, please report it including:
+    $ make test       # Run the tests
+    $ make coverage   # Get the coverage report
 
-* Your operating system name and version.
-* Any details about your local setup that might be helpful in troubleshooting.
-* Detailed steps to reproduce the bug.
+6. If you are developing new primitives that can work as part of a Pipeline, please also
+   add a demo pipeline inside the ``pipelines`` folder and validate that it is running
+   properly with the command::
 
-Ask for Documentation
-~~~~~~~~~~~~~~~~~~~~~
+    $ mlprimitives test pipelines/the_file_of_your_pipeline.json
 
-If there is something that is not documented well enough, do not hesitate to point at that
-in a new issue and request the necessary changes.
+7. When you're done making changes, check that your changes pass flake8 and the
+   tests, including testing other Python versions with tox::
 
-Write Documentation
--------------------
+    $ make lint       # Check code styling
+    $ make test-all   # Execute tests on all python versions
 
-MLPrimitives could always use more documentation, whether as part of the official MLPrimitives
-docs, in docstrings, or even on the web in blog posts, articles, and such, so feel free to
-contribute any changes that you deem necessary, from fixing a simple typo, to writing whole
-new pages of documentation.
+8. Make also sure to include the necessary documentation in the code as docstrings following
+   the `google docstring`_ style.
+   If you want to view how your documentation will look like when it is published, you can
+   generate and view the docs with this command::
 
-Contribute code
----------------
+    $ make viewdocs
 
-If you want to contribute to the project with your own code, you are more than welcome
-to do so! :)
+9. Commit your changes and push your branch to GitHub::
 
-The necessary steps depending on the type of contributions are thoroughly covered in the next
-sections of this documentation. Keep reading!
+    $ git add .
+    $ git commit -m "Your detailed description of your changes."
+    $ git push origin name-of-your-bugfix-or-feature
+
+10. Submit a pull request through the GitHub website and wait for feedback from the maintainers.
+
+.. _google docstring: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
 
 Unit Testing Guidelines
-~~~~~~~~~~~~~~~~~~~~~~~
+***********************
 
 If you are going to contribute Python code, we will ask you to write unit tests that cover
 your development, following these requirements:
@@ -88,7 +87,7 @@ your development, following these requirements:
 2. The tests that cover a module called ``mlprimitives/path/to/a_module.py`` should be
    implemented in a separated module called ``tests/mlprimitives/path/to/test_a_module.py``.
    Note that the module name has the ``test_`` prefix and is located in a path similar
-   to the one of the tested module, just inside te ``tests`` folder.
+   to the one of the tested module, just inside the ``tests`` folder.
 
 3. Each method of the tested module should have at least one associated test method, and
    each test method should cover only **one** use case or scenario.
@@ -108,5 +107,5 @@ your development, following these requirements:
    the only thing that will be tested is that our code passes the right values to them.
 
 7. Unit tests should not use anything from outside the test and the code being tested. This
-   includes not reading or writting to any filesystem or database, which will be properly
+   includes not reading or writing to any file system or database, which will be properly
    mocked.

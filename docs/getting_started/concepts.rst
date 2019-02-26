@@ -1,7 +1,9 @@
+.. _concepts:
+
 Basic Concepts
 ==============
 
-Before diving into advance usage and contributions, let's review the the basic concept of the
+Before diving into advanced usage and contributions, let's review the basic concept of the
 library to help you get started.
 
 What is a primitive?
@@ -12,11 +14,11 @@ a primitive also has an associated JSON file that has a number of annotations. T
 help automated algorithms to interpret the primitive, and data scientists to construct machine
 learning pipelines with proper provenance and full transparency about each individual components.
 
-Continue reading to learn more about annotations and how to curate your own annotations.
-
-
 Types of Primitives
 -------------------
+
+Not all primitives are the same, so in the following sections we review which types of
+primitives there are.
 
 Function Primitives
 ~~~~~~~~~~~~~~~~~~~
@@ -49,9 +51,10 @@ This primitive has an associated learning process, where it calculates the mean 
 deviation of the training data, to later on use them to transform the prediction data to the same
 center and scale.
 
-
 Types of Integrations
 ---------------------
+
+Also, primitives can be classified depending on how they are integrated into the project.
 
 Directly integrable primitives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,8 +74,8 @@ have these characteristics:
 * The fitting and predicting phase consist of a single method or function call each.
 
 In this case, no additional code is necessary to adapt them and those blocks can be brought into
-MLPrimitives using nothing else than a single JSON annotation file. Current primitives that just
-have these JSON files can be found in the mlprimitives/jsons folder.
+MLPrimitives using nothing else than a single JSON annotation file, which can be found in the
+`mlprimitives/jsons folder`_.
 
 Examples
 ********
@@ -105,7 +108,7 @@ Some examples of these primitives are the Keras models, which need to be built i
 and later on compiled before they can be used, or some image transformation primitives which need
 to be applied to the images one by one. These primitives consist of some Python code which can be
 found in the ``mlprimitives.adapters`` module, as well as JSON annotations that point at the
-corresponding functions or classes, which can be found in the `mlprimitives/jsons folder`_.
+corresponding functions or classes, which can also be found in the `mlprimitives/jsons folder`_.
 
 Examples
 ********
@@ -122,8 +125,8 @@ The third type are custom primitives implemented specifically for this library. 
 primitives may be implemented from scratch or they may be using third party tools in such a way
 as to alter the third party tool’s native behavior to add new functionalities.
 
-This type of primitives consist of Python code from the mlprimitives module, as well as the
-corresponding JSON annotations, which can also be found in the `mlprimitives/jsons folder`_.
+This type of primitives consist of Python code that can be found inside the `mlprimitives/custom module`_,
+as well as the corresponding JSON annotations, which can also be found in the `mlprimitives/jsons folder`_.
 
 Examples
 ********
@@ -133,7 +136,31 @@ Examples
 * Text Cleaner
 
 
+Candidate primitives
+********************
+
+Since this is a project with a strong focus in community contributions, we want to make it easy
+for everyone to contribute their own code without the need to have project maintainers that
+carefully and thoroughly review all the new contributions, as this would make the contributing
+process very slow. However, having all the new primitives accepted and merged without a proper
+review, might compromise the project stability in some cases.
+
+For this reason, we have created the special `mlprimitives/candidates module`_, which includes
+all the primitives that have been recently contributed but haven't gone through a proper testing
+and review yet.
+
+So, does this it mean that these primitives do not work? Not at all!
+
+All the candidate primitives have gone through an initial testing and review process before being
+accepted, so they are always proved to work. The only difference between these primitives and
+the ones that you can find in `mlprimitives/custom module`_ is that the later ones have gone
+through a deeper code review in search of possible improvements in terms of performance and
+functionality refinements
+
+
 .. _mlprimitives/jsons folder: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons
+.. _mlprimitives/custom module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom
+.. _mlprimitives/candidates module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/candidates
 .. _numpy.argmax: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/numpy.argmax.json
 .. _sklearn.preprocessing.StandardScaler: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/sklearn.preprocessing.StandardScaler.json
 .. _xgboost.XGBClassifier: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/xgboost.XGBClassifier.json

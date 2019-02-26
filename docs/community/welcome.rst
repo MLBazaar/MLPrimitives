@@ -1,5 +1,3 @@
-.. highlight:: shell
-
 Welcome to the Community
 ========================
 
@@ -85,37 +83,5 @@ Contribute code
 
 Obviously, the main element in the MLPrimitives library is the code.
 
-If you are willing to contribute to it, please check the documentation for more details about
-how to proceed!
-
-
-Release Workflow
-================
-
-The process of releasing a new version involves several steps combining both ``git`` and
-``bumpversion`` which, briefly:
-
-1. Merge what is in ``master`` branch into ``stable`` branch.
-2. Update the version in the code and condiguration files.
-3. Create a new git tag pointing at the corresponding commit in ``stable`` branch.
-4. Merge the new commit from ``stable`` into ``master``.
-2. Update the version in the code and condiguration files again to start the next development iteration.
-
-.. note:: Before starting the process, make sure that ``HISTORY.md`` has been updated with a new
-          entry that explains the changes that will be included in the new version.
-          Normally this is just a list of the Pull Requests that have been merged to master
-          since the last release.
-
-Once this is done, run of the following commands:
-
-1. If you are releasing a patch version::
-
-    make release
-
-2. If you are releasing a minor version::
-
-    make release-minor
-
-3. If you are releasing a major version::
-
-    make release-major
+If you are willing to contribute to it, please head for the next sections for detailed guidelines
+about how to do so.

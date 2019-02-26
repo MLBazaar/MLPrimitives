@@ -1,5 +1,5 @@
-What is MLPrimitives?
-=====================
+Welcome to MLPrimitives!
+========================
 
 .. figure:: images/dai-logo.png
    :width: 300 px
@@ -28,16 +28,16 @@ Why did we create this library?
    :caption: Getting Started
    :maxdepth: 2
 
-   self
+   Welcome <self>
    getting_started/install
    getting_started/quickstart
    getting_started/concepts
-   getting_started/development
 
 .. toctree::
    :caption: Community
    :maxdepth: 2
 
+   Community <community/welcome>
    Contributing <community/contributing>
    Annotations <community/annotations>
    Adapters <community/adapters>
@@ -48,7 +48,6 @@ Why did we create this library?
    :hidden:
 
    API Reference <api/mlprimitives>
-   contributing
    authors
    history
 

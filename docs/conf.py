@@ -41,7 +41,7 @@ extensions = [
     # 'sphinx.ext.graphviz',
     'IPython.sphinxext.ipython_console_highlighting',
     'IPython.sphinxext.ipython_directive',
-    'sphinx.ext.autosectionlabel',
+    # 'sphinx.ext.autosectionlabel',
 ]
 
 ipython_execlines = ["import pandas as pd", "pd.set_option('display.width', 1000000)"]
