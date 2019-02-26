@@ -1,7 +1,7 @@
 Quickstart
 ==========
 
-Below is a short tutorial that will show you how to get started using MLPrimitives with MLBlocks.
+Below is a short tutorial that will show you how to get started using MLPrimitives with `MLBlocks`_.
 
 In this tutorial we will learn how to:
 
@@ -110,5 +110,5 @@ to obtain predictions from the pipeline.
     predictions
     dataset.score(y_test, predictions)
 
-.. _MLPrimitives JSON Annotations: ../getting_started/primitives.html#json-annotations
+.. _MLBlocks: https://github.com/HDI-Project/MLBlocks
 .. _BTB: https://github.com/HDI-Project/BTB
