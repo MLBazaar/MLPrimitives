@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing Adapters &mdash; MLPrimitives 0.1.6-dev documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing Custom Primitives" href="custom.html" />
+    <link rel="prev" title="Contributing Annotations" href="annotations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#from-sources">From sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#development-setup">Development Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#creating-a-pipeline">Creating a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#tunable-hyperparameters">Tunable Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#setting-hyperparameters">Setting Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#making-predictions">Making predictions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/concepts.html">Basic Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#what-is-a-primitive">What is a primitive?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#types-of-primitives">Types of Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#function-primitives">Function Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#class-primitives">Class Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#types-of-integrations">Types of Integrations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#directly-integrable-primitives">Directly integrable primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#primitives-that-require-a-python-adapter">Primitives that require a Python adapter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#id1">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#custom-primitives">Custom primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#id2">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#candidate-primitives">Candidate primitives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#types-of-contributions">Types of contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="welcome.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="welcome.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="welcome.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="welcome.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="welcome.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="welcome.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="welcome.html#contribute-code">Contribute code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#general-coding-guidelines">General Coding Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#creating-an-annotation-for-a-new-primitive">Creating an annotation for a new primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#modifying-an-existing-annotation">Modifying an existing annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annotations.html#creating-a-new-version-of-an-existing-annotation">Creating a new version of an existing annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-adapter">Creating a new Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-an-existing-adapter">Modifying an existing Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="custom.html">Custom Primitives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom.html#creating-a-custom-primitive">Creating a Custom Primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom.html#modifying-a-custom-primitive">Modifying a Custom Primitive</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/mlprimitives.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/mlprimitives.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.candidates.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.custom.html">mlprimitives.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.custom.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#new-primitives">New Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#general-improvements">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id5">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-features">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id8">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id9">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id10">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id11">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id12">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Contributing Adapters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/community/adapters.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing-adapters">
+<h1>Contributing Adapters<a class="headerlink" href="#contributing-adapters" title="Permalink to this headline">¶</a></h1>
+<p>If the primitives that you want to add are not compliant with our <cite>fit-produce</cite> schema you will
+probably need to either add an adapter or modify an existing one in order to add them.</p>
+<div class="section" id="creating-a-new-adapter">
+<h2>Creating a new Adapter<a class="headerlink" href="#creating-a-new-adapter" title="Permalink to this headline">¶</a></h2>
+<p>If you want to create a new adapter, please follow these steps:</p>
+<ol class="arabic">
+<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
+As indicated previously, provide as many details as possible about the new primitive, like
+links to the documentation, what it does and what it is useful for, as well as details about
+why you think a new adapter is needed and how it would work.</p>
+</li>
+<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p>
+</li>
+<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+before proceeding to implement any changes. Be open to discuss with them about the need
+of adding this primitive, as maybe there are other primitive that offer the same functionality,
+and about whether the adapter will be needed or not, or what is should look like.</p>
+</li>
+<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+own fork of the project. Please implement them in a branch named after the issue number and
+title, as this makes keeping track of the history of the project easier in the long run.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Create an adapter python module and add it to the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/</span></code> directory.
+The name of the module should be the name of the library that you want to create an adapter
+for. For example, if you want to add an adapter to add primitives from the library called
+<code class="docutils literal notranslate"><span class="pre">cool-ml</span></code>, the name of the module should be <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.py</span></code>.
+If the module already exists because there is another adapter for the same library, create
+the new adapter within the same module.</p>
+</li>
+<li><p class="first">Inside the adapter module, try to name the class or function that you create as similar
+as possible to the classes that you are writing the adapter for.
+For example, the adapter class for the <code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code> class is called
+<code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters.keras.Sequential</span></code>, while the adapter class for the
+<code class="docutils literal notranslate"><span class="pre">featuretools.dfs</span></code> method is called <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters.featuretools.DFS</span></code>.</p>
+</li>
+<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
+section.</p>
+</li>
+<li><p class="first">Do not forget to properly document your code and cover it with proper unit testing!</p>
+</li>
+<li><p class="first">Create at least on JSON annotation that uses your adapter. When doing so, make sure to
+follow the corresponding conventions:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>The name of the file should correspond to the fully qualified name of the class or
+function that you are integrating ignoring the fact that you are using an adapter.
+For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">CoolPrimitive</span></code> from the module
+<code class="docutils literal notranslate"><span class="pre">cool_ml.module</span></code> by using the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.CoolML</span></code>
+adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</li>
+<li>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
+name of your adapter class, and the <code class="docutils literal notranslate"><span class="pre">fixed</span></code> hyperparameters should contain all
+the details that your adapter needs to know how to integrate the third party primitive.</li>
+<li>Add proper description of what the primitive does in the corresponding entry, as well
+as a link to its documentation. If there is no documentation available, put the link
+to its source code. And don’t forget to add you name and e-mail address to the
+<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
+<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+exactly like your primitive, and test it with the command
+<code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
+If adding a pipeline is not possible for any reason, please inform the maintainers, as
+this probably means that a new dataset needs to be added.</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
+</li>
+<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="modifying-an-existing-adapter">
+<h2>Modifying an existing Adapter<a class="headerlink" href="#modifying-an-existing-adapter" title="Permalink to this headline">¶</a></h2>
+<p>If an adapter for the library already exists but it does not properly cover one of the primitives
+that you want to integrate, you might find that modifying the existing adapter adds this coverage.</p>
+<p>In this case, if you are sure that these modifications will not break previous functionality,
+and the existing adapter can be safely modified, do the following steps:</p>
+<ol class="arabic">
+<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
+As indicated previously, provide as many details as possible about the new primitive, like
+links to the documentation, what it does and what it is useful for, as well as details about
+why you think the current adapter needs to be modified and how.</p>
+</li>
+<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p>
+</li>
+<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+before proceeding to implement any changes. Be open to discuss with them about the need
+of adding this primitive, as maybe there are other primitive that offer the same functionality,
+and about whether the adapter can be modified or a new one created.</p>
+</li>
+<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+own fork of the project. Please implement them in a branch named after the issue number and
+title, as this makes keeping track of the history of the project easier in the long run.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Do the necessary modifications in the existing adapter.</p>
+</li>
+<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
+section.</p>
+</li>
+<li><p class="first">Do not forget to properly document your code and cover it with proper unit testing!</p>
+</li>
+<li><p class="first">Create at least one new JSON annotation that uses the adapter. When doing so, make sure to
+follow the corresponding conventions:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>The name of the file should correspond to the fully qualified name of the class or
+function that you are integrating ignoring the fact that you are using an adapter.
+For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">CoolPrimitive</span></code> from the module
+<code class="docutils literal notranslate"><span class="pre">cool_ml.module</span></code> by using the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.CoolML</span></code>
+adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</li>
+<li>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
+name of your adapter class, and the <code class="docutils literal notranslate"><span class="pre">fixed</span></code> hyperparameters should contain all
+the details that your adapter needs to know how to integrate the third party primitive.</li>
+<li>Add proper description of what the primitive does in the corresponding entry, as well
+as a link to its documentation. If there is no documentation available, put the link
+to its source code. And don’t forget to add you name and e-mail address to the
+<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
+<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+exactly like your primitive, and test it with the command
+<code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
+If adding a pipeline is not possible for any reason, please inform the maintainers, as
+this probably means that a new dataset needs to be added.</li>
+<li>Make sure that all the primitives that existed before that use the same adapter still
+work by testing their corresponding pipelines with the command above.</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
+</li>
+<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="custom.html" class="btn btn-neutral float-right" title="Contributing Custom Primitives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="annotations.html" class="btn btn-neutral float-left" title="Contributing Annotations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

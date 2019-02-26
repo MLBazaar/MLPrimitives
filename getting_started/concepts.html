@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Concepts &mdash; MLPrimitives 0.1.6-dev documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Welcome to the Community" href="../community/welcome.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#from-sources">From sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#development-setup">Development Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#creating-a-pipeline">Creating a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#tunable-hyperparameters">Tunable Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#setting-hyperparameters">Setting Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#making-predictions">Making predictions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-primitive">What is a primitive?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-primitives">Types of Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-primitives">Function Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-primitives">Class Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-integrations">Types of Integrations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directly-integrable-primitives">Directly integrable primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#primitives-that-require-a-python-adapter">Primitives that require a Python adapter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-primitives">Custom primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#candidate-primitives">Candidate primitives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../community/welcome.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/welcome.html#types-of-contributions">Types of contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#contribute-code">Contribute code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/contributing.html#general-coding-guidelines">General Coding Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/annotations.html">Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#creating-an-annotation-for-a-new-primitive">Creating an annotation for a new primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#modifying-an-existing-annotation">Modifying an existing annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#creating-a-new-version-of-an-existing-annotation">Creating a new version of an existing annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/adapters.html">Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/adapters.html#creating-a-new-adapter">Creating a new Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/adapters.html#modifying-an-existing-adapter">Modifying an existing Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/custom.html">Custom Primitives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/custom.html#creating-a-custom-primitive">Creating a Custom Primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/custom.html#modifying-a-custom-primitive">Modifying a Custom Primitive</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/mlprimitives.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/mlprimitives.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.candidates.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.custom.html">mlprimitives.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/mlprimitives.custom.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#new-primitives">New Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#general-improvements">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id5">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-features">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id6">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id8">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id9">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id10">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id11">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id12">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Basic Concepts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/getting_started/concepts.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basic-concepts">
+<span id="concepts"></span><h1>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h1>
+<p>Before diving into advanced usage and contributions, let’s review the basic concept of the
+library to help you get started.</p>
+<div class="section" id="what-is-a-primitive">
+<h2>What is a primitive?<a class="headerlink" href="#what-is-a-primitive" title="Permalink to this headline">¶</a></h2>
+<p>A primitive is a data processing block. Along with a code that does the processing on the data,
+a primitive also has an associated JSON file that has a number of annotations. These annotations
+help automated algorithms to interpret the primitive, and data scientists to construct machine
+learning pipelines with proper provenance and full transparency about each individual components.</p>
+</div>
+<div class="section" id="types-of-primitives">
+<h2>Types of Primitives<a class="headerlink" href="#types-of-primitives" title="Permalink to this headline">¶</a></h2>
+<p>Not all primitives are the same, so in the following sections we review which types of
+primitives there are.</p>
+<div class="section" id="function-primitives">
+<h3>Function Primitives<a class="headerlink" href="#function-primitives" title="Permalink to this headline">¶</a></h3>
+<p>The most simple type of primitives are simple functions that can be called directly, without
+the need to created any class instance before.</p>
+<p>In most cases, if not all, these functions do not have any associated learning process, and their
+behavior is always the same both during the fitting and the predicting phases of the pipeline.</p>
+<p>A simple example of such a primitive would be the <code class="docutils literal notranslate"><span class="pre">numpy.argmax</span></code> function, which expects a 2
+dimensional array as input, and returns a 1 dimensional array that indicates the index of
+the maximum values along an axis.</p>
+</div>
+<div class="section" id="class-primitives">
+<h3>Class Primitives<a class="headerlink" href="#class-primitives" title="Permalink to this headline">¶</a></h3>
+<p>A more complex type of primitives are classes which need to be instantiated before they can be
+used.</p>
+<p>In most cases, these classes will have an associated learning process, and they will have some
+fit method or equivalent that will be called during the fitting phase but not during the
+predicting one.</p>
+<p>A simple example of such a primitive would be the <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> class,
+which is used to standardize a set of values by calculating their z-score, which means centering
+them around 0 and scaling them to unit variance.</p>
+<p>This primitive has an associated learning process, where it calculates the mean and standard
+deviation of the training data, to later on use them to transform the prediction data to the same
+center and scale.</p>
+</div>
+</div>
+<div class="section" id="types-of-integrations">
+<h2>Types of Integrations<a class="headerlink" href="#types-of-integrations" title="Permalink to this headline">¶</a></h2>
+<p>Also, primitives can be classified depending on how they are integrated into the project.</p>
+<div class="section" id="directly-integrable-primitives">
+<h3>Directly integrable primitives<a class="headerlink" href="#directly-integrable-primitives" title="Permalink to this headline">¶</a></h3>
+<p>Some libraries already follow the <cite>fit-produce</cite> abstraction. That is, they already have several
+data processing building blocks that have this abstraction. A good example of these type of
+primitives are most of the estimators from the scikit-learn library. These building blocks usually
+have these characteristics:</p>
+<ul class="simple">
+<li>Tunable hyperparameters are simple values of the supported basic types:
+* <code class="docutils literal notranslate"><span class="pre">str</span></code>
+* <code class="docutils literal notranslate"><span class="pre">bool</span></code>
+* <code class="docutils literal notranslate"><span class="pre">int</span></code>
+* <code class="docutils literal notranslate"><span class="pre">float</span></code></li>
+<li>Creating the class instance or calling the fit or produce methods does not require building
+any complex structure before the call is made.</li>
+<li>The fitting and predicting phase consist of a single method or function call each.</li>
+</ul>
+<p>In this case, no additional code is necessary to adapt them and those blocks can be brought into
+MLPrimitives using nothing else than a single JSON annotation file, which can be found in the
+<a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons">mlprimitives/jsons folder</a>.</p>
+<div class="section" id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/numpy.argmax.json">numpy.argmax</a></li>
+<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/sklearn.preprocessing.StandardScaler.json">sklearn.preprocessing.StandardScaler</a></li>
+<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/xgboost.XGBClassifier.json">xgboost.XGBClassifier</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the code is directly usable then why create a JSON annotation file? While the code is
+directly usable, most building blocks do not have an associated metadata we need for
+automation. Usually when using scikit-learn for example, a data scientist goes through
+the documentation to understand different hyperparameters, their ranges and has to do a
+lot of manual inference before they can use them.</p>
+</div>
+</div>
+</div>
+<div class="section" id="primitives-that-require-a-python-adapter">
+<h3>Primitives that require a Python adapter<a class="headerlink" href="#primitives-that-require-a-python-adapter" title="Permalink to this headline">¶</a></h3>
+<p>The second type of primitives are the ones that need some kind of adaptation process to fit to our
+API, but whose behaviour is not altered in any way by this process. The type of primitives that
+are integrated in this way are the ones that have some of these characteristics:</p>
+<ul class="simple">
+<li>Need some additional steps after the instantiation in order to be prepared to run.</li>
+<li>The tunable hyperparameters need some kind of transformation or instantiation before they can be
+passed to the primitive.</li>
+<li>The primitive cannot be directly applied to the inputs or the outputs, we support, and need to
+be manipulated in some way before they can be passed to any other primitive.</li>
+</ul>
+<p>Some examples of these primitives are the Keras models, which need to be built in several steps
+and later on compiled before they can be used, or some image transformation primitives which need
+to be applied to the images one by one. These primitives consist of some Python code which can be
+found in the <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters</span></code> module, as well as JSON annotations that point at the
+corresponding functions or classes, which can also be found in the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons">mlprimitives/jsons folder</a>.</p>
+<div class="section" id="id1">
+<h4>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>LightFM</li>
+<li>Keras Sequential LSTMTextClassifier</li>
+<li>NetworkX Graph Feature Extraction</li>
+</ul>
+</div>
+</div>
+<div class="section" id="custom-primitives">
+<h3>Custom primitives<a class="headerlink" href="#custom-primitives" title="Permalink to this headline">¶</a></h3>
+<p>The third type are custom primitives implemented specifically for this library. These custom
+primitives may be implemented from scratch or they may be using third party tools in such a way
+as to alter the third party tool’s native behavior to add new functionalities.</p>
+<p>This type of primitives consist of Python code that can be found inside the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a>,
+as well as the corresponding JSON annotations, which can also be found in the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons">mlprimitives/jsons folder</a>.</p>
+<div class="section" id="id2">
+<h4>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Preprocessing Class Encoder</li>
+<li>Vocabulary Counter</li>
+<li>Text Cleaner</li>
+</ul>
+</div>
+<div class="section" id="candidate-primitives">
+<h4>Candidate primitives<a class="headerlink" href="#candidate-primitives" title="Permalink to this headline">¶</a></h4>
+<p>Since this is a project with a strong focus in community contributions, we want to make it easy
+for everyone to contribute their own code without the need to have project maintainers that
+carefully and thoroughly review all the new contributions, as this would make the contributing
+process very slow. However, having all the new primitives accepted and merged without a proper
+review, might compromise the project stability in some cases.</p>
+<p>For this reason, we have created the special <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/candidates">mlprimitives/candidates module</a>, which includes
+all the primitives that have been recently contributed but haven’t gone through a proper testing
+and review yet.</p>
+<p>So, does this it mean that these primitives do not work? Not at all!</p>
+<p>All the candidate primitives have gone through an initial testing and review process before being
+accepted, so they are always proved to work. The only difference between these primitives and
+the ones that you can find in <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a> is that the later ones have gone
+through a deeper code review in search of possible improvements in terms of performance and
+functionality refinements</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../community/welcome.html" class="btn btn-neutral float-right" title="Welcome to the Community" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
