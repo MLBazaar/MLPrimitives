@@ -1,8 +1,8 @@
 {
     "name": "keras.Sequential.LSTMTimeSeriesRegressor",
-    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>"],
-    "documentation": "",
-    "description": "This primitive consists of multiple Keras layers that can pass time-series data through an LSTM in order to predict the next n values.",
+    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>", "Carles Sala <csala@csail.mit.edu>"],
+    "documentation": "https://arxiv.org/pdf/1802.04431.pdf",
+    "description": "Double Stacked LSTM Time Series Regressor similar to the one described in the paper referenced as documentation.",
     "classifiers": {
         "type": "estimator",
         "subtype": "regressor"
@@ -39,22 +39,18 @@
     },
     "hyperparameters": {
         "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": false
+            },
             "input_shape": {
                 "type": "tuple",
-                "default": [50, 1]
+                "default": [250, 1]
             },
             "dense_units": {
                 "type": "int",
                 "description": "Number of values ahead to predict",
                 "default": 1
-            },
-            "classification": {
-                "type": "bool",
-                "default": false
-            },
-            "dense_activation": {
-                "type": "str",
-                "default": "tanh"
             },
             "optimizer": {
                 "type": "str",
@@ -70,6 +66,10 @@
                     "mse"
                 ]
             },
+            "epochs": {
+                "type": "int",
+                "default": 35
+            },
             "return_sequences": {
                 "type": "bool",
                 "default": false
@@ -81,38 +81,67 @@
                         "class": "keras.layers.LSTM",
                         "parameters": {
                             "input_shape": "input_shape",
-                            "units": "lstm_units",
-                            "return_sequences": "return_sequences"
+                            "units": "lstm_1_units",
+                            "return_sequences": true
                         }
                     },
                     {
                         "class": "keras.layers.Dropout",
                         "parameters": {
-                            "rate": "dropout_rate"
+                            "rate": "dropout_1_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.LSTM",
+                        "parameters": {
+                            "units": "lstm_2_units",
+                            "return_sequences": false
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_2_rate"
                         }
                     },
                     {
                         "class": "keras.layers.Dense",
                         "parameters": {
                             "units": "dense_units",
-                            "activation": "dense_activation"
+                            "activation": "linear"
                         }
                     }
                 ]
             }
         },
         "tunable": {
-            "lstm_units": {
+            "lstm_1_units": {
                 "type": "int",
-                "default": 100,
+                "default": 80,
                 "range": [
                     1,
                     500
                 ]
             },
-            "dropout_rate": {
+            "dropout_1_rate": {
                 "type": "float",
-                "default": 0.1,
+                "default": 0.3,
+                "range": [
+                    0.01,
+                    0.75
+                ]
+            },
+            "lstm_2_units": {
+                "type": "int",
+                "default": 80,
+                "range": [
+                    1,
+                    500
+                ]
+            },
+            "dropout_2_rate": {
+                "type": "float",
+                "default": 0.3,
                 "range": [
                     0.01,
                     0.75

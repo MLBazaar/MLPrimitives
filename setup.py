@@ -16,30 +16,28 @@ with open('HISTORY.md') as history_file:
 
 
 install_requires = [
-    'Keras>=2.1.6',
-    'featuretools>=0.3.1',
-    'lightfm>=1.15',
-    'networkx>=2.0',
-    'numpy>=1.15.2',
-    'pandas>=0.23.4,<0.24',
-    'opencv-python>=3.4.0.12',
-    'python-louvain>=0.10',
-    'scikit-image>=0.13.1',
-    'scikit-learn>=0.20.0',
-    'scipy>=1.1.0',
-    'tensorflow>=1.11.0',
-    'xgboost>=0.72.1',
-    'iso639>=0.1.4',
-    'langdetect>=1.0.7',
-    'nltk>=3.3',
-    'urllib3==1.23',    # Otherwise, botocore from featuretools fails
+    'Keras>=2.1.6,<3',
+    'featuretools>=0.6.1,<0.7',
+    'iso639>=0.1.4,<0.2',
+    'langdetect>=1.0.7,<2',
+    'lightfm>=1.15,<2',
+    'networkx>=2.0,<3',
+    'nltk>=3.3,<4',
+    'numpy>=1.15.2,<1.17',
+    'opencv-python>=3.4.0.12,<5',
+    'pandas>=0.23.4,<0.25',
+    'python-louvain>=0.10,<0.14',
+    'scikit-image>=0.13.1,<0.15',
+    'scikit-learn>=0.20.0,<0.21',
+    'scipy>=1.1.0,<2',
+    'tensorflow>=1.11.0,<2',
+    'xgboost>=0.72.1,<1',
 ]
 
 
 tests_require = [
     'mlblocks>=0.3.0',
     'pytest>=3.4.2',
-    'google-compute-engine==2.8.12',    # required by travis
 ]
 
 
@@ -59,6 +57,7 @@ development_requires = [
     'Sphinx>=1.7.1',
     'sphinx_rtd_theme>=0.2.4',
     'recommonmark>=0.4.0',
+    'ipython==6.5.0',
 
     # style check
     'flake8>=3.5.0',
@@ -119,6 +118,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.5',
+    version='0.1.6-dev',
     zip_safe=False,
 )

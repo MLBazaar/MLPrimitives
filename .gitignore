@@ -110,3 +110,6 @@ ENV/
 
 # vim
 .*.swp
+
+# added by rjdiez
+.idea/

@@ -1,0 +1,53 @@
+{
+    "name": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "description": "Create rolling window sequences out of timeseries data.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "window_size": {
+                "type": "int",
+                "default": 250
+            },
+            "target_size": {
+                "type": "int",
+                "default": 1
+            },
+            "target_column": {
+                "type": "str or int",
+                "default": 1
+            }
+        }
+    }
+}

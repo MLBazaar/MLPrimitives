@@ -1,0 +1,39 @@
+{
+    "name": "mlprimitives.custom.timeseries_anomalies.find_anomalies",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "documentation": "https://arxiv.org/pdf/1802.04431.pdf",
+    "description": "Extract anomalies from sequences of errors following the approach explained in the related paper.",
+    "classifiers": {
+        "type": "postprocessor",
+        "subtype": "anomaly_detector"
+    },
+    "modalities": ["timeseries"],
+    "primitive": "mlprimitives.custom.timeseries_anomalies.find_anomalies",
+    "produce": {
+        "args": [
+            {
+                "name": "errors",
+                "type": "ndarray"
+            },
+            {
+                "name": "index",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "z_range": {
+                "type": "tuple",
+                "default": [0, 12]
+            }
+        },
+        "tunable": {}
+    }
+}
