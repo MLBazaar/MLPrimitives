@@ -1,8 +1,29 @@
 # History
 
+## 0.1.6
+
+### General Improvements
+
+* Add Contributing Documentation
+* Remove upper bound in pandas version given new release of `featuretools` v0.6.1
+* Improve LSTMTimeSeriesRegressor hyperparameters
+
+### New Primitives
+
+* mlprimitives.candidates.dsp.SpectralMask
+* mlprimitives.custom.timeseries_anomalies.find_anomalies
+* mlprimitives.custom.timeseries_anomalies.regression_errors
+* mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences
+* mlprimitives.custom.timeseries_preprocessing.time_segments_average
+* sklearn.linear_model.ElasticNet
+* sklearn.linear_model.Lars
+* sklearn.linear_model.Lasso
+* sklearn.linear_model.MultiTaskLasso
+* sklearn.linear_model.Ridge
+
 ## 0.1.5
 
-## New Primitives
+### New Primitives
 
 * sklearn.impute.SimpleImputer
 * sklearn.preprocessing.MinMaxScaler
