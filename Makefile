@@ -104,7 +104,7 @@ fix-lint: ## fix lint issues using autoflake, autopep8, and isort
 
 .PHONY: test
 test: ## run tests quickly with the default Python
-	python -m pytest
+	python -m pytest --cov=mlprimitives
 
 .PHONY: test-all
 test-all: ## run tests on every Python version with tox
