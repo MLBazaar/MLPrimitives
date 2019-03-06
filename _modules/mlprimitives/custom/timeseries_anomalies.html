@@ -398,7 +398,7 @@
         <span class="n">best</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">z_cost</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">),</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">z</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">best_cost</span><span class="p">:</span>
-            <span class="n">best_z</span> <span class="o">=</span> <span class="n">z</span>
+            <span class="n">best_z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">best_z</span> <span class="o">*</span> <span class="n">std</span></div>
 
@@ -420,9 +420,9 @@
 
     <span class="n">index</span> <span class="o">=</span> <span class="n">above</span><span class="o">.</span><span class="n">index</span>
     <span class="n">starts</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="n">ends</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="o">~</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">ends</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="o">~</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">ends</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">))</span>
+        <span class="n">ends</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">))</span></div>
 
@@ -438,16 +438,13 @@
 <span class="sd">    each sequence, along with its score.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">mean</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="n">std</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-
     <span class="n">threshold</span> <span class="o">=</span> <span class="n">find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="p">)</span>
     <span class="n">sequences</span> <span class="o">=</span> <span class="n">find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
 
     <span class="n">anomalies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="n">denominator</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">std</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-        <span class="n">max_error</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">max_error</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
         <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_error</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">/</span> <span class="n">denominator</span>
         <span class="n">anomalies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">index</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">index</span><span class="p">[</span><span class="n">stop</span><span class="p">],</span> <span class="n">score</span><span class="p">])</span>
 
