@@ -1,0 +1,41 @@
+{
+    "name": "pandas.DataFrame.unstack",
+    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html",
+    "description": "Call the `df.unstack` method using the indicated level and afterwards join the column names using an underscore.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.pandas.unstack",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "df",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "level": {
+                "type": "multitype",
+                "default": -1,
+                "description": "Level(s) of index to unstack, can pass level name"
+            },
+            "reset_index": {
+                "type": "bool",
+                "default": true,
+                "description": "Whether to reset the index after unstacking."
+            }
+        }
+    }
+}
