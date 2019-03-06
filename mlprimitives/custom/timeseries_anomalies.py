@@ -111,7 +111,7 @@ def find_threshold(errors, z_range=(0, 10)):
         best = fmin(z_cost, z, args=(errors, mean, std), full_output=True, disp=False)
         z, cost = best[0:2]
         if cost < best_cost:
-            best_z = z
+            best_z = z[0]
 
     return mean + best_z * std
 
@@ -133,9 +133,9 @@ def find_sequences(errors, epsilon):
 
     index = above.index
     starts = index[above & change].tolist()
-    ends = index[~above & change].tolist()
+    ends = (index[~above & change] - 1).tolist()
     if len(ends) == len(starts) - 1:
-        ends.append(len(above))
+        ends.append(len(above) - 1)
 
     return list(zip(starts, ends))
 
@@ -151,16 +151,13 @@ def find_anomalies(errors, index, z_range=(0, 10)):
     each sequence, along with its score.
     """
 
-    mean = errors.mean()
-    std = errors.std()
-
     threshold = find_threshold(errors, z_range)
     sequences = find_sequences(errors, threshold)
 
     anomalies = list()
-    denominator = mean + std
+    denominator = errors.mean() + errors.std()
     for start, stop in sequences:
-        max_error = errors[start:stop].max()
+        max_error = errors[start:stop + 1].max()
         score = (max_error - threshold) / denominator
         anomalies.append([index[start], index[stop], score])
 
