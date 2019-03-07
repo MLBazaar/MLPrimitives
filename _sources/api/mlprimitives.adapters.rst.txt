@@ -17,5 +17,6 @@ Submodules
    mlprimitives.adapters.keras
    mlprimitives.adapters.lightfm
    mlprimitives.adapters.networkx
+   mlprimitives.adapters.pandas
    mlprimitives.adapters.skimage
 

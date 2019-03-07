@@ -1,0 +1,7 @@
+mlprimitives.adapters.pandas module
+===================================
+
+.. automodule:: mlprimitives.adapters.pandas
+    :members:
+    :undoc-members:
+    :show-inheritance:
