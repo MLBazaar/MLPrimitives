@@ -295,11 +295,18 @@
 
     <span class="n">features</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">agg_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trans_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">copy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="o">=</span> <span class="n">encode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span> <span class="o">=</span> <span class="n">remove_low_information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span> <span class="o">=</span> <span class="n">time_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span> <span class="o">=</span> <span class="n">agg_primitives</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span> <span class="o">=</span> <span class="n">trans_primitives</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -324,7 +331,7 @@
         <span class="k">if</span> <span class="n">entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">X</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="n">entities</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">target_entity</span><span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+                <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
             <span class="p">}</span>
 
         <span class="k">if</span> <span class="n">relationships</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -332,33 +339,38 @@
 
         <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">EntitySet</span><span class="p">(</span><span class="s1">&#39;entityset&#39;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DFS.dfs"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.dfs">[docs]</a>    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DFS.dfs"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.dfs">[docs]</a>    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entities</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">entityset</span><span class="p">:</span>
+            <span class="n">target_entity</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span>
+
         <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
 
-        <span class="n">target</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">target_entity</span><span class="p">]</span>
-        <span class="n">time_index</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">time_index</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">index</span>
-
+        <span class="n">instance_ids</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">time_index</span><span class="p">:</span>
-            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">df</span><span class="p">[[</span><span class="n">index</span><span class="p">,</span> <span class="n">time_index</span><span class="p">]]</span>
-
-        <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
+            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span>
             <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
             <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
             <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
             <span class="n">target_entity</span><span class="o">=</span><span class="n">target_entity</span><span class="p">,</span>
             <span class="n">features_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span>
+            <span class="n">agg_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span><span class="p">,</span>
+            <span class="n">trans_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span>
         <span class="p">)</span>
 
         <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
             <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span>
+            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">:</span>
@@ -373,13 +385,43 @@
         <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
 
+        <span class="n">instance_ids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
+            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
         <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
             <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">X</span></div></div>
+
+
+<div class="viewcode-block" id="entity_from_dataframe"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.entity_from_dataframe">[docs]</a><span class="k">def</span> <span class="nf">entity_from_dataframe</span><span class="p">(</span><span class="n">entityset</span><span class="p">,</span> <span class="n">entityset_id</span><span class="p">,</span> <span class="n">entity_id</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">variable_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">make_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">secondary_time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">already_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">entityset</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">EntitySet</span><span class="p">(</span><span class="n">entityset_id</span><span class="p">)</span>
+
+    <span class="n">entityset</span><span class="o">.</span><span class="n">entity_from_dataframe</span><span class="p">(</span><span class="n">entity_id</span><span class="p">,</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">index</span><span class="p">,</span> <span class="n">variable_types</span><span class="p">,</span>
+                                    <span class="n">make_index</span><span class="p">,</span> <span class="n">time_index</span><span class="p">,</span> <span class="n">secondary_time_index</span><span class="p">,</span>
+                                    <span class="n">already_sorted</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entityset</span></div>
+
+
+<div class="viewcode-block" id="add_relationship"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.add_relationship">[docs]</a><span class="k">def</span> <span class="nf">add_relationship</span><span class="p">(</span><span class="n">entityset</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">parent_column</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">child_column</span><span class="p">):</span>
+    <span class="n">parent_variable</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="n">parent_column</span><span class="p">]</span>
+    <span class="n">child_variable</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">child</span><span class="p">][</span><span class="n">child_column</span><span class="p">]</span>
+    <span class="n">relationship</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Relationship</span><span class="p">(</span><span class="n">parent_variable</span><span class="p">,</span> <span class="n">child_variable</span><span class="p">)</span>
+    <span class="n">entityset</span><span class="o">.</span><span class="n">add_relationship</span><span class="p">(</span><span class="n">relationship</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entityset</span></div>
 </pre></div>
 
            </div>
