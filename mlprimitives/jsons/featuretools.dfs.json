@@ -19,7 +19,7 @@
             },
             {
                 "name": "target_entity",
-                "default": "X",
+                "default": null,
                 "type": "str"
             },
             {
@@ -48,7 +48,7 @@
             },
             {
                 "name": "target_entity",
-                "default": "X",
+                "default": null,
                 "type": "str"
             },
             {
@@ -76,6 +76,26 @@
     },
     "hyperparameters": {
         "fixed": {
+            "target_entity": {
+                "type": "str",
+                "default": "X"
+            },
+            "index": {
+                "type": "str",
+                "default": null
+            },
+            "time_index": {
+                "type": "str",
+                "default": null
+            },
+            "agg_primitives": {
+                "type": "list",
+                "default": null
+            },
+            "trans_primitives": {
+                "type": "list",
+                "default": null
+            },
             "copy": {
                 "type": "bool",
                 "default": false

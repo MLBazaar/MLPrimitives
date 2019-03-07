@@ -8,11 +8,18 @@ class DFS(object):
 
     features = None
 
-    def __init__(self, max_depth=None, encode=True, remove_low_information=True, copy=False):
+    def __init__(self, max_depth=None, encode=True, remove_low_information=True,
+                 target_entity=None, index=None, time_index=None,
+                 agg_primitives=None, trans_primitives=None, copy=True):
         self.copy = copy
         self.max_depth = max_depth
         self.encode = encode
         self.remove_low_information = remove_low_information
+        self.target_entity = target_entity
+        self.index = index
+        self.time_index = time_index
+        self.agg_primitives = agg_primitives
+        self.trans_primitives = trans_primitives
 
     def __repr__(self):
         return (
@@ -37,7 +44,7 @@ class DFS(object):
         if entities is None:
             X, index = self._get_index(X)
             entities = {
-                target_entity: (X, index)
+                'X': (X, index)
             }
 
         if relationships is None:
@@ -45,33 +52,38 @@ class DFS(object):
 
         return ft.EntitySet('entityset', entities, relationships)
 
-    def dfs(self, X=None, target_entity='X', entityset=None, entities=None, relationships=None):
+    def dfs(self, X=None, target_entity=None, entityset=None, entities=None, relationships=None):
+        if not entities and not entityset:
+            target_entity = 'X'
+        else:
+            target_entity = target_entity or self.target_entity
+
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
-        target = entityset[target_entity]
-        time_index = target.time_index
-        index = target.index
-
+        instance_ids = None
         cutoff_time = None
-        if time_index:
-            cutoff_time = target.df[[index, time_index]]
-
-        instance_ids = X[index].values.copy()
+        if self.time_index:
+            cutoff_time = X[[self.index, self.time_index]]
+        elif self.index:
+            instance_ids = X[self.index]
 
         self.features = ft.dfs(
             cutoff_time=cutoff_time,
+            instance_ids=instance_ids,
             max_depth=self.max_depth,
             entityset=entityset,
             target_entity=target_entity,
             features_only=True,
-            instance_ids=instance_ids
+            agg_primitives=self.agg_primitives,
+            trans_primitives=self.trans_primitives
         )
 
         X = ft.calculate_feature_matrix(
             self.features,
             entityset=entityset,
-            instance_ids=instance_ids
+            cutoff_time=cutoff_time,
+            instance_ids=instance_ids,
         )
 
         if self.encode:
@@ -86,10 +98,40 @@ class DFS(object):
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
+        instance_ids = None
+        cutoff_time = None
+        if self.time_index:
+            cutoff_time = X[[self.index, self.time_index]]
+        elif self.index:
+            instance_ids = X[self.index]
+
         X = ft.calculate_feature_matrix(
             self.features,
             entityset=entityset,
-            instance_ids=X.index.values
+            cutoff_time=cutoff_time,
+            instance_ids=instance_ids,
         )
 
         return X
+
+
+def entity_from_dataframe(entityset, entityset_id, entity_id, dataframe, index=None,
+                          variable_types=None, make_index=False, time_index=None,
+                          secondary_time_index=None, already_sorted=False):
+    if entityset is None:
+        entityset = ft.EntitySet(entityset_id)
+
+    entityset.entity_from_dataframe(entity_id, dataframe.copy(), index, variable_types,
+                                    make_index, time_index, secondary_time_index,
+                                    already_sorted)
+
+    return entityset
+
+
+def add_relationship(entityset, parent, parent_column, child, child_column):
+    parent_variable = entityset[parent][parent_column]
+    child_variable = entityset[child][child_column]
+    relationship = ft.Relationship(parent_variable, child_variable)
+    entityset.add_relationship(relationship)
+
+    return entityset
