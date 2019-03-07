@@ -1,4 +1,3 @@
-
 def resample(df, rule, time_index, groupby=None, aggregation='mean'):
     """pd.DataFrame.resample adapter.
 
@@ -47,6 +46,7 @@ def unstack(df, level=-1, reset_index=True):
     Args:
         df (pandas.DataFrame): DataFrame to unstack.
         level (str, int or list): Level(s) of index to unstack, can pass level name
+        reset_index (bool): Whether to reset the index after unstacking
 
     Returns:
         pandas.Dataframe: unstacked dataframe
