@@ -62,12 +62,12 @@ development_requires = [
     'ipython==6.5.0',
 
     # style check
-    'flake8>=3.5.0',
+    'flake8>=3.7.7',
     'isort>=4.3.4',
 
     # fix style issues
     'autoflake>=1.1',
-    'autopep8==1.3.4',    # Keep fixed because of flake8 and pycodestyle
+    'autopep8>=1.4.3',
 
     # distribute on PyPI
     'twine>=1.10.0',
@@ -100,7 +100,7 @@ setup(
     description="MLBlocks Primitives",
     entry_points = {
         'console_scripts': [
-            'mlprimitives=mlprimitives:_main'
+            'mlprimitives=mlprimitives.cli:main'
         ],
         'mlprimitives': [
             'jsons_path=mlprimitives:MLPRIMITIVES_JSONS_PATH'

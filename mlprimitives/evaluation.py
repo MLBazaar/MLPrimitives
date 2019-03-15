@@ -12,7 +12,10 @@ import logging
 from copy import copy
 
 import numpy as np
-from mlblocks import MLPipeline, datasets
+from mlblocks import MLPipeline
+from sklearn import metrics
+
+from mlprimitives.datasets import load_dataset
 
 LOGGER = logging.getLogger(__name__)
 
@@ -30,12 +33,6 @@ def build_pipeline(pipeline_spec):
         pipeline.set_hyperparameters(hyperparameters)
 
     return pipeline
-
-
-def load_dataset(name):
-    loader_name = 'load_' + name
-    loader = getattr(datasets, loader_name)
-    return loader()
 
 
 def get_value(dataset, value):
@@ -57,6 +54,17 @@ def get_context(dataset, context_spec):
     return context
 
 
+def get_scorer(name, kwargs):
+    metric = getattr(metrics, name, None)
+    if not metric:
+        raise ValueError('Unknown metric: "{}"'.format(name))
+
+    def scorer(obs, exp):
+        return metric(obs, exp, **kwargs)
+
+    return scorer
+
+
 def score_pipeline(pipeline_metadata, n_splits=5):
     if isinstance(pipeline_metadata, str):
         LOGGER.info('Loading pipeline %s', pipeline_metadata)
@@ -67,6 +75,13 @@ def score_pipeline(pipeline_metadata, n_splits=5):
     dataset = validation['dataset']
     LOGGER.info('Loading dataset %s', dataset)
     dataset = load_dataset(dataset)
+    metric = validation.get('metric')
+    metric_args = validation.get('metric_args', dict())
+    if metric:
+        scorer = get_scorer(metric, metric_args)
+    else:
+        scorer = dataset.score
+        metric = dataset.metric
 
     scores = list()
     splits = dataset.get_splits(n_splits)
@@ -80,8 +95,8 @@ def score_pipeline(pipeline_metadata, n_splits=5):
         pipeline.fit(X_train, y_train, **context)
         predictions = pipeline.predict(X_test, **context)
 
-        score = dataset.score(y_test, predictions)
-        LOGGER.info('Obtained score %s', score)
+        score = scorer(y_test, predictions)
+        LOGGER.info('Split %s %s: %s', split + 1, metric, score)
 
         scores.append(score)
 
