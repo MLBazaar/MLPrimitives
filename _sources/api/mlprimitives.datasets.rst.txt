@@ -1,0 +1,7 @@
+mlprimitives.datasets module
+============================
+
+.. automodule:: mlprimitives.datasets
+    :members:
+    :undoc-members:
+    :show-inheritance:

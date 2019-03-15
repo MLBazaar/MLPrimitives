@@ -1,0 +1,7 @@
+mlprimitives.cli module
+=======================
+
+.. automodule:: mlprimitives.cli
+    :members:
+    :undoc-members:
+    :show-inheritance:

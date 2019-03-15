@@ -178,6 +178,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api/mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.cli.html">mlprimitives.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.datasets.html">mlprimitives.datasets module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
 </ul>
@@ -323,6 +325,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.cli.html#mlprimitives.cli.ArgumentParser">ArgumentParser (class in mlprimitives.cli)</a>
+</li>
       <li><a href="api/mlprimitives.candidates.audio_padding.html#mlprimitives.candidates.audio_padding.AudioPadder">AudioPadder (class in mlprimitives.candidates.audio_padding)</a>
 </li>
   </ul></td>
@@ -365,11 +369,21 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.data">data (mlprimitives.datasets.Dataset attribute)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset">Dataset (class in mlprimitives.datasets)</a>
+</li>
       <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer">DatetimeFeaturizer (class in mlprimitives.custom.feature_extraction)</a>
 </li>
       <li><a href="api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassDecoder.decode">decode() (mlprimitives.custom.preprocessing.ClassDecoder method)</a>
 </li>
       <li><a href="api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.deltas">deltas() (in module mlprimitives.custom.timeseries_anomalies)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.describe">describe() (mlprimitives.datasets.Dataset method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.description">description (mlprimitives.datasets.Dataset attribute)</a>
 </li>
       <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features">detect_features() (mlprimitives.custom.feature_extraction.DatetimeFeaturizer method)</a>
 
@@ -377,8 +391,6 @@
         <li><a href="api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features">(mlprimitives.custom.feature_extraction.FeatureExtractor method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner.detect_language">detect_language() (mlprimitives.custom.text.TextCleaner static method)</a>
 </li>
       <li><a href="api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS">DFS (class in mlprimitives.adapters.featuretools)</a>
@@ -398,6 +410,8 @@
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.energy_entropy">energy_entropy() (in module mlprimitives.candidates.audio_featurization)</a>
 </li>
       <li><a href="api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.entity_from_dataframe">entity_from_dataframe() (in module mlprimitives.adapters.featuretools)</a>
+</li>
+      <li><a href="api/mlprimitives.cli.html#mlprimitives.cli.ArgumentParser.error">error() (mlprimitives.cli.ArgumentParser method)</a>
 </li>
       <li><a href="api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.ESTIMATOR">ESTIMATOR (mlprimitives.custom.feature_selection.EstimatorFeatureSelector attribute)</a>, <a href="api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.ESTIMATOR">[1]</a>
 
@@ -499,9 +513,13 @@
 </li>
       <li><a href="api/mlprimitives.candidates.timeseries_errors.html#mlprimitives.candidates.timeseries_errors.get_forecast_errors">get_forecast_errors() (in module mlprimitives.candidates.timeseries_errors)</a>
 </li>
+      <li><a href="api/mlprimitives.custom.trivial.html#mlprimitives.custom.trivial.TrivialPredictor.get_length">get_length() (mlprimitives.custom.trivial.TrivialPredictor method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/mlprimitives.custom.trivial.html#mlprimitives.custom.trivial.TrivialPredictor.get_length">get_length() (mlprimitives.custom.trivial.TrivialPredictor method)</a>
+      <li><a href="api/mlprimitives.evaluation.html#mlprimitives.evaluation.get_scorer">get_scorer() (in module mlprimitives.evaluation)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.get_splits">get_splits() (mlprimitives.datasets.Dataset method)</a>
 </li>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner.get_stopwords">get_stopwords() (mlprimitives.custom.text.TextCleaner class method)</a>
 </li>
@@ -541,9 +559,35 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.adapters.lightfm.html#mlprimitives.adapters.lightfm.LightFM">LightFM (class in mlprimitives.adapters.lightfm)</a>
 </li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_amazon">load_amazon() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_boston">load_boston() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_boston_multitask">load_boston_multitask() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_dataset">load_dataset() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_dic28">load_dic28() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_handgeometry">load_handgeometry() (in module mlprimitives.datasets)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/mlprimitives.evaluation.html#mlprimitives.evaluation.load_dataset">load_dataset() (in module mlprimitives.evaluation)</a>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_iris">load_iris() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_jester">load_jester() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_newsgroups">load_newsgroups() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_nomination">load_nomination() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_personae">load_personae() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_umls">load_umls() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_usps">load_usps() (in module mlprimitives.datasets)</a>
+</li>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.load_wikiqa">load_wikiqa() (in module mlprimitives.datasets)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -551,6 +595,8 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.cli.html#mlprimitives.cli.main">main() (in module mlprimitives.cli)</a>
+</li>
       <li><a href="api/mlprimitives.html#module-mlprimitives">mlprimitives (module)</a>
 </li>
       <li><a href="api/mlprimitives.adapters.html#module-mlprimitives.adapters">mlprimitives.adapters (module)</a>
@@ -577,13 +623,15 @@
 </li>
       <li><a href="api/mlprimitives.candidates.audio_padding.html#module-mlprimitives.candidates.audio_padding">mlprimitives.candidates.audio_padding (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.dsp.html#module-mlprimitives.candidates.dsp">mlprimitives.candidates.dsp (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.timeseries.html#module-mlprimitives.candidates.timeseries">mlprimitives.candidates.timeseries (module)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.timeseries_errors.html#module-mlprimitives.candidates.timeseries_errors">mlprimitives.candidates.timeseries_errors (module)</a>
+</li>
+      <li><a href="api/mlprimitives.cli.html#module-mlprimitives.cli">mlprimitives.cli (module)</a>
 </li>
       <li><a href="api/mlprimitives.custom.html#module-mlprimitives.custom">mlprimitives.custom (module)</a>
 </li>
@@ -603,6 +651,8 @@
 </li>
       <li><a href="api/mlprimitives.custom.trivial.html#module-mlprimitives.custom.trivial">mlprimitives.custom.trivial (module)</a>
 </li>
+      <li><a href="api/mlprimitives.datasets.html#module-mlprimitives.datasets">mlprimitives.datasets (module)</a>
+</li>
       <li><a href="api/mlprimitives.evaluation.html#module-mlprimitives.evaluation">mlprimitives.evaluation (module)</a>
 </li>
       <li><a href="api/mlprimitives.utils.html#module-mlprimitives.utils">mlprimitives.utils (module)</a>
@@ -612,6 +662,10 @@
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.name">name (mlprimitives.datasets.Dataset attribute)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/mlprimitives.candidates.dsp.html#mlprimitives.candidates.dsp.next_power_of_2">next_power_of_2() (in module mlprimitives.candidates.dsp)</a>
 </li>
@@ -685,6 +739,8 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.score">score() (mlprimitives.datasets.Dataset method)</a>
+</li>
       <li><a href="api/mlprimitives.evaluation.html#mlprimitives.evaluation.score_pipeline">score_pipeline() (in module mlprimitives.evaluation)</a>
 </li>
       <li><a href="api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.selector">selector (mlprimitives.custom.feature_selection.EstimatorFeatureSelector attribute)</a>
@@ -693,10 +749,10 @@
 </li>
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.spectral_centroid_and_spread">spectral_centroid_and_spread() (in module mlprimitives.candidates.audio_featurization)</a>
 </li>
-      <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.spectral_entropy">spectral_entropy() (in module mlprimitives.candidates.audio_featurization)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.spectral_entropy">spectral_entropy() (in module mlprimitives.candidates.audio_featurization)</a>
+</li>
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.spectral_flux">spectral_flux() (in module mlprimitives.candidates.audio_featurization)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.audio_featurization.html#mlprimitives.candidates.audio_featurization.spectral_rolloff">spectral_rolloff() (in module mlprimitives.candidates.audio_featurization)</a>
@@ -713,6 +769,8 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.target">target (mlprimitives.datasets.Dataset attribute)</a>
+</li>
       <li><a href="api/mlprimitives.custom.text.html#mlprimitives.custom.text.TextCleaner">TextCleaner (class in mlprimitives.custom.text)</a>
 </li>
       <li><a href="api/mlprimitives.candidates.timeseries.html#mlprimitives.candidates.timeseries.time_segments_average">time_segments_average() (in module mlprimitives.candidates.timeseries)</a>

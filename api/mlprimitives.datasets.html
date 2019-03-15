@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mlprimitives.datasets module &mdash; MLPrimitives 0.1.7-dev documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="mlprimitives.evaluation module" href="mlprimitives.evaluation.html" />
+    <link rel="prev" title="mlprimitives.cli module" href="mlprimitives.cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#from-sources">From sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install.html#development-setup">Development Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#creating-a-pipeline">Creating a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#tunable-hyperparameters">Tunable Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#setting-hyperparameters">Setting Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#making-predictions">Making predictions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/concepts.html">Basic Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#what-is-a-primitive">What is a primitive?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#types-of-primitives">Types of Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#function-primitives">Function Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#class-primitives">Class Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/concepts.html#types-of-integrations">Types of Integrations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#directly-integrable-primitives">Directly integrable primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#primitives-that-require-a-python-adapter">Primitives that require a Python adapter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#id1">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/concepts.html#custom-primitives">Custom primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#id2">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/concepts.html#candidate-primitives">Candidate primitives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../community/welcome.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/welcome.html#types-of-contributions">Types of contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../community/welcome.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../community/welcome.html#contribute-code">Contribute code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/contributing.html#general-coding-guidelines">General Coding Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/annotations.html">Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#creating-an-annotation-for-a-new-primitive">Creating an annotation for a new primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#modifying-an-existing-annotation">Modifying an existing annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/annotations.html#creating-a-new-version-of-an-existing-annotation">Creating a new version of an existing annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/adapters.html">Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/adapters.html#creating-a-new-adapter">Creating a new Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/adapters.html#modifying-an-existing-adapter">Modifying an existing Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/custom.html">Custom Primitives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../community/custom.html#creating-a-custom-primitive">Creating a Custom Primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../community/custom.html#modifying-a-custom-primitive">Modifying a Custom Primitive</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="mlprimitives.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.cli.html">mlprimitives.cli module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.datasets module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id1">0.1.6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#general-improvements">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-primitives">New Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id2">0.1.5</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id3">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id4">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id5">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id6">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id7">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id8">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#new-features">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id9">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id10">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id11">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id12">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id13">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../history.html#id14">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../history.html#id15">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
+        
+      <li>mlprimitives.datasets module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.datasets.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mlprimitives.datasets">
+<span id="mlprimitives-datasets-module"></span><h1>mlprimitives.datasets module<a class="headerlink" href="#module-mlprimitives.datasets" title="Permalink to this headline">¶</a></h1>
+<p>Datasets module.</p>
+<p>This module contains functions that allow loading datasets for easy
+testing of pipelines and primitives over multiple data modalities
+and task types.</p>
+<p>The available datasets by data modality and task type are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="26%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Dataset</th>
+<th class="head">Data Modality</th>
+<th class="head">Task Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Amazon</td>
+<td>Graph</td>
+<td>Community Detection</td>
+</tr>
+<tr class="row-odd"><td>DIC28</td>
+<td>Graph</td>
+<td>Graph Matching</td>
+</tr>
+<tr class="row-even"><td>UMLs</td>
+<td>Graph</td>
+<td>Link Prediction</td>
+</tr>
+<tr class="row-odd"><td>Nomination</td>
+<td>Graph</td>
+<td>Vertex Nomination</td>
+</tr>
+<tr class="row-even"><td>USPS</td>
+<td>Image</td>
+<td>Classification</td>
+</tr>
+<tr class="row-odd"><td>Hand Geometry</td>
+<td>Image</td>
+<td>Regression</td>
+</tr>
+<tr class="row-even"><td>Iris</td>
+<td>Single Table</td>
+<td>Classification</td>
+</tr>
+<tr class="row-odd"><td>Jester</td>
+<td>Single Table</td>
+<td>Collaborative Filtering</td>
+</tr>
+<tr class="row-even"><td>Boston</td>
+<td>Single Table</td>
+<td>Regression</td>
+</tr>
+<tr class="row-odd"><td>Boston Multitask</td>
+<td>Single Table</td>
+<td>Multitask Regression</td>
+</tr>
+<tr class="row-even"><td>Wiki QA</td>
+<td>Multi Table</td>
+<td>Classification</td>
+</tr>
+<tr class="row-odd"><td>Personae</td>
+<td>Text</td>
+<td>Classification</td>
+</tr>
+<tr class="row-even"><td>News Groups</td>
+<td>Text</td>
+<td>Classification</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="mlprimitives.datasets.Dataset">
+<em class="property">class </em><code class="descclassname">mlprimitives.datasets.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>description</em>, <em>data</em>, <em>target</em>, <em>score</em>, <em>shuffle=True</em>, <em>stratify=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataset class.</p>
+<p>This class represents the abstraction of a dataset and works as
+a container of all the things needed in order to use a dataset
+for testing.</p>
+<p>Among other things, it includes the actual dataset data, information
+about its origin, a score function that works for this dataset,
+and a method to split the data in multiple ways for goodnes-of-fit
+evaluation.</p>
+<dl class="attribute">
+<dt id="mlprimitives.datasets.Dataset.name">
+<code class="descname">name</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.datasets.Dataset.description">
+<code class="descname">description</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description about the data that composes this dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.datasets.Dataset.data">
+<code class="descname">data</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numpy array or pandas DataFrame containing all the data of
+this dataset, excluding the labels or target values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">array-like</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mlprimitives.datasets.Dataset.target">
+<code class="descname">target</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numpy array or pandas Series containing the expected labels
+or values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">array-like</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">**kwargs</code></dt>
+<dd><p>Any additional keyword argument passed on initailization is also
+available as instance attributes.</p>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> (<em>str</em>) – Short description about the data that composes this dataset.
+The first line of the description is expected to be a human friendly
+name for the dataset, and will be set as the <cite>name</cite> attribute.</li>
+<li><strong>data</strong> (<em>array-like</em>) – Numpy array or pandas DataFrame containing all the data of
+this dataset, excluding the labels or target values.</li>
+<li><strong>target</strong> (<em>array-like</em>) – Numpy array or pandas Series containing the expected labels
+or values</li>
+<li><strong>score</strong> (<em>callable</em>) – Function that will be used to compute the score of this dataset.</li>
+<li><strong>shuffle</strong> (<em>bool</em>) – Whether or not to shuffle the data before splitting.</li>
+<li><strong>stratify</strong> (<em>bool</em>) – Whther to use a stratified or regular KFold for splitting.</li>
+<li><strong>**kwargs</strong> – Any additional keyword argument passed on initialization will be made
+available as instance attributes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="mlprimitives.datasets.Dataset.describe">
+<code class="descname">describe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset.describe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the description of this Dataset on stdout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.datasets.Dataset.get_splits">
+<code class="descname">get_splits</code><span class="sig-paren">(</span><em>n_splits=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset.get_splits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset.get_splits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return splits of this dataset ready for Cross Validation.</p>
+<p>If n_splits is 1, a tuple containing the X for train and test
+and the y for train and test is returned.
+Otherwise, if n_splits is bigger than 1, a list of such tuples
+is returned, one for each split.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_splits</strong> (<em>int</em>) – Number of times that the data needs to be splitted.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">if n_splits is 1, a tuple containing the X for train and test
+and the y for train and test is returned.
+Otherwise, if n_splits is bigger than 1, a list of such tuples
+is returned, one for each split.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple or list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mlprimitives.datasets.Dataset.score">
+<code class="descname">score</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scoring function for this dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>**kwargs</strong> (<em>*args</em><em>,</em>) – Any given arguments and keyword arguments will be</li>
+<li><strong>passed to the given scoring function.</strong> (<em>directly</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The computed score.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_amazon">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_amazon</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_amazon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_amazon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amazon product co-purchasing network and ground-truth communities.</p>
+<p>Network was collected by crawling Amazon website. It is based on Customers Who Bought
+This Item Also Bought feature of the Amazon website. If a product i is frequently
+co-purchased with product j, the graph contains an undirected edge from i to j.
+Each product category provided by Amazon defines each ground-truth community.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_boston">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_boston</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_boston"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_boston" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boston House Prices Dataset.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_boston_multitask">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_boston_multitask</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_boston_multitask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_boston_multitask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boston House Prices Dataset with a synthetic multitask output.</p>
+<p>The multitask output is obtained by applying a linear transformation
+to the original y and adding it as a second output column.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_dataset">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_dataset</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_dic28">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_dic28</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_dic28"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_dic28" title="Permalink to this definition">¶</a></dt>
+<dd><p>DIC28 Dataset from Pajek.</p>
+<p>This network represents connections among English words in a dictionary.
+It was generated from Knuth’s dictionary. Two words are connected by an
+edge if we can reach one from the other by
+- changing a single character (e. g., work - word)
+- adding / removing a single character (e. g., ever - fever).</p>
+<p>There exist 52,652 words (vertices in a network) having 2 up to 8 characters
+in the dictionary. The obtained network has 89038 edges.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_handgeometry">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_handgeometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_handgeometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_handgeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hand Geometry Dataset.</p>
+<p>The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)
+containing 112 224x224 RGB photos of hands, and the target is a 1d numpy
+float array containing the width of the wrist in centimeters.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_iris">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_iris</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_iris"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_iris" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iris Dataset.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_jester">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_jester</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_jester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_jester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ratings from the Jester Online Joke Recommender System.</p>
+<p>This dataset consists of over 1.7 million instances of (user_id, item_id, rating)
+triples, which is split 50-50 into train and test data.</p>
+<p>source: “University of California Berkeley, CA”
+sourceURI: “<a class="reference external" href="http://eigentaste.berkeley.edu/dataset/">http://eigentaste.berkeley.edu/dataset/</a>”</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_newsgroups">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_newsgroups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_newsgroups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_newsgroups" title="Permalink to this definition">¶</a></dt>
+<dd><p>20 News Groups Dataset.</p>
+<p>The data of this dataset is a 1d numpy array vector containing the texts
+from 11314 newsgroups posts, and the target is a 1d numpy integer array
+containing the label of one of the 20 topics that they are about.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_nomination">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_nomination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_nomination"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_nomination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample 1 of graph vertex nomination data from MII Lincoln Lab.</p>
+<p>Data consists of one graph whose nodes contain two attributes, attr1 and attr2.
+Associated with each node is a label that has to be learned and predicted.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_personae">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_personae</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_personae"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_personae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Personae Dataset.</p>
+<p>The data of this dataset is a 2d numpy array vector containing 145 entries
+that include texts written by Dutch users in Twitter, with some additional
+information about the author, and the target is a 1d numpy binary integer
+array indicating whether the author was extrovert or not.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_umls">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_umls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_umls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_umls" title="Permalink to this definition">¶</a></dt>
+<dd><p>UMLs Dataset.</p>
+<p>The data consists of information about a 135 Graph and the relations between
+their nodes given as a DataFrame with three columns, source, target and type,
+indicating which nodes are related and with which type of link. The target is
+a 1d numpy binary integer array indicating whether the indicated link exists
+or not.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_usps">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_usps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_usps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_usps" title="Permalink to this definition">¶</a></dt>
+<dd><p>USPs Digits Dataset.</p>
+<p>The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)
+containing 9298 224x224 RGB photos of handwritten digits, and the target is
+a 1d numpy integer array containing the label of the digit represented in
+the image.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.datasets.load_wikiqa">
+<code class="descclassname">mlprimitives.datasets.</code><code class="descname">load_wikiqa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#load_wikiqa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.load_wikiqa" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Challenge Dataset for Open-Domain Question Answering.</p>
+<p>WikiQA dataset is a publicly available set of question and sentence (QS) pairs,
+collected and annotated for research on open-domain question answering.</p>
+<p>source: “Microsoft”
+sourceURI: “<a class="reference external" href="https://www.microsoft.com/en-us/research/publication/wikiqa-a-challenge-dataset-for-open-domain-question-answering">https://www.microsoft.com/en-us/research/publication/wikiqa-a-challenge-dataset-for-open-domain-question-answering</a>/#”</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mlprimitives.evaluation.html" class="btn btn-neutral float-right" title="mlprimitives.evaluation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mlprimitives.cli.html" class="btn btn-neutral float-left" title="mlprimitives.cli module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives package &mdash; MLPrimitives 0.1.7-dev documentation</title>
+  <title>mlprimitives.cli module &mdash; MLPrimitives 0.1.7-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.adapters package" href="mlprimitives.adapters.html" />
-    <link rel="prev" title="Contributing Custom Primitives" href="../community/custom.html" /> 
+    <link rel="next" title="mlprimitives.datasets module" href="mlprimitives.datasets.html" />
+    <link rel="prev" title="mlprimitives.custom.trivial module" href="mlprimitives.custom.trivial.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -162,8 +162,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="mlprimitives.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
 </ul>
@@ -178,8 +178,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.cli.html">mlprimitives.cli module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mlprimitives.cli module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.datasets.html">mlprimitives.datasets module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
@@ -271,14 +271,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>mlprimitives package</li>
+          <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
+        
+      <li>mlprimitives.cli module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.cli.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -292,66 +294,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives">
-<span id="mlprimitives-package"></span><h1>mlprimitives package<a class="headerlink" href="#module-mlprimitives" title="Permalink to this headline">¶</a></h1>
-<p>Top-level package for MLPrimitives.</p>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.community.html">mlprimitives.adapters.community module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.cv2.html">mlprimitives.adapters.cv2 module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.featuretools.html">mlprimitives.adapters.featuretools module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.keras.html">mlprimitives.adapters.keras module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.lightfm.html">mlprimitives.adapters.lightfm module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.networkx.html">mlprimitives.adapters.networkx module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.pandas.html">mlprimitives.adapters.pandas module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.skimage.html">mlprimitives.adapters.skimage module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.audio_featurization.html">mlprimitives.candidates.audio_featurization module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.audio_padding.html">mlprimitives.candidates.audio_padding module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.dsp.html">mlprimitives.candidates.dsp module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.timeseries.html">mlprimitives.candidates.timeseries module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.timeseries_errors.html">mlprimitives.candidates.timeseries_errors module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.custom.html">mlprimitives.custom package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlprimitives.custom.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.counters.html">mlprimitives.custom.counters module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.feature_extraction.html">mlprimitives.custom.feature_extraction module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.feature_selection.html">mlprimitives.custom.feature_selection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.preprocessing.html">mlprimitives.custom.preprocessing module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.text.html">mlprimitives.custom.text module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.timeseries_anomalies.html">mlprimitives.custom.timeseries_anomalies module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.timeseries_preprocessing.html">mlprimitives.custom.timeseries_preprocessing module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.custom.trivial.html">mlprimitives.custom.trivial module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.cli.html">mlprimitives.cli module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.datasets.html">mlprimitives.datasets module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mlprimitives.utils.html">mlprimitives.utils module</a></li>
-</ul>
-</div>
-</div>
+  <div class="section" id="module-mlprimitives.cli">
+<span id="mlprimitives-cli-module"></span><h1>mlprimitives.cli module<a class="headerlink" href="#module-mlprimitives.cli" title="Permalink to this headline">¶</a></h1>
+<p>MLPrimitives Command Line Interface module.</p>
+<dl class="class">
+<dt id="mlprimitives.cli.ArgumentParser">
+<em class="property">class </em><code class="descclassname">mlprimitives.cli.</code><code class="descname">ArgumentParser</code><span class="sig-paren">(</span><em>prog=None</em>, <em>usage=None</em>, <em>description=None</em>, <em>epilog=None</em>, <em>parents=[]</em>, <em>formatter_class=&lt;class 'argparse.HelpFormatter'&gt;</em>, <em>prefix_chars='-'</em>, <em>fromfile_prefix_chars=None</em>, <em>argument_default=None</em>, <em>conflict_handler='error'</em>, <em>add_help=True</em>, <em>allow_abbrev=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/cli.html#ArgumentParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.cli.ArgumentParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.ArgumentParser</span></code></p>
+<dl class="method">
+<dt id="mlprimitives.cli.ArgumentParser.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message: string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/cli.html#ArgumentParser.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.cli.ArgumentParser.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a usage message incorporating the message to stderr and
+exits.</p>
+<p>If you override this in a subclass, it should not return – it
+should either exit or raise an exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mlprimitives.cli.main">
+<code class="descclassname">mlprimitives.cli.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/cli.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.cli.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -362,10 +327,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.adapters.html" class="btn btn-neutral float-right" title="mlprimitives.adapters package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.datasets.html" class="btn btn-neutral float-right" title="mlprimitives.datasets module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../community/custom.html" class="btn btn-neutral float-left" title="Contributing Custom Primitives" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.custom.trivial.html" class="btn btn-neutral float-left" title="mlprimitives.custom.trivial module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

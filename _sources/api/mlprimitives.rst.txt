@@ -20,6 +20,8 @@ Submodules
 
 .. toctree::
 
+   mlprimitives.cli
+   mlprimitives.datasets
    mlprimitives.evaluation
    mlprimitives.utils
 

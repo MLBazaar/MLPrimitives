@@ -177,6 +177,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/mlprimitives.cli.html">mlprimitives.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/mlprimitives.datasets.html">mlprimitives.datasets module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
 </ul>
@@ -299,7 +301,10 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">mlblocks</span> <span class="k">import</span> <span class="n">MLPipeline</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">mlblocks</span> <span class="k">import</span> <span class="n">MLPipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">metrics</span>
+
+<span class="kn">from</span> <span class="nn">mlprimitives.datasets</span> <span class="k">import</span> <span class="n">load_dataset</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -317,12 +322,6 @@
         <span class="n">pipeline</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">(</span><span class="n">hyperparameters</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">pipeline</span></div>
-
-
-<div class="viewcode-block" id="load_dataset"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.load_dataset">[docs]</a><span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="n">loader_name</span> <span class="o">=</span> <span class="s1">&#39;load_&#39;</span> <span class="o">+</span> <span class="n">name</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">loader_name</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">loader</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="get_value"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.get_value">[docs]</a><span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -344,6 +343,17 @@
     <span class="k">return</span> <span class="n">context</span></div>
 
 
+<div class="viewcode-block" id="get_scorer"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.get_scorer">[docs]</a><span class="k">def</span> <span class="nf">get_scorer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">metric</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">metric</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown metric: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">scorer</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">exp</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">metric</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scorer</span></div>
+
+
 <div class="viewcode-block" id="score_pipeline"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.score_pipeline">[docs]</a><span class="k">def</span> <span class="nf">score_pipeline</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading pipeline </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">pipeline_metadata</span><span class="p">)</span>
@@ -354,6 +364,13 @@
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span>
     <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading dataset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">metric</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">)</span>
+    <span class="n">metric_args</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric_args&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">metric</span><span class="p">:</span>
+        <span class="n">scorer</span> <span class="o">=</span> <span class="n">get_scorer</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric_args</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">scorer</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">score</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">metric</span>
 
     <span class="n">scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">splits</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_splits</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
@@ -367,8 +384,8 @@
         <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="o">**</span><span class="n">context</span><span class="p">)</span>
 
-        <span class="n">score</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Obtained score </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Split </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">split</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
 
         <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 
