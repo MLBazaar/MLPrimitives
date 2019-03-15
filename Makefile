@@ -86,11 +86,16 @@ install-develop: clean-build clean-pyc ## install the package in editable mode a
 
 .PHONY: lint
 lint: ## check style with flake8 and isort
+	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
+	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
 	flake8 mlprimitives tests
 	isort -c --recursive mlprimitives tests
 
 .PHONY: fix-lint
 fix-lint: ## fix lint issues using autoflake, autopep8, and isort
+	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+
 	find mlprimitives -name '*.py' | xargs autoflake --in-place --remove-all-unused-imports --remove-unused-variables
 	autopep8 --in-place --recursive --aggressive mlprimitives
 	isort --apply --atomic --recursive mlprimitives

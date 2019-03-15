@@ -8,7 +8,10 @@
         "dataset": "umls",
         "context": {
             "graph": "$graph",
-            "node_columns": ["source", "target"]
+            "node_columns": [
+                "source",
+                "target"
+            ]
         }
     },
     "primitives": [

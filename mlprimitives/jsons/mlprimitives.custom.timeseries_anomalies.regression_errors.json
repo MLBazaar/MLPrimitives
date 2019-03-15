@@ -1,12 +1,16 @@
 {
     "name": "mlprimitives.custom.timeseries_anomalies.regression_errors",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Compute an array of absolute errors comparing predictions and expected output. Optionally smooth them using EWMA",
     "classifiers": {
         "type": "postprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["timeseries"],
+    "modalities": [
+        "timeseries"
+    ],
     "primitive": "mlprimitives.custom.timeseries_anomalies.regression_errors",
     "produce": {
         "args": [
@@ -35,7 +39,10 @@
             "smoothing_window": {
                 "type": "float",
                 "default": 0.01,
-                "range": [0.001, 0.1]
+                "range": [
+                    0.001,
+                    0.1
+                ]
             }
         }
     }

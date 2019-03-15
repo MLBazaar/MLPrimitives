@@ -1,12 +1,16 @@
 {
     "name": "mlprimitives.candidates.audio_padding.AudioPadder",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "mlprimitives.candidates.audio_padding.AudioPadder",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "transformer"
     },
-    "modalities": ["audio"],
+    "modalities": [
+        "audio"
+    ],
     "primitive": "mlprimitives.candidates.audio_padding.AudioPadder",
     "fit": {
         "method": "fit",

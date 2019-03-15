@@ -1,6 +1,8 @@
 {
     "name": "pandas.DataFrame.unstack",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html",
     "description": "Call the `df.unstack` method using the indicated level and afterwards join the column names using an underscore.",
     "classifiers": {

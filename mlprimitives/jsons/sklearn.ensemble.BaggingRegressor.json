@@ -1,6 +1,9 @@
 {
     "name": "sklearn.ensemble.BaggingRegressor",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Plamen Valentinov <pvkdeveloper@gmx.com>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html",
     "description": "Scikit-learn BaggingRegressor.",
     "classifiers": {
@@ -60,17 +63,26 @@
             "n_estimators": {
                 "type": "int",
                 "default": 10,
-                "range": [1, 500]
+                "range": [
+                    1,
+                    500
+                ]
             },
             "max_samples": {
                 "type": "float",
                 "default": 1.0,
-                "range": [1.0, 100.0]
+                "range": [
+                    1.0,
+                    100.0
+                ]
             },
             "max_features": {
                 "type": "float",
                 "default": 1.0,
-                "range": [1.0, 1000.0]
+                "range": [
+                    1.0,
+                    1000.0
+                ]
             },
             "bootstrap": {
                 "type": "bool",

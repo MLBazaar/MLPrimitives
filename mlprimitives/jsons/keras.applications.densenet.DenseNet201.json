@@ -1,6 +1,8 @@
 {
     "name": "keras.applications.densenet.DenseNet201",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://keras.io/applications/#densenet",
     "description": "DenseNet models, with weights pre-trained on ImageNet.",
     "classifiers": {

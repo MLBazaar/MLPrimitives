@@ -1,6 +1,8 @@
 {
     "name": "lightfm.LightFM",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "http://lyst.github.io/lightfm/docs/index.html",
     "description": "LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback.",
     "classifiers": {

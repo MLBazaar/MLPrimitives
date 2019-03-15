@@ -1,14 +1,14 @@
 {
-  "metadata": {
-    "name": "sklearn.preprocessing.MinMaxScaler",
-    "data_type": "single_table",
-    "task_type": "regression"
-  },
-  "validation": {
-    "dataset": "boston"
-  },
-  "primitives": [
-    "sklearn.preprocessing.MinMaxScaler",
-    "sklearn.ensemble.RandomForestRegressor"
-  ]
+    "metadata": {
+        "name": "sklearn.preprocessing.MinMaxScaler",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.preprocessing.MinMaxScaler",
+        "sklearn.ensemble.RandomForestRegressor"
+    ]
 }

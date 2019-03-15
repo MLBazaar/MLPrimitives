@@ -1,6 +1,8 @@
 {
     "name": "xgboost.XGBClassifier",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier",
     "description": "Implementation of the scikit-learn API for XGBoost classification.",
     "classifiers": {
