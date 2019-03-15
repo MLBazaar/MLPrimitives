@@ -70,10 +70,9 @@ def _get_parser():
         )
     )
     parser.add_argument('-v', '--verbose', action='count', default=0)
-    parser.set_defaults(action=None)
 
-    subparsers = parser.add_subparsers(title='action', dest='action', help='Action to perform')
-    # subparsers.required = True
+    subparsers = parser.add_subparsers(title='action', help='Action to perform')
+    parser.set_defaults(action=None)
 
     subparser = subparsers.add_parser('test', help='Test a single pipeline.')
     subparser.set_defaults(action=_test)
