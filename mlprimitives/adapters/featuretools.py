@@ -23,8 +23,14 @@ class DFS(object):
 
     def __repr__(self):
         return (
-            "DFS(max_depth={max_depth}, encode={encode},\n"
-            "    remove_low_information={remove_low_information})"
+            "DFS(max_depth={max_depth},\n"
+            "    encode={encode},\n"
+            "    remove_low_information={remove_low_information},\n"
+            "    target_entity={target_entity},\n"
+            "    index={index},\n"
+            "    time_index={time_index},\n"
+            "    agg_primitives={agg_primitives},\n"
+            "    trans_primitives={trans_primitives})"
         ).format(**self.__dict__)
 
     def _get_index(self, X):
@@ -67,6 +73,8 @@ class DFS(object):
             cutoff_time = X[[self.index, self.time_index]]
         elif self.index:
             instance_ids = X[self.index]
+        else:
+            instance_ids = X.index.values
 
         self.features = ft.dfs(
             cutoff_time=cutoff_time,
@@ -104,6 +112,8 @@ class DFS(object):
             cutoff_time = X[[self.index, self.time_index]]
         elif self.index:
             instance_ids = X[self.index]
+        else:
+            instance_ids = X.index.values
 
         X = ft.calculate_feature_matrix(
             self.features,
