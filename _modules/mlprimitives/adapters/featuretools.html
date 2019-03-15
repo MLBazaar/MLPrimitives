@@ -310,8 +310,14 @@
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="s2">&quot;DFS(max_depth=</span><span class="si">{max_depth}</span><span class="s2">, encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;    remove_low_information=</span><span class="si">{remove_low_information}</span><span class="s2">)&quot;</span>
+            <span class="s2">&quot;DFS(max_depth=</span><span class="si">{max_depth}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    remove_low_information=</span><span class="si">{remove_low_information}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    target_entity=</span><span class="si">{target_entity}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    index=</span><span class="si">{index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    time_index=</span><span class="si">{time_index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    agg_primitives=</span><span class="si">{agg_primitives}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    trans_primitives=</span><span class="si">{trans_primitives}</span><span class="s2">)&quot;</span>
         <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -354,6 +360,8 @@
             <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
             <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span>
             <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
@@ -391,6 +399,8 @@
             <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
             <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 
         <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
