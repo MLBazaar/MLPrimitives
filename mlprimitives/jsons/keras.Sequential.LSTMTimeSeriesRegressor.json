@@ -1,6 +1,9 @@
 {
     "name": "keras.Sequential.LSTMTimeSeriesRegressor",
-    "contributors": ["Ihssan Tinawi <itinawi@mit.edu>", "Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Ihssan Tinawi <itinawi@mit.edu>",
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://arxiv.org/pdf/1802.04431.pdf",
     "description": "Double Stacked LSTM Time Series Regressor similar to the one described in the paper referenced as documentation.",
     "classifiers": {
@@ -45,7 +48,10 @@
             },
             "input_shape": {
                 "type": "tuple",
-                "default": [250, 1]
+                "default": [
+                    250,
+                    1
+                ]
             },
             "dense_units": {
                 "type": "int",

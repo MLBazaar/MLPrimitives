@@ -1,6 +1,8 @@
 {
     "name": "featuretools.EntitySet.add_relationship",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://docs.featuretools.com/generated/featuretools.EntitySet.entity_from_dataframe.html#featuretools-entityset-entity-from-dataframe",
     "description": "Load the data for a specified entity from a Pandas DataFrame. Create an EntitySet if it does not exist",
     "classifiers": {

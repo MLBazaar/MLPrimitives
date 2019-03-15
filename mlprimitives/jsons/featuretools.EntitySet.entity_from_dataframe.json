@@ -1,6 +1,8 @@
 {
     "name": "featuretools.EntitySet.entity_from_dataframe",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://docs.featuretools.com/generated/featuretools.EntitySet.entity_from_dataframe.html#featuretools-entityset-entity-from-dataframe",
     "description": "Load the data for a specified entity from a Pandas DataFrame. Create an EntitySet if it does not exist",
     "classifiers": {
@@ -47,7 +49,7 @@
             "variable_types": {
                 "type": "dict[str -> Variable]",
                 "default": null,
-                "description": "Keys are of variable ids and values are variable types. Used to to initialize an entity’s store."
+                "description": "Keys are of variable ids and values are variable types. Used to to initialize an entity\u2019s store."
             },
             "make_index": {
                 "type": "bool",

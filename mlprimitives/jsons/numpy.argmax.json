@@ -1,6 +1,8 @@
 {
     "name": "numpy.argmax",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html",
     "description": "Returns the indices of the maximum values along an axis.",
     "classifiers": {

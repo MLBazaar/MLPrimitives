@@ -1,12 +1,16 @@
 {
     "name": "keras.Sequential.SingleLayerCNNImageClassifier",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "keras.Sequential.SingleLayerCNNImageClassifier",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
     },
-    "modalities": ["image"],
+    "modalities": [
+        "image"
+    ],
     "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",

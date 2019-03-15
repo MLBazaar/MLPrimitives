@@ -1,6 +1,9 @@
 {
     "name": "sklearn.decomposition.FactorAnalysis",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Plamen Valentinov <pvkdeveloper@gmx.com>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FactorAnalysis.html",
     "description": "Factor Analysis. A simple linear generative model with Gaussian latent variables.",
     "classifiers": {
@@ -48,27 +51,42 @@
             "n_components": {
                 "type": "int",
                 "default": null,
-                "range": [0, 500]
+                "range": [
+                    0,
+                    500
+                ]
             },
             "tol": {
                 "type": "float",
                 "default": 0.01,
-                "range": [0.0, 0.5]
+                "range": [
+                    0.0,
+                    0.5
+                ]
             },
             "max_iter": {
                 "type": "int",
                 "default": 1000,
-                "range": [10, 10000]
+                "range": [
+                    10,
+                    10000
+                ]
             },
             "svd_method": {
                 "type": "str",
                 "default": "randomized",
-                "values": ["lapack", "randomized"]
+                "values": [
+                    "lapack",
+                    "randomized"
+                ]
             },
             "iterated_power": {
                 "type": "int",
                 "default": 3,
-                "range": [0, 10]
+                "range": [
+                    0,
+                    10
+                ]
             }
         }
     }

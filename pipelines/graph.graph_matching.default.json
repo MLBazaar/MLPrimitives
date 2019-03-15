@@ -9,7 +9,10 @@
         "context": {
             "graph": "$graph",
             "graphs": "$graphs",
-            "node_columns": ["graph1", "graph2"]
+            "node_columns": [
+                "graph1",
+                "graph2"
+            ]
         }
     },
     "primitives": [

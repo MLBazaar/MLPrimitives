@@ -1,6 +1,8 @@
 {
     "name": "sklearn.preprocessing.OneHotEncoder",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html",
     "description": "Encode categorical integer features using a one-hot aka one-of-K scheme.",
     "classifiers": {

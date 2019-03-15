@@ -1,12 +1,16 @@
 {
     "name": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Create rolling window sequences out of timeseries data.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["timeseries"],
+    "modalities": [
+        "timeseries"
+    ],
     "primitive": "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
     "produce": {
         "args": [

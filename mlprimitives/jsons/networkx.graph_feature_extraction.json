@@ -1,12 +1,16 @@
 {
     "name": "networkx.graph_feature_extraction",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Apply multiple networkx functions to extract features form a list of graphs.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["graph"],
+    "modalities": [
+        "graph"
+    ],
     "primitive": "mlprimitives.adapters.networkx.graph_feature_extraction",
     "produce": {
         "args": [

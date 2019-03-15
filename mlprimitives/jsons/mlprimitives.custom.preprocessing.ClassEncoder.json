@@ -1,6 +1,8 @@
 {
     "name": "mlprimitives.custom.preprocessing.ClassEncoder",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Encode an array of strings using integers.",
     "classifiers": {
         "type": "preprocessor",

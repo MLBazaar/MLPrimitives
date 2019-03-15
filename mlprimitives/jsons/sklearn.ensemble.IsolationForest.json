@@ -1,8 +1,11 @@
 {
     "name": "sklearn.ensemble.IsolationForest",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Plamen Valentinov <pvkdeveloper@gmx.com>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html",
-    "description": "Scikit-learn IsolationForest. The IsolationForest ‘isolates’ observations by randomly selecting a feature and then randomly selecting a split value between the maximum and minimum values of the selected feature.",
+    "description": "Scikit-learn IsolationForest. The IsolationForest \u2018isolates\u2019 observations by randomly selecting a feature and then randomly selecting a split value between the maximum and minimum values of the selected feature.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
@@ -50,14 +53,20 @@
             "verbose": {
                 "type": "int",
                 "default": 0,
-                "range": [0, 100]
+                "range": [
+                    0,
+                    100
+                ]
             }
         },
         "tunable": {
             "n_estimators": {
                 "type": "int",
                 "default": 100,
-                "range": [1, 500]
+                "range": [
+                    1,
+                    500
+                ]
             },
             "max_samples": {
                 "type": "str",
@@ -66,7 +75,10 @@
             "max_features": {
                 "type": "float",
                 "default": 1.0,
-                "range": [1.0, 1000.0]
+                "range": [
+                    1.0,
+                    1000.0
+                ]
             },
             "bootstrap": {
                 "type": "bool",
@@ -75,7 +87,10 @@
             "contamination": {
                 "type": "float",
                 "default": 0.1,
-                "range": [0.0, 0.5]
+                "range": [
+                    0.0,
+                    0.5
+                ]
             }
         }
     }

@@ -1,13 +1,17 @@
 {
     "name": "community.CommunityBestPartition",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://perso.crans.org/aynaud/communities/api.html#community.best_partition",
     "description": "Compute the partition of the graph nodes which maximises the modularity (or try..) using the Louvain heuristices.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["graph"],
+    "modalities": [
+        "graph"
+    ],
     "primitive": "mlprimitives.adapters.community.CommunityBestPartition",
     "produce": {
         "method": "produce",

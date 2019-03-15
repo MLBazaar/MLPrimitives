@@ -1,6 +1,8 @@
 {
     "name": "pandas.DataFrame.resample",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html",
     "description": "Call the `df.resample` method on the given time_index and afterwards call the indicated aggregation.",
     "classifiers": {

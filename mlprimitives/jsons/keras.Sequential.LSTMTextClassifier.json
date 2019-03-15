@@ -1,12 +1,16 @@
 {
     "name": "keras.Sequential.LSTMTextClassifier",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "keras.Sequential.LSTMTextClassifier",
     "classifiers": {
         "type": "estimator",
         "subtype": "regressor"
     },
-    "modalities": ["text"],
+    "modalities": [
+        "text"
+    ],
     "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
