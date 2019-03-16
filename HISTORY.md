@@ -1,5 +1,24 @@
 # History
 
+## 0.1.7
+
+### General Improvements
+
+* Validate JSON format in `make lint` -  Issue #133
+* Add demo datasets - Issue #131
+* Improve featuretools.dfs primitive - Issue #127
+
+### New Primitives
+
+* pandas.DataFrame.resample - Issue #123
+* pandas.DataFrame.unstack - Issue #124
+* featuretools.EntitySet.add_relationship - Issue #126
+* featuretools.EntitySet.entity_from_dataframe - Issue #126
+
+### Bug Fixes
+
+* Bug in timeseries_anomalies.py - Issue #119
+
 ## 0.1.6
 
 ### General Improvements
