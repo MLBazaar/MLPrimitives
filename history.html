@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>History &mdash; MLPrimitives 0.1.7-dev documentation</title>
+  <title>History &mdash; MLPrimitives 0.1.8-dev documentation</title>
   
 
   
@@ -192,37 +192,43 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">History</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.7</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#general-improvements">General Improvements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#new-primitives">New Primitives</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.5</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">New Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">General Improvements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">0.1.4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">New Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.1.5</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">New Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Bug Fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">0.1.3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">0.1.2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">New Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">New Primitives</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">0.1.1</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">New Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">Bug Fixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -294,17 +300,43 @@
   <div class="section" id="history">
 <h1>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.1.6<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.1.7<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="general-improvements">
 <h3>General Improvements<a class="headerlink" href="#general-improvements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Validate JSON format in <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> -  Issue #133</li>
+<li>Add demo datasets - Issue #131</li>
+<li>Improve featuretools.dfs primitive - Issue #127</li>
+</ul>
+</div>
+<div class="section" id="new-primitives">
+<h3>New Primitives<a class="headerlink" href="#new-primitives" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>pandas.DataFrame.resample - Issue #123</li>
+<li>pandas.DataFrame.unstack - Issue #124</li>
+<li>featuretools.EntitySet.add_relationship - Issue #126</li>
+<li>featuretools.EntitySet.entity_from_dataframe - Issue #126</li>
+</ul>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Bug in timeseries_anomalies.py - Issue #119</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>0.1.6<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>General Improvements<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add Contributing Documentation</li>
 <li>Remove upper bound in pandas version given new release of <code class="docutils literal notranslate"><span class="pre">featuretools</span></code> v0.6.1</li>
 <li>Improve LSTMTimeSeriesRegressor hyperparameters</li>
 </ul>
 </div>
-<div class="section" id="new-primitives">
-<h3>New Primitives<a class="headerlink" href="#new-primitives" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>New Primitives<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>mlprimitives.candidates.dsp.SpectralMask</li>
 <li>mlprimitives.custom.timeseries_anomalies.find_anomalies</li>
@@ -319,10 +351,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>0.1.5<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>New Primitives<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h2>0.1.5<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>New Primitives<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>sklearn.impute.SimpleImputer</li>
 <li>sklearn.preprocessing.MinMaxScaler</li>
@@ -331,8 +363,8 @@
 <li>sklearn.linear_model.LinearRegression</li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h3>General Improvements<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>General Improvements<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Separate curated from candidate primitives</li>
 <li>Setup <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> in setup.py to improve compaitibility with MLBlocks</li>
@@ -343,8 +375,8 @@
 <li>Pip install <code class="docutils literal notranslate"><span class="pre">requirements_dev.txt</span></code> fail documentation</li>
 </ul>
 </div>
-<div class="section" id="bug-fixes">
-<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Bug Fixes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix LSTMTimeSeriesRegressor primitive. Issue #90</li>
 <li>Fix timeseries primitives. Issue #91</li>
@@ -353,10 +385,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>0.1.4<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>New Primitives<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h2>0.1.4<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>New Primitives<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>mlprimitives.timeseries primitives for timeseries data preprocessing</li>
 <li>mlprimitives.timeseres_error primitives for timeseries anomaly detection</li>
@@ -366,8 +398,8 @@
 <li>several sklearn.ensemble primitives</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3>Bug Fixes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Bug Fixes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix typo in mlprimitives.text.TextCleaner primitive</li>
 <li>Fix bug in index handling in featuretools.dfs primitive</li>
@@ -376,8 +408,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>0.1.3<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>0.1.3<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="new-features">
 <h3>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -385,10 +417,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>0.1.2<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id10">
-<h3>New Features<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h2>0.1.2<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>New Features<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add pipeline specification language and Evaluation utilities.</li>
 <li>Add pipelines for graph, text and tabular problems.</li>
@@ -396,25 +428,25 @@
 <li>New primitives UniqueCounter and VocabularyCounter</li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h3>Bug Fixes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Bug Fixes<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix TrivialPredictor bug when working with numpy arrays</li>
 <li>Change XGB default learning rate and number of estimators</li>
 </ul>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>0.1.1<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id13">
-<h3>New Features<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h2>0.1.1<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>New Features<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add more keras.applications primitives.</li>
 <li>Add a Text Cleanup primitive.</li>
 </ul>
 </div>
-<div class="section" id="id14">
-<h3>Bug Fixes<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Bug Fixes<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add keywords to <code class="docutils literal notranslate"><span class="pre">keras.preprocessing</span></code> primtives.</li>
 <li>Fix the <code class="docutils literal notranslate"><span class="pre">image_transform</span></code> method.</li>
@@ -422,8 +454,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id15">
-<h2>0.1.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h2>0.1.0<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>First release on PyPI.</li>
 </ul>
