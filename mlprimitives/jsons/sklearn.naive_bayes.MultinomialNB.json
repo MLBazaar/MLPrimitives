@@ -1,13 +1,17 @@
 {
     "name": "sklearn.naive_bayes.MultinomialNB",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html",
     "description": "Naive Bayes classifier for multinomial models",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
     },
-    "modalities": ["text"],
+    "modalities": [
+        "text"
+    ],
     "primitive": "sklearn.naive_bayes.MultinomialNB",
     "fit": {
         "method": "fit",

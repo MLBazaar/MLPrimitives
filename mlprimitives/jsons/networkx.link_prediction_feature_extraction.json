@@ -1,12 +1,16 @@
 {
     "name": "networkx.link_prediction_feature_extraction",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Graph feature extraction using functions from networkx.algorithms.link_prediction module",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["graph"],
+    "modalities": [
+        "graph"
+    ],
     "primitive": "mlprimitives.adapters.networkx.graph_pairs_feature_extraction",
     "produce": {
         "args": [

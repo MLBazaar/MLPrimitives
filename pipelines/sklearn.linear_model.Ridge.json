@@ -1,13 +1,13 @@
 {
-  "metadata": {
-    "name": "sklearn.linear_model.Ridge",
-    "data_type": "single_table",
-    "task_type": "regression"
-  },
-  "validation": {
-    "dataset": "boston"
-  },
-  "primitives": [
-    "sklearn.linear_model.Ridge"
-  ]
+    "metadata": {
+        "name": "sklearn.linear_model.Ridge",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.linear_model.Ridge"
+    ]
 }

@@ -1,6 +1,8 @@
 {
     "name": "keras.preprocessing.sequence.pad_sequences",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://keras.io/preprocessing/sequence/#pad_sequences",
     "description": "Pads sequences to the same length.",
     "classifiers": {
@@ -39,17 +41,26 @@
             "maxlen": {
                 "type": "int",
                 "default": 100,
-                "values": [1, 10000]
+                "values": [
+                    1,
+                    10000
+                ]
             },
             "padding": {
                 "type": "str",
                 "default": "pre",
-                "values": ["pre", "post"]
+                "values": [
+                    "pre",
+                    "post"
+                ]
             },
             "truncating": {
                 "type": "str",
                 "default": "pre",
-                "values": ["pre", "post"]
+                "values": [
+                    "pre",
+                    "post"
+                ]
             }
         }
     }

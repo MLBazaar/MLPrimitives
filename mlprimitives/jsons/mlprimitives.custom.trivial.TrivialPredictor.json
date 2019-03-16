@@ -1,6 +1,8 @@
 {
     "name": "mlprimitives.custom.trivial.TrivialPredictor",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Simple predictor that returns a constant value, such as as the mode or the median of the predictable targets.",
     "classifiers": {
         "type": "estimator"

@@ -1,12 +1,16 @@
 {
     "name": "mlprimitives.custom.timeseries_preprocessing.time_segments_average",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "Compute average of values over fixed length time segments.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["timeseries"],
+    "modalities": [
+        "timeseries"
+    ],
     "primitive": "mlprimitives.custom.timeseries_preprocessing.time_segments_average",
     "produce": {
         "args": [

@@ -1,13 +1,17 @@
 {
     "name": "keras.preprocessing.text.Tokenizer",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://keras.io/preprocessing/text/#tokenizer",
     "description": "Text tokenization utility class.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["text"],
+    "modalities": [
+        "text"
+    ],
     "primitive": "keras.preprocessing.text.Tokenizer",
     "fit": {
         "method": "fit_on_texts",
@@ -57,7 +61,10 @@
             "num_words": {
                 "type": "int",
                 "default": null,
-                "range": [1, 10000]
+                "range": [
+                    1,
+                    10000
+                ]
             },
             "lower": {
                 "type": "bool",

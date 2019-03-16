@@ -1,0 +1,76 @@
+{
+    "name": "featuretools.EntitySet.entity_from_dataframe",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://docs.featuretools.com/generated/featuretools.EntitySet.entity_from_dataframe.html#featuretools-entityset-entity-from-dataframe",
+    "description": "Load the data for a specified entity from a Pandas DataFrame. Create an EntitySet if it does not exist",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.featuretools.entity_from_dataframe",
+    "produce": {
+        "args": [
+            {
+                "name": "dataframe",
+                "type": "pandas.DataFrame",
+                "description": "Dataframe containing the data."
+            },
+            {
+                "name": "entityset",
+                "type": "featuretools.EntitySet",
+                "description": "EntitySet where the dataframe will be added."
+            }
+        ],
+        "output": [
+            {
+                "name": "entityset",
+                "type": "featuretools.EntitySet"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "entityset_id": {
+                "type": "str",
+                "default": "entityset"
+            },
+            "entity_id": {
+                "type": "str",
+                "description": "Unique id to associate with this entity"
+            },
+            "index": {
+                "type": "str",
+                "default": null,
+                "description": "Name of the variable used to index the entity. If None, take the first column."
+            },
+            "variable_types": {
+                "type": "dict[str -> Variable]",
+                "default": null,
+                "description": "Keys are of variable ids and values are variable types. Used to to initialize an entity\u2019s store."
+            },
+            "make_index": {
+                "type": "bool",
+                "default": false,
+                "description": "If True, assume index does not exist as a column in dataframe, and create a new column of that name using integers. Otherwise, assume index exists."
+            },
+            "time_index": {
+                "type": "str",
+                "default": null,
+                "description": "Name of the variable containing time data. Type must be in variables.DateTime or be able to be cast to datetime (e.g. str, float, or numeric.)"
+            },
+            "secondary_time_index": {
+                "type": "str",
+                "default": null,
+                "description": "Name of variable containing time data to use a second time index for the entity."
+            },
+            "already_sorted": {
+                "type": "bool",
+                "default": false,
+                "description": "If True, assumes that input dataframe is already sorted by time. Defaults to False."
+            }
+        }
+    }
+}

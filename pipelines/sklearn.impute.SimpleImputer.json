@@ -1,14 +1,14 @@
 {
-  "metadata": {
-    "name": "sklearn.impute.SimpleImputer",
-    "data_type": "single_table",
-    "task_type": "regression"
-  },
-  "validation": {
-    "dataset": "boston"
-  },
-  "primitives": [
-    "sklearn.impute.SimpleImputer",
-    "sklearn.ensemble.RandomForestRegressor"
-  ]
+    "metadata": {
+        "name": "sklearn.impute.SimpleImputer",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "sklearn.impute.SimpleImputer",
+        "sklearn.ensemble.RandomForestRegressor"
+    ]
 }

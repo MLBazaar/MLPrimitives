@@ -1,6 +1,9 @@
 {
     "name": "sklearn.decomposition.PCA",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Plamen Valentinov <pvkdeveloper@gmx.com>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
     "description": "Principal component analysis (PCA)",
     "classifiers": {
@@ -44,12 +47,18 @@
             "tol": {
                 "type": "float",
                 "default": 0.0,
-                "range": [0.0, 100.0]
+                "range": [
+                    0.0,
+                    100.0
+                ]
             },
-            "iterated_power":{
+            "iterated_power": {
                 "type": "int",
                 "default": "auto",
-                "range": [0, 1000]
+                "range": [
+                    0,
+                    1000
+                ]
             },
             "whiten": {
                 "type": "bool",
@@ -58,7 +67,12 @@
             "svd_solver": {
                 "type": "str",
                 "default": "auto",
-                "values": ["auto", "arpack", "full", "randomized"]
+                "values": [
+                    "auto",
+                    "arpack",
+                    "full",
+                    "randomized"
+                ]
             }
         }
     }

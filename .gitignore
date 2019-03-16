@@ -111,5 +111,8 @@ ENV/
 # vim
 .*.swp
 
-# added by rjdiez
+# IntelliJ Idea
 .idea/
+
+# cached datasets
+mlprimitives/data/

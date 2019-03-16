@@ -1,13 +1,17 @@
 {
     "name": "sklearn.feature_extraction.text.CountVectorizer",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html",
     "description": "Convert a collection of text documents to a matrix of token counts",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "feature_extractor"
     },
-    "modalities": ["text"],
+    "modalities": [
+        "text"
+    ],
     "primitive": "sklearn.feature_extraction.text.CountVectorizer",
     "fit": {
         "method": "fit",
@@ -60,7 +64,10 @@
             },
             "ngram_range": {
                 "type": "list",
-                "default": [1, 1]
+                "default": [
+                    1,
+                    1
+                ]
             },
             "analyzer": {
                 "type": "str",

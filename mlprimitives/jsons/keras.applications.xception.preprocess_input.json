@@ -1,6 +1,8 @@
 {
     "name": "keras.applications.xception.preprocess_input",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://www.tensorflow.org/api_docs/python/tf/keras/applications/xception/preprocess_input",
     "description": "Preprocesses a tensor or Numpy array encoding a batch of images.",
     "classifiers": {

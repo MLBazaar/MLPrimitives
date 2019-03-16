@@ -38,6 +38,8 @@ install_requires = [
 tests_require = [
     'mlblocks>=0.3.0',
     'pytest>=3.4.2',
+    'pytest-cov>=2.6.0',
+    'google-compute-engine==2.8.12',    # required by travis
 ]
 
 
@@ -60,12 +62,12 @@ development_requires = [
     'ipython==6.5.0',
 
     # style check
-    'flake8>=3.5.0',
+    'flake8>=3.7.7',
     'isort>=4.3.4',
 
     # fix style issues
     'autoflake>=1.1',
-    'autopep8==1.3.4',    # Keep fixed because of flake8 and pycodestyle
+    'autopep8>=1.4.3',
 
     # distribute on PyPI
     'twine>=1.10.0',
@@ -98,7 +100,7 @@ setup(
     description="MLBlocks Primitives",
     entry_points = {
         'console_scripts': [
-            'mlprimitives=mlprimitives:_main'
+            'mlprimitives=mlprimitives.cli:main'
         ],
         'mlprimitives': [
             'jsons_path=mlprimitives:MLPRIMITIVES_JSONS_PATH'
@@ -118,6 +120,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.6',
+    version='0.1.7-dev',
     zip_safe=False,
 )

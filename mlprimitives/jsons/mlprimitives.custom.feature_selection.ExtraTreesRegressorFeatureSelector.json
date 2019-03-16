@@ -1,6 +1,8 @@
 {
     "name": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector",
     "classifiers": {
         "type": "preprocessor",

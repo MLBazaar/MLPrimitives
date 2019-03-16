@@ -1,0 +1,14 @@
+{
+    "metadata": {
+        "name": "sklearn.linear_model.MultiTaskLasso",
+        "data_type": "single_table",
+        "task_type": "regression",
+        "task_subtype": "multitask"
+    },
+    "validation": {
+        "dataset": "boston_multitask"
+    },
+    "primitives": [
+        "sklearn.linear_model.MultiTaskLasso"
+    ]
+}

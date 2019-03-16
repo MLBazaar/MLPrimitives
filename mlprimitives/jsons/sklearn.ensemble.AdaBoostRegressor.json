@@ -1,6 +1,9 @@
 {
     "name": "sklearn.ensemble.AdaBoostRegressor",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>", "Plamen Valentinov <pvkdeveloper@gmx.com>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Plamen Valentinov <pvkdeveloper@gmx.com>"
+    ],
     "documentation": "http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html",
     "description": "Scikit-learn AdaBoostRegressor.",
     "classifiers": {
@@ -48,17 +51,27 @@
             "n_estimators": {
                 "type": "int",
                 "default": 50,
-                "range": [1, 500]
+                "range": [
+                    1,
+                    500
+                ]
             },
             "learning_rate": {
                 "type": "float",
                 "default": 1.0,
-                "range": [1.0, 10.0]
+                "range": [
+                    1.0,
+                    10.0
+                ]
             },
             "loss": {
                 "type": "str",
                 "default": "linear",
-                "values": ["linear", "square", "exponential"]
+                "values": [
+                    "linear",
+                    "square",
+                    "exponential"
+                ]
             }
         }
     }

@@ -1,6 +1,8 @@
 {
     "name": "keras.applications.mobilenet.MobileNet",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "documentation": "https://keras.io/applications/#mobilenet",
     "description": "MobileNet model, with weights pre-trained on ImageNet.",
     "classifiers": {

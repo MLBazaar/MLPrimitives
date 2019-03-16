@@ -1,6 +1,8 @@
 {
     "name": "mlprimitives.custom.feature_extraction.CategoricalEncoder",
-    "contributors": ["Carles Sala <csala@csail.mit.edu>"],
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
     "description": "mlprimitives.custom.feature_extraction.CategoricalEncoder",
     "classifiers": {
         "type": "preprocessor",
