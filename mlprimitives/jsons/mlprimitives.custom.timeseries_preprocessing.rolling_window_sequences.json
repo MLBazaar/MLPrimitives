@@ -35,6 +35,10 @@
             {
                 "name": "index",
                 "type": "ndarray"
+            },
+            {
+                "name": "target_index",
+                "type": "ndarray"
             }
         ]
     },

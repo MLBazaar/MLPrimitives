@@ -63,3 +63,35 @@ def image_transform(X, function, reshape_before=False, reshape_after=False,
         new_X.append(features)
 
     return np.array(new_X)
+
+
+NUMPY_AGGREGATIONS = {
+    'min': np.min,
+    'max': np.max,
+    'sum': np.sum,
+    'prod': np.prod,
+    'mean': np.mean,
+    'median': np.median,
+    'std': np.std,
+    'var': np.var,
+}
+NUMPY_NAN_AGGREGATIONS = {
+    'min': np.nanmin,
+    'max': np.nanmax,
+    'sum': np.nansum,
+    'prod': np.nanprod,
+    'mean': np.nanmean,
+    'median': np.nanmedian,
+    'std': np.nanstd,
+    'var': np.nanvar,
+}
+
+
+def np_aggregate(array, aggregation, skipna=True, *args, **kwargs):
+    functions = NUMPY_NAN_AGGREGATIONS if skipna else NUMPY_AGGREGATIONS
+    function = functions.get(aggregation)
+
+    if function is None:
+        raise ValueError('Unknown aggregation: {}'.format(aggregation))
+
+    return function(array, *args, **kwargs)
