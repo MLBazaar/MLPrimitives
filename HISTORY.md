@@ -1,5 +1,15 @@
 # History
 
+## 0.1.8
+
+### New Primitives
+
+* mlprimitives.custom.timeseries_preprocessing.time_segments_average - Issue #137
+
+### New Features
+
+* Add target_index output in timseries_preprocessing.rolling_window_sequences - Issue #136
+
 ## 0.1.7
 
 ### General Improvements
