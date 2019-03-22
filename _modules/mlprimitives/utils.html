@@ -358,6 +358,38 @@
         <span class="n">new_X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_X</span><span class="p">)</span></div>
+
+
+<span class="n">NUMPY_AGGREGATIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">,</span>
+    <span class="s1">&#39;sum&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span>
+    <span class="s1">&#39;prod&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">,</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+    <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span>
+    <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span>
+    <span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">NUMPY_NAN_AGGREGATIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">,</span>
+    <span class="s1">&#39;sum&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">,</span>
+    <span class="s1">&#39;prod&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanprod</span><span class="p">,</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">,</span>
+    <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">,</span>
+    <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">,</span>
+    <span class="s1">&#39;var&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nanvar</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="np_aggregate"><a class="viewcode-back" href="../../api/mlprimitives.utils.html#mlprimitives.utils.np_aggregate">[docs]</a><span class="k">def</span> <span class="nf">np_aggregate</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">aggregation</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">functions</span> <span class="o">=</span> <span class="n">NUMPY_NAN_AGGREGATIONS</span> <span class="k">if</span> <span class="n">skipna</span> <span class="k">else</span> <span class="n">NUMPY_AGGREGATIONS</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">aggregation</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown aggregation: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aggregation</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
