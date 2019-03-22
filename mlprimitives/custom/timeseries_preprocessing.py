@@ -3,8 +3,6 @@ import warnings
 import numpy as np
 import pandas as pd
 
-from mlprimitives.utils import np_aggregate
-
 
 def rolling_window_sequences(X, index, window_size, target_size, target_column):
     """Create rolling window sequences out of timeseries data."""
