@@ -1,0 +1,133 @@
+{
+    "name": "keras.Sequential.MLPSoftmaxClassifier",
+    "contributors": [
+        "Hector Dominguez <hedb_12@hotmail.com>"
+    ],
+    "description": "Multilayer Perceptron (MLP) for multi-class softmax classification",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classifier"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.keras.MLPSoftmaxClassifier",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "array"
+            },
+            {
+                "name": "classes",
+                "type": "int",
+                "description": "Number of classes"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": true
+            },
+            "epochs": {
+                "type": "int",
+                "default": 20
+            },
+            "input_dim": {
+                "type": "int",
+                "default": 20
+            },
+            "conv_activation": {
+                "type": "str",
+                "default": "relu"
+            },
+            "dense_activation": {
+                "type": "str",
+                "default": "softmax"
+            },
+            "loss": {
+                "type": "str",
+                "default": "keras.losses.categorical_crossentropy"
+            },
+            "optimizer": {
+                "type": "str",
+                "default": "keras.optimizers.SGD"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "accuracy"
+                ]
+            },
+            "layers": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "classes",
+                            "activation": "conv_activation",
+                            "input_dim": "input_dim"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "classes",
+                            "activation": "conv_activation"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "classes",
+                            "activation": "dense_activation"
+                        }
+                    }
+                ]
+            }
+        },
+        "tunable": {
+            "dropout_rate": {
+                "type": "float",
+                "default": 0.5,
+                "range": [
+                    0.0,
+                    0.75
+                ]
+            }
+        }
+    }
+}
