@@ -9,7 +9,7 @@
         "subtype": "classifier"
     },
     "modalities": [],
-    "primitive": "mlprimitives.adapters.keras.MLPSoftmaxClassifier",
+    "primitive": "mlprimitives.adapters.keras.Sequential",
     "fit": {
         "method": "fit",
         "args": [
