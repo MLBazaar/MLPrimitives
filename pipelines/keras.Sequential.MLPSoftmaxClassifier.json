@@ -1,0 +1,22 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.MLPSoftmaxClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris",
+        "context": {
+            "classes": 3
+        }
+    },
+    "primitives": [
+        "keras.Sequential.MLPSoftmaxClassifier"
+    ],
+    "init_params": {
+        "keras.Sequential.MLPSoftmaxClassifier#1": {
+            "epochs": 1,
+            "input_dim": 4
+        }
+    }
+}
