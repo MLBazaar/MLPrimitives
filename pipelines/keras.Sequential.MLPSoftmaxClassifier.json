@@ -6,13 +6,22 @@
     },
     "validation": {
         "dataset": "iris",
-        "context": {
-            "classes": 3
-        }
+        "context": {}
     },
     "primitives": [
+        "mlprimitives.custom.counters.UniqueCounter",
         "keras.Sequential.MLPSoftmaxClassifier"
     ],
+    "input_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "X": "y"
+        }
+    },
+    "output_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "counts": "classes"
+        }
+    },
     "init_params": {
         "keras.Sequential.MLPSoftmaxClassifier#1": {
             "epochs": 1,
