@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "name": "keras.Sequential.MLPSoftmaxClassifier",
+        "name": "keras.Sequential.MLPMultiClassClassifier",
         "data_type": "single_table",
         "task_type": "classification"
     },
@@ -10,7 +10,7 @@
     },
     "primitives": [
         "mlprimitives.custom.counters.UniqueCounter",
-        "keras.Sequential.MLPSoftmaxClassifier"
+        "keras.Sequential.MLPMultiClassClassifier"
     ],
     "input_names": {
         "mlprimitives.custom.counters.UniqueCounter#1": {
@@ -23,7 +23,7 @@
         }
     },
     "init_params": {
-        "keras.Sequential.MLPSoftmaxClassifier#1": {
+        "keras.Sequential.MLPMultiClassClassifier#1": {
             "epochs": 1,
             "input_dim": 4
         }

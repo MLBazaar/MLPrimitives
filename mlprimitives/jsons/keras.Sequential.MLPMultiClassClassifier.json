@@ -1,5 +1,5 @@
 {
-    "name": "keras.Sequential.MLPSoftmaxClassifier",
+    "name": "keras.Sequential.MLPMultiClassClassifier",
     "contributors": [
         "Hector Dominguez <hedb_12@hotmail.com>"
     ],
