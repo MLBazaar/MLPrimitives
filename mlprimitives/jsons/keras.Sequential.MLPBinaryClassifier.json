@@ -20,11 +20,6 @@
             {
                 "name": "y",
                 "type": "array"
-            },
-            {
-                "name": "classes",
-                "type": "int",
-                "description": "Number of classes"
             }
         ]
     },
@@ -49,25 +44,13 @@
                 "type": "bool",
                 "default": true
             },
-            "epochs": {
-                "type": "int",
-                "default": 20
-            },
-            "input_dim": {
-                "type": "int",
-                "default": 20
-            },
-            "conv_activation": {
-                "type": "str",
-                "default": "relu"
-            },
             "dense_units": {
                 "type": "int",
                 "default": 64
             },
-            "dense_activation": {
-                "type": "str",
-                "default": "sigmoid"
+            "input_dim": {
+                "type": "int",
+                "default": 20
             },
             "loss": {
                 "type": "str",
@@ -83,6 +66,10 @@
                     "accuracy"
                 ]
             },
+            "epochs": {
+                "type": "int",
+                "default": 20
+            },
             "layers": {
                 "type": "list",
                 "default": [
@@ -90,7 +77,7 @@
                         "class": "keras.layers.Dense",
                         "parameters": {
                             "units": "dense_units",
-                            "activation": "conv_activation",
+                            "activation": "relu",
                             "input_dim": "input_dim"
                         }
                     },
@@ -104,7 +91,7 @@
                         "class": "keras.layers.Dense",
                         "parameters": {
                             "units": "dense_units",
-                            "activation": "conv_activation"
+                            "activation": "relu"
                         }
                     },
                     {
@@ -116,8 +103,8 @@
                     {
                         "class": "keras.layers.Dense",
                         "parameters": {
-                            "units": "classes",
-                            "activation": "dense_activation"
+                            "units": 2,
+                            "activation": "sigmoid"
                         }
                     }
                 ]
@@ -134,7 +121,7 @@
             },
             "batch_size": {
                 "type": "int",
-                "default": 32
+                "default": 128
             }
         }
     }
