@@ -311,76 +311,67 @@ probably need to either add an adapter or modify an existing one in order to add
 <h2>Creating a new Adapter<a class="headerlink" href="#creating-a-new-adapter" title="Permalink to this headline">¶</a></h2>
 <p>If you want to create a new adapter, please follow these steps:</p>
 <ol class="arabic">
-<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
+<li><p>If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
 As indicated previously, provide as many details as possible about the new primitive, like
 links to the documentation, what it does and what it is useful for, as well as details about
-why you think a new adapter is needed and how it would work.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
-yourself.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+why you think a new adapter is needed and how it would work.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discuss with them about the need
 of adding this primitive, as maybe there are other primitive that offer the same functionality,
-and about whether the adapter will be needed or not, or what is should look like.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+and about whether the adapter will be needed or not, or what is should look like.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Create an adapter python module and add it to the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/</span></code> directory.
+<li><p>Create an adapter python module and add it to the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/</span></code> directory.
 The name of the module should be the name of the library that you want to create an adapter
 for. For example, if you want to add an adapter to add primitives from the library called
 <code class="docutils literal notranslate"><span class="pre">cool-ml</span></code>, the name of the module should be <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.py</span></code>.
 If the module already exists because there is another adapter for the same library, create
-the new adapter within the same module.</p>
-</li>
-<li><p class="first">Inside the adapter module, try to name the class or function that you create as similar
+the new adapter within the same module.</p></li>
+<li><p>Inside the adapter module, try to name the class or function that you create as similar
 as possible to the classes that you are writing the adapter for.
 For example, the adapter class for the <code class="docutils literal notranslate"><span class="pre">keras.Sequential</span></code> class is called
 <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters.keras.Sequential</span></code>, while the adapter class for the
-<code class="docutils literal notranslate"><span class="pre">featuretools.dfs</span></code> method is called <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters.featuretools.DFS</span></code>.</p>
-</li>
-<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+<code class="docutils literal notranslate"><span class="pre">featuretools.dfs</span></code> method is called <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters.featuretools.DFS</span></code>.</p></li>
+<li><p>As usual, when writing python code, make sure to follow a coding style consistent with
 the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
-section.</p>
-</li>
-<li><p class="first">Do not forget to properly document your code and cover it with proper unit testing!</p>
-</li>
-<li><p class="first">Create at least on JSON annotation that uses your adapter. When doing so, make sure to
+section.</p></li>
+<li><p>Do not forget to properly document your code and cover it with proper unit testing!</p></li>
+<li><p>Create at least on JSON annotation that uses your adapter. When doing so, make sure to
 follow the corresponding conventions:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>The name of the file should correspond to the fully qualified name of the class or
+<li><p>The name of the file should correspond to the fully qualified name of the class or
 function that you are integrating ignoring the fact that you are using an adapter.
 For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">CoolPrimitive</span></code> from the module
 <code class="docutils literal notranslate"><span class="pre">cool_ml.module</span></code> by using the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.CoolML</span></code>
-adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</li>
-<li>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
+adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</p></li>
+<li><p>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
 name of your adapter class, and the <code class="docutils literal notranslate"><span class="pre">fixed</span></code> hyperparameters should contain all
-the details that your adapter needs to know how to integrate the third party primitive.</li>
-<li>Add proper description of what the primitive does in the corresponding entry, as well
+the details that your adapter needs to know how to integrate the third party primitive.</p></li>
+<li><p>Add proper description of what the primitive does in the corresponding entry, as well
 as a link to its documentation. If there is no documentation available, put the link
 to its source code. And don’t forget to add you name and e-mail address to the
-<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
-<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</p></li>
+<li><p>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
 exactly like your primitive, and test it with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
+this probably means that a new dataset needs to be added.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 <div class="section" id="modifying-an-existing-adapter">
@@ -390,67 +381,59 @@ that you want to integrate, you might find that modifying the existing adapter a
 <p>In this case, if you are sure that these modifications will not break previous functionality,
 and the existing adapter can be safely modified, do the following steps:</p>
 <ol class="arabic">
-<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
+<li><p>If it does not exist yet, create a new GitHub issue requesting the primitive that requires it.
 As indicated previously, provide as many details as possible about the new primitive, like
 links to the documentation, what it does and what it is useful for, as well as details about
-why you think the current adapter needs to be modified and how.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
-yourself.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+why you think the current adapter needs to be modified and how.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discuss with them about the need
 of adding this primitive, as maybe there are other primitive that offer the same functionality,
-and about whether the adapter can be modified or a new one created.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+and about whether the adapter can be modified or a new one created.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Do the necessary modifications in the existing adapter.</p>
-</li>
-<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+<li><p>Do the necessary modifications in the existing adapter.</p></li>
+<li><p>As usual, when writing python code, make sure to follow a coding style consistent with
 the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
-section.</p>
-</li>
-<li><p class="first">Do not forget to properly document your code and cover it with proper unit testing!</p>
-</li>
-<li><p class="first">Create at least one new JSON annotation that uses the adapter. When doing so, make sure to
+section.</p></li>
+<li><p>Do not forget to properly document your code and cover it with proper unit testing!</p></li>
+<li><p>Create at least one new JSON annotation that uses the adapter. When doing so, make sure to
 follow the corresponding conventions:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>The name of the file should correspond to the fully qualified name of the class or
+<li><p>The name of the file should correspond to the fully qualified name of the class or
 function that you are integrating ignoring the fact that you are using an adapter.
 For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">CoolPrimitive</span></code> from the module
 <code class="docutils literal notranslate"><span class="pre">cool_ml.module</span></code> by using the <code class="docutils literal notranslate"><span class="pre">mlprimitives/adapters/cool_ml.CoolML</span></code>
-adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</li>
-<li>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
+adapter, the name of the file should be <code class="docutils literal notranslate"><span class="pre">cool_ml.module.CoolPrimitive.json</span></code>.</p></li>
+<li><p>Inside the JSON annotation, the <code class="docutils literal notranslate"><span class="pre">primitive</span></code> entry should have the fully qualified
 name of your adapter class, and the <code class="docutils literal notranslate"><span class="pre">fixed</span></code> hyperparameters should contain all
-the details that your adapter needs to know how to integrate the third party primitive.</li>
-<li>Add proper description of what the primitive does in the corresponding entry, as well
+the details that your adapter needs to know how to integrate the third party primitive.</p></li>
+<li><p>Add proper description of what the primitive does in the corresponding entry, as well
 as a link to its documentation. If there is no documentation available, put the link
 to its source code. And don’t forget to add you name and e-mail address to the
-<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
-<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+<code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</p></li>
+<li><p>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
 exactly like your primitive, and test it with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
-<li>Make sure that all the primitives that existed before that use the same adapter still
-work by testing their corresponding pipelines with the command above.</li>
+this probably means that a new dataset needs to be added.</p></li>
+<li><p>Make sure that all the primitives that existed before that use the same adapter still
+work by testing their corresponding pipelines with the command above.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 </div>

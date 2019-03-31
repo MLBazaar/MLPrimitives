@@ -308,11 +308,11 @@
 <p>Below is a short tutorial that will show you how to get started using MLPrimitives with <a class="reference external" href="https://github.com/HDI-Project/MLBlocks">MLBlocks</a>.</p>
 <p>In this tutorial we will learn how to:</p>
 <ul class="simple">
-<li>Create a pipeline using multiple primitives</li>
-<li>Obtain the list of tunable hyperparameters from the pipeline</li>
-<li>Specify hyperparameters for each primitive in the pipeline</li>
-<li>Fit the pipeline using training data</li>
-<li>Use the pipeline to make predictions from new data</li>
+<li><p>Create a pipeline using multiple primitives</p></li>
+<li><p>Obtain the list of tunable hyperparameters from the pipeline</p></li>
+<li><p>Specify hyperparameters for each primitive in the pipeline</p></li>
+<li><p>Fit the pipeline using training data</p></li>
+<li><p>Use the pipeline to make predictions from new data</p></li>
 </ul>
 <div class="section" id="creating-a-pipeline">
 <h2>Creating a pipeline<a class="headerlink" href="#creating-a-pipeline" title="Permalink to this headline">¶</a></h2>
@@ -451,11 +451,11 @@ to obtain predictions from the pipeline.</p>
 
 <span class="gp">In [17]: </span><span class="n">predictions</span>
 <span class="gh">Out[17]: </span><span class="go"></span>
-<span class="go">array([1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0,</span>
-<span class="go">       1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0])</span>
+<span class="go">array([1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1])</span>
 
 <span class="gp">In [18]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-<span class="go">                                                                                                                                        Out[18]: 0.4594594594594595</span>
+<span class="go">                                                                                                                                        Out[18]: 0.5945945945945946</span>
 </pre></div>
 </div>
 </div>

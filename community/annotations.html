@@ -314,46 +314,41 @@ annotations.</p>
 and that can be directly integrated by writing a simple JSON annotation.</p>
 <p>In this case, please follow these steps:</p>
 <ol class="arabic">
-<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the new primitive. As indicated
+<li><p>If it does not exist yet, create a new GitHub issue requesting the new primitive. As indicated
 previously, provide as many details as possible about the new primitive, like links to the
-documentation, what it does and what it is useful for.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
-yourself.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+documentation, what it does and what it is useful for.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discuss with them about the need
 of adding this primitive, as maybe there are other primitive that offer the same functionality,
-and about the best approach to add it.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+and about the best approach to add it.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Create a new JSON annotation. This can be made from scratch, or you can copy another one
-and modify it.</li>
-<li>The name of the file should correspond to the fully qualified name of the class or function
+<li><p>Create a new JSON annotation. This can be made from scratch, or you can copy another one
+and modify it.</p></li>
+<li><p>The name of the file should correspond to the fully qualified name of the class or function
 that you are referencing inside the primitive. For example, if you are adding a primitive
 that uses the class <code class="docutils literal notranslate"><span class="pre">CoolPrimitive</span></code> from the module <code class="docutils literal notranslate"><span class="pre">super.cool.module</span></code>, the name of
-the file should be <code class="docutils literal notranslate"><span class="pre">super.cool.module.CoolPrimitive.json</span></code>.</li>
-<li>Add proper description of what the primitive does in the corresponding entry, as well as a
+the file should be <code class="docutils literal notranslate"><span class="pre">super.cool.module.CoolPrimitive.json</span></code>.</p></li>
+<li><p>Add proper description of what the primitive does in the corresponding entry, as well as a
 link to its documentation. If there is no documentation available, put the link to its
-source code. And don’t forget to add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
-<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+source code. And don’t forget to add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</p></li>
+<li><p>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
 exactly like your primitive, and test it with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
+this probably means that a new dataset needs to be added.</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 <div class="section" id="modifying-an-existing-annotation">
@@ -361,30 +356,30 @@ issue you are resolving and what the changes consist of.</p>
 <p>Sometimes you might think that an existing annotation needs to be modified in some way.</p>
 <p>Usually this is because one of the following reasons:</p>
 <ul class="simple">
-<li>There is an error in the JSON that prevents it from working properly</li>
-<li>Some hyperparameters are not properly exposed, or not exposed at all</li>
-<li>Documentation is not complete enough</li>
+<li><p>There is an error in the JSON that prevents it from working properly</p></li>
+<li><p>Some hyperparameters are not properly exposed, or not exposed at all</p></li>
+<li><p>Documentation is not complete enough</p></li>
 </ul>
 <p>In this case, please follow these steps:</p>
 <ol class="arabic simple">
-<li>Create a new GitHub issue explaining what needs to be changed and why.</li>
-<li>Indicate in the issue description or in a comment that you are available to apply the changes
-yourself.</li>
-<li>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+<li><p>Create a new GitHub issue explaining what needs to be changed and why.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discussion, as sometimes you might find
 out that some of the things that you considered an error are actually intentional. For example,
 a hyperparameter that you consider missing might have been intentionally left out for
-performance or compatibility issues.</li>
-<li>Once the issue has been approved and assigned to you, implement the necessary changes in your
+performance or compatibility issues.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run. Don’t
-forget to add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list while you are at it!</li>
-<li>Make sure that the annotation still works by testing the corresponding pipeline. Normally,
-this can be done by running the command <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.</li>
-<li>Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</li>
-<li>Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</li>
+forget to add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list while you are at it!</p></li>
+<li><p>Make sure that the annotation still works by testing the corresponding pipeline. Normally,
+this can be done by running the command <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.</p></li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 <div class="section" id="creating-a-new-version-of-an-existing-annotation">
@@ -394,51 +389,46 @@ modifying it in some way allows adapting it more precisely to some particular sc
 at the same time making this unusable for others</p>
 <p>Some examples of this would include:</p>
 <ul class="simple">
-<li>Use the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method instead of the <code class="docutils literal notranslate"><span class="pre">predict</span></code> one in a scikit-learn classifier.</li>
-<li>Alter the hyperparameter ranges to make the primitive more efficient when working with certain
-type of data or problems.</li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> method instead of the <code class="docutils literal notranslate"><span class="pre">predict</span></code> one in a scikit-learn classifier.</p></li>
+<li><p>Alter the hyperparameter ranges to make the primitive more efficient when working with certain
+type of data or problems.</p></li>
 </ul>
 <p>In this cases, what you need to do is to create a new annotation which is basically a copy of
 the other one with some modifications.</p>
 <p>In this case, please follow these steps:</p>
 <ol class="arabic">
-<li><p class="first">Create a new GitHub issue explaining what needs to be changed and why.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
-yourself.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+<li><p>Create a new GitHub issue explaining what needs to be changed and why.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. As always, be open to discussion, as sometimes you
 might find that the behavior which you want to cover is already achievable by using certain
-<code class="docutils literal notranslate"><span class="pre">init_params</span></code>.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+<code class="docutils literal notranslate"><span class="pre">init_params</span></code>.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Make a copy of the original JSON annotation.</li>
-<li>The name of the file should be the same as the original one, with a suffix added after the
+<li><p>Make a copy of the original JSON annotation.</p></li>
+<li><p>The name of the file should be the same as the original one, with a suffix added after the
 last dot <code class="docutils literal notranslate"><span class="pre">.</span></code> indicating what the changes are. For example, if you are adapting the
 hyperparameters of the primitive named <code class="docutils literal notranslate"><span class="pre">some.cool.primitive.json</span></code> to improve its
 performance on huge datasets, you might name the new file
-<code class="docutils literal notranslate"><span class="pre">some.cool.primitive.huge_datasets.json</span></code>.</li>
-<li>Apply the necessary changes to the new file and add it to the repository. Don’t forget to
-add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list while you are at it!</li>
-<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+<code class="docutils literal notranslate"><span class="pre">some.cool.primitive.huge_datasets.json</span></code>.</p></li>
+<li><p>Apply the necessary changes to the new file and add it to the repository. Don’t forget to
+add you name and e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list while you are at it!</p></li>
+<li><p>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
 exactly like your primitive, and test it with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/your.pipeline.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
+this probably means that a new dataset needs to be added.</p></li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 </div>

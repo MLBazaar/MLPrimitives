@@ -312,70 +312,70 @@
 testing of pipelines and primitives over multiple data modalities
 and task types.</p>
 <p>The available datasets by data modality and task type are:</p>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="31%" />
-<col width="26%" />
-<col width="43%" />
+<col style="width: 31%" />
+<col style="width: 26%" />
+<col style="width: 43%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Dataset</th>
-<th class="head">Data Modality</th>
-<th class="head">Task Type</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Data Modality</p></th>
+<th class="head"><p>Task Type</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Amazon</td>
-<td>Graph</td>
-<td>Community Detection</td>
+<tbody>
+<tr class="row-even"><td><p>Amazon</p></td>
+<td><p>Graph</p></td>
+<td><p>Community Detection</p></td>
 </tr>
-<tr class="row-odd"><td>DIC28</td>
-<td>Graph</td>
-<td>Graph Matching</td>
+<tr class="row-odd"><td><p>DIC28</p></td>
+<td><p>Graph</p></td>
+<td><p>Graph Matching</p></td>
 </tr>
-<tr class="row-even"><td>UMLs</td>
-<td>Graph</td>
-<td>Link Prediction</td>
+<tr class="row-even"><td><p>UMLs</p></td>
+<td><p>Graph</p></td>
+<td><p>Link Prediction</p></td>
 </tr>
-<tr class="row-odd"><td>Nomination</td>
-<td>Graph</td>
-<td>Vertex Nomination</td>
+<tr class="row-odd"><td><p>Nomination</p></td>
+<td><p>Graph</p></td>
+<td><p>Vertex Nomination</p></td>
 </tr>
-<tr class="row-even"><td>USPS</td>
-<td>Image</td>
-<td>Classification</td>
+<tr class="row-even"><td><p>USPS</p></td>
+<td><p>Image</p></td>
+<td><p>Classification</p></td>
 </tr>
-<tr class="row-odd"><td>Hand Geometry</td>
-<td>Image</td>
-<td>Regression</td>
+<tr class="row-odd"><td><p>Hand Geometry</p></td>
+<td><p>Image</p></td>
+<td><p>Regression</p></td>
 </tr>
-<tr class="row-even"><td>Iris</td>
-<td>Single Table</td>
-<td>Classification</td>
+<tr class="row-even"><td><p>Iris</p></td>
+<td><p>Single Table</p></td>
+<td><p>Classification</p></td>
 </tr>
-<tr class="row-odd"><td>Jester</td>
-<td>Single Table</td>
-<td>Collaborative Filtering</td>
+<tr class="row-odd"><td><p>Jester</p></td>
+<td><p>Single Table</p></td>
+<td><p>Collaborative Filtering</p></td>
 </tr>
-<tr class="row-even"><td>Boston</td>
-<td>Single Table</td>
-<td>Regression</td>
+<tr class="row-even"><td><p>Boston</p></td>
+<td><p>Single Table</p></td>
+<td><p>Regression</p></td>
 </tr>
-<tr class="row-odd"><td>Boston Multitask</td>
-<td>Single Table</td>
-<td>Multitask Regression</td>
+<tr class="row-odd"><td><p>Boston Multitask</p></td>
+<td><p>Single Table</p></td>
+<td><p>Multitask Regression</p></td>
 </tr>
-<tr class="row-even"><td>Wiki QA</td>
-<td>Multi Table</td>
-<td>Classification</td>
+<tr class="row-even"><td><p>Wiki QA</p></td>
+<td><p>Multi Table</p></td>
+<td><p>Classification</p></td>
 </tr>
-<tr class="row-odd"><td>Personae</td>
-<td>Text</td>
-<td>Classification</td>
+<tr class="row-odd"><td><p>Personae</p></td>
+<td><p>Text</p></td>
+<td><p>Classification</p></td>
 </tr>
-<tr class="row-even"><td>News Groups</td>
-<td>Text</td>
-<td>Classification</td>
+<tr class="row-even"><td><p>News Groups</p></td>
+<td><p>Text</p></td>
+<td><p>Classification</p></td>
 </tr>
 </tbody>
 </table>
@@ -395,28 +395,22 @@ evaluation.</p>
 <dt id="mlprimitives.datasets.Dataset.name">
 <code class="descname">name</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of this dataset.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.datasets.Dataset.description">
 <code class="descname">description</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Short description about the data that composes this dataset.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -424,14 +418,11 @@ evaluation.</p>
 <code class="descname">data</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numpy array or pandas DataFrame containing all the data of
 this dataset, excluding the labels or target values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">array-like</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -439,14 +430,11 @@ this dataset, excluding the labels or target values.</p>
 <code class="descname">target</code><a class="headerlink" href="#mlprimitives.datasets.Dataset.target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Numpy array or pandas Series containing the expected labels
 or values</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">array-like</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -456,28 +444,24 @@ or values</p>
 available as instance attributes.</p>
 </dd></dl>
 
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>description</strong> (<em>str</em>) – Short description about the data that composes this dataset.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – Short description about the data that composes this dataset.
 The first line of the description is expected to be a human friendly
-name for the dataset, and will be set as the <cite>name</cite> attribute.</li>
-<li><strong>data</strong> (<em>array-like</em>) – Numpy array or pandas DataFrame containing all the data of
-this dataset, excluding the labels or target values.</li>
-<li><strong>target</strong> (<em>array-like</em>) – Numpy array or pandas Series containing the expected labels
-or values</li>
-<li><strong>score</strong> (<em>callable</em>) – Function that will be used to compute the score of this dataset.</li>
-<li><strong>shuffle</strong> (<em>bool</em>) – Whether or not to shuffle the data before splitting.</li>
-<li><strong>stratify</strong> (<em>bool</em>) – Whther to use a stratified or regular KFold for splitting.</li>
-<li><strong>**kwargs</strong> – Any additional keyword argument passed on initialization will be made
-available as instance attributes.</li>
+name for the dataset, and will be set as the <cite>name</cite> attribute.</p></li>
+<li><p><strong>data</strong> (<em>array-like</em>) – Numpy array or pandas DataFrame containing all the data of
+this dataset, excluding the labels or target values.</p></li>
+<li><p><strong>target</strong> (<em>array-like</em>) – Numpy array or pandas Series containing the expected labels
+or values</p></li>
+<li><p><strong>score</strong> (<em>callable</em>) – Function that will be used to compute the score of this dataset.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em>) – Whether or not to shuffle the data before splitting.</p></li>
+<li><p><strong>stratify</strong> (<em>bool</em>) – Whther to use a stratified or regular KFold for splitting.</p></li>
+<li><p><strong>**kwargs</strong> – Any additional keyword argument passed on initialization will be made
+available as instance attributes.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="method">
 <dt id="mlprimitives.datasets.Dataset.describe">
 <code class="descname">describe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset.describe" title="Permalink to this definition">¶</a></dt>
@@ -492,45 +476,40 @@ available as instance attributes.</li>
 and the y for train and test is returned.
 Otherwise, if n_splits is bigger than 1, a list of such tuples
 is returned, one for each split.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_splits</strong> (<em>int</em>) – Number of times that the data needs to be splitted.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">if n_splits is 1, a tuple containing the X for train and test
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n_splits</strong> (<em>int</em>) – Number of times that the data needs to be splitted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>if n_splits is 1, a tuple containing the X for train and test
 and the y for train and test is returned.
 Otherwise, if n_splits is bigger than 1, a list of such tuples
-is returned, one for each split.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple or list</td>
-</tr>
-</tbody>
-</table>
+is returned, one for each split.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple or list</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.datasets.Dataset.score">
 <code class="descname">score</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/datasets.html#Dataset.score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.datasets.Dataset.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scoring function for this dataset.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>**kwargs</strong> (<em>*args</em><em>,</em>) – Any given arguments and keyword arguments will be</li>
-<li><strong>passed to the given scoring function.</strong> (<em>directly</em>) – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>**kwargs</strong> (<em>*args</em><em>,</em>) – Any given arguments and keyword arguments will be</p></li>
+<li><p><strong>passed to the given scoring function.</strong> (<em>directly</em>) – </p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The computed score.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The computed score.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -318,90 +318,76 @@
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines a spectral mask based on training data</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> – Training data</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> – Training data</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max">
 <code class="descname">fit_freq_min_max</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_min_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Defines a spectral mask based on training data using min and max values of each</dt>
-<dd>frequency component</dd>
+<dd><dl class="simple">
+<dt>Defines a spectral mask based on training data using min and max values of each</dt><dd><p>frequency component</p>
+</dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>training_signal</strong> – Training data</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>training_signal</strong> – Training data</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev">
 <code class="descname">fit_freq_std_dev</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_std_dev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Defines a spectral mask based on training data using the standard deviation values of</dt>
-<dd>each frequency component</dd>
+<dd><dl class="simple">
+<dt>Defines a spectral mask based on training data using the standard deviation values of</dt><dd><p>each frequency component</p>
+</dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>training_signal</strong> – Training data</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>training_signal</strong> – Training data</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.produce">
 <code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.produce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Detects anomalies in telemetry data based on its power spectral density</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> – Telemetry data</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Data vector consisting of the anomalies detected in the telemetry data</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">anomalies</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> – Telemetry data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Data vector consisting of the anomalies detected in the telemetry data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>anomalies</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.window_design">
 <code class="descname">window_design</code><span class="sig-paren">(</span><em>window_length</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.window_design"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.window_design" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kaiser window design</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>window_length</strong> – Length of the window in number of samples</li>
-<li><strong>beta</strong> – Beta value for Kaiser window design</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_length</strong> – Length of the window in number of samples</p></li>
+<li><p><strong>beta</strong> – Beta value for Kaiser window design</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Window designed using the beta and length provided as inputs</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">window</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Window designed using the beta and length provided as inputs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>window</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -410,18 +396,17 @@
 <dt id="mlprimitives.candidates.dsp.next_power_of_2">
 <code class="descclassname">mlprimitives.candidates.dsp.</code><code class="descname">next_power_of_2</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#next_power_of_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.next_power_of_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the next power of 2 value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> – Input value</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Next power of 2 value</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">power_of_2</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – Input value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Next power of 2 value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>power_of_2</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

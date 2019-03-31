@@ -318,27 +318,23 @@ and afterwards call the indicated aggregation.</p>
 <p>Optionally group the dataframe by the indicated columns before
 performing the resampling.</p>
 <p>If groupby option is used, the result is a multi-index datagrame.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to resample.</li>
-<li><strong>rule</strong> (<em>str</em>) – The offset string or object representing target conversion.</li>
-<li><strong>groupby</strong> (<em>list</em>) – Optional list of columns to group by.</li>
-<li><strong>time_index</strong> (<em>str</em>) – Name of the column to use as the time index.</li>
-<li><strong>aggregation</strong> (<em>str</em>) – Name of the aggregation function to use.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to resample.</p></li>
+<li><p><strong>rule</strong> (<em>str</em>) – The offset string or object representing target conversion.</p></li>
+<li><p><strong>groupby</strong> (<em>list</em>) – Optional list of columns to group by.</p></li>
+<li><p><strong>time_index</strong> (<em>str</em>) – Name of the column to use as the time index.</p></li>
+<li><p><strong>aggregation</strong> (<em>str</em>) – Name of the aggregation function to use.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">resampled dataframe</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">pandas.Dataframe</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>resampled dataframe</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -347,25 +343,21 @@ performing the resampling.</p>
 <dd><p>pd.DataFrame.unstack adapter.</p>
 <p>Call the <cite>df.unstack</cite> method using the indicated level and afterwards
 join the column names using an underscore.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to unstack.</li>
-<li><strong>level</strong> (<em>str</em><em>, </em><em>int</em><em> or </em><em>list</em>) – Level(s) of index to unstack, can pass level name</li>
-<li><strong>reset_index</strong> (<em>bool</em>) – Whether to reset the index after unstacking</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to unstack.</p></li>
+<li><p><strong>level</strong> (<em>str</em><em>, </em><em>int</em><em> or </em><em>list</em>) – Level(s) of index to unstack, can pass level name</p></li>
+<li><p><strong>reset_index</strong> (<em>bool</em>) – Whether to reset the index after unstacking</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">unstacked dataframe</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">pandas.Dataframe</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>unstacked dataframe</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

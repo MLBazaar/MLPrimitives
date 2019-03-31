@@ -313,70 +313,61 @@ add the new functionality to it.</p>
 <h2>Creating a Custom Primitive<a class="headerlink" href="#creating-a-custom-primitive" title="Permalink to this headline">¶</a></h2>
 <p>If you want to create a new custom primitive, please follow these steps:</p>
 <ol class="arabic">
-<li><p class="first">If it does not exist yet, create a new GitHub issue requesting a primitive that does the
+<li><p>If it does not exist yet, create a new GitHub issue requesting a primitive that does the
 desired functionality, providing as many details as possible about the new primitive, including
-a thorough description of what it does and what it is useful for.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
+a thorough description of what it does and what it is useful for.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
 yourself, and provide an initial implementation proposal as detailed as possible. Include in
 this description the modules, classes and functions that you will create, as well as
-a clear description of the inputs and outputs of the primitive.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+a clear description of the inputs and outputs of the primitive.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discuss with them about the need
 of adding this primitive, as maybe there are other primitives that offer the same functionality,
-or they want to suggest a different implementation.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+or they want to suggest a different implementation.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">If it does not exist yet, create a python module inside the <code class="docutils literal notranslate"><span class="pre">mlprimitives/candidates/</span></code>
+<li><p>If it does not exist yet, create a python module inside the <code class="docutils literal notranslate"><span class="pre">mlprimitives/candidates/</span></code>
 folder named after the type of primitive that you want to implement. Some good names
-could be <cite>text_preprocessing</cite>, <cite>feature_extraction</cite> or <cite>timeseries_anomalies</cite>.</p>
-</li>
-<li><p class="first">Implement the new primitive inside the corresponding module following as closely as
+could be <cite>text_preprocessing</cite>, <cite>feature_extraction</cite> or <cite>timeseries_anomalies</cite>.</p></li>
+<li><p>Implement the new primitive inside the corresponding module following as closely as
 possible the implementation discussed in the GitHub issue. If you feel that you need to
-deviate from it, please make a comment in the GitHub issue explaining why.</p>
-</li>
-<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+deviate from it, please make a comment in the GitHub issue explaining why.</p></li>
+<li><p>As usual, when writing python code, make sure to follow a coding style consistent with
 the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
-section.</p>
-</li>
-<li><p class="first">Do not forget to properly document your code and cover it with unit tests!</p>
-</li>
-<li><p class="first">Create at least on JSON annotation that uses your primitive. When doing so, make sure to
+section.</p></li>
+<li><p>Do not forget to properly document your code and cover it with unit tests!</p></li>
+<li><p>Create at least on JSON annotation that uses your primitive. When doing so, make sure to
 follow the corresponding conventions:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>The name of the file should correspond to the fully qualified name of the class or
+<li><p>The name of the file should correspond to the fully qualified name of the class or
 function which the primitive consists of.
 For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">YourPrimitive</span></code> from the module
 <code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module</span></code>, the name of the file should be
-<code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.</li>
-<li>Add proper description of what the primitive does in the corresponding entry, as well
+<code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.</p></li>
+<li><p>Add proper description of what the primitive does in the corresponding entry, as well
 as a link to its documentation. If there is no documentation available, put the link
 to its source code. If the implementation follows a proposal from a scientific paper,
 consider adding the link to the PDF as well. And don’t forget to add you name and
-e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
-<li>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
+e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</p></li>
+<li><p>Add a pipeline annotation that uses your primitive inside the pipelines folder, named
 exactly like your primitive, and test it with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
+this probably means that a new dataset needs to be added.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 <div class="section" id="modifying-a-custom-primitive">
@@ -387,64 +378,56 @@ features or extend its functionality.</p>
 <p>In this case, if you are sure that these modifications will not break previous functionality,
 and that the existing primitive can be safely modified, do the following steps:</p>
 <ol class="arabic">
-<li><p class="first">If it does not exist yet, create a new GitHub issue requesting the new feature, providing
-as many details as possible about why the change is needed.</p>
-</li>
-<li><p class="first">Indicate in the issue description or in a comment that you are available to apply the changes
-yourself, and provide an implementation proposal as detailed as possible.</p>
-</li>
-<li><p class="first">Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
+<li><p>If it does not exist yet, create a new GitHub issue requesting the new feature, providing
+as many details as possible about why the change is needed.</p></li>
+<li><p>Indicate in the issue description or in a comment that you are available to apply the changes
+yourself, and provide an implementation proposal as detailed as possible.</p></li>
+<li><p>Wait for the feedback from the maintainers, who will approve the issue and assign it to you,
 before proceeding to implement any changes. Be open to discuss with them about the need
 of adding this new feature, as maybe there are other primitive that offer the same functionality,
-or they want to suggest a different implementation.</p>
-</li>
-<li><p class="first">Once the issue has been approved and assigned to you, implement the necessary changes in your
+or they want to suggest a different implementation.</p></li>
+<li><p>Once the issue has been approved and assigned to you, implement the necessary changes in your
 own fork of the project. Please implement them in a branch named after the issue number and
 title, as this makes keeping track of the history of the project easier in the long run.</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Do the necessary modifications in the existing primitive.</p>
-</li>
-<li><p class="first">As usual, when writing python code, make sure to follow a coding style consistent with
+<li><p>Do the necessary modifications in the existing primitive.</p></li>
+<li><p>As usual, when writing python code, make sure to follow a coding style consistent with
 the rest of the library, and to follow all the guidelines form the <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing Guidelines</span></a>
-section.</p>
-</li>
-<li><p class="first">Do not forget to properly document your code and cover it with proper unit testing!</p>
-</li>
-<li><p class="first">Make sure that at least one JSON annotation exists that uses the new feature.
+section.</p></li>
+<li><p>Do not forget to properly document your code and cover it with proper unit testing!</p></li>
+<li><p>Make sure that at least one JSON annotation exists that uses the new feature.
 While doing so, make sure to follow the corresponding conventions:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>The name of the file should correspond to the fully qualified name of the class or
+<li><p>The name of the file should correspond to the fully qualified name of the class or
 function which the primitive consists of.
 For example, if you are adding the primitive <code class="docutils literal notranslate"><span class="pre">YourPrimitive</span></code> from the module
 <code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module</span></code>, the name of the file should be
-<code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.</li>
-<li>Add proper description of what the primitive does in the corresponding entry, as well
+<code class="docutils literal notranslate"><span class="pre">mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.</p></li>
+<li><p>Add proper description of what the primitive does in the corresponding entry, as well
 as a link to its documentation. If there is no documentation available, put the link
 to its source code. If the implementation follows a proposal from a scientific paper,
 consider adding the link to the PDF as well. And don’t forget to add you name and
-e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</li>
-<li>If you are creating a new annotation, also add a pipeline annotation that uses your
+e-mail address to the <code class="docutils literal notranslate"><span class="pre">contributors</span></code> list!</p></li>
+<li><p>If you are creating a new annotation, also add a pipeline annotation that uses your
 primitive inside the pipelines folder, named exactly like your primitive, and test it
 with the command
 <code class="docutils literal notranslate"><span class="pre">mlprimitives</span> <span class="pre">test</span> <span class="pre">pipelines/mlprimitives.candidates.your_module.YourPrimitive.json</span></code>.
 If adding a pipeline is not possible for any reason, please inform the maintainers, as
-this probably means that a new dataset needs to be added.</li>
-<li>Make sure that all the annotations that existed before that use the same primitive still
-work by testing their corresponding pipelines with the command above.</li>
+this probably means that a new dataset needs to be added.</p></li>
+<li><p>Make sure that all the annotations that existed before that use the same primitive still
+work by testing their corresponding pipelines with the command above.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Review your changes and make sure that everything continues to work properly by executing the
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p>
-</li>
-<li><p class="first">Push all your changes to GitHub and open a Pull Request, indicating in the description which
-issue you are resolving and what the changes consist of.</p>
-</li>
+<li><p>Review your changes and make sure that everything continues to work properly by executing the
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test-all</span></code> command.</p></li>
+<li><p>Push all your changes to GitHub and open a Pull Request, indicating in the description which
+issue you are resolving and what the changes consist of.</p></li>
 </ol>
 </div>
 </div>

@@ -312,82 +312,71 @@
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries.rolling_window_sequences">
 <code class="descclassname">mlprimitives.candidates.timeseries.</code><code class="descname">rolling_window_sequences</code><span class="sig-paren">(</span><em>X</em>, <em>window_size</em>, <em>target_size</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Function that takes in a pandas.DataFrame and a window_size then creates</dt>
-<dd>output arrays that correspond to a timeseries sequence with window_size overlap.
+<dd><dl class="simple">
+<dt>Function that takes in a pandas.DataFrame and a window_size then creates</dt><dd><p>output arrays that correspond to a timeseries sequence with window_size overlap.
 The output arrays can be fed into a timeseries forecasting model.
-Assumes the input is timeseries sorted.</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>pandas.DataFrame</em>) – a pandas dataframe which has ‘timestamp’
-and ‘value’ columns, and is sorted based on timestamp.
-The timestamp column is in UNIX format (in seconds).</li>
-<li><strong>window_size</strong> (<em>int</em>) – number of values that overlap to create the sequence.</li>
-<li><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</li>
-<li><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>contains the time series sequenced data with each</dt>
-<dd><p class="first last">entry having window_size rows.</p>
+Assumes the input is timeseries sorted.</p>
 </dd>
-<dt>(numpy.ndarray): acts as the label for the forecasting problem with</dt>
-<dd><p class="first last">each entry having window_size rows.</p>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – a pandas dataframe which has ‘timestamp’
+and ‘value’ columns, and is sorted based on timestamp.
+The timestamp column is in UNIX format (in seconds).</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – number of values that overlap to create the sequence.</p></li>
+<li><p><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</p></li>
+<li><p><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>contains the time series sequenced data with each</dt><dd><p>entry having window_size rows.</p>
+</dd>
+<dt>(numpy.ndarray): acts as the label for the forecasting problem with</dt><dd><p>each entry having window_size rows.</p>
 </dd>
 </dl>
 <p>(numpy.ndarray): the corresponding timestamps series.</p>
 </p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(numpy.ndarray)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(numpy.ndarray)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries.time_segments_average">
 <code class="descclassname">mlprimitives.candidates.timeseries.</code><code class="descname">time_segments_average</code><span class="sig-paren">(</span><em>X</em>, <em>interval</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.time_segments_average" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>function that aggregates data in a pandas dataframe by averaging over a given interval.</dt>
-<dd>it starts averaging from the smallest timestamp in the dataframe and ends at the
-largest timestamp. assumes the input is timeseries sorted.</dd>
+<dd><dl class="simple">
+<dt>function that aggregates data in a pandas dataframe by averaging over a given interval.</dt><dd><p>it starts averaging from the smallest timestamp in the dataframe and ends at the
+largest timestamp. assumes the input is timeseries sorted.</p>
+</dd>
 </dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>pandas.dataframe</em>) – a pandas dataframe which has ‘timestamp’
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.dataframe</em>) – a pandas dataframe which has ‘timestamp’
 and ‘value’ columns, and is sorted based on timestamp. the timestamp
-column is in unix format (in seconds).</li>
-<li><strong>interval</strong> (<em>int</em>) – an integer denoting the number of seconds
-in the desired interval.</li>
-<li><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</li>
-<li><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</li>
+column is in unix format (in seconds).</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – an integer denoting the number of seconds
+in the desired interval.</p></li>
+<li><p><strong>value_column</strong> (<em>string</em>) – name of column that has the value field.</p></li>
+<li><p><strong>time_column</strong> (<em>string</em>) – name of column that has the time field.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
-<dt>a pandas dataframe with two colums</dt>
-<dd><p class="first last">(‘timestamp’ and ‘value’), where each <cite>timestamp</cite> is the starting time of
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>a pandas dataframe with two colums</dt><dd><p>(‘timestamp’ and ‘value’), where each <cite>timestamp</cite> is the starting time of
 an interval and the <cite>value</cite> is the result of aggregation.</p>
 </dd>
 </dl>
 </p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">pandas.dataframe</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

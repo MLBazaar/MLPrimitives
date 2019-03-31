@@ -353,14 +353,14 @@ data processing building blocks that have this abstraction. A good example of th
 primitives are most of the estimators from the scikit-learn library. These building blocks usually
 have these characteristics:</p>
 <ul class="simple">
-<li>Tunable hyperparameters are simple values of the supported basic types:
+<li><p>Tunable hyperparameters are simple values of the supported basic types:
 * <code class="docutils literal notranslate"><span class="pre">str</span></code>
 * <code class="docutils literal notranslate"><span class="pre">bool</span></code>
 * <code class="docutils literal notranslate"><span class="pre">int</span></code>
-* <code class="docutils literal notranslate"><span class="pre">float</span></code></li>
-<li>Creating the class instance or calling the fit or produce methods does not require building
-any complex structure before the call is made.</li>
-<li>The fitting and predicting phase consist of a single method or function call each.</li>
+* <code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+<li><p>Creating the class instance or calling the fit or produce methods does not require building
+any complex structure before the call is made.</p></li>
+<li><p>The fitting and predicting phase consist of a single method or function call each.</p></li>
 </ul>
 <p>In this case, no additional code is necessary to adapt them and those blocks can be brought into
 MLPrimitives using nothing else than a single JSON annotation file, which can be found in the
@@ -368,13 +368,13 @@ MLPrimitives using nothing else than a single JSON annotation file, which can be
 <div class="section" id="examples">
 <h4>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/numpy.argmax.json">numpy.argmax</a></li>
-<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/sklearn.preprocessing.StandardScaler.json">sklearn.preprocessing.StandardScaler</a></li>
-<li><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/xgboost.XGBClassifier.json">xgboost.XGBClassifier</a></li>
+<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/numpy.argmax.json">numpy.argmax</a></p></li>
+<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/sklearn.preprocessing.StandardScaler.json">sklearn.preprocessing.StandardScaler</a></p></li>
+<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/xgboost.XGBClassifier.json">xgboost.XGBClassifier</a></p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If the code is directly usable then why create a JSON annotation file? While the code is
+<p class="admonition-title">Note</p>
+<p>If the code is directly usable then why create a JSON annotation file? While the code is
 directly usable, most building blocks do not have an associated metadata we need for
 automation. Usually when using scikit-learn for example, a data scientist goes through
 the documentation to understand different hyperparameters, their ranges and has to do a
@@ -388,11 +388,11 @@ lot of manual inference before they can use them.</p>
 API, but whose behaviour is not altered in any way by this process. The type of primitives that
 are integrated in this way are the ones that have some of these characteristics:</p>
 <ul class="simple">
-<li>Need some additional steps after the instantiation in order to be prepared to run.</li>
-<li>The tunable hyperparameters need some kind of transformation or instantiation before they can be
-passed to the primitive.</li>
-<li>The primitive cannot be directly applied to the inputs or the outputs, we support, and need to
-be manipulated in some way before they can be passed to any other primitive.</li>
+<li><p>Need some additional steps after the instantiation in order to be prepared to run.</p></li>
+<li><p>The tunable hyperparameters need some kind of transformation or instantiation before they can be
+passed to the primitive.</p></li>
+<li><p>The primitive cannot be directly applied to the inputs or the outputs, we support, and need to
+be manipulated in some way before they can be passed to any other primitive.</p></li>
 </ul>
 <p>Some examples of these primitives are the Keras models, which need to be built in several steps
 and later on compiled before they can be used, or some image transformation primitives which need
@@ -402,9 +402,9 @@ corresponding functions or classes, which can also be found in the <a class="ref
 <div class="section" id="id1">
 <h4>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>LightFM</li>
-<li>Keras Sequential LSTMTextClassifier</li>
-<li>NetworkX Graph Feature Extraction</li>
+<li><p>LightFM</p></li>
+<li><p>Keras Sequential LSTMTextClassifier</p></li>
+<li><p>NetworkX Graph Feature Extraction</p></li>
 </ul>
 </div>
 </div>
@@ -418,9 +418,9 @@ as well as the corresponding JSON annotations, which can also be found in the <a
 <div class="section" id="id2">
 <h4>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Preprocessing Class Encoder</li>
-<li>Vocabulary Counter</li>
-<li>Text Cleaner</li>
+<li><p>Preprocessing Class Encoder</p></li>
+<li><p>Vocabulary Counter</p></li>
+<li><p>Text Cleaner</p></li>
 </ul>
 </div>
 <div class="section" id="candidate-primitives">

@@ -346,11 +346,11 @@ each sequence, along with its score.</p>
 <p>This is done following this steps:</p>
 <blockquote>
 <div><ul class="simple">
-<li>create a boolean mask that indicates which value are above epsilon.</li>
-<li>shift this mask by one place, filing the empty gap with a False</li>
-<li>compare the shifted mask with the original one to see if there are changes.</li>
-<li>Consider a sequence start any point which was true and has changed</li>
-<li>Consider a sequence end any point which was false and has changed</li>
+<li><p>create a boolean mask that indicates which value are above epsilon.</p></li>
+<li><p>shift this mask by one place, filing the empty gap with a False</p></li>
+<li><p>compare the shifted mask with the original one to see if there are changes.</p></li>
+<li><p>Consider a sequence start any point which was true and has changed</p></li>
+<li><p>Consider a sequence end any point which was false and has changed</p></li>
 </ul>
 </div></blockquote>
 </dd></dl>
@@ -367,27 +367,23 @@ each sequence, along with its score.</p>
 <code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">regression_errors</code><span class="sig-paren">(</span><em>y</em>, <em>y_hat</em>, <em>smoothing_window=0.01</em>, <em>smooth=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#regression_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.regression_errors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute an array of absolute errors comparing predictions and expected output.</p>
 <p>If smooth is True, apply EWMA to the resulting array of errors.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>y</strong> (<em>array</em>) – Ground truth.</li>
-<li><strong>y_hat</strong> (<em>array</em>) – Predictions array.</li>
-<li><strong>smoothing_window</strong> (<em>float</em>) – Size of the smoothing window, expressed as a proportion
-of the total length of y.</li>
-<li><strong>smooth</strong> (<em>bool</em>) – whether the returned errors should be smoothed with EWMA.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>array</em>) – Ground truth.</p></li>
+<li><p><strong>y_hat</strong> (<em>array</em>) – Predictions array.</p></li>
+<li><p><strong>smoothing_window</strong> (<em>float</em>) – Size of the smoothing window, expressed as a proportion
+of the total length of y.</p></li>
+<li><p><strong>smooth</strong> (<em>bool</em>) – whether the returned errors should be smoothed with EWMA.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">errors</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(array)</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>errors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(array)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
