@@ -51,7 +51,7 @@ class Sequential(object):
         return model
 
     def __init__(self, layers, loss, optimizer, classification,
-                 metrics=None, epochs=10, **hyperparameters):
+                 metrics=None, epochs=10, verbose=False, **hyperparameters):
 
         self.layers = list()
         for layer in layers:
@@ -64,6 +64,7 @@ class Sequential(object):
         self.metrics = metrics
 
         self.epochs = epochs
+        self.verbose = verbose
         self.classification = classification
         self.hyperparameters = hyperparameters
 
@@ -73,7 +74,7 @@ class Sequential(object):
         if self.classification:
             y = keras.utils.to_categorical(y)
 
-        self.model.fit(X, y, epochs=self.epochs)
+        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose)
 
     def predict(self, X):
         y = self.model.predict(X)
