@@ -115,11 +115,19 @@
         "tunable": {
             "dense_1_units": {
                 "type": "int",
-                "default": 64
+                "default": 64,
+                "range": [
+                    1,
+                    500
+                ]
             },
             "dense_2_units": {
                 "type": "int",
-                "default": 64
+                "default": 64,
+                "range": [
+                    1,
+                    500
+                ]
             },
             "dropout_1_rate": {
                 "type": "float",
