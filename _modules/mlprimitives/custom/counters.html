@@ -361,6 +361,13 @@
                 <span class="n">count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">count</span></div>
+
+
+<div class="viewcode-block" id="count_features"><a class="viewcode-back" href="../../../api/mlprimitives.custom.counters.html#mlprimitives.custom.counters.count_features">[docs]</a><span class="k">def</span> <span class="nf">count_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only 2d arrays are supported&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
 </pre></div>
 
            </div>
