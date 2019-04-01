@@ -20,6 +20,11 @@
             {
                 "name": "y",
                 "type": "array"
+            },
+            {
+                "name": "features",
+                "type": "int",
+                "description": "Number of features in X"
             }
         ]
     },
@@ -43,10 +48,6 @@
             "classification": {
                 "type": "bool",
                 "default": true
-            },
-            "input_dim": {
-                "type": "int",
-                "default": 20
             },
             "loss": {
                 "type": "str",
@@ -74,7 +75,7 @@
                         "parameters": {
                             "units": "dense_1_units",
                             "activation": "relu",
-                            "input_dim": "input_dim"
+                            "input_dim": "features"
                         }
                     },
                     {
