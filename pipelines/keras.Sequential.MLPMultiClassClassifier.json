@@ -6,7 +6,9 @@
     },
     "validation": {
         "dataset": "iris",
-        "context": {}
+        "context": {
+            "features": 4
+        }
     },
     "primitives": [
         "mlprimitives.custom.counters.UniqueCounter",
@@ -20,12 +22,6 @@
     "output_names": {
         "mlprimitives.custom.counters.UniqueCounter#1": {
             "counts": "classes"
-        }
-    },
-    "init_params": {
-        "keras.Sequential.MLPMultiClassClassifier#1": {
-            "epochs": 1,
-            "input_dim": 4
         }
     }
 }
