@@ -92,7 +92,7 @@
                     {
                         "class": "keras.layers.Dense",
                         "parameters": {
-                            "units": 1,
+                            "units": 2,
                             "activation": "sigmoid"
                         }
                     }
