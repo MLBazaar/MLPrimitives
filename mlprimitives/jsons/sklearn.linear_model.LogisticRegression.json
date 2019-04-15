@@ -1,8 +1,11 @@
 {
     "name": "sklearn.linear_model.LogisticRegression",
-    "contributors": ["Van Coykendall <vcoyk@mit.edu>"],
-    "documentation": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression",
-    "description": "Logistic regression classifier model. Solves the model with either the 'one-vs-rest' scheme or cross-entropy loss, depending on the type of classification problem.",
+    "contributors": [
+        "Van Coykendall <vcoyk@mit.edu>",
+        "Hector Dominguez <hedb_12@hotmail.com>"
+    ],
+    "documentation": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+    "description": "Logistic Regression (aka logit, MaxEnt) classifier.",
     "classifiers": {
         "type": "estimator",
         "subtype": "classifier"
@@ -41,7 +44,7 @@
     	"fixed": {
     		"n_jobs": {
                 "type": "int",
-                "description": "Number of CPU cores used when parallelizing over classes if multi_class=’ovr’”. This parameter is ignored when the solver is set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or not. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors",
+                "description": "Number of CPU cores used when parallelizing over classes if multi_class='ovr'. This parameter is ignored when the 'solver' is set to 'liblinear' regardless of whether 'multi_class' is specified or not. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors",
                 "default": null
     		},
     		"warm_start": {
@@ -65,6 +68,26 @@
                 },
                 "default": null
             },
+            "verbose": {
+                "type": "int",
+                "description": "For the liblinear and lbfgs solvers set verbose to any positive number for verbosity.",
+                "default": 0,
+                "range": [ 0, 100 ]
+            },
+          "class_weight": {
+            "type": "multitype",
+            "types": {
+              "dict": {
+                "description": "Weights associated with classes in the form {class_label: weight}. If not given, all classes are supposed to have weight one."
+              },
+              "str": {
+                "values": [ "balanced" ],
+                "description": "The “balanced” mode uses the values of y to automatically adjust weights inversely proportional to class frequencies in the input data as n_samples / (n_classes * np.bincount(y))."
+              }
+            },
+            "description": "These weights will be multiplied with sample_weight (passed through the fit method) if sample_weight is specified.",
+            "default": null
+          }
     	},
         "tunable": {
             "fit_intercept": {
@@ -90,7 +113,7 @@
                 "description": "used to specify the norm used in the penalization. The 'newton-cg', 'sag' and 'lbfgs' solvers support only 'l2' penalties.",
                 "default": "l2"
             },
-            "c": {
+            "C": {
                 "type": "float",
                 "description": "Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization.",
                 "default": 1.0,
@@ -104,7 +127,7 @@
                     "multinomial": "If set to 'multinomial' the loss minimised is the multinomial loss fit across the entire probability distribution. 'multinomial' is unavailable whe 'solver'='liblinear'.",
                     "auto": "selects 'ovr' if the data is binary, or if 'solver'='liblinear', and otherwise selects 'multinomial'."
                 },
-                "default": "ovr",
+                "default": "ovr"
             },
             "intercept_scaling": {
                 "type": "float",
@@ -118,31 +141,11 @@
                 "default": 0.0001,
                 "range": [ 0.000001, 0.01 ]
             },
-            "verbose": {
-                "type": "int",
-                "description": "For the liblinear and lbfgs solvers set verbose to any positive number for verbosity.",
-                "default": 0,
-                "range": [ 0, 100 ]
-            },
-            "class_weight": {
-                "type": "multitype",
-                "types": {
-                    "dict": {
-                        "description": "Weights associated with classes in the form {class_label: weight}. If not given, all classes are supposed to have weight one."
-                    },
-                    "str": {
-                        "values": [ "balanced" ],
-                        "description": "The “balanced” mode uses the values of y to automatically adjust weights inversely proportional to class frequencies in the input data as n_samples / (n_classes * np.bincount(y))."
-                    }
-                },
-                "description": "These weights will be multiplied with sample_weight (passed through the fit method) if sample_weight is specified.",
-                "default": null
-            },
             "dual": {
                 "type": "bool",
                 "description": "Dual or primal formulation. Dual formulation is only implemented for l2 penalty with liblinear solver. Prefer dual=False when n_samples > n_features.",
                 "default": false
-            },
+            }
         }
     }
 }
