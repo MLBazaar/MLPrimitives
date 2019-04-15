@@ -60,7 +60,7 @@
                         "description": "random_state is the seed used by the random number generator"
                     },
                     "RandomState": {
-                        "description": "If an array is passed, penalties are assumed to be specific to the targets. Hence they must correspond in number."
+                        "description": "random_state is the random number generator."
                     },
                     "NoneType": {
                         "description": "If none, the random number generator is the RandomState instance used by np.random"
@@ -148,8 +148,8 @@
                 ],
                 "description": {
                     "ovr": "If set to 'ovr', then a binary problem is fit for each label.",
-                    "multinomial": "If set to 'multinomial' the loss minimised is the multinomial loss fit across the entire probability distribution. 'multinomial' is unavailable whe 'solver'='liblinear'.",
-                    "auto": "selects 'ovr' if the data is binary, or if 'solver'='liblinear', and otherwise selects 'multinomial'."
+                    "multinomial": "If set to 'multinomial' the loss minimised is the multinomial loss fit across the entire probability distribution. 'multinomial' is unavailable when solver='liblinear'.",
+                    "auto": "selects 'ovr' if the data is binary, or if solver='liblinear', and otherwise selects 'multinomial'."
                 },
                 "default": "ovr"
             },
