@@ -93,7 +93,7 @@
             },
             "verbose": {
                 "type": "int",
-                "default": 1,
+                "default": 0,
                 "range": [
                     0,
                     2
