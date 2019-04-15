@@ -123,10 +123,6 @@
                     0.0,
                     0.75
                 ]
-            },
-            "batch_size": {
-                "type": "int",
-                "default": 128
             }
         }
     }
