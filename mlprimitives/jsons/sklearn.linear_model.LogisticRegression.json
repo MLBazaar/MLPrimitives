@@ -70,7 +70,7 @@
             },
             "verbose": {
                 "type": "bool",
-                "description": "For the liblinear and lbfgs solvers set verbose to any positive number for verbosity.",
+                "description": "For the liblinear and lbfgs solvers set verbose to true for verbosity.",
                 "default": false
             },
             "class_weight": {
