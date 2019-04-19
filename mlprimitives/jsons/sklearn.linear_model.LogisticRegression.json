@@ -69,13 +69,9 @@
                 "default": null
             },
             "verbose": {
-                "type": "int",
+                "type": "bool",
                 "description": "For the liblinear and lbfgs solvers set verbose to any positive number for verbosity.",
-                "default": 0,
-                "range": [
-                    0,
-                    100
-                ]
+                "default": false
             },
             "class_weight": {
                 "type": "multitype",
