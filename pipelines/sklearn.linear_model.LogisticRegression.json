@@ -1,0 +1,13 @@
+{
+    "metadata": {
+        "name": "sklearn.linear_model.LogisticRegression",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "iris"
+    },
+    "primitives": [
+        "sklearn.linear_model.LogisticRegression"
+    ]
+}
