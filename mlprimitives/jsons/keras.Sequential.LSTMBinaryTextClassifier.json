@@ -1,0 +1,137 @@
+{
+    "name": "keras.Sequential.LSTMBinaryTextClassifier",
+    "contributors": [
+        "Hector Dominguez <hedb_12@hotmail.com>"
+    ],
+    "description": "Long Short-Term Memory (LSTM) Binary Classifier for texts",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classifier"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "array"
+            },
+            {
+                "name": "vocabulary_size",
+                "type": "int",
+                "description": "vocabulary size + 1: number of known words in input."
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": true
+            },
+            "loss": {
+                "type": "str",
+                "default": "keras.losses.binary_crossentropy"
+            },
+            "optimizer": {
+                "type": "str",
+                "default": "keras.optimizers.RMSprop"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "accuracy"
+                ]
+            },
+            "epochs": {
+                "type": "int",
+                "default": 20
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0,
+                "range": [
+                    0,
+                    2
+                ]
+            },
+            "layers": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.layers.Embedding",
+                        "parameters": {
+                            "input_dim": "vocabulary_size",
+                            "output_dim": "embedding_output_dim"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.LSTM",
+                        "parameters": {
+                            "units": "lstm_units"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": 2,
+                            "activation": "sigmoid"
+                        }
+                    }
+                ]
+            }
+        },
+        "tunable": {
+            "embedding_output_dim": {
+                "type": "int",
+                "default": 100,
+                "range": [
+                    100,
+                    500
+                ]
+            },
+            "lstm_units": {
+                "type": "int",
+                "default": 100,
+                "range": [
+                    100,
+                    500
+                ]
+            },
+            "dropout_rate": {
+                "type": "float",
+                "default": 0.5,
+                "range": [
+                    0.0,
+                    0.75
+                ]
+            }
+        }
+    }
+}
