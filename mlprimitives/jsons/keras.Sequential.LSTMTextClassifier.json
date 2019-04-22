@@ -59,6 +59,10 @@
                 "type": "bool",
                 "default": true
             },
+            "verbose": {
+                "type": "bool",
+                "default": false
+            },
             "conv_activation": {
                 "type": "str",
                 "default": "relu"
@@ -84,6 +88,18 @@
             "epochs": {
                 "type": "int",
                 "default": 10
+            },
+            "callbacks": {
+                "type": "list",
+                "default": []
+            },
+            "validation_split": {
+                "type": "float",
+                "default": 0.0
+            },
+            "bastch_size": {
+                "type": "int",
+                "default": 32
             },
             "layers": {
                 "type": "list",
