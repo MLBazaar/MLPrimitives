@@ -39,6 +39,10 @@
                     0,
                     12
                 ]
+            },
+            "window_size": {
+                "type": "int",
+                "default": null
             }
         },
         "tunable": {}

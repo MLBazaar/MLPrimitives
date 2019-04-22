@@ -121,7 +121,7 @@ def find_sequences(errors, epsilon):
 
     This is done following this steps:
 
-        * create a boolean mask that indicates which value are above epsilon.
+        * create a boolean mask that indicates which values are above epsilon.
         * shift this mask by one place, filing the empty gap with a False
         * compare the shifted mask with the original one to see if there are changes.
         * Consider a sequence start any point which was true and has changed
@@ -137,10 +137,30 @@ def find_sequences(errors, epsilon):
     if len(ends) == len(starts) - 1:
         ends.append(len(above) - 1)
 
-    return list(zip(starts, ends))
+    return np.array([starts, ends]).T
 
 
-def find_anomalies(errors, index, z_range=(0, 10)):
+def merge_consecutive(sequences):
+    """Merge consecutive sequences.
+
+    We iterate over a list of start, end pairs and merge together
+    the cases where the start of a sequence is exactly the end
+    of the previous sequence + 1.
+    """
+    previous = -1
+    new_sequences = list()
+    for start, end in sequences:
+        if previous + 1 == start:
+            new_sequences[-1][1] = end
+        else:
+            new_sequences.append([start, end])
+
+        previous = end
+
+    return np.array(new_sequences)
+
+
+def find_anomalies(errors, index, z_range=(0, 10), window_size=None):
     """Find sequences of values that are anomalous.
 
     We first find the ideal threshold for the set of errors that we have,
@@ -151,8 +171,25 @@ def find_anomalies(errors, index, z_range=(0, 10)):
     each sequence, along with its score.
     """
 
-    threshold = find_threshold(errors, z_range)
-    sequences = find_sequences(errors, threshold)
+    window_size = window_size or len(errors)
+    window_start = 0
+    sequences = list()
+    while window_start < len(errors):
+        window_end = window_start + window_size
+        window = errors[window_start:window_end]
+
+        threshold = find_threshold(window, z_range)
+        window_sequences = find_sequences(window, threshold)
+
+        # indexes are relative to each window, so we need to add
+        # the window_start to all of them to make them absolute
+        window_sequences += window_start
+
+        sequences.extend(window_sequences)
+
+        window_start = window_end
+
+    sequences = merge_consecutive(sequences)
 
     anomalies = list()
     denominator = errors.mean() + errors.std()
