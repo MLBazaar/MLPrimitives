@@ -14,10 +14,10 @@ class FindSequencesTest(TestCase):
     def _run(self, errors, expected):
         found = find_sequences(np.asarray(errors), self.THRESHOLD)
 
-        assert found == expected
+        np.testing.assert_array_equal(found, expected)
 
     def test_find_sequences_no_sequences(self):
-        self._run([0, 0, 0, 0], [])
+        self._run([0, 0, 0, 0], np.ndarray((0, 2)))
 
     def test_find_sequences_all_one_sequence(self):
         self._run([1, 1, 1, 1], [(0, 3)])

@@ -147,7 +147,7 @@ def merge_consecutive(sequences):
     the cases where the start of a sequence is exactly the end
     of the previous sequence + 1.
     """
-    previous = -1
+    previous = -2
     new_sequences = list()
     for start, end in sequences:
         if previous + 1 == start:
