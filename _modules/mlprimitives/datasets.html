@@ -309,35 +309,37 @@
 
 <span class="sd">The available datasets by data modality and task type are:</span>
 
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Dataset          | Data Modality | Task Type               |</span>
-<span class="sd">+==================+===============+=========================+</span>
-<span class="sd">| Amazon           | Graph         | Community Detection     |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| DIC28            | Graph         | Graph Matching          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| UMLs             | Graph         | Link Prediction         |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Nomination       | Graph         | Vertex Nomination       |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| USPS             | Image         | Classification          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Hand Geometry    | Image         | Regression              |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Iris             | Single Table  | Classification          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Jester           | Single Table  | Collaborative Filtering |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Boston           | Single Table  | Regression              |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Boston Multitask | Single Table  | Multitask Regression    |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Wiki QA          | Multi Table   | Classification          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| Personae         | Text          | Classification          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
-<span class="sd">| News Groups      | Text          | Classification          |</span>
-<span class="sd">+------------------+---------------+-------------------------+</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Dataset          | Data Modality | Task Type                 |</span>
+<span class="sd">+==================+===============+===========================+</span>
+<span class="sd">| Amazon           | Graph         | Community Detection       |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| DIC28            | Graph         | Graph Matching            |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| UMLs             | Graph         | Link Prediction           |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Nomination       | Graph         | Vertex Nomination         |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| USPS             | Image         | Classification            |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Hand Geometry    | Image         | Regression                |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Iris             | Single Table  | Multiclass Classification |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Census           | Single Table  | Binary Classification     |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Jester           | Single Table  | Collaborative Filtering   |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Boston           | Single Table  | Regression                |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Boston Multitask | Single Table  | Multitask Regression      |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Wiki QA          | Multi Table   | Classification            |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Personae         | Text          | Classification            |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| News Groups      | Text          | Classification            |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -362,7 +364,7 @@
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
     <span class="s1">&#39;data&#39;</span>
 <span class="p">)</span>
-<span class="n">DATA_URL</span> <span class="o">=</span> <span class="s1">&#39;http://dai-mlblocks.s3.amazonaws.com/</span><span class="si">{}</span><span class="s1">.tar.gz&#39;</span>
+<span class="n">DATA_URL</span> <span class="o">=</span> <span class="s1">&#39;http://mlprimitives.s3.amazonaws.com/</span><span class="si">{}</span><span class="s1">.tar.gz&#39;</span>
 
 
 <div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
@@ -695,6 +697,27 @@
     <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
     <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_jester</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_census"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_census">[docs]</a><span class="k">def</span> <span class="nf">load_census</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Predict whether income exceeds $50K/yr based on census data. Also known as &quot;Adult&quot; dataset.</span>
+
+<span class="sd">    Extraction was done by Barry Becker from the 1994 Census database. A set of reasonably clean</span>
+<span class="sd">    records was extracted using the following conditions: ((AAGE&gt;16) &amp;&amp; (AGI&gt;100) &amp;&amp;</span>
+<span class="sd">    (AFNLWGT&gt;1)&amp;&amp; (HRSWK&gt;0))</span>
+
+<span class="sd">    Prediction task is to determine whether a person makes over 50K a year.</span>
+
+<span class="sd">    source: &quot;UCI</span>
+<span class="sd">    sourceURI: &quot;https://archive.ics.uci.edu/ml/datasets/census+income&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dataset_path</span> <span class="o">=</span> <span class="n">_load</span><span class="p">(</span><span class="s1">&#39;census&#39;</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">_load_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;income&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_census</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_wikiqa"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_wikiqa">[docs]</a><span class="k">def</span> <span class="nf">load_wikiqa</span><span class="p">():</span>
