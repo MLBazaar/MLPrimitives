@@ -1,0 +1,28 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.LSTMBinaryTextClassifier",
+        "data_type": "text",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "personae"
+    },
+    "primitives": [
+        "mlprimitives.custom.counters.VocabularyCounter",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "keras.Sequential.LSTMBinaryTextClassifier"
+    ],
+    "output_names": {
+        "mlprimitives.custom.counters.VocabularyCounter#1": {
+            "counts": "vocabulary_size"
+        }
+    },
+    "init_params": {
+        "mlprimitives.custom.counters.VocabularyCounter#1": {
+            "add": 1
+        },
+        "keras.Sequential.LSTMBinaryTextClassifier#1": {
+            "epochs": 1
+        }
+    }
+}

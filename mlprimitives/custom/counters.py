@@ -61,3 +61,10 @@ class VocabularyCounter(Counter):
                 count = max(count, len(words))
 
         return count
+
+
+def count_features(X):
+    if len(X.shape) != 2:
+        raise ValueError('Only 2d arrays are supported')
+
+    return X.shape[1]

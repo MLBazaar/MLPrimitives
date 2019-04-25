@@ -1,0 +1,272 @@
+{
+    "name": "keras.Sequential.VGGCNNClassifier",
+    "contributors": [
+        "Hector Dominguez <hedb_12@hotmail.com>"
+    ],
+    "description": "VGG-like Convolutional Neural Network Classifier",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classifier"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "array"
+            },
+            {
+                "name": "classes",
+                "type": "int",
+                "description": "Number of classes"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": true
+            },
+            "conv2d_1_filters": {
+                "type": "int",
+                "default": 32
+            },
+            "input_shape": {
+                "type": "list",
+                "default": [
+                    224,
+                    224,
+                    3
+                ]
+            },
+            "conv2d_2_filters": {
+                "type": "int",
+                "default": 32
+            },
+            "conv2d_3_filters": {
+                "type": "int",
+                "default": 32
+            },
+            "conv2d_4_filters": {
+                "type": "int",
+                "default": 32
+            },
+            "loss": {
+                "type": "str",
+                "default": "keras.losses.categorical_crossentropy"
+            },
+            "optimizer": {
+                "type": "str",
+                "default": "keras.optimizers.SGD"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "accuracy"
+                ]
+            },
+            "epochs": {
+                "type": "int",
+                "default": 20
+            },
+            "verbose": {
+                "type": "int",
+                "default": 0,
+                "range": [
+                    0,
+                    2
+                ]
+            },
+            "layers": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.layers.Conv2D",
+                        "parameters": {
+                            "filters": "conv2d_1_filters",
+                            "kernel_size": "conv2d_1_kernel_size",
+                            "activation": "relu",
+                            "input_shape": "input_shape"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Conv2D",
+                        "parameters": {
+                            "filters": "conv2d_2_filters",
+                            "kernel_size": "conv2d_2_kernel_size",
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.MaxPooling2D",
+                        "parameters": {
+                            "pool_size": "maxpooling2d_1_pool_size"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_1_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Conv2D",
+                        "parameters": {
+                            "filters": "conv2d_3_filters",
+                            "kernel_size": "conv2d_3_kernel_size",
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Conv2D",
+                        "parameters": {
+                            "filters": "conv2d_4_filters",
+                            "kernel_size": "conv2d_4_kernel_size",
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.MaxPooling2D",
+                        "parameters": {
+                            "pool_size": "maxpooling2d_2_pool_size"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_2_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Flatten",
+                        "parameters": {}
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "dense_units",
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_3_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "classes",
+                            "activation": "softmax"
+                        }
+                    }
+                ]
+            }
+        },
+        "tunable": {
+            "conv2d_1_kernel_size": {
+                "type": "int",
+                "default": 3,
+                "range": [
+                    3,
+                    10
+                ]
+            },
+            "conv2d_2_kernel_size": {
+                "type": "int",
+                "default": 3,
+                "range": [
+                    3,
+                    10
+                ]
+            },
+            "maxpooling2d_1_pool_size": {
+                "type": "int",
+                "default": 2,
+                "range": [
+                    2,
+                    10
+                ]
+            },
+            "dropout_1_rate": {
+                "type": "float",
+                "default": 0.0,
+                "range": [
+                    0.0,
+                    0.75
+                ]
+            },
+            "conv2d_3_kernel_size": {
+                "type": "int",
+                "default": 3,
+                "range": [
+                    3,
+                    10
+                ]
+            },
+            "conv2d_4_kernel_size": {
+                "type": "int",
+                "default": 3,
+                "range": [
+                    3,
+                    10
+                ]
+            },
+            "maxpooling2d_2_pool_size": {
+                "type": "int",
+                "default": 2,
+                "range": [
+                    2,
+                    10
+                ]
+            },
+            "dropout_2_rate": {
+                "type": "float",
+                "default": 0.0,
+                "range": [
+                    0.0,
+                    0.75
+                ]
+            },
+            "dense_units": {
+                "type": "int",
+                "default": 64,
+                "range": [
+                    1,
+                    500
+                ]
+            },
+            "dropout_3_rate": {
+                "type": "float",
+                "default": 0.5,
+                "range": [
+                    0.0,
+                    0.75
+                ]
+            }
+        }
+    }
+}
