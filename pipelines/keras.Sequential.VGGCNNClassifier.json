@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.VGGCNNClassifier",
+        "data_type": "image",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "usps",
+        "context": {}
+    },
+    "primitives": [
+        "mlprimitives.custom.counters.UniqueCounter",
+        "keras.Sequential.VGGCNNClassifier"
+    ],
+    "input_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "X": "y"
+        }
+    },
+    "output_names": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "counts": "classes"
+        }
+    },
+    "init_params": {
+        "mlprimitives.custom.counters.UniqueCounter#1": {
+            "add": 1
+        },
+        "keras.Sequential.VGGCNNClassifier#1": {
+            "epochs": 1
+        }
+    }
+}

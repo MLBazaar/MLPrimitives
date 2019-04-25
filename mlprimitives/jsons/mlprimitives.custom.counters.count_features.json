@@ -1,0 +1,35 @@
+{
+    "name": "mlprimitives.custom.counters.count_features",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "Count the number of features in a 2d feature matrix.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.counters.count_features",
+    "fit": {
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "features",
+                "type": "int"
+            }
+        ]
+    }
+}
