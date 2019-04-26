@@ -50,8 +50,9 @@ class Sequential(object):
 
         return model
 
-    def __init__(self, layers, loss, optimizer, classification,
-                 metrics=None, epochs=10, verbose=False, **hyperparameters):
+    def __init__(self, layers, loss, optimizer, classification, callbacks=tuple(),
+                 metrics=None, epochs=10, verbose=False, validation_split=0, batch_size=32,
+                 shuffle=True, **hyperparameters):
 
         self.layers = list()
         for layer in layers:
@@ -67,6 +68,14 @@ class Sequential(object):
         self.verbose = verbose
         self.classification = classification
         self.hyperparameters = hyperparameters
+        self.validation_split = validation_split
+        self.batch_size = batch_size
+        self.shuffle = shuffle
+
+        for callback in callbacks:
+            callback['class'] = import_object(callback['class'])
+
+        self.callbacks = callbacks
 
     def fit(self, X, y, **kwargs):
         self.model = self._build_model(**kwargs)
@@ -74,10 +83,17 @@ class Sequential(object):
         if self.classification:
             y = keras.utils.to_categorical(y)
 
-        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose)
+        callbacks = [
+            callback['class'](**callback.get('args', dict()))
+            for callback in self.callbacks
+        ]
+
+        self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose, callbacks=callbacks,
+                       validation_split=self.validation_split, batch_size=self.batch_size,
+                       shuffle=self.shuffle)
 
     def predict(self, X):
-        y = self.model.predict(X)
+        y = self.model.predict(X, batch_size=self.batch_size, verbose=self.verbose)
 
         if self.classification:
             y = np.argmax(y, axis=1)

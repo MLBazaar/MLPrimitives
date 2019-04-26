@@ -17,7 +17,7 @@ LOGGER = logging.getLogger(__name__)
 
 def _logging_setup(verbosity=1):
     logger = logging.getLogger()
-    log_level = (3 - verbosity) * 10
+    log_level = (4 - verbosity) * 10
     fmt = '%(asctime)s - %(levelname)s - %(message)s'
     formatter = logging.Formatter(fmt)
     logger.setLevel(log_level)

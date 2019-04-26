@@ -9,35 +9,37 @@ and task types.
 
 The available datasets by data modality and task type are:
 
-+------------------+---------------+-------------------------+
-| Dataset          | Data Modality | Task Type               |
-+==================+===============+=========================+
-| Amazon           | Graph         | Community Detection     |
-+------------------+---------------+-------------------------+
-| DIC28            | Graph         | Graph Matching          |
-+------------------+---------------+-------------------------+
-| UMLs             | Graph         | Link Prediction         |
-+------------------+---------------+-------------------------+
-| Nomination       | Graph         | Vertex Nomination       |
-+------------------+---------------+-------------------------+
-| USPS             | Image         | Classification          |
-+------------------+---------------+-------------------------+
-| Hand Geometry    | Image         | Regression              |
-+------------------+---------------+-------------------------+
-| Iris             | Single Table  | Classification          |
-+------------------+---------------+-------------------------+
-| Jester           | Single Table  | Collaborative Filtering |
-+------------------+---------------+-------------------------+
-| Boston           | Single Table  | Regression              |
-+------------------+---------------+-------------------------+
-| Boston Multitask | Single Table  | Multitask Regression    |
-+------------------+---------------+-------------------------+
-| Wiki QA          | Multi Table   | Classification          |
-+------------------+---------------+-------------------------+
-| Personae         | Text          | Classification          |
-+------------------+---------------+-------------------------+
-| News Groups      | Text          | Classification          |
-+------------------+---------------+-------------------------+
++------------------+---------------+---------------------------+
+| Dataset          | Data Modality | Task Type                 |
++==================+===============+===========================+
+| Amazon           | Graph         | Community Detection       |
++------------------+---------------+---------------------------+
+| DIC28            | Graph         | Graph Matching            |
++------------------+---------------+---------------------------+
+| UMLs             | Graph         | Link Prediction           |
++------------------+---------------+---------------------------+
+| Nomination       | Graph         | Vertex Nomination         |
++------------------+---------------+---------------------------+
+| USPS             | Image         | Classification            |
++------------------+---------------+---------------------------+
+| Hand Geometry    | Image         | Regression                |
++------------------+---------------+---------------------------+
+| Iris             | Single Table  | Multiclass Classification |
++------------------+---------------+---------------------------+
+| Census           | Single Table  | Binary Classification     |
++------------------+---------------+---------------------------+
+| Jester           | Single Table  | Collaborative Filtering   |
++------------------+---------------+---------------------------+
+| Boston           | Single Table  | Regression                |
++------------------+---------------+---------------------------+
+| Boston Multitask | Single Table  | Multitask Regression      |
++------------------+---------------+---------------------------+
+| Wiki QA          | Multi Table   | Classification            |
++------------------+---------------+---------------------------+
+| Personae         | Text          | Classification            |
++------------------+---------------+---------------------------+
+| News Groups      | Text          | Classification            |
++------------------+---------------+---------------------------+
 
 """
 
@@ -62,7 +64,7 @@ DATA_PATH = os.path.join(
     os.path.dirname(__file__),
     'data'
 )
-DATA_URL = 'http://dai-mlblocks.s3.amazonaws.com/{}.tar.gz'
+DATA_URL = 'http://mlprimitives.s3.amazonaws.com/{}.tar.gz'
 
 
 class Dataset():
@@ -395,6 +397,27 @@ def load_jester():
     y = X.pop('rating').values
 
     return Dataset(load_jester.__doc__, X, y, r2_score)
+
+
+def load_census():
+    """Predict whether income exceeds $50K/yr based on census data. Also known as "Adult" dataset.
+
+    Extraction was done by Barry Becker from the 1994 Census database. A set of reasonably clean
+    records was extracted using the following conditions: ((AAGE>16) && (AGI>100) &&
+    (AFNLWGT>1)&& (HRSWK>0))
+
+    Prediction task is to determine whether a person makes over 50K a year.
+
+    source: "UCI
+    sourceURI: "https://archive.ics.uci.edu/ml/datasets/census+income"
+    """
+
+    dataset_path = _load('census')
+
+    X = _load_csv(dataset_path, 'data')
+    y = X.pop('income').values
+
+    return Dataset(load_census.__doc__, X, y, accuracy_score, stratify=True)
 
 
 def load_wikiqa():

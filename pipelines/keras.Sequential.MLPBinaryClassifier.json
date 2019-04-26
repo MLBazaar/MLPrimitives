@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.MLPBinaryClassifier",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "census",
+        "context": {}
+    },
+    "primitives": [
+        "mlprimitives.custom.preprocessing.ClassEncoder",
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "mlprimitives.custom.counters.count_features",
+        "keras.Sequential.MLPBinaryClassifier",
+        "mlprimitives.custom.preprocessing.ClassDecoder"
+    ]
+}

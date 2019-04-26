@@ -1,33 +1,53 @@
 # History
 
+## 0.1.9
+
+### New Features
+
+* Add a single table binary classification dataset [Issue #141](https://github.com/HDI-Project/MLPrimitives/issues/141) by @csala
+
+### New Primitives
+
+* Add Multilayer Perceptron (MLP) primitive for binary classification [Issue #140](https://github.com/HDI-Project/MLPrimitives/issues/140) by @Hector-hedb12
+* Add primitive for Sequence classification with LSTM [Issue #150](https://github.com/HDI-Project/MLPrimitives/issues/150) by @Hector-hedb12
+* Add VGG-like convnet primitive [Issue #149](https://github.com/HDI-Project/MLPrimitives/issues/149) by @Hector-hedb12
+* Add Multilayer Perceptron (MLP) primitive for multi-class softmax classification [Issue #139](https://github.com/HDI-Project/MLPrimitives/issues/139) by @Hector-hedb12
+* Add primitive to count feature matrix columns [Issue #146](https://github.com/HDI-Project/MLPrimitives/issues/146) by @csala
+
+### Primitive Improvements
+
+* Add additional fit and predict arguments to keras.Sequential [Issue #161](https://github.com/HDI-Project/MLPrimitives/issues/161) by @csala
+* Add suport for keras.Sequential Callbacks [Issue #159](https://github.com/HDI-Project/MLPrimitives/issues/159) by @csala
+* Add fixed hyperparam to control keras.Sequential verbosity [Issue #143](https://github.com/HDI-Project/MLPrimitives/issues/143) by @csala
+
 ## 0.1.8
 
 ### New Primitives
 
-* mlprimitives.custom.timeseries_preprocessing.time_segments_average - Issue #137
+* mlprimitives.custom.timeseries_preprocessing.time_segments_average - [Issue #137](https://github.com/HDI-Project/MLPrimitives/issues/137)
 
 ### New Features
 
-* Add target_index output in timseries_preprocessing.rolling_window_sequences - Issue #136
+* Add target_index output in timseries_preprocessing.rolling_window_sequences - [Issue #136](https://github.com/HDI-Project/MLPrimitives/issues/136)
 
 ## 0.1.7
 
 ### General Improvements
 
-* Validate JSON format in `make lint` -  Issue #133
-* Add demo datasets - Issue #131
-* Improve featuretools.dfs primitive - Issue #127
+* Validate JSON format in `make lint` -  [Issue #133](https://github.com/HDI-Project/MLPrimitives/issues/133)
+* Add demo datasets - [Issue #131](https://github.com/HDI-Project/MLPrimitives/issues/131)
+* Improve featuretools.dfs primitive - [Issue #127](https://github.com/HDI-Project/MLPrimitives/issues/127)
 
 ### New Primitives
 
-* pandas.DataFrame.resample - Issue #123
-* pandas.DataFrame.unstack - Issue #124
-* featuretools.EntitySet.add_relationship - Issue #126
-* featuretools.EntitySet.entity_from_dataframe - Issue #126
+* pandas.DataFrame.resample - [Issue #123](https://github.com/HDI-Project/MLPrimitives/issues/123)
+* pandas.DataFrame.unstack - [Issue #124](https://github.com/HDI-Project/MLPrimitives/issues/124)
+* featuretools.EntitySet.add_relationship - [Issue #126](https://github.com/HDI-Project/MLPrimitives/issues/126)
+* featuretools.EntitySet.entity_from_dataframe - [Issue #126](https://github.com/HDI-Project/MLPrimitives/issues/126)
 
 ### Bug Fixes
 
-* Bug in timeseries_anomalies.py - Issue #119
+* Bug in timeseries_anomalies.py - [Issue #119](https://github.com/HDI-Project/MLPrimitives/issues/119)
 
 ## 0.1.6
 
