@@ -336,36 +336,13 @@ delta_std = std(errors) - std(all errors below epsilon)</p>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.find_anomalies">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_anomalies</code><span class="sig-paren">(</span><em>errors</em>, <em>index</em>, <em>z_range=(0</em>, <em>10)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_anomalies</code><span class="sig-paren">(</span><em>errors</em>, <em>index</em>, <em>z_range=(0</em>, <em>10)</em>, <em>window_size=None</em>, <em>min_percent=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find sequences of values that are anomalous.</p>
 <p>We first find the ideal threshold for the set of errors that we have,
 and then find the sequences of values that are above this threshold.</p>
 <p>Lastly, we compute a score proportional to the maximum error in the
 sequence, and finally return the index pairs that correspond to
 each sequence, along with its score.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.custom.timeseries_anomalies.find_sequences">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_sequences</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_sequences" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find sequences of values that are above epsilon.</p>
-<p>This is done following this steps:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>create a boolean mask that indicates which value are above epsilon.</p></li>
-<li><p>shift this mask by one place, filing the empty gap with a False</p></li>
-<li><p>compare the shifted mask with the original one to see if there are changes.</p></li>
-<li><p>Consider a sequence start any point which was true and has changed</p></li>
-<li><p>Consider a sequence end any point which was false and has changed</p></li>
-</ul>
-</div></blockquote>
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.custom.timeseries_anomalies.find_threshold">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_threshold</code><span class="sig-paren">(</span><em>errors</em>, <em>z_range=(0</em>, <em>10)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_threshold" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find the ideal threshold.</p>
-<p>The ideal threshold is the one that minimizes the z_cost function.</p>
 </dd></dl>
 
 <dl class="function">

@@ -401,7 +401,7 @@
     <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span></div>
 
 
-<div class="viewcode-block" id="find_threshold"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_threshold">[docs]</a><span class="k">def</span> <span class="nf">find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">_find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;Find the ideal threshold.</span>
 
 <span class="sd">    The ideal threshold is the one that minimizes the z_cost function.</span>
@@ -419,15 +419,15 @@
         <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">best_cost</span><span class="p">:</span>
             <span class="n">best_z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">best_z</span> <span class="o">*</span> <span class="n">std</span></div>
+    <span class="k">return</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">best_z</span> <span class="o">*</span> <span class="n">std</span>
 
 
-<div class="viewcode-block" id="find_sequences"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_sequences">[docs]</a><span class="k">def</span> <span class="nf">find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find sequences of values that are above epsilon.</span>
 
 <span class="sd">    This is done following this steps:</span>
 
-<span class="sd">        * create a boolean mask that indicates which value are above epsilon.</span>
+<span class="sd">        * create a boolean mask that indicates which values are above epsilon.</span>
 <span class="sd">        * shift this mask by one place, filing the empty gap with a False</span>
 <span class="sd">        * compare the shifted mask with the original one to see if there are changes.</span>
 <span class="sd">        * Consider a sequence start any point which was true and has changed</span>
@@ -437,16 +437,97 @@
     <span class="n">shift</span> <span class="o">=</span> <span class="n">above</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">change</span> <span class="o">=</span> <span class="n">above</span> <span class="o">!=</span> <span class="n">shift</span>
 
+    <span class="k">if</span> <span class="n">above</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">max_below</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">max_below</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="o">~</span><span class="n">above</span><span class="p">])</span>
+
     <span class="n">index</span> <span class="o">=</span> <span class="n">above</span><span class="o">.</span><span class="n">index</span>
     <span class="n">starts</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">ends</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="o">~</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">ends</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">max_below</span>
 
 
-<div class="viewcode-block" id="find_anomalies"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_anomalies">[docs]</a><span class="k">def</span> <span class="nf">find_anomalies</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">_get_max_errors</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">sequences</span><span class="p">,</span> <span class="n">max_below</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the maximum error for each anomalous sequence.</span>
+
+<span class="sd">    Also add a row with the max error which was not considered anomalous.</span>
+
+<span class="sd">    Table containing a ``max_error`` column with the maximum error of each</span>
+<span class="sd">    sequence and a column ``sequence`` with the corresponding start and stop</span>
+<span class="sd">    indexes, sorted descendingly by errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_errors</span> <span class="o">=</span> <span class="p">[{</span>
+        <span class="s1">&#39;max_error&#39;</span><span class="p">:</span> <span class="n">max_below</span><span class="p">,</span>
+        <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;stop&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">}]</span>
+
+    <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">sequence</span>
+        <span class="n">sequence_errors</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">start</span><span class="p">:</span> <span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">max_errors</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
+            <span class="s1">&#39;stop&#39;</span><span class="p">:</span> <span class="n">stop</span><span class="p">,</span>
+            <span class="s1">&#39;max_error&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">sequence_errors</span><span class="p">)</span>
+        <span class="p">})</span>
+
+    <span class="n">max_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">max_errors</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;max_error&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">max_errors</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_prune_anomalies</span><span class="p">(</span><span class="n">max_errors</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prune anomalies to mitigate false positives.</span>
+
+<span class="sd">    This is done by following these steps:</span>
+
+<span class="sd">        * Shift the errors 1 negative step to compare each value with the next one.</span>
+<span class="sd">        * Drop the last row, which we do not want to compare.</span>
+<span class="sd">        * Calculate the percentage increase for each row.</span>
+<span class="sd">        * Find rows which are below ``min_percent``.</span>
+<span class="sd">        * Find the index of the latest of such rows.</span>
+<span class="sd">        * Get the values of all the sequences above that index.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">next_error</span> <span class="o">=</span> <span class="n">max_errors</span><span class="p">[</span><span class="s1">&#39;max_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">max_error</span> <span class="o">=</span> <span class="n">max_errors</span><span class="p">[</span><span class="s1">&#39;max_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">increase</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_error</span> <span class="o">-</span> <span class="n">next_error</span><span class="p">)</span> <span class="o">/</span> <span class="n">max_error</span>
+    <span class="n">too_small</span> <span class="o">=</span> <span class="n">increase</span> <span class="o">&lt;</span> <span class="n">min_percent</span>
+
+    <span class="k">if</span> <span class="n">too_small</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">last_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">last_index</span> <span class="o">=</span> <span class="n">max_error</span><span class="p">[</span><span class="o">~</span><span class="n">too_small</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">max_errors</span><span class="p">[[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">last_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+
+<span class="k">def</span> <span class="nf">_merge_consecutive</span><span class="p">(</span><span class="n">sequences</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Merge consecutive sequences.</span>
+
+<span class="sd">    We iterate over a list of start, end pairs and merge together</span>
+<span class="sd">    the cases where the start of a sequence is exactly the end</span>
+<span class="sd">    of the previous sequence + 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="n">new_sequences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">previous</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">start</span><span class="p">:</span>
+            <span class="n">new_sequences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">end</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">])</span>
+
+        <span class="n">previous</span> <span class="o">=</span> <span class="n">end</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_sequences</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="find_anomalies"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_anomalies">[docs]</a><span class="k">def</span> <span class="nf">find_anomalies</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">window_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_percent</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find sequences of values that are anomalous.</span>
 
 <span class="sd">    We first find the ideal threshold for the set of errors that we have,</span>
@@ -457,8 +538,28 @@
 <span class="sd">    each sequence, along with its score.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">threshold</span> <span class="o">=</span> <span class="n">find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="p">)</span>
-    <span class="n">sequences</span> <span class="o">=</span> <span class="n">find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+    <span class="n">window_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">window_start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
+        <span class="n">window_end</span> <span class="o">=</span> <span class="n">window_start</span> <span class="o">+</span> <span class="n">window_size</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">window_start</span><span class="p">:</span><span class="n">window_end</span><span class="p">]</span>
+
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">_find_threshold</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">)</span>
+        <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span> <span class="o">=</span> <span class="n">_find_sequences</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+
+        <span class="n">max_errors</span> <span class="o">=</span> <span class="n">_get_max_errors</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span><span class="p">)</span>
+        <span class="n">window_sequences</span> <span class="o">=</span> <span class="n">_prune_anomalies</span><span class="p">(</span><span class="n">max_errors</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">)</span>
+
+        <span class="c1"># indexes are relative to each window, so we need to add</span>
+        <span class="c1"># the window_start to all of them to make them absolute</span>
+        <span class="n">window_sequences</span> <span class="o">+=</span> <span class="n">window_start</span>
+
+        <span class="n">sequences</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">window_sequences</span><span class="p">)</span>
+
+        <span class="n">window_start</span> <span class="o">=</span> <span class="n">window_end</span>
+
+    <span class="n">sequences</span> <span class="o">=</span> <span class="n">_merge_consecutive</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
 
     <span class="n">anomalies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">denominator</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
