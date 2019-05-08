@@ -1,10 +1,7 @@
 from unittest import TestCase
-from unittest.mock import Mock, call
+from unittest.mock import Mock
 
-import numpy as np
 import pandas as pd
-from numpy.testing import assert_allclose
-from pandas.testing import assert_frame_equal
 
 from mlprimitives.custom.feature_extraction import FeatureExtractor
 
