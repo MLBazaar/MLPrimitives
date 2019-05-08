@@ -28,6 +28,9 @@ class FeatureExtractorTest(TestCase):
             for el1, el2 in zip(obj1, obj2):
                 cls.assert_equal(el1, el2)
 
+        else:
+            assert obj1 == obj2
+
     def test_fit_features(self):
         class FE(FeatureExtractor):
             detect_features = Mock()
