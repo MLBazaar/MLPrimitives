@@ -369,8 +369,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="FeatureExtractor.detect_features"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features">[docs]</a>    <span class="k">def</span> <span class="nf">detect_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="FeatureExtractor.detect_features"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">detect_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
         <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
                 <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
@@ -381,6 +383,9 @@
         <span class="k">pass</span>
 
 <div class="viewcode-block" id="FeatureExtractor.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detect_features</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -393,8 +398,11 @@
         <span class="k">pass</span>
 
 <div class="viewcode-block" id="FeatureExtractor.transform"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span>
-            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">:</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Extracting feature </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">feature</span><span class="p">)</span>
@@ -472,7 +480,8 @@
 <div class="viewcode-block" id="DatetimeFeaturizer"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer">[docs]</a><span class="k">class</span> <span class="nc">DatetimeFeaturizer</span><span class="p">(</span><span class="n">FeatureExtractor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Extract features from a datetime.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DatetimeFeaturizer.detect_features"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features">[docs]</a>    <span class="k">def</span> <span class="nf">detect_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="DatetimeFeaturizer.detect_features"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">detect_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
         <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
