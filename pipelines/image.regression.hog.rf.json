@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "name": "image/regression/hog/rf",
+        "data_type": "image",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "handgeometry"
+    },
+    "primitives": [
+        "skimage.feature.hog",
+        "sklearn.ensemble.RandomForestRegressor"
+    ],
+    "init_params": {
+        "skimage.feature.hog": {
+            "multichannel": true,
+            "visualize": false
+        }
+    }
+}

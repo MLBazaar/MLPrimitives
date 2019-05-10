@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "name": "text/classification/default",
+        "name": "text/classification/lstm",
         "data_type": "text",
         "task_type": "classification"
     },
@@ -40,7 +40,7 @@
         },
         "keras.Sequential.LSTMTextClassifier#1": {
             "input_length": 300,
-            "epochs": 1
+            "verbose": true
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "name": "image/classification/hog/xgb",
+        "data_type": "image",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "usps"
+    },
+    "primitives": [
+        "skimage.feature.hog",
+        "xgboost.XGBClassifier"
+    ],
+    "init_params": {
+        "skimage.feature.hog": {
+            "multichannel": true,
+            "visualize": false
+        }
+    }
+}
