@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "name": "keras.Sequential.SingleLayerCNNImageRegressor",
+        "data_type": "image",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "handgeometry"
+    },
+    "primitives": [
+        "keras.Sequential.SingleLayerCNNImageRegressor"
+    ],
+    "init_params": {
+        "keras.Sequential.SingleLayerCNNImageRegressor#1": {
+            "verbose": true
+        }
+    }
+}

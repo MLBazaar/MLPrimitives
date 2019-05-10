@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "name": "image/regression/resnet50/xgb",
+        "data_type": "image",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "handgeometry"
+    },
+    "primitives": [
+        "keras.applications.resnet50.preprocess_input",
+        "keras.applications.resnet50.ResNet50",
+        "xgboost.XGBRegressor"
+    ]
+}

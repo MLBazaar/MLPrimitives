@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "name": "image/classification/resnet50/xgb",
+        "data_type": "image",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "usps"
+    },
+    "primitives": [
+        "keras.applications.resnet50.preprocess_input",
+        "keras.applications.resnet50.ResNet50",
+        "xgboost.XGBClassifier"
+    ]
+}
