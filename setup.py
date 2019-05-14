@@ -30,6 +30,7 @@ install_requires = [
     'scikit-image>=0.13.1,<0.15',
     'scikit-learn>=0.20.0,<0.21',
     'scipy>=1.1.0,<2',
+    'statsmodels>=0.9.0,<2',
     'tensorflow>=1.11.0,<2',
     'xgboost>=0.72.1,<1',
 ]
