@@ -27,7 +27,7 @@
     },
     "hyperparameters": {
         "fixed": {
-             "steps": {
+            "steps": {
                 "type": "int",
                 "default": 10
             }
