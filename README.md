@@ -143,7 +143,7 @@ transformed = primitive.produce(X=dataset.data)
 After this is done, we can see how the transformed data contains the newly generated
 one-hot vectors:
 
-```python
+```
                                                 0      1       2       3       4
 age                                            39     50      38      53      28
 fnlwgt                                      77516  83311  215646  234721  338409
