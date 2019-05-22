@@ -20,21 +20,6 @@ from mlprimitives.datasets import load_dataset
 LOGGER = logging.getLogger(__name__)
 
 
-def build_pipeline(pipeline_spec):
-    pipeline = MLPipeline(
-        pipeline_spec['primitives'],
-        pipeline_spec.get('init_params', dict()),
-        pipeline_spec.get('input_names', dict()),
-        pipeline_spec.get('output_names', dict()),
-    )
-
-    hyperparameters = pipeline_spec.get('hyperparameters')
-    if hyperparameters:
-        pipeline.set_hyperparameters(hyperparameters)
-
-    return pipeline
-
-
 def get_value(dataset, value):
     if isinstance(value, str) and value.startswith('$'):
         value = getattr(dataset, value[1:])
@@ -91,7 +76,7 @@ def score_pipeline(pipeline_metadata, n_splits=5):
     for split, (X_train, X_test, y_train, y_test) in enumerate(splits):
         LOGGER.info('Scoring split %s', split + 1)
         context = get_context(dataset, validation.get('context', dict()))
-        pipeline = build_pipeline(pipeline_metadata)
+        pipeline = MLPipeline.from_dict(pipeline_metadata)
         pipeline.fit(X_train, y_train, **context)
         predictions = pipeline.predict(X_test, **context)
 
