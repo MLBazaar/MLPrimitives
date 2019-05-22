@@ -36,7 +36,10 @@ def test_jsons():
                     init_hyperparameters[name] = HYPERPARAMETER_DEFAULTS.get(type_)
 
             block_name = primitive_name + '#1'
-            mlpipeline = MLPipeline([primitive_name], {block_name: init_hyperparameters})
+            mlpipeline = MLPipeline(
+                primitives=[primitive_name],
+                init_params={block_name: init_hyperparameters}
+            )
 
             # Validate methods
             mlblock = mlpipeline.blocks[block_name]
