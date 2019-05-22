@@ -39,8 +39,21 @@
                     0,
                     12
                 ]
+            },
+            "window_size": {
+                "type": "int",
+                "default": null
             }
         },
-        "tunable": {}
+        "tunable": {
+            "min_percent": {
+                "type": "float",
+                "default": 0.13,
+                "range": [
+                    0.01,
+                    0.9
+                ]
+            }
+        }
     }
 }

@@ -46,9 +46,9 @@
                 "type": "bool",
                 "default": false
             },
-            "epochs": {
-                "type": "int",
-                "default": 10
+            "verbose": {
+                "type": "bool",
+                "default": false
             },
             "input_shape": {
                 "type": "list",
@@ -81,6 +81,22 @@
             "loss": {
                 "type": "str",
                 "default": "keras.losses.mean_squared_error"
+            },
+            "epochs": {
+                "type": "int",
+                "default": 20
+            },
+            "callbacks": {
+                "type": "list",
+                "default": []
+            },
+            "validation_split": {
+                "type": "float",
+                "default": 0.0
+            },
+            "bastch_size": {
+                "type": "int",
+                "default": 32
             },
             "layers": {
                 "type": "list",

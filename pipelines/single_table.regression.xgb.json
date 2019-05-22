@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "name": "single_table/regression/xgb",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "boston"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "sklearn.impute.SimpleImputer",
+        "xgboost.XGBRegressor"
+    ]
+}

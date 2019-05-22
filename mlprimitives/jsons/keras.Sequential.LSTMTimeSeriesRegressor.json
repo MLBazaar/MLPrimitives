@@ -46,6 +46,35 @@
                 "type": "bool",
                 "default": false
             },
+            "verbose": {
+                "type": "bool",
+                "default": false
+            },
+            "epochs": {
+                "type": "int",
+                "default": 35
+            },
+            "callbacks": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.callbacks.EarlyStopping",
+                        "args": {
+                            "monitor": "val_loss",
+                            "patience": 10,
+                            "min_delta": 0.0003
+                        }
+                    }
+                ]
+            },
+            "validation_split": {
+                "type": "float",
+                "default": 0.2
+            },
+            "bastch_size": {
+                "type": "int",
+                "default": 64
+            },
             "input_shape": {
                 "type": "tuple",
                 "default": [
@@ -71,10 +100,6 @@
                 "default": [
                     "mse"
                 ]
-            },
-            "epochs": {
-                "type": "int",
-                "default": 35
             },
             "return_sequences": {
                 "type": "bool",

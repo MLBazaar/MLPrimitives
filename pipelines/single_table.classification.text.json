@@ -1,0 +1,23 @@
+{
+    "metadata": {
+        "name": "single_table/classification/text",
+        "data_type": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "personae"
+    },
+    "primitives": [
+        "mlprimitives.custom.preprocessing.ClassEncoder",
+        "mlprimitives.custom.text.TextCleaner",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "sklearn.impute.SimpleImputer",
+        "sklearn.ensemble.RandomForestClassifier",
+        "mlprimitives.custom.preprocessing.ClassDecoder"
+    ],
+    "init_params": {
+        "mlprimitives.custom.text.TextCleaner": {
+            "column": "text"
+        }
+    }
+}

@@ -63,8 +63,10 @@ class FeatureExtractor(object):
         self.features = features or []
         self._features = []
 
-    def detect_features(self, X):
+    @staticmethod
+    def detect_features(X):
         features = []
+
         for column in X.columns:
             if not np.issubdtype(X[column].dtype, np.number):
                 features.append(column)
@@ -75,6 +77,9 @@ class FeatureExtractor(object):
         pass
 
     def fit(self, X, y=None):
+        if not isinstance(X, pd.DataFrame):
+            X = pd.DataFrame(X)
+
         if self.features == 'auto':
             self._features = self.detect_features(X)
         else:
@@ -87,8 +92,11 @@ class FeatureExtractor(object):
         pass
 
     def transform(self, X):
-        if self.copy and self._features:
-            X = X.copy()
+        if self._features:
+            if not isinstance(X, pd.DataFrame):
+                X = pd.DataFrame(X)
+            elif self.copy:
+                X = X.copy()
 
         for feature in self._features:
             LOGGER.debug("Extracting feature %s", feature)
@@ -166,7 +174,8 @@ class StringVectorizer(FeatureExtractor):
 class DatetimeFeaturizer(FeatureExtractor):
     """Extract features from a datetime."""
 
-    def detect_features(self, X):
+    @staticmethod
+    def detect_features(X):
         features = []
         for column in X.columns:
             if np.issubdtype(X[column].dtype, np.datetime64):
