@@ -16,6 +16,7 @@ with open('HISTORY.md') as history_file:
 
 
 install_requires = [
+    'mlblocks>=0.3.0,<0.4',
     'Keras>=2.1.6,<3',
     'featuretools>=0.6.1,<0.7',
     'iso639>=0.1.4,<0.2',
@@ -58,8 +59,7 @@ development_requires = [
     'm2r>=0.2.0',
     'Sphinx>=1.7.1',
     'sphinx_rtd_theme>=0.2.4',
-    'recommonmark>=0.4.0',
-    'ipython==6.5.0',
+    'ipython>=6.5.0',
 
     # style check
     'flake8>=3.7.7',
@@ -76,6 +76,9 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1',
     'tox>=2.9.1',
+
+    # Jupyter
+    'jupyter>=1.0.0'
 ]
 
 
@@ -97,7 +100,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    description="MLBlocks Primitives",
+    description="Pipelines and primitives for machine learning and data science.",
     entry_points = {
         'console_scripts': [
             'mlprimitives=mlprimitives.cli:main'
@@ -112,7 +115,7 @@ setup(
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/markdown',
     include_package_data=True,
-    keywords='mlblocks mlprimitives mlblocks_primitives',
+    keywords='mlblocks mlprimitives pipelines primitives machine learning data science',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
     python_requires='>=3.5',

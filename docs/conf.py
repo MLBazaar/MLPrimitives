@@ -19,8 +19,6 @@
 # absolute, like shown here.
 
 import sphinx_rtd_theme # For read the docs theme
-from recommonmark.parser import CommonMarkParser
-# from recommonmark.transform import AutoStructify
 
 import mlprimitives
 
@@ -38,10 +36,8 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    # 'sphinx.ext.graphviz',
     'IPython.sphinxext.ipython_console_highlighting',
     'IPython.sphinxext.ipython_directive',
-    # 'sphinx.ext.autosectionlabel',
 ]
 
 ipython_execlines = ["import pandas as pd", "pd.set_option('display.width', 1000000)"]
@@ -52,10 +48,6 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 source_suffix = ['.rst', '.md', '.ipynb']
-
-# source_parsers = {
-#     '.md': CommonMarkParser,
-# }
 
 # The master toctree document.
 master_doc = 'index'
@@ -134,7 +126,8 @@ html_favicon = 'images/favicon.ico'
 # If given, this must be the name of an image file (path relative to the
 # configuration directory) that is the logo of the docs. It is placed at
 # the top of the sidebar; its width should therefore not exceed 200 pixels.
-# html_logo = 'images/mlblocks-logo-small.png'
+# html_logo = 'images/dai-logo-white-200.png'
+# html_logo = 'images/mlblocks-logo-no-text-200.png'
 
 # -- Options for HTMLHelp output ---------------------------------------
 
