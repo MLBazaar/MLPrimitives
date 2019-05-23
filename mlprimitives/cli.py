@@ -36,15 +36,25 @@ def _test(args):
         print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, stdev))
 
 
-def _get_primitives(pattern):
-    primitives = list()
-    for base_path in get_primitives_paths():
-        if os.path.exists(base_path):
-            for filename in os.listdir(base_path):
-                if pattern in filename and filename.endswith('.json'):
-                    primitives.append(filename[:-5])
+def _list_primitives(base_path, pattern, primitives, parts=None):
+    parts = parts or list()
+    if os.path.exists(base_path):
+        for name in os.listdir(base_path):
+            path = os.path.abspath(os.path.join(base_path, name))
+            if os.path.isdir(path):
+                _list_primitives(path, pattern, primitives, parts + [name])
+            else:
+                name = '.'.join(parts + [name])
+                if pattern in name and name.endswith('.json'):
+                    primitives[path] = name[:-5]
 
-    return list(sorted(primitives))
+
+def _get_primitives(pattern):
+    primitives = dict()
+    for base_path in get_primitives_paths():
+        _list_primitives(base_path, pattern, primitives)
+
+    return list(sorted(primitives.values()))
 
 
 def _list(args):
