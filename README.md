@@ -35,7 +35,7 @@ combine third party tools or implement new functionalities from scratch.
 
 ## Requirements
 
-**MLPrimitives** has been developed and tested on [3.5, and 3.6](https://www.python.org/downloads/)
+**MLPrimitives** has been developed and tested on [Python 3.5, and 3.6](https://www.python.org/downloads/)
 
 Also, although it is not strictly required, the usage of a
 [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended in order to avoid
