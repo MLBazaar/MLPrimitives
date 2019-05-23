@@ -109,6 +109,9 @@ setup(
             'primitives=mlprimitives:MLBLOCKS_PRIMITIVES',
             'pipelines=mlprimitives:MLBLOCKS_PIPELINES'
         ],
+        'mlprimitives': [
+            'jsons_path=mlprimitives:MLBLOCKS_PRIMITIVES',
+        ]
     },
     extras_require=extras_require,
     install_requires=install_requires,
