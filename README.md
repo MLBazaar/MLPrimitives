@@ -33,22 +33,79 @@ combine third party tools or implement new functionalities from scratch.
 
 # Installation
 
-The simplest and recommended way to install MLPrimitives is using `pip`:
+## Requirements
 
+**MLPrimitives** has been developed and tested on [3.5, and 3.6](https://www.python.org/downloads/)
+
+Also, although it is not strictly required, the usage of a
+[virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended in order to avoid
+interfering with other software installed in the system where **MLPrimitives** is run.
+
+These are the minimum commands needed to create a virtualenv using python3.6 for **MLPrimitives**:
+
+```bash
+pip install virtualenv
+virtualenv -p $(which python3.6) mlprimitives-venv
 ```
+
+Afterwards, you have to execute this command to have the virtualenv activated:
+
+```bash
+source mlprimitives-venv/bin/activate
+```
+
+Remember about executing it every time you start a new console to work on **MLPrimitives**!
+
+## Install using Pip
+
+After creating the virtualenv and activating it, we recommend using
+[pip](https://pip.pypa.io/en/stable/) in order to install **MLPrimitives**:
+
+```bash
 pip install mlprimitives
 ```
 
-Alternatively, you can also clone the repository and install it from sources
+This will pull and install the latest stable release from [PyPi](https://pypi.org/).
 
-```
+## Install from Source
+
+Alternatively, with your virtualenv activated, you can clone the repository and install it from
+source by running `make install` on the `stable` branch:
+
+```bash
 git clone git@github.com:HDI-Project/MLPrimitives.git
 cd MLPrimitives
+git checkout stable
 make install
 ```
 
-For development, you can use `make install-develop` instead in order to install all the required
-dependencies for testing and code linting.
+## Install for Development
+
+If you want to contribute to the project, a few more steps are required to make the project ready
+for development.
+
+First, please head to [the GitHub page of the project](https://github.com/HDI-Project/MLPrimitives)
+and make a fork of the project under you own username by clicking on the **fork** button on the
+upper right corner of the page.
+
+Afterwards, clone your fork and create a branch from master with a descriptive name that includes
+the number of the issue that you are going to work on:
+
+```bash
+git clone git@github.com:{your username}/MLPrimitives.git
+cd MLPrimitives
+git branch issue-xx-cool-new-feature master
+git checkout issue-xx-cool-new-feature
+```
+
+Finally, install the project with the following command, which will install some additional
+dependencies for code linting and testing.
+
+```bash
+make install-develop
+```
+
+Make sure to use them regularly while developing by running the commands `make lint` and `make test`.
 
 # Quickstart
 
@@ -295,3 +352,10 @@ dataset.score(y_test, predictions)
 ```
 
 This time we should see that the performance has improved to a value around 0.724
+
+## What's Next?
+
+Do you want to [learn more about how the project](https://hdi-project.github.io/MLPrimitives/getting_started/concepts.html),
+about [how to contribute to it](https://hdi-project.github.io/MLPrimitives/community/contributing.html)
+or browse the [API Reference](https://hdi-project.github.io/MLPrimitives/api/mlprimitives.html)?
+Please check the corresponding sections of the [documentation](https://hdi-project.github.io/MLPrimitives/)!
