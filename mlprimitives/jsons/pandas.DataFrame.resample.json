@@ -51,7 +51,10 @@
             "rule": {
                 "type": "int",
                 "default": 3600,
-                "range": [1, 86400],
+                "range": [
+                    1,
+                    86400
+                ],
                 "description": "The offset interval lenght, in seconds."
             },
             "aggregation": {
