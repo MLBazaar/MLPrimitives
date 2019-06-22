@@ -2,18 +2,18 @@ mlprimitives package
 ====================
 
 .. automodule:: mlprimitives
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Subpackages
 -----------
 
 .. toctree::
 
-    mlprimitives.adapters
-    mlprimitives.candidates
-    mlprimitives.custom
+   mlprimitives.adapters
+   mlprimitives.candidates
+   mlprimitives.custom
 
 Submodules
 ----------
@@ -24,4 +24,3 @@ Submodules
    mlprimitives.datasets
    mlprimitives.evaluation
    mlprimitives.utils
-

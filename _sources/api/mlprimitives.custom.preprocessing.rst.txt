@@ -2,6 +2,6 @@ mlprimitives.custom.preprocessing module
 ========================================
 
 .. automodule:: mlprimitives.custom.preprocessing
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

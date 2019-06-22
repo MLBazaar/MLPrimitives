@@ -343,7 +343,7 @@
 Implementation inspired by the paper <a class="reference external" href="https://arxiv.org/pdf/1802.04431.pdf">https://arxiv.org/pdf/1802.04431.pdf</a></p>
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.count_above">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">count_above</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#count_above"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.count_above" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">count_above</code><span class="sig-paren">(</span><em class="sig-param">errors</em>, <em class="sig-param">epsilon</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#count_above"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.count_above" title="Permalink to this definition">¶</a></dt>
 <dd><p>Count number of errors and continuous sequences above epsilon.</p>
 <p>Continuous sequences are counted by shifting and counting the number
 of positions where there was a change and the original value was true,
@@ -352,7 +352,7 @@ which means that a sequence started at that position.</p>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.deltas">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">deltas</code><span class="sig-paren">(</span><em>errors</em>, <em>epsilon</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#deltas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.deltas" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">deltas</code><span class="sig-paren">(</span><em class="sig-param">errors</em>, <em class="sig-param">epsilon</em>, <em class="sig-param">mean</em>, <em class="sig-param">std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#deltas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.deltas" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute mean and std deltas.</p>
 <p>delta_mean = mean(errors) - mean(all errors below epsilon)
 delta_std = std(errors) - std(all errors below epsilon)</p>
@@ -360,7 +360,7 @@ delta_std = std(errors) - std(all errors below epsilon)</p>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.find_anomalies">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">find_anomalies</code><span class="sig-paren">(</span><em>errors</em>, <em>index</em>, <em>z_range=(0</em>, <em>10)</em>, <em>window_size=None</em>, <em>min_percent=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">find_anomalies</code><span class="sig-paren">(</span><em class="sig-param">errors</em>, <em class="sig-param">index</em>, <em class="sig-param">z_range=(0</em>, <em class="sig-param">10)</em>, <em class="sig-param">window_size=None</em>, <em class="sig-param">min_percent=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find sequences of values that are anomalous.</p>
 <p>We first find the ideal threshold for the set of errors that we have,
 and then find the sequences of values that are above this threshold.</p>
@@ -371,7 +371,7 @@ each sequence, along with its score.</p>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.regression_errors">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">regression_errors</code><span class="sig-paren">(</span><em>y</em>, <em>y_hat</em>, <em>smoothing_window=0.01</em>, <em>smooth=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#regression_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.regression_errors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">regression_errors</code><span class="sig-paren">(</span><em class="sig-param">y</em>, <em class="sig-param">y_hat</em>, <em class="sig-param">smoothing_window=0.01</em>, <em class="sig-param">smooth=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#regression_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.regression_errors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute an array of absolute errors comparing predictions and expected output.</p>
 <p>If smooth is True, apply EWMA to the resulting array of errors.</p>
 <dl class="field-list simple">
@@ -395,7 +395,7 @@ of the total length of y.</p></li>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.z_cost">
-<code class="descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="descname">z_cost</code><span class="sig-paren">(</span><em>z</em>, <em>errors</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#z_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.z_cost" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">z_cost</code><span class="sig-paren">(</span><em class="sig-param">z</em>, <em class="sig-param">errors</em>, <em class="sig-param">mean</em>, <em class="sig-param">std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#z_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.z_cost" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute how bad a z value is.</p>
 <p>The original formula is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="p">(</span><span class="n">delta_mean</span><span class="o">/</span><span class="n">mean</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">delta_std</span><span class="o">/</span><span class="n">std</span><span class="p">)</span>

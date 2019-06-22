@@ -2,6 +2,6 @@ mlprimitives.custom.timeseries\_anomalies module
 ================================================
 
 .. automodule:: mlprimitives.custom.timeseries_anomalies
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -2,6 +2,6 @@ mlprimitives.adapters.lightfm module
 ====================================
 
 .. automodule:: mlprimitives.adapters.lightfm
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

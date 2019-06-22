@@ -341,7 +341,7 @@
 <span id="mlprimitives-candidates-timeseries-module"></span><h1>mlprimitives.candidates.timeseries module<a class="headerlink" href="#module-mlprimitives.candidates.timeseries" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries.rolling_window_sequences">
-<code class="descclassname">mlprimitives.candidates.timeseries.</code><code class="descname">rolling_window_sequences</code><span class="sig-paren">(</span><em>X</em>, <em>window_size</em>, <em>target_size</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries.</code><code class="sig-name descname">rolling_window_sequences</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">window_size</em>, <em class="sig-param">target_size</em>, <em class="sig-param">value_column</em>, <em class="sig-param">time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Function that takes in a pandas.DataFrame and a window_size then creates</dt><dd><p>output arrays that correspond to a timeseries sequence with window_size overlap.
 The output arrays can be fed into a timeseries forecasting model.
@@ -377,7 +377,7 @@ The timestamp column is in UNIX format (in seconds).</p></li>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries.time_segments_average">
-<code class="descclassname">mlprimitives.candidates.timeseries.</code><code class="descname">time_segments_average</code><span class="sig-paren">(</span><em>X</em>, <em>interval</em>, <em>value_column</em>, <em>time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.time_segments_average" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries.</code><code class="sig-name descname">time_segments_average</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">interval</em>, <em class="sig-param">value_column</em>, <em class="sig-param">time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries.time_segments_average" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>function that aggregates data in a pandas dataframe by averaging over a given interval.</dt><dd><p>it starts averaging from the smallest timestamp in the dataframe and ends at the
 largest timestamp. assumes the input is timeseries sorted.</p>

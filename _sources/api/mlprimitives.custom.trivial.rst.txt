@@ -2,6 +2,6 @@ mlprimitives.custom.trivial module
 ==================================
 
 .. automodule:: mlprimitives.custom.trivial
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

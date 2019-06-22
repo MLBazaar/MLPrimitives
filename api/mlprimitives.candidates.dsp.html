@@ -341,12 +341,12 @@
 <span id="mlprimitives-candidates-dsp-module"></span><h1>mlprimitives.candidates.dsp module<a class="headerlink" href="#module-mlprimitives.candidates.dsp" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mlprimitives.candidates.dsp.SpectralMask">
-<em class="property">class </em><code class="descclassname">mlprimitives.candidates.dsp.</code><code class="descname">SpectralMask</code><span class="sig-paren">(</span><em>method='std_dev'</em>, <em>gain=1</em>, <em>window_length=128</em>, <em>beta=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.candidates.dsp.</code><code class="sig-name descname">SpectralMask</code><span class="sig-paren">(</span><em class="sig-param">method='std_dev'</em>, <em class="sig-param">gain=1</em>, <em class="sig-param">window_length=128</em>, <em class="sig-param">beta=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Anomalies detection in satellite telemetry data using a spectral mask</p>
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines a spectral mask based on training data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -357,7 +357,7 @@
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max">
-<code class="descname">fit_freq_min_max</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_min_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_freq_min_max</code><span class="sig-paren">(</span><em class="sig-param">training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_min_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_min_max" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Defines a spectral mask based on training data using min and max values of each</dt><dd><p>frequency component</p>
 </dd>
@@ -371,7 +371,7 @@
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev">
-<code class="descname">fit_freq_std_dev</code><span class="sig-paren">(</span><em>training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_std_dev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_freq_std_dev</code><span class="sig-paren">(</span><em class="sig-param">training_signal</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.fit_freq_std_dev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.fit_freq_std_dev" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Defines a spectral mask based on training data using the standard deviation values of</dt><dd><p>each frequency component</p>
 </dd>
@@ -385,7 +385,7 @@
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.produce" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">produce</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.produce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Detects anomalies in telemetry data based on its power spectral density</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -402,7 +402,7 @@
 
 <dl class="method">
 <dt id="mlprimitives.candidates.dsp.SpectralMask.window_design">
-<code class="descname">window_design</code><span class="sig-paren">(</span><em>window_length</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.window_design"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.window_design" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">window_design</code><span class="sig-paren">(</span><em class="sig-param">window_length</em>, <em class="sig-param">beta</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#SpectralMask.window_design"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.SpectralMask.window_design" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kaiser window design</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -424,7 +424,7 @@
 
 <dl class="function">
 <dt id="mlprimitives.candidates.dsp.next_power_of_2">
-<code class="descclassname">mlprimitives.candidates.dsp.</code><code class="descname">next_power_of_2</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#next_power_of_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.next_power_of_2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.dsp.</code><code class="sig-name descname">next_power_of_2</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/dsp.html#next_power_of_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.dsp.next_power_of_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the next power of 2 value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

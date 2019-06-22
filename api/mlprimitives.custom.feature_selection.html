@@ -360,12 +360,12 @@ ExtraTreesClassifier and SelectFromModel solution.</p>
 </div>
 <dl class="class">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_selection.</code><code class="descname">EstimatorFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_selection.</code><code class="sig-name descname">EstimatorFeatureSelector</code><span class="sig-paren">(</span><em class="sig-param">estimator_class=None</em>, <em class="sig-param">bypass=False</em>, <em class="sig-param">threshold=None</em>, <em class="sig-param">norm_order=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Feature Selector based on sklearn.feature_selection.SelectFromModel.</p>
 <dl class="attribute">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector.ESTIMATOR">
-<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimator class to use. To be defined in subclasses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -376,7 +376,7 @@ ExtraTreesClassifier and SelectFromModel solution.</p>
 
 <dl class="attribute">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector.selector">
-<code class="descname">selector</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.selector" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">selector</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.selector" title="Permalink to this definition">¶</a></dt>
 <dd><p>sklearn.ensemble.SelectFromModel that will
 perform the actual feature selection.</p>
 <dl class="field-list simple">
@@ -418,34 +418,34 @@ and a numpy.ndarray.</p>
 </div>
 <dl class="attribute">
 <dt>
-<code class="descname">ESTIMATOR</code><em class="property"> = None</em></dt>
+<code class="sig-name descname">ESTIMATOR</code><em class="property"> = None</em></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit_transform">
-<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_selection.EstimatorFeatureSelector.transform">
-<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#EstimatorFeatureSelector.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector.transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_selection.</code><code class="descname">ExtraTreesClassifierFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#ExtraTreesClassifierFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_selection.</code><code class="sig-name descname">ExtraTreesClassifierFeatureSelector</code><span class="sig-paren">(</span><em class="sig-param">estimator_class=None</em>, <em class="sig-param">bypass=False</em>, <em class="sig-param">threshold=None</em>, <em class="sig-param">norm_order=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#ExtraTreesClassifierFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector" title="mlprimitives.custom.feature_selection.EstimatorFeatureSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_selection.EstimatorFeatureSelector</span></code></a></p>
 <p>EstimatorFeatureSelector based on ExtraTreesClassifier.</p>
 <dl class="attribute">
 <dt id="mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector.ESTIMATOR">
-<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesClassifierFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ExtraTreesClassifier</span></code></p>
 </dd></dl>
 
@@ -453,12 +453,12 @@ and a numpy.ndarray.</p>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_selection.</code><code class="descname">ExtraTreesRegressorFeatureSelector</code><span class="sig-paren">(</span><em>estimator_class=None</em>, <em>bypass=False</em>, <em>threshold=None</em>, <em>norm_order=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#ExtraTreesRegressorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_selection.</code><code class="sig-name descname">ExtraTreesRegressorFeatureSelector</code><span class="sig-paren">(</span><em class="sig-param">estimator_class=None</em>, <em class="sig-param">bypass=False</em>, <em class="sig-param">threshold=None</em>, <em class="sig-param">norm_order=1</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_selection.html#ExtraTreesRegressorFeatureSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mlprimitives.custom.feature_selection.EstimatorFeatureSelector" title="mlprimitives.custom.feature_selection.EstimatorFeatureSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_selection.EstimatorFeatureSelector</span></code></a></p>
 <p>EstimatorFeatureSelector based on ExtraTreesRegressor.</p>
 <dl class="attribute">
 <dt id="mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector.ESTIMATOR">
-<code class="descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ESTIMATOR</code><a class="headerlink" href="#mlprimitives.custom.feature_selection.ExtraTreesRegressorFeatureSelector.ESTIMATOR" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ExtraTreesRegressor</span></code></p>
 </dd></dl>
 

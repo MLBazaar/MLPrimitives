@@ -2,6 +2,6 @@ mlprimitives.candidates.audio\_padding module
 =============================================
 
 .. automodule:: mlprimitives.candidates.audio_padding
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

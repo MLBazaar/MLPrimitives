@@ -341,7 +341,7 @@
 <span id="mlprimitives-custom-feature-extraction-module"></span><h1>mlprimitives.custom.feature_extraction module<a class="headerlink" href="#module-mlprimitives.custom.feature_extraction" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mlprimitives.custom.feature_extraction.CategoricalEncoder">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_extraction.</code><code class="descname">CategoricalEncoder</code><span class="sig-paren">(</span><em>max_labels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#CategoricalEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.CategoricalEncoder" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_extraction.</code><code class="sig-name descname">CategoricalEncoder</code><span class="sig-paren">(</span><em class="sig-param">max_labels=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#CategoricalEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.CategoricalEncoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mlprimitives.custom.feature_extraction.FeatureExtractor" title="mlprimitives.custom.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_extraction.FeatureExtractor</span></code></a></p>
 <p>Use the OneHotLabelEncoder only on categorical features.</p>
 <p>NOTE: At the moment of this release, sklearn.preprocessing.data.CategoricalEncoder
@@ -361,53 +361,53 @@ has not been released yet, this is why we write our own version of it.</p>
 </div>
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.CategoricalEncoder.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#CategoricalEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.CategoricalEncoder.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#CategoricalEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.CategoricalEncoder.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_extraction.DatetimeFeaturizer">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_extraction.</code><code class="descname">DatetimeFeaturizer</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#DatetimeFeaturizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.DatetimeFeaturizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_extraction.</code><code class="sig-name descname">DatetimeFeaturizer</code><span class="sig-paren">(</span><em class="sig-param">copy=True</em>, <em class="sig-param">features=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#DatetimeFeaturizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.DatetimeFeaturizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mlprimitives.custom.feature_extraction.FeatureExtractor" title="mlprimitives.custom.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_extraction.FeatureExtractor</span></code></a></p>
 <p>Extract features from a datetime.</p>
-<dl class="staticmethod">
+<dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features">
-<em class="property">static </em><code class="descname">detect_features</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#DatetimeFeaturizer.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">detect_features</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#DatetimeFeaturizer.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.DatetimeFeaturizer.detect_features" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_extraction.FeatureExtractor">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_extraction.</code><code class="descname">FeatureExtractor</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_extraction.</code><code class="sig-name descname">FeatureExtractor</code><span class="sig-paren">(</span><em class="sig-param">copy=True</em>, <em class="sig-param">features=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Single FeatureExtractor applied to multiple features.</p>
-<dl class="staticmethod">
+<dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features">
-<em class="property">static </em><code class="descname">detect_features</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">detect_features</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.detect_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.detect_features" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.FeatureExtractor.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.FeatureExtractor.fit_transform">
-<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.FeatureExtractor.transform">
-<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#FeatureExtractor.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.FeatureExtractor.transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_extraction.OneHotLabelEncoder">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_extraction.</code><code class="descname">OneHotLabelEncoder</code><span class="sig-paren">(</span><em>name=None</em>, <em>max_labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_extraction.</code><code class="sig-name descname">OneHotLabelEncoder</code><span class="sig-paren">(</span><em class="sig-param">name=None</em>, <em class="sig-param">max_labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Combination of LabelEncoder + OneHotEncoder.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
@@ -434,29 +434,29 @@ has not been released yet, this is why we write our own version of it.</p>
 </div>
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit_transform">
-<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.OneHotLabelEncoder.transform">
-<code class="descname">transform</code><span class="sig-paren">(</span><em>feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">feature</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#OneHotLabelEncoder.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.transform" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="mlprimitives.custom.feature_extraction.StringVectorizer">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.feature_extraction.</code><code class="descname">StringVectorizer</code><span class="sig-paren">(</span><em>copy=True</em>, <em>features=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#StringVectorizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.StringVectorizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.feature_extraction.</code><code class="sig-name descname">StringVectorizer</code><span class="sig-paren">(</span><em class="sig-param">copy=True</em>, <em class="sig-param">features=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#StringVectorizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.StringVectorizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#mlprimitives.custom.feature_extraction.FeatureExtractor" title="mlprimitives.custom.feature_extraction.FeatureExtractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_extraction.FeatureExtractor</span></code></a></p>
 <p>Use the sklearn CountVectorizer only on string features.</p>
 <dl class="method">
 <dt id="mlprimitives.custom.feature_extraction.StringVectorizer.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#StringVectorizer.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.StringVectorizer.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/feature_extraction.html#StringVectorizer.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.feature_extraction.StringVectorizer.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

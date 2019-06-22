@@ -341,14 +341,14 @@
 <span id="mlprimitives-candidates-timeseries-errors-module"></span><h1>mlprimitives.candidates.timeseries_errors module<a class="headerlink" href="#module-mlprimitives.candidates.timeseries_errors" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.compute_threshold">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">compute_threshold</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>error_buffer</em>, <em>sd_limit=12.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#compute_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.compute_threshold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">compute_threshold</code><span class="sig-paren">(</span><em class="sig-param">smoothed_errors</em>, <em class="sig-param">error_buffer</em>, <em class="sig-param">sd_limit=12.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#compute_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.compute_threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper method for <cite>extract_anomalies</cite> method.
 Calculates the epsilon (threshold) for anomalies.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.extract_anomalies">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">extract_anomalies</code><span class="sig-paren">(</span><em>y_true</em>, <em>smoothed_errors</em>, <em>window_size</em>, <em>batch_size</em>, <em>error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#extract_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.extract_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">extract_anomalies</code><span class="sig-paren">(</span><em class="sig-param">y_true</em>, <em class="sig-param">smoothed_errors</em>, <em class="sig-param">window_size</em>, <em class="sig-param">batch_size</em>, <em class="sig-param">error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#extract_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.extract_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts anomalies from the errors.
 :param y_true ():
 :param smoothed_errors ():
@@ -363,13 +363,13 @@ Calculates the epsilon (threshold) for anomalies.</p>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.get_anomalies">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">get_anomalies</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>y_true</em>, <em>z</em>, <em>window</em>, <em>all_anomalies</em>, <em>error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#get_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.get_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">get_anomalies</code><span class="sig-paren">(</span><em class="sig-param">smoothed_errors</em>, <em class="sig-param">y_true</em>, <em class="sig-param">z</em>, <em class="sig-param">window</em>, <em class="sig-param">all_anomalies</em>, <em class="sig-param">error_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#get_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.get_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper method to get anomalies.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.get_forecast_errors">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">get_forecast_errors</code><span class="sig-paren">(</span><em>y_hat</em>, <em>y_true</em>, <em>window_size=5</em>, <em>batch_size=30</em>, <em>smoothing_percent=0.05</em>, <em>smoothed=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#get_forecast_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.get_forecast_errors" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">get_forecast_errors</code><span class="sig-paren">(</span><em class="sig-param">y_hat</em>, <em class="sig-param">y_true</em>, <em class="sig-param">window_size=5</em>, <em class="sig-param">batch_size=30</em>, <em class="sig-param">smoothing_percent=0.05</em>, <em class="sig-param">smoothed=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#get_forecast_errors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.get_forecast_errors" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Calculates the forecasting error for two arrays of data. If smoothed errors desired,</dt><dd><p>runs EWMA.</p>
 </dd>
@@ -396,12 +396,12 @@ Calculates the epsilon (threshold) for anomalies.</p>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.group_consecutive_anomalies">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">group_consecutive_anomalies</code><span class="sig-paren">(</span><em>smoothed_errors</em>, <em>epsilon</em>, <em>y_true</em>, <em>error_buffer</em>, <em>window</em>, <em>all_anomalies</em>, <em>batch_size=30</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#group_consecutive_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.group_consecutive_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">group_consecutive_anomalies</code><span class="sig-paren">(</span><em class="sig-param">smoothed_errors</em>, <em class="sig-param">epsilon</em>, <em class="sig-param">y_true</em>, <em class="sig-param">error_buffer</em>, <em class="sig-param">window</em>, <em class="sig-param">all_anomalies</em>, <em class="sig-param">batch_size=30</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#group_consecutive_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.group_consecutive_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.candidates.timeseries_errors.prune_anomalies">
-<code class="descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="descname">prune_anomalies</code><span class="sig-paren">(</span><em>e_seq</em>, <em>smoothed_errors</em>, <em>max_error_below_e</em>, <em>anomaly_indices</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#prune_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.prune_anomalies" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.candidates.timeseries_errors.</code><code class="sig-name descname">prune_anomalies</code><span class="sig-paren">(</span><em class="sig-param">e_seq</em>, <em class="sig-param">smoothed_errors</em>, <em class="sig-param">max_error_below_e</em>, <em class="sig-param">anomaly_indices</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/candidates/timeseries_errors.html#prune_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.candidates.timeseries_errors.prune_anomalies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper method that removes anomalies which don’t meet
 a minimum separation from next anomaly.</p>
 </dd></dl>

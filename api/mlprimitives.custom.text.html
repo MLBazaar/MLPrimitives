@@ -341,51 +341,51 @@
 <span id="mlprimitives-custom-text-module"></span><h1>mlprimitives.custom.text module<a class="headerlink" href="#module-mlprimitives.custom.text" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mlprimitives.custom.text.TextCleaner">
-<em class="property">class </em><code class="descclassname">mlprimitives.custom.text.</code><code class="descname">TextCleaner</code><span class="sig-paren">(</span><em>column=None</em>, <em>language='multi'</em>, <em>lower=True</em>, <em>accents=True</em>, <em>stopwords=True</em>, <em>non_alpha=True</em>, <em>single_chars=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.custom.text.</code><code class="sig-name descname">TextCleaner</code><span class="sig-paren">(</span><em class="sig-param">column=None</em>, <em class="sig-param">language='multi'</em>, <em class="sig-param">lower=True</em>, <em class="sig-param">accents=True</em>, <em class="sig-param">stopwords=True</em>, <em class="sig-param">non_alpha=True</em>, <em class="sig-param">single_chars=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="attribute">
 <dt id="mlprimitives.custom.text.TextCleaner.RE_ACCENTS">
-<code class="descname">RE_ACCENTS</code><em class="property"> = {'a': re.compile('[àâáäåã]'), 'e': re.compile('[èêéë]'), 'i': re.compile('[ìîíï]'), 'o': re.compile('[òôóö]'), 'u': re.compile('[ùûúü]')}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_ACCENTS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RE_ACCENTS</code><em class="property"> = {'a': re.compile('[àâáäåã]'), 'e': re.compile('[èêéë]'), 'i': re.compile('[ìîíï]'), 'o': re.compile('[òôóö]'), 'u': re.compile('[ùûúü]')}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_ACCENTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM">
-<code class="descname">RE_NON_ALNUM</code><em class="property"> = re.compile('[^\\w\\d]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RE_NON_ALNUM</code><em class="property"> = re.compile('[^\\w\\d]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALNUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA">
-<code class="descname">RE_NON_ALPHA</code><em class="property"> = re.compile('[^a-z]+')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RE_NON_ALPHA</code><em class="property"> = re.compile('[^a-z]+')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_NON_ALPHA" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.custom.text.TextCleaner.RE_SYMBOLS">
-<code class="descname">RE_SYMBOLS</code><em class="property"> = re.compile('[-]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_SYMBOLS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">RE_SYMBOLS</code><em class="property"> = re.compile('[-]')</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.RE_SYMBOLS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="mlprimitives.custom.text.TextCleaner.STOPWORDS">
-<code class="descname">STOPWORDS</code><em class="property"> = {}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.STOPWORDS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">STOPWORDS</code><em class="property"> = {}</em><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.STOPWORDS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="mlprimitives.custom.text.TextCleaner.detect_language">
-<em class="property">static </em><code class="descname">detect_language</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.detect_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.detect_language" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">detect_language</code><span class="sig-paren">(</span><em class="sig-param">texts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.detect_language"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.detect_language" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.text.TextCleaner.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="classmethod">
+<dl class="method">
 <dt id="mlprimitives.custom.text.TextCleaner.get_stopwords">
-<em class="property">classmethod </em><code class="descname">get_stopwords</code><span class="sig-paren">(</span><em>language_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.get_stopwords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.get_stopwords" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">get_stopwords</code><span class="sig-paren">(</span><em class="sig-param">language_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.get_stopwords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.get_stopwords" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="mlprimitives.custom.text.TextCleaner.produce">
-<code class="descname">produce</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.produce" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">produce</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/text.html#TextCleaner.produce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.text.TextCleaner.produce" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

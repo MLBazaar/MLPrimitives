@@ -2,6 +2,6 @@ mlprimitives.adapters.networkx module
 =====================================
 
 .. automodule:: mlprimitives.adapters.networkx
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -2,9 +2,9 @@ mlprimitives.adapters package
 =============================
 
 .. automodule:: mlprimitives.adapters
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------
@@ -19,4 +19,3 @@ Submodules
    mlprimitives.adapters.networkx
    mlprimitives.adapters.pandas
    mlprimitives.adapters.skimage
-

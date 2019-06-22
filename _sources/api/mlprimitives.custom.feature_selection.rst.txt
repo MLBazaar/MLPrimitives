@@ -2,6 +2,6 @@ mlprimitives.custom.feature\_selection module
 =============================================
 
 .. automodule:: mlprimitives.custom.feature_selection
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
