@@ -42,7 +42,15 @@
             },
             "window_size": {
                 "type": "int",
-                "default": null
+                "default": 2000
+            },
+            "window_step_size": {
+                "type": "int",
+                "default": 200
+            },
+            "lower_threshold": {
+                "type": "bool",
+                "default": false
             }
         },
         "tunable": {
@@ -52,6 +60,14 @@
                 "range": [
                     0.01,
                     0.9
+                ]
+            },
+            "anomaly_interval": {
+                "type": "int",
+                "default": 50,
+                "range": [
+                    0,
+                    400
                 ]
             }
         }
