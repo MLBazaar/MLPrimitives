@@ -122,17 +122,18 @@ def _find_sequences(errors, epsilon, anomaly_interval):
     This is done following this steps:
 
         * create a boolean mask that indicates which values are above epsilon.
-        * shift this mask by one place, filing the empty gap with a False
+        * fill certain area around those values with a True to mark anomalous sequence.
+        * shift this mask by one place, filing the empty gap with a False.
         * compare the shifted mask with the original one to see if there are changes.
-        * Consider a sequence start any point which was true and has changed
-        * Consider a sequence end any point which was false and has changed
+        * Consider a sequence start any point which was true and has changed.
+        * Consider a sequence end any point which was false and has changed.
     """
     above = pd.Series(errors > epsilon)
-
-    # mark area around anomalies also as True
     index_above = np.argwhere(above)
+
     for i in index_above.flatten():
         above[max(0, i-anomaly_interval):min(i+anomaly_interval+1, len(above))] = True
+
     shift = above.shift(1).fillna(False)
     change = above != shift
 
@@ -144,6 +145,7 @@ def _find_sequences(errors, epsilon, anomaly_interval):
     index = above.index
     starts = index[above & change].tolist()
     ends = (index[~above & change] - 1).tolist()
+
     if len(ends) == len(starts) - 1:
         ends.append(len(above) - 1)
 
@@ -191,7 +193,6 @@ def _prune_anomalies(max_errors, min_percent):
         * Find the index of the latest of such rows.
         * Get the values of all the sequences above that index.
     """
-
     next_error = max_errors['max_error'].shift(-1).iloc[:-1]
     max_error = max_errors['max_error'].iloc[:-1]
 
@@ -203,27 +204,52 @@ def _prune_anomalies(max_errors, min_percent):
     else:
         last_index = max_error[~too_small].index[-1]
 
-    return max_errors[['start', 'stop']].iloc[0: last_index + 1].values
+    return max_errors[['start', 'stop', 'max_error']].iloc[0: last_index + 1].values
 
 
-def _merge_consecutive(sequences):
-    """Merge consecutive or overlapping sequences.
+def _compute_scores(pruned_anomalies, errors, threshold, window_start):
+    """Compute the score of the anomalies and add window_start timestamp to make the index absolute.
+    """
+    anomalies = list()
+    denominator = errors.mean() + errors.std()
 
-    We iterate over a list of start, end pairs and merge together
-    the cases where two sequences are consecutive or overlapping.
+    for row in pruned_anomalies:
+        max_error = row[2]
+        score = (max_error - threshold) / denominator
+        anomalies.append([row[0]+window_start, row[1]+window_start, score])
+
+    return anomalies
+
+
+def _merge_sequences(sequences):
+    """Merge consecutive and overlapping sequences.
+
+    We iterate over a list of start, end, score triples and merge together
+    overlapping or consecutive sequences.
+    The score of a merged sequence is the average of the single scores,
+    weighted by the length of the corresponding sequences.
     """
 
     sorted_sequences = sorted(sequences, key=lambda entry: entry[0])
     new_sequences = []
+    score = list()
+    weights = list()
 
     for i in sorted_sequences:
         if not new_sequences:
+            score.append(i[2])
+            weights.append(i[1] - i[0])
             new_sequences.append(i)
         else:
             j = new_sequences[-1]
-            if i[0] <= j[1]:
-                new_sequences[-1] = (j[0], max(j[1], i[1]))
+            if i[0] <= j[1]+1:
+                score.append(i[2])
+                weights.append(i[1]-i[0])
+                weighted_average = np.average(score, weights=weights)
+                new_sequences[-1] = (j[0], max(j[1], i[1]), weighted_average)
             else:
+                score = [i[2]]
+                weights = [i[1]-i[0]]
                 new_sequences.append(i)
 
     return np.array(new_sequences)
@@ -246,6 +272,7 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
     window_start = 0
     window_end = 0
     sequences = list()
+
     while window_end < len(errors):
         window_end = window_start + window_size
         window = errors[window_start:window_end]
@@ -253,35 +280,29 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
         threshold = _find_threshold(window, z_range)
         window_sequences, max_below = _find_sequences(window, threshold, anomaly_interval)
         max_errors = _get_max_errors(window, window_sequences, max_below)
-        window_sequences = _prune_anomalies(max_errors, min_percent)
-        # indexes are relative to each window, so we need to add
-        # the window_start to all of them to make them absolute
-        window_sequences += window_start
+        pruned_anomalies = _prune_anomalies(max_errors, min_percent)
+        window_sequences = _compute_scores(pruned_anomalies, errors, threshold, window_start)
         sequences.extend(window_sequences)
 
         if lower_threshold:
-            # flip error sequence around mean
+            # Flip errors sequence around mean
             mean = window.mean()
             inverted_window = mean - (window - mean)
 
-            # perform same procedure as above
+            # Perform same procedure as above
             threshold = _find_threshold(inverted_window, z_range)
             window_sequences, max_below = _find_sequences(inverted_window, threshold, anomaly_interval)
             max_errors = _get_max_errors(inverted_window, window_sequences, max_below)
-            window_sequences = _prune_anomalies(max_errors, min_percent)
-
-            window_sequences += window_start
+            pruned_anomalies = _prune_anomalies(max_errors, min_percent)
+            window_sequences = _compute_scores(pruned_anomalies, errors, threshold, window_start)
             sequences.extend(window_sequences)
 
         window_start = window_start + window_step_size
 
-    sequences = _merge_consecutive(sequences)
+    sequences = _merge_sequences(sequences)
 
     anomalies = list()
-    denominator = errors.mean() + errors.std()
-    for start, stop in sequences:
-        max_error = errors[start:stop + 1].max()
-        score = (max_error - threshold) / denominator
-        anomalies.append([index[start], index[stop], score])
+    for start, stop, score in sequences:
+        anomalies.append([index[int(start)], index[int(stop)], score])
 
     return np.asarray(anomalies)
