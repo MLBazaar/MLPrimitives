@@ -132,7 +132,7 @@ def _find_sequences(errors, epsilon, anomaly_interval):
     index_above = np.argwhere(above)
 
     for i in index_above.flatten():
-        above[max(0, i-anomaly_interval):min(i+anomaly_interval+1, len(above))] = True
+        above[max(0, i - anomaly_interval):min(i + anomaly_interval + 1, len(above))] = True
 
     shift = above.shift(1).fillna(False)
     change = above != shift
@@ -216,7 +216,7 @@ def _compute_scores(pruned_anomalies, errors, threshold, window_start):
     for row in pruned_anomalies:
         max_error = row[2]
         score = (max_error - threshold) / denominator
-        anomalies.append([row[0]+window_start, row[1]+window_start, score])
+        anomalies.append([row[0] + window_start, row[1] + window_start, score])
 
     return anomalies
 
@@ -242,21 +242,21 @@ def _merge_sequences(sequences):
             new_sequences.append(i)
         else:
             j = new_sequences[-1]
-            if i[0] <= j[1]+1:
+            if i[0] <= j[1] + 1:
                 score.append(i[2])
-                weights.append(i[1]-i[0])
+                weights.append(i[1] - i[0])
                 weighted_average = np.average(score, weights=weights)
                 new_sequences[-1] = (j[0], max(j[1], i[1]), weighted_average)
             else:
                 score = [i[2]]
-                weights = [i[1]-i[0]]
+                weights = [i[1] - i[0]]
                 new_sequences.append(i)
 
     return np.array(new_sequences)
 
 
-def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step_size=None, min_percent=0.1,
-                   anomaly_interval=50, lower_threshold=False):
+def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step_size=None,
+                   min_percent=0.1, anomaly_interval=50, lower_threshold=False):
     """Find sequences of values that are anomalous.
 
     We first find the ideal threshold for the set of errors that we have,
@@ -276,12 +276,11 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
     while window_end < len(errors):
         window_end = window_start + window_size
         window = errors[window_start:window_end]
-
         threshold = _find_threshold(window, z_range)
         window_sequences, max_below = _find_sequences(window, threshold, anomaly_interval)
         max_errors = _get_max_errors(window, window_sequences, max_below)
         pruned_anomalies = _prune_anomalies(max_errors, min_percent)
-        window_sequences = _compute_scores(pruned_anomalies, errors, threshold, window_start)
+        window_sequences = _compute_scores(pruned_anomalies, window, threshold, window_start)
         sequences.extend(window_sequences)
 
         if lower_threshold:
@@ -291,10 +290,11 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
 
             # Perform same procedure as above
             threshold = _find_threshold(inverted_window, z_range)
-            window_sequences, max_below = _find_sequences(inverted_window, threshold, anomaly_interval)
+            window_sequences, max_below = _find_sequences(inverted_window, threshold,
+                                                          anomaly_interval)
             max_errors = _get_max_errors(inverted_window, window_sequences, max_below)
             pruned_anomalies = _prune_anomalies(max_errors, min_percent)
-            window_sequences = _compute_scores(pruned_anomalies, errors, threshold, window_start)
+            window_sequences = _compute_scores(pruned_anomalies, window, threshold, window_start)
             sequences.extend(window_sequences)
 
         window_start = window_start + window_step_size
