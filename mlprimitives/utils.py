@@ -11,8 +11,11 @@ LOGGER = logging.getLogger(__name__)
 
 def import_object(object_name):
     """Import an object from its Fully Qualified Name."""
-    package, name = object_name.rsplit('.', 1)
-    return getattr(importlib.import_module(package), name)
+    try:
+        package, name = object_name.rsplit('.', 1)
+        return getattr(importlib.import_module(package), name)
+    except (AttributeError, ModuleNotFoundError, ValueError):
+        raise ImportError('Cannot import object name: {}'.format(object_name)) from None
 
 
 def image_transform(X, function, reshape_before=False, reshape_after=False,
