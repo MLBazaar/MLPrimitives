@@ -128,11 +128,11 @@ class PruneAnomaliesTest(TestCase):
 class FindSequencesTest(TestCase):
 
     THRESHOLD = 0.5
-    ANOMALY_INTERVAL = 1
+    ANOMALY_PADDING = 1
 
     def _run(self, errors, expected, expected_max):
         found, max_below = _find_sequences(np.asarray(errors), self.THRESHOLD,
-                                           self.ANOMALY_INTERVAL)
+                                           self.ANOMALY_PADDING)
 
         np.testing.assert_array_equal(found, expected)
         assert max_below == expected_max
@@ -187,12 +187,12 @@ class FindAnomaliesTest(TestCase):
     THRESHOLD = 0.5
     INDEX_SHORT = [1, 2, 3, 4]
     INDEX_LONG = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    ANOMALY_INTERVAL = 1
+    ANOMALY_PADDING = 1
 
     def _run(self, errors, expected, index=INDEX_SHORT, window_size=None,
              window_step_size=None, lower_threshold=False):
         found = find_anomalies(np.asarray(errors), index=index,
-                               anomaly_interval=self.ANOMALY_INTERVAL,
+                               anomaly_padding=self.ANOMALY_PADDING,
                                window_size=window_size, window_step_size=window_step_size,
                                lower_threshold=lower_threshold)
 

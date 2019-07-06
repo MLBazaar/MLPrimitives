@@ -62,7 +62,7 @@
                     0.9
                 ]
             },
-            "anomaly_interval": {
+            "anomaly_padding": {
                 "type": "int",
                 "default": 50,
                 "range": [
