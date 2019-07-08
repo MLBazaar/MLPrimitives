@@ -36,6 +36,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "keep": {
+                "type": "bool",
+                "default": false
+            },
             "copy": {
                 "type": "bool",
                 "default": true

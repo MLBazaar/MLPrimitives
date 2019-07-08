@@ -36,6 +36,14 @@
     },
     "hyperparameters": {
         "fixed": {
+            "keep": {
+                "type": "bool",
+                "default": false
+            },
+            "copy": {
+                "type": "bool",
+                "default": true
+            },
             "features": {
                 "type": "str or list",
                 "default": "auto"
@@ -64,10 +72,10 @@
             },
             "max_features": {
                 "type": "int",
-                "default": 1,
+                "default": 300,
                 "range": [
-                    1,
-                    1000
+                    10,
+                    3000
                 ]
             }
         }
