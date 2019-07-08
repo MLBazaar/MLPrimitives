@@ -14,14 +14,20 @@ def regression_errors(y, y_hat, smoothing_window=0.01, smooth=True):
     If smooth is True, apply EWMA to the resulting array of errors.
 
     Args:
-        y (array): Ground truth.
-        y_hat (array): Predicted values.
-        smoothing_window (float): Size of the smoothing window, expressed as a proportion
-            of the total length of y.
-        smooth (bool): Indicates whether the returned errors should be smoothed with EWMA.
+        y (ndarray):
+            Ground truth.
+        y_hat (ndarray):
+            Predicted values.
+        smoothing_window (float):
+            Optional. Size of the smoothing window, expressed as a proportion of the total
+            length of y. If not given, 0.01 is used.
+        smooth (bool):
+            Optional. Indicates whether the returned errors should be smoothed with EWMA.
+            If not given, `True` is used.
 
     Returns:
-        (array): Array of errors.
+        ndarray:
+            Array of errors.
     """
     errors = np.abs(y - y_hat)[:, 0]
 
@@ -40,14 +46,20 @@ def deltas(errors, epsilon, mean, std):
     delta_std = std(errors) - std(all errors below epsilon)
 
     Args:
-        errors (ndarray): Array of errors.
-        epsilon (ndarray): Threshold value.
-        mean (float): Mean of errors.
-        std (float): Standard deviation of errors.
+        errors (ndarray):
+            Array of errors.
+        epsilon (ndarray):
+            Threshold value.
+        mean (float):
+            Mean of errors.
+        std (float):
+            Standard deviation of errors.
 
     Returns:
-        (float): delta_mean.
-        (float): delta_std.
+        float:
+            delta_mean.
+        float:
+            delta_std.
     """
     below = errors[errors <= epsilon]
     if not len(below):
@@ -64,12 +76,16 @@ def count_above(errors, epsilon):
     which means that a sequence started at that position.
 
     Args:
-        errors (ndarray): Array of errors.
-        epsilon (ndarray): Threshold value.
+        errors (ndarray):
+            Array of errors.
+        epsilon (ndarray):
+            Threshold value.
 
     Returns:
-        (int): Number of errors above epsilon.
-        (int): Number of continuous sequences above epsilon.
+        int:
+            Number of errors above epsilon.
+        int:
+            Number of continuous sequences above epsilon.
     """
     above = errors > epsilon
     total_above = len(errors[above])
@@ -99,13 +115,18 @@ def z_cost(z, errors, mean, std):
     it into a cost function, as later on we will use scipy.fmin to minimize it.
 
     Args:
-        z (ndarray): Value for which a cost score is calculated.
-        errors (ndarray): Array of errors.
-        mean (float): Mean of errors.
-        std (float): Standard deviation of errors.
+        z (ndarray):
+            Value for which a cost score is calculated.
+        errors (ndarray):
+            Array of errors.
+        mean (float):
+            Mean of errors.
+        std (float):
+            Standard deviation of errors.
 
     Returns:
-        (float): Cost of z.
+        float:
+            Cost of z.
     """
     epsilon = mean + z * std
 
@@ -125,15 +146,18 @@ def _find_threshold(errors, z_range):
     """Find the ideal threshold.
 
     The ideal threshold is the one that minimizes the z_cost function. Scipy.fmin is used
-        to find the minimum, using the values from z_range as starting points.
+    to find the minimum, using the values from z_range as starting points.
 
     Args:
-        errors (ndarray): Array of errors.
-        z_range (list): List of two values denoting the range out of which the start points
-            for the scipy.fmin function are chosen.
+        errors (ndarray):
+            Array of errors.
+        z_range (list):
+            List of two values denoting the range out of which the start points for the
+            scipy.fmin function are chosen.
 
     Returns:
-        (float): Calculated threshold value.
+        float:
+            Calculated threshold value.
     """
     mean = errors.mean()
     std = errors.std()
@@ -163,14 +187,19 @@ def _find_sequences(errors, epsilon, anomaly_padding):
         * Consider a sequence end any point which was false and has changed.
 
     Args:
-        errors (ndarray): Array of errors.
-        epsilon (float): Threshold value. All errors above epsilon are considered an anomaly.
-        anomaly_padding (int): Number of errors before and after a found anomaly that are added
-            to the anomalous sequence.
+        errors (ndarray):
+            Array of errors.
+        epsilon (float):
+            Threshold value. All errors above epsilon are considered an anomaly.
+        anomaly_padding (int):
+            Number of errors before and after a found anomaly that are added to the
+            anomalous sequence.
 
     Returns:
-        (ndarray): Array containing start, end of each found anomalous sequence.
-        (float): Maximum error value that was not considered an anomaly.
+        ndarray:
+            Array containing start, end of each found anomalous sequence.
+        float:
+            Maximum error value that was not considered an anomaly.
     """
     above = pd.Series(errors > epsilon)
     index_above = np.argwhere(above)
@@ -206,13 +235,16 @@ def _get_max_errors(errors, sequences, max_below):
     indexes, sorted descendingly by the maximum error.
 
     Args:
-        errors (ndarray): Array of errors.
-        sequences (ndarray): Array containing start, end of anomalous sequences
-        max_below (float): Maximum error value that was not considered an anomaly.
+        errors (ndarray):
+            Array of errors.
+        sequences (ndarray):
+            Array containing start, end of anomalous sequences
+        max_below (float):
+            Maximum error value that was not considered an anomaly.
 
     Returns:
-        (pandas.DataFrame): DataFrame object containing columns ``start``, ``stop`` and
-            ``max_error``.
+        pandas.DataFrame:
+            DataFrame object containing columns ``start``, ``stop`` and ``max_error``.
     """
     max_errors = [{
         'max_error': max_below,
@@ -246,13 +278,15 @@ def _prune_anomalies(max_errors, min_percent):
         * Get the values of all the sequences above that index.
 
     Args:
-        max_errors (pandas.DataFrame): DataFrame object containing columns ``start``, ``stop``
-            and ``max_error``.
-        min_percent (float): Percentage of separation the anomalies need to meet between
-            themselves and the highest non-anomalous error in the window sequence.
+        max_errors (pandas.DataFrame):
+            DataFrame object containing columns ``start``, ``stop`` and ``max_error``.
+        min_percent (float):
+            Percentage of separation the anomalies need to meet between themselves and the
+            highest non-anomalous error in the window sequence.
 
     Returns:
-        (ndarray): Array containing start, end, max_error of the pruned anomalies.
+        ndarray:
+            Array containing start, end, max_error of the pruned anomalies.
     """
     next_error = max_errors['max_error'].shift(-1).iloc[:-1]
     max_error = max_errors['max_error'].iloc[:-1]
@@ -275,14 +309,19 @@ def _compute_scores(pruned_anomalies, errors, threshold, window_start):
     and add window_start timestamp to make the index absolute.
 
     Args:
-        pruned_anomalies (ndarray): Array of anomalies containing the start, end and max_error
-            for all anomalies in the window.
-        errors (ndarray): Array of errors.
-        threshold (float): Threshold value.
-        window_start (int): Index of the first error value in the window.
+        pruned_anomalies (ndarray):
+            Array of anomalies containing the start, end and max_error for all anomalies in
+            the window.
+        errors (ndarray):
+            Array of errors.
+        threshold (float):
+            Threshold value.
+        window_start (int):
+            Index of the first error value in the window.
 
     Returns:
-        (list): List of anomalies containing start-index, end-index, score for each anomaly.
+        list:
+            List of anomalies containing start-index, end-index, score for each anomaly.
     """
     anomalies = list()
     denominator = errors.mean() + errors.std()
@@ -304,12 +343,12 @@ def _merge_sequences(sequences):
     weighted by the length of the corresponding sequences.
 
     Args:
-        sequences (list): List of anomalies, containing start-index, end-index, score for
-            each anomaly.
+        sequences (list):
+            List of anomalies, containing start-index, end-index, score for each anomaly.
 
     Returns:
-        (ndarray): Array containing start-index, end-index, score for each anomaly after
-            merging.
+        ndarray:
+            Array containing start-index, end-index, score for each anomaly after merging.
     """
     if len(sequences) == 0:
         return np.array([])
@@ -344,17 +383,23 @@ def _find_window_sequences(window, z_range, anomaly_padding, min_percent, window
     score of the anomalies is computed.
 
     Args:
-        window (ndarray): Array of errors in the window that is analyzed.
-        z_range (list): List of two values denoting the range out of which the start
-            points for the dynamic find_threshold function are chosen.
-        anomaly_padding (int): Number of errors before and after a found anomaly that are added
-            to the anomalous sequence.
-        min_percent (float): Percentage of separation the anomalies need to meet between
-            themselves and the highest non-anomalous error in the window sequence.
-        window_start (integer): Index of the first error value in the window.
+        window (ndarray):
+            Array of errors in the window that is analyzed.
+        z_range (list):
+            List of two values denoting the range out of which the start points for the
+            dynamic find_threshold function are chosen.
+        anomaly_padding (int):
+            Number of errors before and after a found anomaly that are added to the anomalous
+            sequence.
+        min_percent (float):
+            Percentage of separation the anomalies need to meet between themselves and the
+            highest non-anomalous error in the window sequence.
+        window_start (int):
+            Index of the first error value in the window.
 
     Returns:
-        (ndarray): Array containing the start-index, end-index, score for each anomalous sequence
+        ndarray:
+            Array containing the start-index, end-index, score for each anomalous sequence
             that was found in the window.
     """
 
@@ -379,26 +424,33 @@ def find_anomalies(errors, index, z_range=(0, 10), window_size=None, window_step
     Lastly, we combine overlapping or consecutive sequences.
 
     Args:
-        errors (ndarray): Array of errors.
-        index (ndarray): Array of indices of the errors.
-        z_range (list, optional): List of two values denoting the range out of which the start
-            points for the scipy.fmin function are chosen. If not given, (0, 10) is used.
-        window_size (int, optional): Size of the window for which a threshold is calculated.
-            If not given, None is used, which finds one threshold for the entire sequence of
-            errors.
-        window_step_size (int, optional): Number of steps the window is moved before another
-            threshold is calculated for the new window.
-        min_percent (float, optional): Percentage of separation the anomalies need to meet
-            between themselves and the highest non-anomalous error in the window sequence.
-            It nof given, 0.1 is used.
-        anomaly_padding (int, optional): Number of errors before and after a found anomaly that
-            are added to the anomalous sequence. If not given, 50 is used.
-        lower_threshold (bool, optional): Indicates whether to apply a lower threshold to find
-            unusually low errors. If not given, False is used.
+        errors (ndarray):
+            Array of errors.
+        index (ndarray):
+            Array of indices of the errors.
+        z_range (list):
+            Optional. List of two values denoting the range out of which the start points for
+            the scipy.fmin function are chosen. If not given, (0, 10) is used.
+        window_size (int):
+            Optional. Size of the window for which a threshold is calculated. If not given,
+            `None` is used, which finds one threshold for the entire sequence of errors.
+        window_step_size (int):
+            Optional. Number of steps the window is moved before another threshold is
+            calculated for the new window.
+        min_percent (float):
+            Optional. Percentage of separation the anomalies need to meet between themselves and
+            the highest non-anomalous error in the window sequence. It nof given, 0.1 is used.
+        anomaly_padding (int):
+            Optional. Number of errors before and after a found anomaly that are added to the
+            anomalous sequence. If not given, 50 is used.
+        lower_threshold (bool):
+            Optional. Indicates whether to apply a lower threshold to find unusually low errors.
+            If not given, `False` is used.
 
     Returns:
-        (ndarray): Array containing start-index, end-index, score for each anomalous sequence
-            that was found.
+        ndarray:
+            Array containing start-index, end-index, score for each anomalous sequence that
+            was found.
     """
 
     window_size = window_size or len(errors)
