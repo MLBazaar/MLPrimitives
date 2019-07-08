@@ -346,14 +346,20 @@
 <span class="sd">    If smooth is True, apply EWMA to the resulting array of errors.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        y (array): Ground truth.</span>
-<span class="sd">        y_hat (array): Predictions array.</span>
-<span class="sd">        smoothing_window (float): Size of the smoothing window, expressed as a proportion</span>
-<span class="sd">            of the total length of y.</span>
-<span class="sd">        smooth (bool): whether the returned errors should be smoothed with EWMA.</span>
+<span class="sd">        y (ndarray):</span>
+<span class="sd">            Ground truth.</span>
+<span class="sd">        y_hat (ndarray):</span>
+<span class="sd">            Predicted values.</span>
+<span class="sd">        smoothing_window (float):</span>
+<span class="sd">            Optional. Size of the smoothing window, expressed as a proportion of the total</span>
+<span class="sd">            length of y. If not given, 0.01 is used.</span>
+<span class="sd">        smooth (bool):</span>
+<span class="sd">            Optional. Indicates whether the returned errors should be smoothed with EWMA.</span>
+<span class="sd">            If not given, `True` is used.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        (array): errors</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array of errors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_hat</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
 
@@ -370,6 +376,22 @@
 
 <span class="sd">    delta_mean = mean(errors) - mean(all errors below epsilon)</span>
 <span class="sd">    delta_std = std(errors) - std(all errors below epsilon)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        epsilon (ndarray):</span>
+<span class="sd">            Threshold value.</span>
+<span class="sd">        mean (float):</span>
+<span class="sd">            Mean of errors.</span>
+<span class="sd">        std (float):</span>
+<span class="sd">            Standard deviation of errors.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float:</span>
+<span class="sd">            delta_mean.</span>
+<span class="sd">        float:</span>
+<span class="sd">            delta_std.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">below</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">errors</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">below</span><span class="p">):</span>
@@ -384,6 +406,18 @@
 <span class="sd">    Continuous sequences are counted by shifting and counting the number</span>
 <span class="sd">    of positions where there was a change and the original value was true,</span>
 <span class="sd">    which means that a sequence started at that position.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        epsilon (ndarray):</span>
+<span class="sd">            Threshold value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int:</span>
+<span class="sd">            Number of errors above epsilon.</span>
+<span class="sd">        int:</span>
+<span class="sd">            Number of continuous sequences above epsilon.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">above</span> <span class="o">=</span> <span class="n">errors</span> <span class="o">&gt;</span> <span class="n">epsilon</span>
     <span class="n">total_above</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">above</span><span class="p">])</span>
@@ -410,9 +444,22 @@
 <span class="sd">    the better the `z`.</span>
 
 <span class="sd">    In this case, we return this value inverted (we make it negative), to convert</span>
-<span class="sd">    it into a cost function, as later on we will use scipy to minimize it.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    it into a cost function, as later on we will use scipy.fmin to minimize it.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        z (ndarray):</span>
+<span class="sd">            Value for which a cost score is calculated.</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        mean (float):</span>
+<span class="sd">            Mean of errors.</span>
+<span class="sd">        std (float):</span>
+<span class="sd">            Standard deviation of errors.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float:</span>
+<span class="sd">            Cost of z.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">std</span>
 
     <span class="n">delta_mean</span><span class="p">,</span> <span class="n">delta_std</span> <span class="o">=</span> <span class="n">deltas</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
@@ -427,12 +474,23 @@
     <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span></div>
 
 
-<span class="k">def</span> <span class="nf">_find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">_find_threshold</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">z_range</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find the ideal threshold.</span>
 
-<span class="sd">    The ideal threshold is the one that minimizes the z_cost function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    The ideal threshold is the one that minimizes the z_cost function. Scipy.fmin is used</span>
+<span class="sd">    to find the minimum, using the values from z_range as starting points.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        z_range (list):</span>
+<span class="sd">            List of two values denoting the range out of which the start points for the</span>
+<span class="sd">            scipy.fmin function are chosen.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float:</span>
+<span class="sd">            Calculated threshold value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mean</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">std</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 
@@ -448,18 +506,39 @@
     <span class="k">return</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">best_z</span> <span class="o">*</span> <span class="n">std</span>
 
 
-<span class="k">def</span> <span class="nf">_find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_find_sequences</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">anomaly_padding</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find sequences of values that are above epsilon.</span>
 
 <span class="sd">    This is done following this steps:</span>
 
 <span class="sd">        * create a boolean mask that indicates which values are above epsilon.</span>
-<span class="sd">        * shift this mask by one place, filing the empty gap with a False</span>
+<span class="sd">        * mark certain range of errors around True values with a True as well.</span>
+<span class="sd">        * shift this mask by one place, filing the empty gap with a False.</span>
 <span class="sd">        * compare the shifted mask with the original one to see if there are changes.</span>
-<span class="sd">        * Consider a sequence start any point which was true and has changed</span>
-<span class="sd">        * Consider a sequence end any point which was false and has changed</span>
+<span class="sd">        * Consider a sequence start any point which was true and has changed.</span>
+<span class="sd">        * Consider a sequence end any point which was false and has changed.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        epsilon (float):</span>
+<span class="sd">            Threshold value. All errors above epsilon are considered an anomaly.</span>
+<span class="sd">        anomaly_padding (int):</span>
+<span class="sd">            Number of errors before and after a found anomaly that are added to the</span>
+<span class="sd">            anomalous sequence.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing start, end of each found anomalous sequence.</span>
+<span class="sd">        float:</span>
+<span class="sd">            Maximum error value that was not considered an anomaly.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">above</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">errors</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">)</span>
+    <span class="n">index_above</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">above</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">index_above</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+        <span class="n">above</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="n">anomaly_padding</span><span class="p">):</span><span class="nb">min</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="n">anomaly_padding</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">))]</span> <span class="o">=</span> <span class="kc">True</span>
+
     <span class="n">shift</span> <span class="o">=</span> <span class="n">above</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">change</span> <span class="o">=</span> <span class="n">above</span> <span class="o">!=</span> <span class="n">shift</span>
 
@@ -471,6 +550,7 @@
     <span class="n">index</span> <span class="o">=</span> <span class="n">above</span><span class="o">.</span><span class="n">index</span>
     <span class="n">starts</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">ends</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="o">~</span><span class="n">above</span> <span class="o">&amp;</span> <span class="n">change</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">ends</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -483,8 +563,20 @@
 <span class="sd">    Also add a row with the max error which was not considered anomalous.</span>
 
 <span class="sd">    Table containing a ``max_error`` column with the maximum error of each</span>
-<span class="sd">    sequence and a column ``sequence`` with the corresponding start and stop</span>
-<span class="sd">    indexes, sorted descendingly by errors.</span>
+<span class="sd">    sequence and the columns ``start`` and ``stop`` with the corresponding start and stop</span>
+<span class="sd">    indexes, sorted descendingly by the maximum error.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        sequences (ndarray):</span>
+<span class="sd">            Array containing start, end of anomalous sequences</span>
+<span class="sd">        max_below (float):</span>
+<span class="sd">            Maximum error value that was not considered an anomaly.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.DataFrame:</span>
+<span class="sd">            DataFrame object containing columns ``start``, ``stop`` and ``max_error``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">max_errors</span> <span class="o">=</span> <span class="p">[{</span>
         <span class="s1">&#39;max_error&#39;</span><span class="p">:</span> <span class="n">max_below</span><span class="p">,</span>
@@ -502,7 +594,6 @@
         <span class="p">})</span>
 
     <span class="n">max_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">max_errors</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;max_error&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
     <span class="k">return</span> <span class="n">max_errors</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
@@ -517,8 +608,18 @@
 <span class="sd">        * Find rows which are below ``min_percent``.</span>
 <span class="sd">        * Find the index of the latest of such rows.</span>
 <span class="sd">        * Get the values of all the sequences above that index.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        max_errors (pandas.DataFrame):</span>
+<span class="sd">            DataFrame object containing columns ``start``, ``stop`` and ``max_error``.</span>
+<span class="sd">        min_percent (float):</span>
+<span class="sd">            Percentage of separation the anomalies need to meet between themselves and the</span>
+<span class="sd">            highest non-anomalous error in the window sequence.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing start, end, max_error of the pruned anomalies.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">next_error</span> <span class="o">=</span> <span class="n">max_errors</span><span class="p">[</span><span class="s1">&#39;max_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">max_error</span> <span class="o">=</span> <span class="n">max_errors</span><span class="p">[</span><span class="s1">&#39;max_error&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
@@ -530,69 +631,190 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">last_index</span> <span class="o">=</span> <span class="n">max_error</span><span class="p">[</span><span class="o">~</span><span class="n">too_small</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">return</span> <span class="n">max_errors</span><span class="p">[[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">last_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">return</span> <span class="n">max_errors</span><span class="p">[[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;max_error&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">last_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 
-<span class="k">def</span> <span class="nf">_merge_consecutive</span><span class="p">(</span><span class="n">sequences</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Merge consecutive sequences.</span>
+<span class="k">def</span> <span class="nf">_compute_scores</span><span class="p">(</span><span class="n">pruned_anomalies</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">window_start</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute the score of the anomalies.</span>
 
-<span class="sd">    We iterate over a list of start, end pairs and merge together</span>
-<span class="sd">    the cases where the start of a sequence is exactly the end</span>
-<span class="sd">    of the previous sequence + 1.</span>
+<span class="sd">    Calculate the score of the anomalies proportional to the maximum error in the sequence</span>
+<span class="sd">    and add window_start timestamp to make the index absolute.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pruned_anomalies (ndarray):</span>
+<span class="sd">            Array of anomalies containing the start, end and max_error for all anomalies in</span>
+<span class="sd">            the window.</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        threshold (float):</span>
+<span class="sd">            Threshold value.</span>
+<span class="sd">        window_start (int):</span>
+<span class="sd">            Index of the first error value in the window.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list:</span>
+<span class="sd">            List of anomalies containing start-index, end-index, score for each anomaly.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">previous</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
-    <span class="n">new_sequences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">previous</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">start</span><span class="p">:</span>
-            <span class="n">new_sequences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">end</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">new_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">])</span>
+    <span class="n">anomalies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 
-        <span class="n">previous</span> <span class="o">=</span> <span class="n">end</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">pruned_anomalies</span><span class="p">:</span>
+        <span class="n">max_error</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_error</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">/</span> <span class="n">denominator</span>
+        <span class="n">anomalies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">window_start</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">window_start</span><span class="p">,</span> <span class="n">score</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">anomalies</span>
+
+
+<span class="k">def</span> <span class="nf">_merge_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Merge consecutive and overlapping sequences.</span>
+
+<span class="sd">    We iterate over a list of start, end, score triples and merge together</span>
+<span class="sd">    overlapping or consecutive sequences.</span>
+<span class="sd">    The score of a merged sequence is the average of the single scores,</span>
+<span class="sd">    weighted by the length of the corresponding sequences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sequences (list):</span>
+<span class="sd">            List of anomalies, containing start-index, end-index, score for each anomaly.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing start-index, end-index, score for each anomaly after merging.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+    <span class="n">sorted_sequences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">entry</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">new_sequences</span> <span class="o">=</span> <span class="p">[</span><span class="n">sorted_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="p">[</span><span class="n">sorted_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">sorted_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sorted_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+    <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sorted_sequences</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">prev_sequence</span> <span class="o">=</span> <span class="n">new_sequences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">prev_sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">weighted_average</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+            <span class="n">new_sequences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">max</span><span class="p">(</span><span class="n">prev_sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                                 <span class="n">weighted_average</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="p">[</span><span class="n">sequence</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">sequence</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="n">new_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_sequences</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="find_anomalies"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_anomalies">[docs]</a><span class="k">def</span> <span class="nf">find_anomalies</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">window_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_percent</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_find_window_sequences</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">,</span> <span class="n">anomaly_padding</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">,</span> <span class="n">window_start</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find sequences of values that are anomalous.</span>
 
-<span class="sd">    We first find the ideal threshold for the set of errors that we have,</span>
-<span class="sd">    and then find the sequences of values that are above this threshold.</span>
+<span class="sd">    We first find the threshold for the window, then find all sequences above that threshold.</span>
+<span class="sd">    After that, we get the max errors of the sequences and prune the anomalies. Lastly, the</span>
+<span class="sd">    score of the anomalies is computed.</span>
 
-<span class="sd">    Lastly, we compute a score proportional to the maximum error in the</span>
-<span class="sd">    sequence, and finally return the index pairs that correspond to</span>
-<span class="sd">    each sequence, along with its score.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        window (ndarray):</span>
+<span class="sd">            Array of errors in the window that is analyzed.</span>
+<span class="sd">        z_range (list):</span>
+<span class="sd">            List of two values denoting the range out of which the start points for the</span>
+<span class="sd">            dynamic find_threshold function are chosen.</span>
+<span class="sd">        anomaly_padding (int):</span>
+<span class="sd">            Number of errors before and after a found anomaly that are added to the anomalous</span>
+<span class="sd">            sequence.</span>
+<span class="sd">        min_percent (float):</span>
+<span class="sd">            Percentage of separation the anomalies need to meet between themselves and the</span>
+<span class="sd">            highest non-anomalous error in the window sequence.</span>
+<span class="sd">        window_start (int):</span>
+<span class="sd">            Index of the first error value in the window.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing the start-index, end-index, score for each anomalous sequence</span>
+<span class="sd">            that was found in the window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">_find_threshold</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">)</span>
+    <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span> <span class="o">=</span> <span class="n">_find_sequences</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">anomaly_padding</span><span class="p">)</span>
+    <span class="n">max_errors</span> <span class="o">=</span> <span class="n">_get_max_errors</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span><span class="p">)</span>
+    <span class="n">pruned_anomalies</span> <span class="o">=</span> <span class="n">_prune_anomalies</span><span class="p">(</span><span class="n">max_errors</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">)</span>
+    <span class="n">window_sequences</span> <span class="o">=</span> <span class="n">_compute_scores</span><span class="p">(</span><span class="n">pruned_anomalies</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">window_start</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">window_sequences</span>
+
+
+<div class="viewcode-block" id="find_anomalies"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_anomalies.html#mlprimitives.custom.timeseries_anomalies.find_anomalies">[docs]</a><span class="k">def</span> <span class="nf">find_anomalies</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">z_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">window_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_step_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">min_percent</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">anomaly_padding</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">lower_threshold</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find sequences of error values that are anomalous.</span>
+
+<span class="sd">    We first define the window of errors, that we want to analyze. We then find the anomalous</span>
+<span class="sd">    sequences in that window and store the start/stop index pairs that correspond to each</span>
+<span class="sd">    sequence, along with its score. Optionally, we can flip the error sequence around the mean</span>
+<span class="sd">    and apply the same procedure, allowing us to find unusually low error sequences.</span>
+<span class="sd">    We then move the window and repeat the procedure.</span>
+<span class="sd">    Lastly, we combine overlapping or consecutive sequences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        errors (ndarray):</span>
+<span class="sd">            Array of errors.</span>
+<span class="sd">        index (ndarray):</span>
+<span class="sd">            Array of indices of the errors.</span>
+<span class="sd">        z_range (list):</span>
+<span class="sd">            Optional. List of two values denoting the range out of which the start points for</span>
+<span class="sd">            the scipy.fmin function are chosen. If not given, (0, 10) is used.</span>
+<span class="sd">        window_size (int):</span>
+<span class="sd">            Optional. Size of the window for which a threshold is calculated. If not given,</span>
+<span class="sd">            `None` is used, which finds one threshold for the entire sequence of errors.</span>
+<span class="sd">        window_step_size (int):</span>
+<span class="sd">            Optional. Number of steps the window is moved before another threshold is</span>
+<span class="sd">            calculated for the new window.</span>
+<span class="sd">        min_percent (float):</span>
+<span class="sd">            Optional. Percentage of separation the anomalies need to meet between themselves and</span>
+<span class="sd">            the highest non-anomalous error in the window sequence. It nof given, 0.1 is used.</span>
+<span class="sd">        anomaly_padding (int):</span>
+<span class="sd">            Optional. Number of errors before and after a found anomaly that are added to the</span>
+<span class="sd">            anomalous sequence. If not given, 50 is used.</span>
+<span class="sd">        lower_threshold (bool):</span>
+<span class="sd">            Optional. Indicates whether to apply a lower threshold to find unusually low errors.</span>
+<span class="sd">            If not given, `False` is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing start-index, end-index, score for each anomalous sequence that</span>
+<span class="sd">            was found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+    <span class="n">window_step_size</span> <span class="o">=</span> <span class="n">window_step_size</span> <span class="ow">or</span> <span class="n">window_size</span>
     <span class="n">window_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">window_end</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">sequences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">while</span> <span class="n">window_start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
+
+    <span class="k">while</span> <span class="n">window_end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
         <span class="n">window_end</span> <span class="o">=</span> <span class="n">window_start</span> <span class="o">+</span> <span class="n">window_size</span>
         <span class="n">window</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">window_start</span><span class="p">:</span><span class="n">window_end</span><span class="p">]</span>
-
-        <span class="n">threshold</span> <span class="o">=</span> <span class="n">_find_threshold</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">)</span>
-        <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span> <span class="o">=</span> <span class="n">_find_sequences</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
-
-        <span class="n">max_errors</span> <span class="o">=</span> <span class="n">_get_max_errors</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">window_sequences</span><span class="p">,</span> <span class="n">max_below</span><span class="p">)</span>
-        <span class="n">window_sequences</span> <span class="o">=</span> <span class="n">_prune_anomalies</span><span class="p">(</span><span class="n">max_errors</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">)</span>
-
-        <span class="c1"># indexes are relative to each window, so we need to add</span>
-        <span class="c1"># the window_start to all of them to make them absolute</span>
-        <span class="n">window_sequences</span> <span class="o">+=</span> <span class="n">window_start</span>
-
+        <span class="n">window_sequences</span> <span class="o">=</span> <span class="n">_find_window_sequences</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">,</span> <span class="n">anomaly_padding</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">,</span>
+                                                  <span class="n">window_start</span><span class="p">)</span>
         <span class="n">sequences</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">window_sequences</span><span class="p">)</span>
 
-        <span class="n">window_start</span> <span class="o">=</span> <span class="n">window_end</span>
+        <span class="k">if</span> <span class="n">lower_threshold</span><span class="p">:</span>
+            <span class="c1"># Flip errors sequence around mean</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="n">inverted_window</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">-</span> <span class="p">(</span><span class="n">window</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span>
+            <span class="n">inverted_window_sequences</span> <span class="o">=</span> <span class="n">_find_window_sequences</span><span class="p">(</span><span class="n">inverted_window</span><span class="p">,</span> <span class="n">z_range</span><span class="p">,</span>
+                                                               <span class="n">anomaly_padding</span><span class="p">,</span> <span class="n">min_percent</span><span class="p">,</span>
+                                                               <span class="n">window_start</span><span class="p">)</span>
+            <span class="n">sequences</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inverted_window_sequences</span><span class="p">)</span>
 
-    <span class="n">sequences</span> <span class="o">=</span> <span class="n">_merge_consecutive</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+        <span class="n">window_start</span> <span class="o">=</span> <span class="n">window_start</span> <span class="o">+</span> <span class="n">window_step_size</span>
+
+    <span class="n">sequences</span> <span class="o">=</span> <span class="n">_merge_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
 
     <span class="n">anomalies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="n">denominator</span> <span class="o">=</span> <span class="n">errors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">errors</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-        <span class="n">max_error</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-        <span class="n">score</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_error</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="o">/</span> <span class="n">denominator</span>
-        <span class="n">anomalies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">index</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">index</span><span class="p">[</span><span class="n">stop</span><span class="p">],</span> <span class="n">score</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+        <span class="n">anomalies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">)],</span> <span class="n">index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">stop</span><span class="p">)],</span> <span class="n">score</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">anomalies</span><span class="p">)</span></div>
 </pre></div>

@@ -348,6 +348,25 @@ Implementation inspired by the paper <a class="reference external" href="https:/
 <p>Continuous sequences are counted by shifting and counting the number
 of positions where there was a change and the original value was true,
 which means that a sequence started at that position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>errors</strong> (<em>ndarray</em>) – Array of errors.</p></li>
+<li><p><strong>epsilon</strong> (<em>ndarray</em>) – Threshold value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Number of errors above epsilon.
+int:</p>
+<blockquote>
+<div><p>Number of continuous sequences above epsilon.</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -356,17 +375,66 @@ which means that a sequence started at that position.</p>
 <dd><p>Compute mean and std deltas.</p>
 <p>delta_mean = mean(errors) - mean(all errors below epsilon)
 delta_std = std(errors) - std(all errors below epsilon)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>errors</strong> (<em>ndarray</em>) – Array of errors.</p></li>
+<li><p><strong>epsilon</strong> (<em>ndarray</em>) – Threshold value.</p></li>
+<li><p><strong>mean</strong> (<em>float</em>) – Mean of errors.</p></li>
+<li><p><strong>std</strong> (<em>float</em>) – Standard deviation of errors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>delta_mean.
+float:</p>
+<blockquote>
+<div><p>delta_std.</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_anomalies.find_anomalies">
-<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">find_anomalies</code><span class="sig-paren">(</span><em class="sig-param">errors</em>, <em class="sig-param">index</em>, <em class="sig-param">z_range=(0</em>, <em class="sig-param">10)</em>, <em class="sig-param">window_size=None</em>, <em class="sig-param">min_percent=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find sequences of values that are anomalous.</p>
-<p>We first find the ideal threshold for the set of errors that we have,
-and then find the sequences of values that are above this threshold.</p>
-<p>Lastly, we compute a score proportional to the maximum error in the
-sequence, and finally return the index pairs that correspond to
-each sequence, along with its score.</p>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_anomalies.</code><code class="sig-name descname">find_anomalies</code><span class="sig-paren">(</span><em class="sig-param">errors</em>, <em class="sig-param">index</em>, <em class="sig-param">z_range=(0</em>, <em class="sig-param">10)</em>, <em class="sig-param">window_size=None</em>, <em class="sig-param">window_step_size=None</em>, <em class="sig-param">min_percent=0.1</em>, <em class="sig-param">anomaly_padding=50</em>, <em class="sig-param">lower_threshold=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_anomalies.html#find_anomalies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_anomalies.find_anomalies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find sequences of error values that are anomalous.</p>
+<p>We first define the window of errors, that we want to analyze. We then find the anomalous
+sequences in that window and store the start/stop index pairs that correspond to each
+sequence, along with its score. Optionally, we can flip the error sequence around the mean
+and apply the same procedure, allowing us to find unusually low error sequences.
+We then move the window and repeat the procedure.
+Lastly, we combine overlapping or consecutive sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>errors</strong> (<em>ndarray</em>) – Array of errors.</p></li>
+<li><p><strong>index</strong> (<em>ndarray</em>) – Array of indices of the errors.</p></li>
+<li><p><strong>z_range</strong> (<em>list</em>) – Optional. List of two values denoting the range out of which the start points for
+the scipy.fmin function are chosen. If not given, (0, 10) is used.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Optional. Size of the window for which a threshold is calculated. If not given,
+<cite>None</cite> is used, which finds one threshold for the entire sequence of errors.</p></li>
+<li><p><strong>window_step_size</strong> (<em>int</em>) – Optional. Number of steps the window is moved before another threshold is
+calculated for the new window.</p></li>
+<li><p><strong>min_percent</strong> (<em>float</em>) – Optional. Percentage of separation the anomalies need to meet between themselves and
+the highest non-anomalous error in the window sequence. It nof given, 0.1 is used.</p></li>
+<li><p><strong>anomaly_padding</strong> (<em>int</em>) – Optional. Number of errors before and after a found anomaly that are added to the
+anomalous sequence. If not given, 50 is used.</p></li>
+<li><p><strong>lower_threshold</strong> (<em>bool</em>) – Optional. Indicates whether to apply a lower threshold to find unusually low errors.
+If not given, <cite>False</cite> is used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array containing start-index, end-index, score for each anomalous sequence that
+was found.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
@@ -377,18 +445,19 @@ each sequence, along with its score.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y</strong> (<em>array</em>) – Ground truth.</p></li>
-<li><p><strong>y_hat</strong> (<em>array</em>) – Predictions array.</p></li>
-<li><p><strong>smoothing_window</strong> (<em>float</em>) – Size of the smoothing window, expressed as a proportion
-of the total length of y.</p></li>
-<li><p><strong>smooth</strong> (<em>bool</em>) – whether the returned errors should be smoothed with EWMA.</p></li>
+<li><p><strong>y</strong> (<em>ndarray</em>) – Ground truth.</p></li>
+<li><p><strong>y_hat</strong> (<em>ndarray</em>) – Predicted values.</p></li>
+<li><p><strong>smoothing_window</strong> (<em>float</em>) – Optional. Size of the smoothing window, expressed as a proportion of the total
+length of y. If not given, 0.01 is used.</p></li>
+<li><p><strong>smooth</strong> (<em>bool</em>) – Optional. Indicates whether the returned errors should be smoothed with EWMA.
+If not given, <cite>True</cite> is used.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>errors</p>
+<dd class="field-even"><p>Array of errors.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(array)</p>
+<dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -406,7 +475,23 @@ of the total length of y.</p></li>
 <p>which computes the “goodness” of <cite>z</cite>, meaning that the higher the value
 the better the <cite>z</cite>.</p>
 <p>In this case, we return this value inverted (we make it negative), to convert
-it into a cost function, as later on we will use scipy to minimize it.</p>
+it into a cost function, as later on we will use scipy.fmin to minimize it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<em>ndarray</em>) – Value for which a cost score is calculated.</p></li>
+<li><p><strong>errors</strong> (<em>ndarray</em>) – Array of errors.</p></li>
+<li><p><strong>mean</strong> (<em>float</em>) – Mean of errors.</p></li>
+<li><p><strong>std</strong> (<em>float</em>) – Standard deviation of errors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Cost of z.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
