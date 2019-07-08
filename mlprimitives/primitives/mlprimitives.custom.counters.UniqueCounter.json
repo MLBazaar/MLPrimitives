@@ -5,8 +5,8 @@
     ],
     "description": "Count the number of unique values in each column of a matrix.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper",
+        "subtype": "counter"
     },
     "modalities": [],
     "primitive": "mlprimitives.custom.counters.UniqueCounter",

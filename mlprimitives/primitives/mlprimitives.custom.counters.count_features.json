@@ -5,8 +5,8 @@
     ],
     "description": "Count the number of features in a 2d feature matrix.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper",
+        "subtype": "counter"
     },
     "modalities": [],
     "primitive": "mlprimitives.custom.counters.count_features",

@@ -5,8 +5,8 @@
     ],
     "description": "Count the number of different words in a collection of texts.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper",
+        "subtype": "counter"
     },
     "modalities": [],
     "primitive": "mlprimitives.custom.counters.VocabularyCounter",
