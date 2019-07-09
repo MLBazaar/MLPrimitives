@@ -55,7 +55,7 @@ If you want to create a new adapter, please follow these steps:
            ``contributors`` list!
         4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
            exactly like your primitive, and test it with the command
-           ``mlprimitives test pipelines/your.pipeline.json``.
+           ``mlprimitives test mlprimitives/pipelines/your.pipeline.json``.
            If adding a pipeline is not possible for any reason, please inform the maintainers, as
            this probably means that a new dataset needs to be added.
 
@@ -109,7 +109,7 @@ and the existing adapter can be safely modified, do the following steps:
            ``contributors`` list!
         4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
            exactly like your primitive, and test it with the command
-           ``mlprimitives test pipelines/your.pipeline.json``.
+           ``mlprimitives test mlprimitives/pipelines/your.pipeline.json``.
            If adding a pipeline is not possible for any reason, please inform the maintainers, as
            this probably means that a new dataset needs to be added.
         5. Make sure that all the primitives that existed before that use the same adapter still

@@ -1,7 +1,0 @@
-mlprimitives.candidates.timeseries module
-=========================================
-
-.. automodule:: mlprimitives.candidates.timeseries
-   :members:
-   :undoc-members:
-   :show-inheritance:

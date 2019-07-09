@@ -14,5 +14,3 @@ Submodules
    mlprimitives.candidates.audio_featurization
    mlprimitives.candidates.audio_padding
    mlprimitives.candidates.dsp
-   mlprimitives.candidates.timeseries
-   mlprimitives.candidates.timeseries_errors

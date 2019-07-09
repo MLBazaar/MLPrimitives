@@ -75,7 +75,7 @@ have these characteristics:
 
 In this case, no additional code is necessary to adapt them and those blocks can be brought into
 MLPrimitives using nothing else than a single JSON annotation file, which can be found in the
-`mlprimitives/jsons folder`_.
+`mlprimitives/primitives folder`_.
 
 Examples
 ********
@@ -108,7 +108,7 @@ Some examples of these primitives are the Keras models, which need to be built i
 and later on compiled before they can be used, or some image transformation primitives which need
 to be applied to the images one by one. These primitives consist of some Python code which can be
 found in the ``mlprimitives.adapters`` module, as well as JSON annotations that point at the
-corresponding functions or classes, which can also be found in the `mlprimitives/jsons folder`_.
+corresponding functions or classes, which can also be found in the `mlprimitives/primitives folder`_.
 
 Examples
 ********
@@ -126,7 +126,7 @@ primitives may be implemented from scratch or they may be using third party tool
 as to alter the third party tool’s native behavior to add new functionalities.
 
 This type of primitives consist of Python code that can be found inside the `mlprimitives/custom module`_,
-as well as the corresponding JSON annotations, which can also be found in the `mlprimitives/jsons folder`_.
+as well as the corresponding JSON annotations, which can also be found in the `mlprimitives/primitives folder`_.
 
 Examples
 ********
@@ -158,9 +158,9 @@ through a deeper code review in search of possible improvements in terms of perf
 functionality refinements
 
 
-.. _mlprimitives/jsons folder: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons
+.. _mlprimitives/primitives folder: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives
 .. _mlprimitives/custom module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom
 .. _mlprimitives/candidates module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/candidates
-.. _numpy.argmax: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/numpy.argmax.json
-.. _sklearn.preprocessing.StandardScaler: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/sklearn.preprocessing.StandardScaler.json
-.. _xgboost.XGBClassifier: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/jsons/xgboost.XGBClassifier.json
+.. _numpy.argmax: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/numpy.argmax.json
+.. _sklearn.preprocessing.StandardScaler: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/sklearn.preprocessing.StandardScaler.json
+.. _xgboost.XGBClassifier: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/xgboost.XGBClassifier.json
