@@ -7,7 +7,7 @@
     "description": "Scikit-learn KNeighborsClassifier that uses predict_proba as the produce method.",
     "classifiers": {
         "type": "estimator",
-        "subtype": "classifier"
+        "subtype": "probability_classifier"
     },
     "modalities": [],
     "primitive": "sklearn.neighbors.KNeighborsClassifier",

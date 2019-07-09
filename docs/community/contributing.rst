@@ -47,10 +47,10 @@ When doing so, make sure to follow these guidelines:
     $ make coverage   # Get the coverage report
 
 6. If you are developing new primitives that can work as part of a Pipeline, please also
-   add a demo pipeline inside the ``pipelines`` folder and validate that it is running
-   properly with the command::
+   add a demo pipeline inside the ``mlprimitives/pipelines`` folder and validate that it is
+   running properly with the command::
 
-    $ mlprimitives test pipelines/the_file_of_your_pipeline.json
+    $ mlprimitives test mlprimitives/pipelines/the_file_of_your_pipeline.json
 
 7. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::

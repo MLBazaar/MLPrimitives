@@ -6,8 +6,7 @@
     "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html",
     "description": "Call the `df.resample` method on the given time_index and afterwards call the indicated aggregation.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper"
     },
     "modalities": [],
     "primitive": "mlprimitives.adapters.pandas.resample",
