@@ -161,17 +161,21 @@ class StringVectorizer(FeatureExtractor):
 
     DTYPE = 'object'
 
-    def __init__(self, copy=True, features=None, keep=False, **kwargs):
+    def __init__(self, copy=True, features=None, keep=False, min_words=3, **kwargs):
         self.kwargs = kwargs
+        self.min_words = min_words
         super(StringVectorizer, self).__init__(copy, features, keep)
 
-    @staticmethod
-    def _detect_features(X):
+    def _detect_features(self, X):
         features = []
 
+        analyzer = CountVectorizer(**self.kwargs).build_analyzer()
         for column in X.select_dtypes('object'):
-            if X[column].apply(_is_str).all():
-                features.append(column)
+            try:
+                if (X[column].apply(analyzer).str.len() >= self.min_words).any():
+                    features.append(column)
+            except (ValueError, AttributeError):
+                pass
 
         return features
 
