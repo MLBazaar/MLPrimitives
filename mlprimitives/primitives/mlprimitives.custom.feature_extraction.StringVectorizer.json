@@ -59,17 +59,13 @@
             "analyzer": {
                 "type": "str",
                 "default": "word"
+            },
+            "min_words": {
+                "type": "int",
+                "default": 3
             }
         },
         "tunable": {
-            "min_words": {
-                "type": "int",
-                "default": 3,
-                "range": [
-                    1,
-                    10
-                ]
-            },
             "lowercase": {
                 "type": "bool",
                 "default": true
