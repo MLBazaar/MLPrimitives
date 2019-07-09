@@ -88,8 +88,8 @@ install-develop: clean-build clean-pyc ## install the package in editable mode a
 lint: ## check style with flake8 and isort
 	flake8 mlprimitives tests
 	isort -c --recursive mlprimitives tests
-	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
-	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
+	find mlprimitives/pipelines -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
+	find mlprimitives/primitives -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
 
 .PHONY: fix-lint
 fix-lint: ## fix lint issues using autoflake, autopep8, and isort
@@ -101,8 +101,8 @@ fix-lint: ## fix lint issues using autoflake, autopep8, and isort
 	autopep8 --in-place --recursive --aggressive tests
 	isort --apply --atomic --recursive tests
 
-	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
-	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+	find mlprimitives/pipelines -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+	find mlprimitives/primitives -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
 
 
 # TEST TARGETS
@@ -117,7 +117,7 @@ test-all: ## run tests on every Python version with tox
 
 .PHONY: test-pipelines
 test-pipelines: ## Test all the pipelines from the pipelines folder
-	mlprimitives test pipelines/*.json
+	mlprimitives test mlprimitives/pipelines/*.json
 
 .PHONY: coverage
 coverage: ## check code coverage quickly with the default Python

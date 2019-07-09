@@ -10,7 +10,8 @@ import os
 
 from mlblocks import MLBlock
 
-MLPRIMITIVES_JSONS_PATH = os.path.join(os.path.dirname(__file__), 'jsons')
+MLBLOCKS_PRIMITIVES = os.path.join(os.path.dirname(__file__), 'primitives')
+MLBLOCKS_PIPELINES = os.path.join(os.path.dirname(__file__), 'pipelines')
 
 
 def load_primitive(primitive, arguments=None):
