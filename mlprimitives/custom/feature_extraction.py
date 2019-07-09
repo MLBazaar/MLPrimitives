@@ -66,6 +66,9 @@ class FeatureExtractor(object):
     def _fit(self, x):
         pass
 
+    def _detect_feautres(self, X):
+        pass
+
     def fit(self, X, y=None):
         if not isinstance(X, pd.DataFrame):
             X = pd.DataFrame(X)
