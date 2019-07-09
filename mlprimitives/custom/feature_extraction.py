@@ -2,7 +2,6 @@
 
 import logging
 
-import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -162,9 +161,9 @@ class StringVectorizer(FeatureExtractor):
 
     DTYPE = 'object'
 
-    def __init__(self, copy=True, features=None, **kwargs):
+    def __init__(self, copy=True, features=None, keep=False, **kwargs):
         self.kwargs = kwargs
-        super(StringVectorizer, self).__init__(copy, features)
+        super(StringVectorizer, self).__init__(copy, features, keep)
 
     @staticmethod
     def _detect_features(X):
@@ -196,7 +195,7 @@ class DatetimeFeaturizer(FeatureExtractor):
     """Extract features from a datetime."""
 
     def _detect_features(self, X):
-        return X.select_dtypes('datetime')
+        return list(X.select_dtypes('datetime').columns)
 
     def _transform(self, x):
         prefix = x.name + '_'

@@ -72,10 +72,10 @@
             },
             "max_features": {
                 "type": "int",
-                "default": 300,
+                "default": 1000,
                 "range": [
-                    10,
-                    3000
+                    1,
+                    10000
                 ]
             }
         }
