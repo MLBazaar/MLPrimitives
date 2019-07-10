@@ -2,7 +2,6 @@
 
 import logging
 
-import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -58,22 +57,16 @@ class OneHotLabelEncoder(object):
 class FeatureExtractor(object):
     """Single FeatureExtractor applied to multiple features."""
 
-    def __init__(self, copy=True, features=None):
+    def __init__(self, copy=True, features=None, keep=False):
         self.copy = copy
         self.features = features or []
+        self.keep = keep
         self._features = []
 
-    @staticmethod
-    def detect_features(X):
-        features = []
-
-        for column in X.columns:
-            if not np.issubdtype(X[column].dtype, np.number):
-                features.append(column)
-
-        return features
-
     def _fit(self, x):
+        pass
+
+    def _detect_feautres(self, X):
         pass
 
     def fit(self, X, y=None):
@@ -81,7 +74,7 @@ class FeatureExtractor(object):
             X = pd.DataFrame(X)
 
         if self.features == 'auto':
-            self._features = self.detect_features(X)
+            self._features = self._detect_features(X)
         else:
             self._features = self.features
 
@@ -100,7 +93,11 @@ class FeatureExtractor(object):
 
         for feature in self._features:
             LOGGER.debug("Extracting feature %s", feature)
-            x = X.pop(feature)
+            if self.keep:
+                x = X[feature]
+            else:
+                x = X.pop(feature)
+
             extracted = self._transform(x)
             X = pd.concat([X, extracted], axis=1)
 
@@ -111,11 +108,12 @@ class FeatureExtractor(object):
         return self.transform(X)
 
 
+def _is_str(x):
+    return isinstance(x, str)
+
+
 class CategoricalEncoder(FeatureExtractor):
     """Use the OneHotLabelEncoder only on categorical features.
-
-    NOTE: At the moment of this release, sklearn.preprocessing.data.CategoricalEncoder
-    has not been released yet, this is why we write our own version of it.
 
     >>> df = pd.DataFrame([
     ... {'a': 'a', 'b': 1, 'c': 1},
@@ -130,9 +128,22 @@ class CategoricalEncoder(FeatureExtractor):
     2  2    0    1    1    0
     """
 
-    def __init__(self, max_labels=None, **kwargs):
+    def __init__(self, max_labels=None, max_unique_ratio=1, **kwargs):
         self.max_labels = max_labels
+        self.max_unique_ratio = max_unique_ratio
         super(CategoricalEncoder, self).__init__(**kwargs)
+
+    def _detect_features(self, X):
+        features = list()
+
+        for column in X.select_dtypes('object'):
+            x = X[column]
+            unique_ratio = len(x.unique()) / len(x)
+            if unique_ratio < self.max_unique_ratio:
+                if x.apply(_is_str).all():
+                    features.append(column)
+
+        return features
 
     def fit(self, X, y=None):
         self.encoders = dict()
@@ -151,9 +162,25 @@ class CategoricalEncoder(FeatureExtractor):
 class StringVectorizer(FeatureExtractor):
     """Use the sklearn CountVectorizer only on string features."""
 
-    def __init__(self, copy=True, features=None, **kwargs):
+    DTYPE = 'object'
+
+    def __init__(self, copy=True, features=None, keep=False, min_words=3, **kwargs):
         self.kwargs = kwargs
-        super(StringVectorizer, self).__init__(copy, features)
+        self.min_words = min_words
+        super(StringVectorizer, self).__init__(copy, features, keep)
+
+    def _detect_features(self, X):
+        features = []
+
+        analyzer = CountVectorizer(**self.kwargs).build_analyzer()
+        for column in X.select_dtypes('object'):
+            try:
+                if (X[column].apply(analyzer).str.len() >= self.min_words).any():
+                    features.append(column)
+            except (ValueError, AttributeError):
+                pass
+
+        return features
 
     def fit(self, X, y=None):
         self.vectorizers = dict()
@@ -174,19 +201,10 @@ class StringVectorizer(FeatureExtractor):
 class DatetimeFeaturizer(FeatureExtractor):
     """Extract features from a datetime."""
 
-    @staticmethod
-    def detect_features(X):
-        features = []
-        for column in X.columns:
-            if np.issubdtype(X[column].dtype, np.datetime64):
-                features.append(column)
-
-        return features
+    def _detect_features(self, X):
+        return list(X.select_dtypes('datetime').columns)
 
     def _transform(self, x):
-        if not np.issubdtype(x.dtype, np.datetime64):
-            x = pd.to_datetime(x)
-
         prefix = x.name + '_'
         features = {
             prefix + 'year': x.dt.year,

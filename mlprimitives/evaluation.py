@@ -50,14 +50,16 @@ def get_scorer(name, kwargs):
     return scorer
 
 
-def score_pipeline(pipeline_metadata, n_splits=5):
+def score_pipeline(pipeline_metadata, n_splits=5, random_state=0, dataset=None):
     if isinstance(pipeline_metadata, str):
         LOGGER.info('Loading pipeline %s', pipeline_metadata)
         with open(pipeline_metadata, 'r') as pipeline_file:
             pipeline_metadata = json.load(pipeline_file)
 
     validation = pipeline_metadata['validation']
-    dataset = validation['dataset']
+    if dataset is None:
+        dataset = validation['dataset']
+
     LOGGER.info('Loading dataset %s', dataset)
     dataset = load_dataset(dataset)
     metric = validation.get('metric')
@@ -69,7 +71,7 @@ def score_pipeline(pipeline_metadata, n_splits=5):
         metric = dataset.metric
 
     scores = list()
-    splits = dataset.get_splits(n_splits)
+    splits = dataset.get_splits(n_splits, random_state)
     if n_splits == 1:
         splits = [splits]
 
