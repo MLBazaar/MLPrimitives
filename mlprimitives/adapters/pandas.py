@@ -33,13 +33,15 @@ def resample(df, rule, on=None, groupby=(), aggregation='mean',
             integer value that will be interpreted as the number of seconds.
         on (str or None):
             Name of the column to use as the time index. If ``None`` is given, the
-            DataFrame is index is used.
+            DataFrame index is used.
         groupby (list):
             Optional list of columns to group by.
         aggregation (callable or str):
             Function or name of the function to use for the aggregation. If a name is given, it
             can either be one of the standard pandas aggregation functions or the fully qualified
             name of a python function that will be imported and used.
+        reset_index (boolt):
+            Whether to reset the index after aggregating
         time_index (str or None):
             Deprecated: This has been renamed to `on`.
             Name of the column to use as the time index. If ``None`` is given, the
@@ -72,9 +74,6 @@ def resample(df, rule, on=None, groupby=(), aggregation='mean',
             pass
 
     df = dtir.aggregate(aggregation)
-
-    for column in groupby:
-        del df[column]
 
     if reset_index:
         df.reset_index(inplace=True)
