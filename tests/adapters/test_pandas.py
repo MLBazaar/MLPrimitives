@@ -112,7 +112,6 @@ class ResampleTest(TestCase):
             {'dt': datetime(2000, 1, 4), 'value': 95},
         ]))
 
-
     def test_resample_aggregation_import(self):
 
         out = resample(self.df.set_index('dt'), '1d', aggregation='numpy.max')
