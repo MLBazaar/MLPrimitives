@@ -79,7 +79,8 @@
               
             
             
-              <ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html">MLPrimitives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../readme.html#overview">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../readme.html#why-did-we-create-this-library">Why did we create this library?</a></li>
@@ -341,7 +342,7 @@
 <span id="mlprimitives-adapters-pandas-module"></span><h1>mlprimitives.adapters.pandas module<a class="headerlink" href="#module-mlprimitives.adapters.pandas" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="mlprimitives.adapters.pandas.resample">
-<code class="sig-prename descclassname">mlprimitives.adapters.pandas.</code><code class="sig-name descname">resample</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">rule</em>, <em class="sig-param">time_index</em>, <em class="sig-param">groupby=None</em>, <em class="sig-param">aggregation='mean'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/pandas.html#resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.pandas.resample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">mlprimitives.adapters.pandas.</code><code class="sig-name descname">resample</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">rule</em>, <em class="sig-param">on=None</em>, <em class="sig-param">groupby=()</em>, <em class="sig-param">aggregation='mean'</em>, <em class="sig-param">reset_index=True</em>, <em class="sig-param">time_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/pandas.html#resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.pandas.resample" title="Permalink to this definition">¶</a></dt>
 <dd><p>pd.DataFrame.resample adapter.</p>
 <p>Call the <cite>df.resample</cite> method on the given time_index
 and afterwards call the indicated aggregation.</p>
@@ -352,10 +353,18 @@ performing the resampling.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame to resample.</p></li>
-<li><p><strong>rule</strong> (<em>str</em>) – The offset string or object representing target conversion.</p></li>
+<li><p><strong>rule</strong> (<em>str</em><em> or </em><em>int</em>) – The offset string or object representing target conversion or an
+integer value that will be interpreted as the number of seconds.</p></li>
+<li><p><strong>on</strong> (<em>str</em><em> or </em><em>None</em>) – Name of the column to use as the time index. If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, the
+DataFrame index is used.</p></li>
 <li><p><strong>groupby</strong> (<em>list</em>) – Optional list of columns to group by.</p></li>
-<li><p><strong>time_index</strong> (<em>str</em>) – Name of the column to use as the time index.</p></li>
-<li><p><strong>aggregation</strong> (<em>str</em>) – Name of the aggregation function to use.</p></li>
+<li><p><strong>aggregation</strong> (<em>callable</em><em> or </em><em>str</em>) – Function or name of the function to use for the aggregation. If a name is given, it
+can either be one of the standard pandas aggregation functions or the fully qualified
+name of a python function that will be imported and used.</p></li>
+<li><p><strong>reset_index</strong> (<em>boolt</em>) – Whether to reset the index after aggregating</p></li>
+<li><p><strong>time_index</strong> (<em>str</em><em> or </em><em>None</em>) – Deprecated: This has been renamed to <cite>on</cite>.
+Name of the column to use as the time index. If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, the
+DataFrame is index is used.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

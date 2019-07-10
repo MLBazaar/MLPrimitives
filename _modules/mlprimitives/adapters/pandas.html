@@ -77,7 +77,8 @@
               
             
             
-              <ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html">MLPrimitives</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../readme.html#overview">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../readme.html#why-did-we-create-this-library">Why did we create this library?</a></li>
@@ -330,7 +331,23 @@
            <div itemprop="articleBody">
             
   <h1>Source code for mlprimitives.adapters.pandas</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.pandas.html#mlprimitives.adapters.pandas.resample">[docs]</a><span></span><span class="k">def</span> <span class="nf">resample</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">time_index</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">):</span>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">mlprimitives.utils</span> <span class="k">import</span> <span class="n">import_object</span>
+
+<span class="n">_RESAMPLE_AGGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;median&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prod&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;quantile&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;std&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;var&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="resample"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.pandas.html#mlprimitives.adapters.pandas.resample">[docs]</a><span class="k">def</span> <span class="nf">resample</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">(),</span> <span class="n">aggregation</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+             <span class="n">reset_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;pd.DataFrame.resample adapter.</span>
 
 <span class="sd">    Call the `df.resample` method on the given time_index</span>
@@ -342,22 +359,57 @@
 <span class="sd">    If groupby option is used, the result is a multi-index datagrame.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        df (pandas.DataFrame): DataFrame to resample.</span>
-<span class="sd">        rule (str): The offset string or object representing target conversion.</span>
-<span class="sd">        groupby (list): Optional list of columns to group by.</span>
-<span class="sd">        time_index (str): Name of the column to use as the time index.</span>
-<span class="sd">        aggregation (str): Name of the aggregation function to use.</span>
+<span class="sd">        df (pandas.DataFrame):</span>
+<span class="sd">            DataFrame to resample.</span>
+<span class="sd">        rule (str or int):</span>
+<span class="sd">            The offset string or object representing target conversion or an</span>
+<span class="sd">            integer value that will be interpreted as the number of seconds.</span>
+<span class="sd">        on (str or None):</span>
+<span class="sd">            Name of the column to use as the time index. If ``None`` is given, the</span>
+<span class="sd">            DataFrame index is used.</span>
+<span class="sd">        groupby (list):</span>
+<span class="sd">            Optional list of columns to group by.</span>
+<span class="sd">        aggregation (callable or str):</span>
+<span class="sd">            Function or name of the function to use for the aggregation. If a name is given, it</span>
+<span class="sd">            can either be one of the standard pandas aggregation functions or the fully qualified</span>
+<span class="sd">            name of a python function that will be imported and used.</span>
+<span class="sd">        reset_index (boolt):</span>
+<span class="sd">            Whether to reset the index after aggregating</span>
+<span class="sd">        time_index (str or None):</span>
+<span class="sd">            Deprecated: This has been renamed to `on`.</span>
+<span class="sd">            Name of the column to use as the time index. If ``None`` is given, the</span>
+<span class="sd">            DataFrame is index is used.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        pandas.Dataframe: resampled dataframe</span>
+<span class="sd">        pandas.Dataframe:</span>
+<span class="sd">            resampled dataframe</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">on</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">time_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;resample `time_series` argument deprecated and will be removed&#39;</span>
+            <span class="s1">&#39; in future versions of MLPrimitives. Please use `on` instead.&#39;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">on</span> <span class="o">=</span> <span class="n">time_index</span>
+
     <span class="k">if</span> <span class="n">groupby</span><span class="p">:</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">)</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">time_index</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">aggregation</span><span class="p">)()</span>
-    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">:</span>
-        <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">rule</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+
+    <span class="n">dtir</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">on</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">aggregation</span><span class="p">)</span> <span class="ow">and</span> <span class="n">aggregation</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_RESAMPLE_AGGS</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">aggregation</span> <span class="o">=</span> <span class="n">import_object</span><span class="p">(</span><span class="n">aggregation</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">pass</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">dtir</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">aggregation</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">reset_index</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">df</span></div>
 
