@@ -70,7 +70,7 @@ def resample(df, rule, on=None, groupby=(), aggregation='mean',
     if not callable(aggregation) and aggregation not in _RESAMPLE_AGGS:
         try:
             aggregation = import_object(aggregation)
-        except (AttributeError, ModuleNotFoundError, ValueError):
+        except (AttributeError, ImportError, ValueError):
             pass
 
     df = dtir.aggregate(aggregation)
