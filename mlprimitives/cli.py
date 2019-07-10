@@ -32,7 +32,7 @@ def _logging_setup(verbosity=1):
 def _test(args):
     for pipeline in args.pipeline:
         print('Scoring pipeline: {}'.format(pipeline))
-        score, stdev = score_pipeline(pipeline, args.splits)
+        score, stdev = score_pipeline(pipeline, args.splits, args.random_state, args.dataset)
         print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, stdev))
 
 
@@ -78,6 +78,10 @@ def _get_parser():
     subparser.set_defaults(action=_test)
     subparser.add_argument('-s', '--splits', default=1, type=int,
                            help='Number of splits to use for Cross Validation')
+    subparser.add_argument('-r', '--random-state', default=0, type=int,
+                           help='Random State to use for Cross Validation')
+    subparser.add_argument('-d', '--dataset',
+                           help='Dataset to validate with.')
     subparser.add_argument('pipeline', nargs='+')
 
     subparser = subparsers.add_parser('list', help='List available primitives')
