@@ -382,14 +382,16 @@
     <span class="k">return</span> <span class="n">scorer</span></div>
 
 
-<div class="viewcode-block" id="score_pipeline"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.score_pipeline">[docs]</a><span class="k">def</span> <span class="nf">score_pipeline</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="viewcode-block" id="score_pipeline"><a class="viewcode-back" href="../../api/mlprimitives.evaluation.html#mlprimitives.evaluation.score_pipeline">[docs]</a><span class="k">def</span> <span class="nf">score_pipeline</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading pipeline </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">pipeline_metadata</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pipeline_metadata</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipeline_file</span><span class="p">:</span>
             <span class="n">pipeline_metadata</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pipeline_file</span><span class="p">)</span>
 
     <span class="n">validation</span> <span class="o">=</span> <span class="n">pipeline_metadata</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">]</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span>
+
     <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading dataset </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
     <span class="n">metric</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">)</span>
@@ -401,7 +403,7 @@
         <span class="n">metric</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">metric</span>
 
     <span class="n">scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="n">splits</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_splits</span><span class="p">(</span><span class="n">n_splits</span><span class="p">)</span>
+    <span class="n">splits</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_splits</span><span class="p">(</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">random_state</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n_splits</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">splits</span> <span class="o">=</span> <span class="p">[</span><span class="n">splits</span><span class="p">]</span>
 
