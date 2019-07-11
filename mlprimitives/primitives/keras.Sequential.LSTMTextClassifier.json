@@ -6,7 +6,7 @@
     "description": "keras.Sequential.LSTMTextClassifier",
     "classifiers": {
         "type": "estimator",
-        "subtype": "regressor"
+        "subtype": "classifier"
     },
     "modalities": [
         "text"

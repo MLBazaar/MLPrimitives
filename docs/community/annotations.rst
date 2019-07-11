@@ -38,7 +38,7 @@ In this case, please follow these steps:
        source code. And don't forget to add you name and e-mail address to the ``contributors`` list!
     4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
        exactly like your primitive, and test it with the command
-       ``mlprimitives test pipelines/your.pipeline.json``.
+       ``mlprimitives test mlprimitives/pipelines/your.pipeline.json``.
        If adding a pipeline is not possible for any reason, please inform the maintainers, as
        this probably means that a new dataset needs to be added.
 
@@ -73,7 +73,7 @@ In this case, please follow these steps:
    title, as this makes keeping track of the history of the project easier in the long run. Don't
    forget to add you name and e-mail address to the ``contributors`` list while you are at it!
 5. Make sure that the annotation still works by testing the corresponding pipeline. Normally,
-   this can be done by running the command ``mlprimitives test pipelines/your.pipeline.json``.
+   this can be done by running the command ``mlprimitives test mlprimitives/pipelines/your.pipeline.json``.
 6. Review your changes and make sure that everything continues to work properly by executing the
    ``make test-all`` command.
 7. Push all your changes to GitHub and open a Pull Request, indicating in the description which
@@ -118,7 +118,7 @@ In this case, please follow these steps:
        add you name and e-mail address to the ``contributors`` list while you are at it!
     4. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
        exactly like your primitive, and test it with the command
-       ``mlprimitives test pipelines/your.pipeline.json``.
+       ``mlprimitives test mlprimitives/pipelines/your.pipeline.json``.
        If adding a pipeline is not possible for any reason, please inform the maintainers, as
        this probably means that a new dataset needs to be added.
 

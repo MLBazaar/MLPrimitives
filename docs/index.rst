@@ -1,7 +1,7 @@
 .. include:: readme.rst
 
 .. toctree::
-   :hidden:
+   :caption: Getting Started
    :maxdepth: 2
 
    Overview <readme>
