@@ -71,7 +71,7 @@
                 "type": "float",
                 "default": 0.2
             },
-            "bastch_size": {
+            "batch_size": {
                 "type": "int",
                 "default": 64
             },

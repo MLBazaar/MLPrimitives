@@ -89,7 +89,7 @@ extras_require = {
 
 
 setup(
-    author="MIT Data To AI Lab",
+    author='MIT Data To AI Lab',
     author_email='dailabmit@gmail.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -100,18 +100,22 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    description="Pipelines and primitives for machine learning and data science.",
+    description='Pipelines and primitives for machine learning and data science.',
     entry_points = {
         'console_scripts': [
             'mlprimitives=mlprimitives.cli:main'
         ],
+        'mlblocks': [
+            'primitives=mlprimitives:MLBLOCKS_PRIMITIVES',
+            'pipelines=mlprimitives:MLBLOCKS_PIPELINES'
+        ],
         'mlprimitives': [
-            'jsons_path=mlprimitives:MLPRIMITIVES_JSONS_PATH'
+            'jsons_path=mlprimitives:MLBLOCKS_PRIMITIVES',
         ]
     },
     extras_require=extras_require,
     install_requires=install_requires,
-    license="MIT license",
+    license='MIT license',
     long_description=readme + '\n\n' + history,
     long_description_content_type='text/markdown',
     include_package_data=True,
@@ -123,6 +127,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.1.10',
+    version='0.2.0-dev',
     zip_safe=False,
 )

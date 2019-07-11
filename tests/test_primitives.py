@@ -5,7 +5,7 @@ import os
 
 from mlblocks import MLPipeline
 
-from mlprimitives import MLPRIMITIVES_JSONS_PATH
+from mlprimitives import MLBLOCKS_PRIMITIVES
 
 HYPERPARAMETER_DEFAULTS = {
     'int': 1,
@@ -19,10 +19,10 @@ HYPERPARAMETER_DEFAULTS = {
 def test_jsons():
     """Validate MLBlocks primitive jsons"""
 
-    primitives = (f for f in os.listdir(MLPRIMITIVES_JSONS_PATH) if f.endswith('.json'))
+    primitives = (f for f in os.listdir(MLBLOCKS_PRIMITIVES) if f.endswith('.json'))
     for primitive_filename in primitives:
         try:
-            primitive_path = os.path.join(MLPRIMITIVES_JSONS_PATH, primitive_filename)
+            primitive_path = os.path.join(MLBLOCKS_PRIMITIVES, primitive_filename)
             with open(primitive_path, 'r') as f:
                 primitive = json.load(f)
 

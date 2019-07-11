@@ -6,8 +6,7 @@
     "documentation": "https://docs.featuretools.com/generated/featuretools.EntitySet.entity_from_dataframe.html#featuretools-entityset-entity-from-dataframe",
     "description": "Load the data for a specified entity from a Pandas DataFrame. Create an EntitySet if it does not exist",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper"
     },
     "modalities": [],
     "primitive": "mlprimitives.adapters.featuretools.add_relationship",

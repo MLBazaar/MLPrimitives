@@ -1,5 +1,23 @@
 # History
 
+## 0.2.0
+
+### New Features
+
+* Publish the pipelines as an `entry_point`
+[Issue #175](https://github.com/HDI-Project/MLPrimitives/issues/175) by @csala
+
+### Primitive Improvements
+
+* Improve pandas.DataFrame.resample primitive [Issue #177](https://github.com/HDI-Project/MLPrimitives/issues/177) by @csala
+* Improve `feature_extractor` primitives [Issue #183](https://github.com/HDI-Project/MLPrimitives/issues/183) by @csala
+* Improve `find_anomalies` primitive [Issue #180](https://github.com/HDI-Project/MLPrimitives/issues/180) by @AlexanderGeiger
+
+### Bug Fixes
+
+* Typo in the primitive keras.Sequential.LSTMTimeSeriesRegressor [Issue #176](https://github.com/HDI-Project/MLPrimitives/issues/176) by @DanielCalvoCerezo
+
+
 ## 0.1.10
 
 ### New Features
