@@ -1,0 +1,34 @@
+{
+    "name": "mlprimitives.custom.timeseries_preprocessing.intervals_to_mask",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>",
+        "Alexander Geiger <geigera@mit.edu>"
+    ],
+    "description": "Create rolling window sequences out of timeseries data.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [
+        "timeseries"
+    ],
+    "primitive": "mlprimitives.custom.timeseries_preprocessing.intervals_to_mask",
+    "produce": {
+        "args": [
+            {
+                "name": "index",
+                "type": "ndarray"
+            },
+            {
+                "name": "intervals",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "mask",
+                "type": "ndarray"
+            }
+        ]
+    }
+}
