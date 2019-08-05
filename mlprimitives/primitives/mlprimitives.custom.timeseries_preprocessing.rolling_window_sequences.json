@@ -58,6 +58,10 @@
                 "type": "int",
                 "default": 1
             },
+            "step_size": {
+                "type": "int",
+                "default": 1
+            },
             "target_column": {
                 "type": "str or int",
                 "default": 1

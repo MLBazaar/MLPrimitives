@@ -7,14 +7,14 @@ import pandas as pd
 def intervals_to_mask(index, intervals):
     """Create boolean mask from given intervals.
 
-    We create an array of same size as the given index array containing boolean values.
+    The function creates an boolean array of same size as the given index array.
     If an index value is within a given interval, the corresponding mask value is `True`.
 
     Args:
         index (ndarray):
             Array containing the index values.
-        intervals (list):
-            List of intervals, consisting of start-index and end-index for each interval
+        intervals (list or ndarray):
+            List or array of intervals, consisting of start-index and end-index for each interval
 
     Returns:
         ndarray:
@@ -37,12 +37,12 @@ def intervals_to_mask(index, intervals):
     return np.array(mask)
 
 
-def rolling_window_sequences(X, index, window_size, target_size, target_column, drop,
-                             drop_windows=False):
-    """Create rolling window sequences out of timeseries data.
+def rolling_window_sequences(X, index, window_size, target_size, step_size, target_column,
+                             drop=None, drop_windows=False):
+    """Create rolling window sequences out of time series data.
 
-    Create an array of input sequences and an array of target sequences by rolling over
-    the input sequence with a window.
+    The function creates an array of input sequences and an array of target sequences by rolling
+    over the input sequence with a specified window.
     Optionally, certain values can be dropped from the sequences.
 
     Args:
@@ -54,11 +54,13 @@ def rolling_window_sequences(X, index, window_size, target_size, target_column, 
             Length of the input sequences.
         target_size (int):
             Length of the target sequences.
+        step_size (int):
+            Indicating the number of steps to move the window forward each round.
         target_column (int):
             Indicating which column of X is the target.
         drop (ndarray or None or str or float or bool):
-            Array of boolean values indicating which values of X are invalid, or value
-            indicating which value should be dropped.
+            Optional. Array of boolean values indicating which values of X are invalid, or value
+            indicating which value should be dropped. If not given, `None` is used.
         drop_windows (bool):
             Optional. Indicates whether the dropping functionality should be enabled. If not
             given, `False` is used.
@@ -69,9 +71,9 @@ def rolling_window_sequences(X, index, window_size, target_size, target_column, 
         ndarray:
             Array containing the target sequences.
         ndarray:
-            Array containing the index values of the input sequences.
+            Array containing the first index value of each input sequence.
         ndarray:
-            Array containing the index values of the target sequences.
+            Array containing the first index value of each target sequence.
     """
     out_X = list()
     out_y = list()
@@ -80,12 +82,14 @@ def rolling_window_sequences(X, index, window_size, target_size, target_column, 
     target = X[:, target_column]
 
     if drop_windows:
-        if hasattr(drop, '__len__'):
+        if hasattr(drop, '__len__') and (not isinstance(drop, str)):
             if len(drop) != len(X):
                 raise Exception('Arrays `drop` and `X` must be of the same length.')
-
         else:
-            drop = X == drop
+            if isinstance(drop, float) and np.isnan(drop):
+                drop = np.isnan(X)
+            else:
+                drop = X == drop
 
     start = 0
     while start < len(X) - window_size - target_size + 1:
@@ -102,7 +106,7 @@ def rolling_window_sequences(X, index, window_size, target_size, target_column, 
         out_y.append(target[end:end + target_size])
         X_index.append(index[start])
         y_index.append(index[end])
-        start = start + 1
+        start = start + step_size
 
     return np.asarray(out_X), np.asarray(out_y), np.asarray(X_index), np.asarray(y_index)
 
@@ -115,13 +119,13 @@ _TIME_SEGMENTS_AVERAGE_DEPRECATION_WARNING = (
 
 
 def time_segments_average(X, interval, time_column):
-    """Compute average of values over fixed length time segments.
+    """Compute average of values over given time span.
 
     Args:
-        X (ndarray):
+        X (ndarray or pandas.DataFrame):
             N-dimensional sequence of values.
         interval (int):
-            Length of segments to compute average of.
+            Integer denoting time span to compute average of.
         time_column (int):
             Column of X that contains time values.
 
@@ -143,6 +147,7 @@ def time_segments_average(X, interval, time_column):
 
     values = list()
     index = list()
+
     while start_ts <= max_ts:
         end_ts = start_ts + interval
         subset = X.loc[start_ts:end_ts - 1]
@@ -155,13 +160,13 @@ def time_segments_average(X, interval, time_column):
 
 
 def time_segments_aggregate(X, interval, time_column, method=['mean']):
-    """Aggregate values over fixed length time segments.
+    """Aggregate values over given time span.
 
     Args:
-        X (ndarray):
+        X (ndarray or pandas.DataFrame):
             N-dimensional sequence of values.
         interval (int):
-            Length of segments to aggregate.
+            Integer denoting time span to compute aggregation of.
         time_column (int):
             Column of X that contains time values.
         method (str or list):
@@ -174,7 +179,6 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         ndarray:
             Sequence of index values (first index of each aggregated segment).
     """
-    print(method)
     if isinstance(X, np.ndarray):
         X = pd.DataFrame(X)
 
@@ -198,5 +202,4 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         values.append(np.concatenate(aggregated))
         index.append(start_ts)
         start_ts = end_ts
-
     return np.asarray(values), np.asarray(index)
