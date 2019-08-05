@@ -1,3 +1,4 @@
+import numpy as np
 from statsmodels.tsa import arima_model
 
 
@@ -11,7 +12,11 @@ class ARIMA(object):
         self.steps = steps
 
     def predict(self, X):
-        model = arima_model.ARIMA(X, order=(self.p, self.d, self.q))
-        model = model.fit(disp=0)
-        y = model.forecast(self.steps)
-        return y[0]
+        y = list()
+        if len(X.shape) == 1 or len(X.shape) == 2 and X.shape[1] == 1:
+            X = np.expand_dims(X, axis=0)
+        for i in range(len(X)):
+            model = arima_model.ARIMA(X[i], order=(self.p, self.d, self.q))
+            model = model.fit(disp=0)
+            y.append(model.forecast(self.steps)[0])
+        return np.asarray(y)
