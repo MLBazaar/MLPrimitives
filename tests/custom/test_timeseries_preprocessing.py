@@ -21,6 +21,18 @@ class IntervalsToMaskTest(TestCase):
         expected = np.array([False, False, False, False])
         self._run(index, intervals, expected)
 
+    def test_empty_list(self):
+        index = np.array([1, 2, 3, 4])
+        intervals = list()
+        expected = np.array([False, False, False, False])
+        self._run(index, intervals, expected)
+
+    def test_empty_array(self):
+        index = np.array([1, 2, 3, 4])
+        intervals = np.array([])
+        expected = np.array([False, False, False, False])
+        self._run(index, intervals, expected)
+
     def test_one_interval(self):
         index = np.array([1, 2, 3, 4])
         intervals = np.array([[2, 3]])
@@ -37,6 +49,42 @@ class IntervalsToMaskTest(TestCase):
         index = np.array([1, 2, 3, 4, 5, 6, 7])
         intervals = [[2, 3], [5, 6]]
         expected = np.array([False, True, True, False, True, True, False])
+        self._run(index, intervals, expected)
+
+    def test_start_index(self):
+        index = np.array([1, 2, 3, 4])
+        intervals = [[1, 2]]
+        expected = np.array([True, True, False, False])
+        self._run(index, intervals, expected)
+
+    def test_end_index(self):
+        index = np.array([1, 2, 3, 4])
+        intervals = [[3, 4]]
+        expected = np.array([False, False, True, True])
+        self._run(index, intervals, expected)
+
+    def test_whole_index(self):
+        index = np.array([1, 2, 3, 4])
+        intervals = [[1, 4]]
+        expected = np.array([True, True, True, True])
+        self._run(index, intervals, expected)
+
+    def test_exceed_index_start(self):
+        index = np.array([2, 3, 4])
+        intervals = [[1, 3]]
+        expected = np.array([True, True, False])
+        self._run(index, intervals, expected)
+
+    def test_exceed_index_end(self):
+        index = np.array([2, 3, 4])
+        intervals = [[3, 5]]
+        expected = np.array([False, True, True])
+        self._run(index, intervals, expected)
+
+    def test_exceed_index(self):
+        index = np.array([2, 3, 4])
+        intervals = [[1, 5]]
+        expected = np.array([True, True, True])
         self._run(index, intervals, expected)
 
 

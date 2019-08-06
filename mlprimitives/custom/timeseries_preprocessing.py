@@ -14,7 +14,7 @@ def intervals_to_mask(index, intervals):
         index (ndarray):
             Array containing the index values.
         intervals (list or ndarray):
-            List or array of intervals, consisting of start-index and end-index for each interval
+            List or array of intervals, consisting of start-index and end-index for each interval.
 
     Returns:
         ndarray:
@@ -92,7 +92,8 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
                 drop = X == drop
 
     start = 0
-    while start < len(X) - window_size - target_size + 1:
+    max_start = len(X) - window_size - target_size + 1
+    while start < max_start:
         end = start + window_size
 
         if drop_windows:
