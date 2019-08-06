@@ -20,21 +20,6 @@ from mlprimitives.datasets import load_dataset
 LOGGER = logging.getLogger(__name__)
 
 
-def build_pipeline(pipeline_spec):
-    pipeline = MLPipeline(
-        pipeline_spec['primitives'],
-        pipeline_spec.get('init_params', dict()),
-        pipeline_spec.get('input_names', dict()),
-        pipeline_spec.get('output_names', dict()),
-    )
-
-    hyperparameters = pipeline_spec.get('hyperparameters')
-    if hyperparameters:
-        pipeline.set_hyperparameters(hyperparameters)
-
-    return pipeline
-
-
 def get_value(dataset, value):
     if isinstance(value, str) and value.startswith('$'):
         value = getattr(dataset, value[1:])
@@ -65,14 +50,16 @@ def get_scorer(name, kwargs):
     return scorer
 
 
-def score_pipeline(pipeline_metadata, n_splits=5):
+def score_pipeline(pipeline_metadata, n_splits=5, random_state=0, dataset=None):
     if isinstance(pipeline_metadata, str):
         LOGGER.info('Loading pipeline %s', pipeline_metadata)
         with open(pipeline_metadata, 'r') as pipeline_file:
             pipeline_metadata = json.load(pipeline_file)
 
     validation = pipeline_metadata['validation']
-    dataset = validation['dataset']
+    if dataset is None:
+        dataset = validation['dataset']
+
     LOGGER.info('Loading dataset %s', dataset)
     dataset = load_dataset(dataset)
     metric = validation.get('metric')
@@ -84,14 +71,14 @@ def score_pipeline(pipeline_metadata, n_splits=5):
         metric = dataset.metric
 
     scores = list()
-    splits = dataset.get_splits(n_splits)
+    splits = dataset.get_splits(n_splits, random_state)
     if n_splits == 1:
         splits = [splits]
 
     for split, (X_train, X_test, y_train, y_test) in enumerate(splits):
         LOGGER.info('Scoring split %s', split + 1)
         context = get_context(dataset, validation.get('context', dict()))
-        pipeline = build_pipeline(pipeline_metadata)
+        pipeline = MLPipeline.from_dict(pipeline_metadata)
         pipeline.fit(X_train, y_train, **context)
         predictions = pipeline.predict(X_test, **context)
 

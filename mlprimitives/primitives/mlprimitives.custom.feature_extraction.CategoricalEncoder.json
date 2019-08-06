@@ -36,6 +36,10 @@
     },
     "hyperparameters": {
         "fixed": {
+            "keep": {
+                "type": "bool",
+                "default": false
+            },
             "copy": {
                 "type": "bool",
                 "default": true
@@ -43,6 +47,10 @@
             "features": {
                 "type": "str or list",
                 "default": "auto"
+            },
+            "max_unique_ratio": {
+                "type": "float",
+                "default": 1
             }
         },
         "tunable": {

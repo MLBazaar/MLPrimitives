@@ -1,5 +1,40 @@
 # History
 
+## 0.2.0
+
+### New Features
+
+* Publish the pipelines as an `entry_point`
+[Issue #175](https://github.com/HDI-Project/MLPrimitives/issues/175) by @csala
+
+### Primitive Improvements
+
+* Improve pandas.DataFrame.resample primitive [Issue #177](https://github.com/HDI-Project/MLPrimitives/issues/177) by @csala
+* Improve `feature_extractor` primitives [Issue #183](https://github.com/HDI-Project/MLPrimitives/issues/183) by @csala
+* Improve `find_anomalies` primitive [Issue #180](https://github.com/HDI-Project/MLPrimitives/issues/180) by @AlexanderGeiger
+
+### Bug Fixes
+
+* Typo in the primitive keras.Sequential.LSTMTimeSeriesRegressor [Issue #176](https://github.com/HDI-Project/MLPrimitives/issues/176) by @DanielCalvoCerezo
+
+
+## 0.1.10
+
+### New Features
+
+* Add function to run primitives without a pipeline [Issue #43](https://github.com/HDI-Project/MLPrimitives/issues/43) by @csala
+
+### New Pipelines
+
+* Add pipelines for all the MLBlocks examples [Issue #162](https://github.com/HDI-Project/MLPrimitives/issues/162) by @csala
+
+### Primitive Improvements
+
+* Add Early Stopping to `keras.Sequential.LSTMTimeSeriesRegressor` primitive [Issue #156](https://github.com/HDI-Project/MLPrimitives/issues/156) by @csala
+* Make FeatureExtractor primitives accept Numpy arrays [Issue #165](https://github.com/HDI-Project/MLPrimitives/issues/165) by @csala
+* Add window size and pruning to the `timeseries_anomalies.find_anomalies` primitive [Issue #160](https://github.com/HDI-Project/MLPrimitives/issues/160) by @csala
+
+
 ## 0.1.9
 
 ### New Features

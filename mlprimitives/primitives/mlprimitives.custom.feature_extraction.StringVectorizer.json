@@ -36,6 +36,14 @@
     },
     "hyperparameters": {
         "fixed": {
+            "keep": {
+                "type": "bool",
+                "default": false
+            },
+            "copy": {
+                "type": "bool",
+                "default": true
+            },
             "features": {
                 "type": "str or list",
                 "default": "auto"
@@ -51,6 +59,10 @@
             "analyzer": {
                 "type": "str",
                 "default": "word"
+            },
+            "min_words": {
+                "type": "int",
+                "default": 3
             }
         },
         "tunable": {
@@ -64,10 +76,10 @@
             },
             "max_features": {
                 "type": "int",
-                "default": 1,
+                "default": 1000,
                 "range": [
                     1,
-                    1000
+                    10000
                 ]
             }
         }

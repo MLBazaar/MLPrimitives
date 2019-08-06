@@ -9,9 +9,7 @@
         "type": "estimator",
         "subtype": "classifier"
     },
-    "modalities": [
-        "text"
-    ],
+    "modalities": [],
     "primitive": "sklearn.naive_bayes.MultinomialNB",
     "fit": {
         "method": "fit",

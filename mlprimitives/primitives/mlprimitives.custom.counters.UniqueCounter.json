@@ -1,15 +1,15 @@
 {
-    "name": "mlprimitives.custom.counters.VocabularyCounter",
+    "name": "mlprimitives.custom.counters.UniqueCounter",
     "contributors": [
         "Carles Sala <csala@csail.mit.edu>"
     ],
-    "description": "Count the number of different words in a collection of texts.",
+    "description": "Count the number of unique values in each column of a matrix.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper",
+        "subtype": "counter"
     },
     "modalities": [],
-    "primitive": "mlprimitives.custom.counters.VocabularyCounter",
+    "primitive": "mlprimitives.custom.counters.UniqueCounter",
     "fit": {
         "method": "count",
         "args": [
