@@ -347,21 +347,122 @@
   <div class="section" id="module-mlprimitives.custom.timeseries_preprocessing">
 <span id="mlprimitives-custom-timeseries-preprocessing-module"></span><h1>mlprimitives.custom.timeseries_preprocessing module<a class="headerlink" href="#module-mlprimitives.custom.timeseries_preprocessing" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="mlprimitives.custom.timeseries_preprocessing.intervals_to_mask">
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">intervals_to_mask</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">intervals</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#intervals_to_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.intervals_to_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create boolean mask from given intervals.</p>
+<p>The function creates an boolean array of same size as the given index array.
+If an index value is within a given interval, the corresponding mask value is <cite>True</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>ndarray</em>) – Array containing the index values.</p></li>
+<li><p><strong>intervals</strong> (<em>list</em><em> or </em><em>ndarray</em>) – List or array of intervals, consisting of start-index and end-index for each interval.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of boolean values, with one boolean value for each index value (<cite>True</cite> if the
+index value is contained in a given interval, otherwise <cite>False</cite>).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences">
-<code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">rolling_window_sequences</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">index</em>, <em class="sig-param">window_size</em>, <em class="sig-param">target_size</em>, <em class="sig-param">target_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create rolling window sequences out of timeseries data.</p>
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">rolling_window_sequences</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">index</em>, <em class="sig-param">window_size</em>, <em class="sig-param">target_size</em>, <em class="sig-param">step_size</em>, <em class="sig-param">target_column</em>, <em class="sig-param">drop=None</em>, <em class="sig-param">drop_windows=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#rolling_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create rolling window sequences out of time series data.</p>
+<p>The function creates an array of input sequences and an array of target sequences by rolling
+over the input sequence with a specified window.
+Optionally, certain values can be dropped from the sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>ndarray</em>) – N-dimensional sequence to iterate over.</p></li>
+<li><p><strong>index</strong> (<em>ndarray</em>) – Array containing the index values of X.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Length of the input sequences.</p></li>
+<li><p><strong>target_size</strong> (<em>int</em>) – Length of the target sequences.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Indicating the number of steps to move the window forward each round.</p></li>
+<li><p><strong>target_column</strong> (<em>int</em>) – Indicating which column of X is the target.</p></li>
+<li><p><strong>drop</strong> (<em>ndarray</em><em> or </em><em>None</em><em> or </em><em>str</em><em> or </em><em>float</em><em> or </em><em>bool</em>) – Optional. Array of boolean values indicating which values of X are invalid, or value
+indicating which value should be dropped. If not given, <cite>None</cite> is used.</p></li>
+<li><p><strong>drop_windows</strong> (<em>bool</em>) – Optional. Indicates whether the dropping functionality should be enabled. If not
+given, <cite>False</cite> is used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Array containing the input sequences.
+ndarray:</p>
+<blockquote>
+<div><p>Array containing the target sequences.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>ndarray:</dt><dd><p>Array containing the first index value of each input sequence.</p>
+</dd>
+<dt>ndarray:</dt><dd><p>Array containing the first index value of each target sequence.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_preprocessing.time_segments_aggregate">
 <code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">time_segments_aggregate</code><span class="sig-paren">(</span><em class="sig-param">X, interval, time_column, method=['mean']</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#time_segments_aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.time_segments_aggregate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aggregate values over fixed length time segments.</p>
+<dd><p>Aggregate values over given time span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>ndarray</em><em> or </em><em>pandas.DataFrame</em>) – N-dimensional sequence of values.</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – Integer denoting time span to compute aggregation of.</p></li>
+<li><p><strong>time_column</strong> (<em>int</em>) – Column of X that contains time values.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em> or </em><em>list</em>) – Optional. String describing aggregation method or list of strings describing multiple
+aggregation methods. If not given, <cite>mean</cite> is used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Sequence of aggregated values, one column for each aggregation method.
+ndarray:</p>
+<blockquote>
+<div><p>Sequence of index values (first index of each aggregated segment).</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="mlprimitives.custom.timeseries_preprocessing.time_segments_average">
 <code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">time_segments_average</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">interval</em>, <em class="sig-param">time_column</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#time_segments_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.time_segments_average" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute average of values over fixed length time segments.</p>
+<dd><p>Compute average of values over given time span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>ndarray</em><em> or </em><em>pandas.DataFrame</em>) – N-dimensional sequence of values.</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – Integer denoting time span to compute average of.</p></li>
+<li><p><strong>time_column</strong> (<em>int</em>) – Column of X that contains time values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>Sequence of averaged values.
+ndarray:</p>
+<blockquote>
+<div><p>Sequence of index values (first index of each averaged segment).</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

@@ -343,21 +343,110 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
-<div class="viewcode-block" id="rolling_window_sequences"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences">[docs]</a><span class="k">def</span> <span class="nf">rolling_window_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">target_size</span><span class="p">,</span> <span class="n">target_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create rolling window sequences out of timeseries data.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="intervals_to_mask"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.intervals_to_mask">[docs]</a><span class="k">def</span> <span class="nf">intervals_to_mask</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create boolean mask from given intervals.</span>
+
+<span class="sd">    The function creates an boolean array of same size as the given index array.</span>
+<span class="sd">    If an index value is within a given interval, the corresponding mask value is `True`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        index (ndarray):</span>
+<span class="sd">            Array containing the index values.</span>
+<span class="sd">        intervals (list or ndarray):</span>
+<span class="sd">            List or array of intervals, consisting of start-index and end-index for each interval.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array of boolean values, with one boolean value for each index value (`True` if the</span>
+<span class="sd">            index value is contained in a given interval, otherwise `False`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">intervals</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">intervals</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
+                <span class="n">mask</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="rolling_window_sequences"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences">[docs]</a><span class="k">def</span> <span class="nf">rolling_window_sequences</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">target_size</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">target_column</span><span class="p">,</span>
+                             <span class="n">drop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">drop_windows</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create rolling window sequences out of time series data.</span>
+
+<span class="sd">    The function creates an array of input sequences and an array of target sequences by rolling</span>
+<span class="sd">    over the input sequence with a specified window.</span>
+<span class="sd">    Optionally, certain values can be dropped from the sequences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray):</span>
+<span class="sd">            N-dimensional sequence to iterate over.</span>
+<span class="sd">        index (ndarray):</span>
+<span class="sd">            Array containing the index values of X.</span>
+<span class="sd">        window_size (int):</span>
+<span class="sd">            Length of the input sequences.</span>
+<span class="sd">        target_size (int):</span>
+<span class="sd">            Length of the target sequences.</span>
+<span class="sd">        step_size (int):</span>
+<span class="sd">            Indicating the number of steps to move the window forward each round.</span>
+<span class="sd">        target_column (int):</span>
+<span class="sd">            Indicating which column of X is the target.</span>
+<span class="sd">        drop (ndarray or None or str or float or bool):</span>
+<span class="sd">            Optional. Array of boolean values indicating which values of X are invalid, or value</span>
+<span class="sd">            indicating which value should be dropped. If not given, `None` is used.</span>
+<span class="sd">        drop_windows (bool):</span>
+<span class="sd">            Optional. Indicates whether the dropping functionality should be enabled. If not</span>
+<span class="sd">            given, `False` is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing the input sequences.</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing the target sequences.</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing the first index value of each input sequence.</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Array containing the first index value of each target sequence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">out_X</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">out_y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">X_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">y_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-
     <span class="n">target</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">target_column</span><span class="p">]</span>
 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">-</span> <span class="n">target_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">drop_windows</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">drop</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">drop</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">drop</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Arrays `drop` and `X` must be of the same length.&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">drop</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">drop</span><span class="p">):</span>
+                <span class="n">drop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">drop</span> <span class="o">=</span> <span class="n">X</span> <span class="o">==</span> <span class="n">drop</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">max_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">-</span> <span class="n">target_size</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">max_start</span><span class="p">:</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+
+        <span class="k">if</span> <span class="n">drop_windows</span><span class="p">:</span>
+            <span class="n">drop_window</span> <span class="o">=</span> <span class="n">drop</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span> <span class="o">+</span> <span class="n">target_size</span><span class="p">]</span>
+            <span class="n">to_drop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">drop_window</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">to_drop</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">+=</span> <span class="n">to_drop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+
         <span class="n">out_X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">])</span>
         <span class="n">out_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="n">end</span><span class="p">:</span><span class="n">end</span> <span class="o">+</span> <span class="n">target_size</span><span class="p">])</span>
         <span class="n">X_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">start</span><span class="p">])</span>
         <span class="n">y_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">end</span><span class="p">])</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">step_size</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">out_X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">out_y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_index</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_index</span><span class="p">)</span></div>
 
@@ -370,7 +459,22 @@
 
 
 <div class="viewcode-block" id="time_segments_average"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.time_segments_average">[docs]</a><span class="k">def</span> <span class="nf">time_segments_average</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">time_column</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute average of values over fixed length time segments.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Compute average of values over given time span.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray or pandas.DataFrame):</span>
+<span class="sd">            N-dimensional sequence of values.</span>
+<span class="sd">        interval (int):</span>
+<span class="sd">            Integer denoting time span to compute average of.</span>
+<span class="sd">        time_column (int):</span>
+<span class="sd">            Column of X that contains time values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Sequence of averaged values.</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Sequence of index values (first index of each averaged segment).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">_TIME_SEGMENTS_AVERAGE_DEPRECATION_WARNING</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
@@ -383,6 +487,7 @@
 
     <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
     <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
     <span class="k">while</span> <span class="n">start_ts</span> <span class="o">&lt;=</span> <span class="n">max_ts</span><span class="p">:</span>
         <span class="n">end_ts</span> <span class="o">=</span> <span class="n">start_ts</span> <span class="o">+</span> <span class="n">interval</span>
         <span class="n">subset</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_ts</span><span class="p">:</span><span class="n">end_ts</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
@@ -395,7 +500,25 @@
 
 
 <div class="viewcode-block" id="time_segments_aggregate"><a class="viewcode-back" href="../../../api/mlprimitives.custom.timeseries_preprocessing.html#mlprimitives.custom.timeseries_preprocessing.time_segments_aggregate">[docs]</a><span class="k">def</span> <span class="nf">time_segments_aggregate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">time_column</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]):</span>
-    <span class="sd">&quot;&quot;&quot;Aggregate values over fixed length time segments.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Aggregate values over given time span.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X (ndarray or pandas.DataFrame):</span>
+<span class="sd">            N-dimensional sequence of values.</span>
+<span class="sd">        interval (int):</span>
+<span class="sd">            Integer denoting time span to compute aggregation of.</span>
+<span class="sd">        time_column (int):</span>
+<span class="sd">            Column of X that contains time values.</span>
+<span class="sd">        method (str or list):</span>
+<span class="sd">            Optional. String describing aggregation method or list of strings describing multiple</span>
+<span class="sd">            aggregation methods. If not given, `mean` is used.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Sequence of aggregated values, one column for each aggregation method.</span>
+<span class="sd">        ndarray:</span>
+<span class="sd">            Sequence of index values (first index of each aggregated segment).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
@@ -419,7 +542,6 @@
         <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">aggregated</span><span class="p">))</span>
         <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_ts</span><span class="p">)</span>
         <span class="n">start_ts</span> <span class="o">=</span> <span class="n">end_ts</span>
-
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">index</span><span class="p">)</span></div>
 </pre></div>
 
