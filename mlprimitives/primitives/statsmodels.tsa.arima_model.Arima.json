@@ -1,5 +1,5 @@
 {
-    "name": "statsmodels.arima_model.Arima",
+    "name": "statsmodels.tsa.arima_model.Arima",
     "contributors": [
         "Alexander Geiger <geigera@mit.edu>"
     ],
@@ -35,7 +35,7 @@
         "tunable": {
             "p": {
                 "type": "int",
-                "default": 10,
+                "default": 1,
                 "range": [
                     0,
                     40
@@ -43,7 +43,7 @@
             },
             "d": {
                 "type": "int",
-                "default": 1,
+                "default": 0,
                 "range": [
                     0,
                     3
