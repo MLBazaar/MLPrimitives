@@ -3,8 +3,7 @@ from statsmodels.tsa import arima_model
 
 
 class ARIMA(object):
-    """A Wrapper for the statsmodels.tsa.arima_model.ARIMA class.
-    """
+    """A Wrapper for the statsmodels.tsa.arima_model.ARIMA class."""
 
     def __init__(self, p, d, q, steps):
         """Initialize the ARIMA object.
