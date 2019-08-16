@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.adapters.skimage module &mdash; MLPrimitives 0.2.1-dev documentation</title>
+  <title>mlprimitives.adapters.statsmodels module &mdash; MLPrimitives 0.2.1-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.adapters.statsmodels module" href="mlprimitives.adapters.statsmodels.html" />
-    <link rel="prev" title="mlprimitives.adapters.pandas module" href="mlprimitives.adapters.pandas.html" /> 
+    <link rel="next" title="mlprimitives.candidates package" href="mlprimitives.candidates.html" />
+    <link rel="prev" title="mlprimitives.adapters.skimage module" href="mlprimitives.adapters.skimage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -323,14 +323,14 @@
         
           <li><a href="mlprimitives.adapters.html">mlprimitives.adapters package</a> &raquo;</li>
         
-      <li>mlprimitives.adapters.skimage module</li>
+      <li>mlprimitives.adapters.statsmodels module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.adapters.skimage.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.adapters.statsmodels.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -344,12 +344,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.adapters.skimage">
-<span id="mlprimitives-adapters-skimage-module"></span><h1>mlprimitives.adapters.skimage module<a class="headerlink" href="#module-mlprimitives.adapters.skimage" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="mlprimitives.adapters.skimage.hog">
-<code class="sig-prename descclassname">mlprimitives.adapters.skimage.</code><code class="sig-name descname">hog</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">orientations</em>, <em class="sig-param">pixels_per_cell_x</em>, <em class="sig-param">pixels_per_cell_y</em>, <em class="sig-param">cells_per_block_x</em>, <em class="sig-param">cells_per_block_y</em>, <em class="sig-param">block_norm</em>, <em class="sig-param">visualize</em>, <em class="sig-param">multichannel</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/skimage.html#hog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.skimage.hog" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+  <div class="section" id="module-mlprimitives.adapters.statsmodels">
+<span id="mlprimitives-adapters-statsmodels-module"></span><h1>mlprimitives.adapters.statsmodels module<a class="headerlink" href="#module-mlprimitives.adapters.statsmodels" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mlprimitives.adapters.statsmodels.ARIMA">
+<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.adapters.statsmodels.</code><code class="sig-name descname">ARIMA</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">d</em>, <em class="sig-param">q</em>, <em class="sig-param">steps</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/statsmodels.html#ARIMA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.statsmodels.ARIMA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Wrapper for the statsmodels.tsa.arima_model.ARIMA class.</p>
+<dl class="method">
+<dt id="mlprimitives.adapters.statsmodels.ARIMA.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/statsmodels.html#ARIMA.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.statsmodels.ARIMA.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict values using the initialized object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em>) – N-dimensional array containing the input sequences for the model.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>N-dimensional array containing the predictions for each input sequence.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 
@@ -361,10 +380,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.adapters.statsmodels.html" class="btn btn-neutral float-right" title="mlprimitives.adapters.statsmodels module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.candidates.html" class="btn btn-neutral float-right" title="mlprimitives.candidates package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.adapters.pandas.html" class="btn btn-neutral float-left" title="mlprimitives.adapters.pandas module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.adapters.skimage.html" class="btn btn-neutral float-left" title="mlprimitives.adapters.skimage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

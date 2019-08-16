@@ -19,3 +19,4 @@ Submodules
    mlprimitives.adapters.networkx
    mlprimitives.adapters.pandas
    mlprimitives.adapters.skimage
+   mlprimitives.adapters.statsmodels

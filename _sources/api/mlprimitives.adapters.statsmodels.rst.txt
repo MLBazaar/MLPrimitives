@@ -1,0 +1,7 @@
+mlprimitives.adapters.statsmodels module
+========================================
+
+.. automodule:: mlprimitives.adapters.statsmodels
+   :members:
+   :undoc-members:
+   :show-inheritance:
