@@ -28,7 +28,7 @@ install_requires = [
     'opencv-python>=3.4.0.12,<5',
     'pandas>=0.23.4,<0.25',
     'python-louvain>=0.10,<0.14',
-    'scikit-image>=0.13.1,<0.15',
+    'scikit-image>=0.13.1,<0.15,!=0.14.3',
     'scikit-learn>=0.20.0,<0.21',
     'scipy>=1.1.0,<2',
     'statsmodels>=0.9.0,<1',
