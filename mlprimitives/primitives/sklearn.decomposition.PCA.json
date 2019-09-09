@@ -41,9 +41,21 @@
             "copy": {
                 "type": "bool",
                 "default": true
+            },
+            "random_state": {
+                "type": "int",
+                "default": null
             }
         },
         "tunable": {
+            "n_components": {
+                "type": "int",
+                "default": null,
+                "range": [
+                    1,
+                    500
+                ]
+            },
             "tol": {
                 "type": "float",
                 "default": 0.0,

@@ -28,9 +28,10 @@ install_requires = [
     'opencv-python>=3.4.0.12,<5',
     'pandas>=0.23.4,<0.25',
     'python-louvain>=0.10,<0.14',
-    'scikit-image>=0.13.1,<0.15',
+    'scikit-image>=0.13.1,<0.15,!=0.14.3',
     'scikit-learn>=0.20.0,<0.21',
     'scipy>=1.1.0,<2',
+    'statsmodels>=0.9.0,<1',
     'tensorflow>=1.11.0,<2',
     'xgboost>=0.72.1,<1',
 ]
@@ -127,6 +128,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.2.0',
+    version='0.2.1-dev',
     zip_safe=False,
 )

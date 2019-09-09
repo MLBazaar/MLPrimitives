@@ -1,0 +1,62 @@
+{
+    "name": "statsmodels.tsa.arima_model.Arima",
+    "contributors": [
+        "Alexander Geiger <geigera@mit.edu>"
+    ],
+    "description": "ARIMA Model",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "regressor"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.statsmodels.ARIMA",
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "steps": {
+                "type": "int",
+                "default": 10
+            }
+        },
+        "tunable": {
+            "p": {
+                "type": "int",
+                "default": 1,
+                "range": [
+                    0,
+                    40
+                ]
+            },
+            "d": {
+                "type": "int",
+                "default": 0,
+                "range": [
+                    0,
+                    3
+                ]
+            },
+            "q": {
+                "type": "int",
+                "default": 0,
+                "range": [
+                    0,
+                    12
+                ]
+            }
+        }
+    }
+}
