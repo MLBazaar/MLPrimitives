@@ -1,5 +1,21 @@
 # History
 
+## 0.2.1 - 2019-09-09
+
+### New Primitives
+
+* Timeseries Intervals to Mask Primitive - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
+* Add new primitive: Arima model - [Issue #168](https://github.com/HDI-Project/MLPrimitives/issues/168) by @AlexanderGeiger
+
+### Primitive Improvements
+
+* Curate PCA primitive hyperparameters - [Issue #190](https://github.com/HDI-Project/MLPrimitives/issues/190) by @AlexanderGeiger
+* Add option to drop rolling window sequences - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
+
+### Bug Fixes
+
+* scikit-image==0.14.3 crashes when installed on Mac - [Issue #188](https://github.com/HDI-Project/MLPrimitives/issues/188) by @csala
+
 ## 0.2.0
 
 ### New Features
