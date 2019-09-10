@@ -22,6 +22,7 @@ array([ 0.04...,  0.05...,  0.4...,  0.4...])
 import pandas as pd
 from sklearn.ensemble import ExtraTreesClassifier, ExtraTreesRegressor
 from sklearn.feature_selection import SelectFromModel
+from sklearn.linear_model import Lasso
 
 
 class EstimatorFeatureSelector(object):
@@ -107,3 +108,9 @@ class ExtraTreesRegressorFeatureSelector(EstimatorFeatureSelector):
     """EstimatorFeatureSelector based on ExtraTreesRegressor."""
 
     ESTIMATOR = ExtraTreesRegressor
+
+
+class LassoFeatureSelector(EstimatorFeatureSelector):
+    """EstimatorFeatureSelector based on Lasso."""
+
+    ESTIMATOR = Lasso
