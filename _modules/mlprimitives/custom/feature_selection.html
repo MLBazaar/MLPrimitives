@@ -367,6 +367,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">ExtraTreesClassifier</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="k">import</span> <span class="n">SelectFromModel</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">Lasso</span>
 
 
 <div class="viewcode-block" id="EstimatorFeatureSelector"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.EstimatorFeatureSelector">[docs]</a><span class="k">class</span> <span class="nc">EstimatorFeatureSelector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -452,6 +453,12 @@
     <span class="sd">&quot;&quot;&quot;EstimatorFeatureSelector based on ExtraTreesRegressor.&quot;&quot;&quot;</span>
 
     <span class="n">ESTIMATOR</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span></div>
+
+
+<div class="viewcode-block" id="LassoFeatureSelector"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_selection.html#mlprimitives.custom.feature_selection.LassoFeatureSelector">[docs]</a><span class="k">class</span> <span class="nc">LassoFeatureSelector</span><span class="p">(</span><span class="n">EstimatorFeatureSelector</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;EstimatorFeatureSelector based on Lasso.&quot;&quot;&quot;</span>
+
+    <span class="n">ESTIMATOR</span> <span class="o">=</span> <span class="n">Lasso</span></div>
 </pre></div>
 
            </div>
