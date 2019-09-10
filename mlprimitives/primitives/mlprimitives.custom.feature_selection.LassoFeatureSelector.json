@@ -1,0 +1,110 @@
+{
+    "name": "mlprimitives.custom.feature_selection.LassoFeatureSelector",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "mlprimitives.custom.feature_selection.LassoFeatureSelector",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_selector"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.feature_selection.LassoFeatureSelector",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            },
+            {
+                "name": "y",
+                "type": "Series"
+            }
+        ]
+    },
+    "produce": {
+        "method": "transform",
+        "args": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {},
+        "tunable": {
+            "bypass": {
+                "type": "bool",
+                "default": false
+            },
+            "threshold": {
+                "type": "str",
+                "default": null,
+                "values": [
+                    null,
+                    "mean",
+                    "median"
+                ]
+            },
+            "normalize": {
+                "type": "bool",
+                "default": false,
+                "description": "This parameter is ignored when fit_intercept is set to False. If True, the regressors X will be normalized before regression by subtracting the mean and dividing by the l2-norm."
+            },
+            "fit_intercept": {
+                "type": "bool",
+                "default": true,
+                "description": "Whether to calculate the intercept for this model. If set to False, no intercept will be used in calculations (e.g. data is expected to be already centered)."
+            },
+            "alpha": {
+                "type": "float",
+                "description": "Regularization strength. Alpha corresponds to C^-1 in other linear models such as LogisticRegression or LinearSVC. Must be a positive float.",
+                "default": 1.0,
+                "range": [
+                    0.01,
+                    10.0
+                ]
+            },
+            "max_iter": {
+                "type": "int",
+                "description": "The maximum number of iterations",
+                "default": 1000,
+                "range": [
+                    1,
+                    10000
+                ]
+            },
+            "tol": {
+                "type": "float",
+                "description": "The tolerance for the optimization: if the updates are smaller than tol, the optimization code checks the dual gap for optimality and continues until it is smaller than tol.",
+                "default": 0.0001,
+                "range": [
+                    1e-06,
+                    0.01
+                ]
+            },
+            "positive": {
+                "type": "bool",
+                "description": "When set to True, forces the coefficients to be positive.",
+                "default": false
+            },
+            "selection": {
+                "type": "str",
+                "description": "If set to \u2018random\u2019, a random coefficient is updated every iteration rather than looping over features sequentially by default.",
+                "values": [
+                    "cyclic",
+                    "random"
+                ],
+                "default": "cyclic"
+            }
+        }
+    }
+}

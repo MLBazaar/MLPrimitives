@@ -1,0 +1,17 @@
+{
+    "metadata": {
+        "name": "mlprimitives.custom.feature_selection.LassoFeatureSelector",
+        "data_type": "tabular",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "census"
+    },
+    "primitives": [
+        "mlprimitives.custom.preprocessing.ClassEncoder",
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "mlprimitives.custom.feature_selection.LassoFeatureSelector",
+        "sklearn.ensemble.RandomForestClassifier",
+        "mlprimitives.custom.preprocessing.ClassDecoder"
+    ]
+}
