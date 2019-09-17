@@ -136,8 +136,12 @@ class CategoricalEncoder(FeatureExtractor):
     def _detect_features(self, X):
         features = list()
 
-        for column in X.select_dtypes('object'):
-            x = X[column]
+        columns = X.select_dtypes(('object', 'category')).columns
+        if not self.max_unique_ratio:
+            return list(columns)
+
+        for column in columns:
+            x = X[column].dropna()
             unique_ratio = len(x.unique()) / len(x)
             if unique_ratio < self.max_unique_ratio:
                 if x.apply(_is_str).all():
@@ -156,7 +160,7 @@ class CategoricalEncoder(FeatureExtractor):
 
     def _transform(self, x):
         encoder = self.encoders[x.name]
-        return encoder.transform(x)
+        return encoder.transform(x.fillna('NaN'))
 
 
 class StringVectorizer(FeatureExtractor):
