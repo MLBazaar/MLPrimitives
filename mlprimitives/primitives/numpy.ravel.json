@@ -13,14 +13,14 @@
     "produce": {
         "args": [
             {
-                "name": "y",
+                "name": "X",
                 "keyword": "a",
                 "type": "ndarray"
             }
         ],
         "output": [
             {
-                "name": "y",
+                "name": "X",
                 "type": "ndarray"
             }
         ]
