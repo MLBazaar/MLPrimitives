@@ -66,14 +66,11 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
             given, `False` is used.
 
     Returns:
-        ndarray:
-            Array containing the input sequences.
-        ndarray:
-            Array containing the target sequences.
-        ndarray:
-            Array containing the first index value of each input sequence.
-        ndarray:
-            Array containing the first index value of each target sequence.
+        ndarray, ndarray, ndarray, ndarray:
+            * input sequences.
+            * target sequences.
+            * first index value of each input sequence.
+            * first index value of each target sequence.
     """
     out_X = list()
     out_y = list()
@@ -131,10 +128,9 @@ def time_segments_average(X, interval, time_column):
             Column of X that contains time values.
 
     Returns:
-        ndarray:
-            Sequence of averaged values.
-        ndarray:
-            Sequence of index values (first index of each averaged segment).
+        ndarray, ndarray:
+            * Sequence of averaged values.
+            * Sequence of index values (first index of each averaged segment).
     """
     warnings.warn(_TIME_SEGMENTS_AVERAGE_DEPRECATION_WARNING, DeprecationWarning)
 
@@ -175,10 +171,9 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
             aggregation methods. If not given, `mean` is used.
 
     Returns:
-        ndarray:
-            Sequence of aggregated values, one column for each aggregation method.
-        ndarray:
-            Sequence of index values (first index of each aggregated segment).
+        ndarray, ndarray:
+            * Sequence of aggregated values, one column for each aggregation method.
+            * Sequence of index values (first index of each aggregated segment).
     """
     if isinstance(X, np.ndarray):
         X = pd.DataFrame(X)
@@ -203,4 +198,5 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         values.append(np.concatenate(aggregated))
         index.append(start_ts)
         start_ts = end_ts
+
     return np.asarray(values), np.asarray(index)
