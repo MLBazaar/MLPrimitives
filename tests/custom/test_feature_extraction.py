@@ -1,9 +1,9 @@
 from unittest import TestCase
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pandas as pd
 
-from mlprimitives.custom.feature_extraction import FeatureExtractor
+from mlprimitives.custom.feature_extraction import CategoricalEncoder, FeatureExtractor
 
 
 class FeatureExtractorTest(TestCase):
@@ -80,3 +80,114 @@ class FeatureExtractorTest(TestCase):
             ((pd.Series(['d', 'e', 'f']), ), {})
         ]
         self.assert_equal(expected_calls, fe._fit.call_args_list)
+
+
+class CategoricalEncoderTest(TestCase):
+
+    def test___init__(self):
+        ce = CategoricalEncoder(max_labels=5, max_unique_ratio=0.5, features='auto')
+
+        assert ce.max_labels == 5
+        assert ce.max_unique_ratio == 0.5
+        assert ce.features == 'auto'
+
+    @patch('mlprimitives.custom.feature_extraction.FeatureExtractor.fit')
+    def test_fit(self, fit_mock):
+        """Check how self.encoders is reset, and super.fit called."""
+        ce = CategoricalEncoder()
+        ce.encoders = {
+            'past': 'encoders'
+        }
+
+        ce.fit('some_X')
+
+        assert ce.encoders == dict()
+        fit_mock.assert_called_once_with('some_X')
+
+    @patch('mlprimitives.custom.feature_extraction.OneHotLabelEncoder')
+    def test__fit(self, ohle_mock):
+        ce = CategoricalEncoder()
+        ce.encoders = dict()
+
+        x = pd.Series(['a', 'b', 'a'], name='test')
+        ce._fit(x)
+
+        assert ce.encoders['test'] == ohle_mock.return_value
+        ohle_mock.return_value.fit.assert_called_once_with(x)
+
+    def test__transform(self):
+        ce = CategoricalEncoder()
+        ohle_instance = Mock()
+        ohle_instance.transform.return_value = pd.DataFrame({
+            'test=a': [1, 0, 1],
+            'test=b': [0, 1, 0],
+        })
+        ce.encoders = {
+            'test': ohle_instance
+        }
+
+        x = pd.Series(['a', 'b', 'a'], name='test')
+        returned = ce._transform(x)
+
+        expected = pd.DataFrame({
+            'test=a': [1, 0, 1],
+            'test=b': [0, 1, 0],
+        })
+        assert expected.equals(returned)
+        ohle_instance.transform.assert_called_once_with(x)
+
+    def test__detect_features_no_max_unique(self):
+        ce = CategoricalEncoder(max_unique_ratio=0)
+
+        X = pd.DataFrame({
+            'unique': ['a', 'b', 'c', 'd'],
+            'not_unique': ['a', 'b', 'a', 'a'],
+            'not_feature': [1, 2, 3, 4],
+        })
+
+        features = ce._detect_features(X)
+
+        assert set(features) == {'unique', 'not_unique'}
+
+    def test__detect_features_max_unique(self):
+        ce = CategoricalEncoder(max_unique_ratio=0.5)
+
+        X = pd.DataFrame({
+            'completely_unique': ['a', 'b', 'c', 'd', 'e'],
+            'too_unique': ['a', 'b', 'c', 'd', 'a'],
+            'not_unique': ['a', 'b', 'a', 'a', 'a'],
+            'not_feature': [1, 2, 3, 4, 5],
+        })
+
+        features = ce._detect_features(X)
+
+        assert features == ['not_unique']
+
+    def test__detect_features_nones(self):
+        ce = CategoricalEncoder(max_unique_ratio=0.5)
+
+        X = pd.DataFrame({
+            'completely_unique': ['a', 'b', 'c', 'd', 'e', None],
+            'too_unique': ['a', 'b', 'c', 'd', None, 'a'],
+            'not_unique': ['a', 'b', 'a', None, 'a', 'a'],
+            'not_feature': [1, 2, None, 4, 5, 6],
+        })
+
+        features = ce._detect_features(X)
+
+        assert features == ['not_unique']
+
+    def test__detect_features_category(self):
+        ce = CategoricalEncoder(max_unique_ratio=0)
+
+        X = pd.DataFrame({
+            'unique': ['a', 'b', 'c', 'd'],
+            'not_unique': ['a', 'b', 'a', 'a'],
+            'category': ['a', 'b', 'a', 'b'],
+            'not_feature': [1, 2, 3, 4],
+        })
+        X['category'] = X['category'].astype('category')
+
+        features = ce._detect_features(X)
+
+        assert set(features) == {'unique', 'not_unique', 'category'}

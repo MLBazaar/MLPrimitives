@@ -50,7 +50,7 @@
             },
             "max_unique_ratio": {
                 "type": "float",
-                "default": 1
+                "default": 0
             }
         },
         "tunable": {
