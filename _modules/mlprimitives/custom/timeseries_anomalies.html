@@ -401,10 +401,9 @@
 <span class="sd">            Standard deviation of errors.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        float:</span>
-<span class="sd">            delta_mean.</span>
-<span class="sd">        float:</span>
-<span class="sd">            delta_std.</span>
+<span class="sd">        float, float:</span>
+<span class="sd">            * delta_mean.</span>
+<span class="sd">            * delta_std.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">below</span> <span class="o">=</span> <span class="n">errors</span><span class="p">[</span><span class="n">errors</span> <span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">below</span><span class="p">):</span>
@@ -427,10 +426,9 @@
 <span class="sd">            Threshold value.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        int:</span>
-<span class="sd">            Number of errors above epsilon.</span>
-<span class="sd">        int:</span>
-<span class="sd">            Number of continuous sequences above epsilon.</span>
+<span class="sd">        int, int:</span>
+<span class="sd">            * Number of errors above epsilon.</span>
+<span class="sd">            * Number of continuous sequences above epsilon.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">above</span> <span class="o">=</span> <span class="n">errors</span> <span class="o">&gt;</span> <span class="n">epsilon</span>
     <span class="n">total_above</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">above</span><span class="p">])</span>
@@ -541,10 +539,9 @@
 <span class="sd">            anomalous sequence.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ndarray:</span>
-<span class="sd">            Array containing start, end of each found anomalous sequence.</span>
-<span class="sd">        float:</span>
-<span class="sd">            Maximum error value that was not considered an anomaly.</span>
+<span class="sd">        ndarray, float:</span>
+<span class="sd">            * Array containing start, end of each found anomalous sequence.</span>
+<span class="sd">            * Maximum error value that was not considered an anomaly.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">above</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">errors</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">)</span>
     <span class="n">index_above</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">above</span><span class="p">)</span>

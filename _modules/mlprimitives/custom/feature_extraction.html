@@ -356,6 +356,15 @@
 <div class="viewcode-block" id="OneHotLabelEncoder"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder">[docs]</a><span class="k">class</span> <span class="nc">OneHotLabelEncoder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Combination of LabelEncoder + OneHotEncoder.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        name (str or None):</span>
+<span class="sd">            Name of this feature. If ``None`` is given, the name is taken</span>
+<span class="sd">            from the training feature column.</span>
+<span class="sd">        max_labels (int or None):</span>
+<span class="sd">            Maximum number of columns to generate by feature.</span>
+<span class="sd">        dropna (bool):</span>
+<span class="sd">            Whether to drop null values before fitting. Defaults to True.</span>
+
 <span class="sd">    &gt;&gt;&gt; df = pd.DataFrame([</span>
 <span class="sd">    ... {&#39;a&#39;: &#39;a&#39;, &#39;b&#39;: 1, &#39;c&#39;: 1},</span>
 <span class="sd">    ... {&#39;a&#39;: &#39;a&#39;, &#39;b&#39;: 2, &#39;c&#39;: 2},</span>
@@ -378,35 +387,53 @@
 <span class="sd">    2         0         1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span> <span class="o">=</span> <span class="n">max_labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span> <span class="o">=</span> <span class="n">dropna</span>
 
-<div class="viewcode-block" id="OneHotLabelEncoder.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<div class="viewcode-block" id="OneHotLabelEncoder.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dummies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dummies</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="OneHotLabelEncoder.transform"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="n">feature</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+<div class="viewcode-block" id="OneHotLabelEncoder.transform"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">dummies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
         <span class="n">dummies</span> <span class="o">=</span> <span class="n">dummies</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dummies</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">dummies</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dummies</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">dummies</span></div>
 
-<div class="viewcode-block" id="OneHotLabelEncoder.fit_transform"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="OneHotLabelEncoder.fit_transform"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.OneHotLabelEncoder.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="FeatureExtractor"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.FeatureExtractor">[docs]</a><span class="k">class</span> <span class="nc">FeatureExtractor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single FeatureExtractor applied to multiple features.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Extract Features by applying single column feature extracts on multiple columns.</span>
+
+<span class="sd">    Optionally detect the features on which to apply the feature extractor automatically.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        copy (bool):</span>
+<span class="sd">            Whether to make a copy of the input data or modify it in place.</span>
+<span class="sd">            Defaults to ``True``.</span>
+<span class="sd">        features (list or str):</span>
+<span class="sd">            List of features to apply the feature extractor to. If ``&#39;auto&#39;`` is passed,</span>
+<span class="sd">            try to detect the feature automatically. Defaults to an empty list.</span>
+<span class="sd">        keep (bool):</span>
+<span class="sd">            Whether to keep the original features instead of replacing them.</span>
+<span class="sd">            Defaults to ``False``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">copy</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="k">if</span> <span class="n">features</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">features</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep</span> <span class="o">=</span> <span class="n">keep</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_features</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">pass</span>
@@ -453,40 +480,61 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div></div>
 
 
-<span class="k">def</span> <span class="nf">_is_str</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-
-
 <div class="viewcode-block" id="CategoricalEncoder"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.CategoricalEncoder">[docs]</a><span class="k">class</span> <span class="nc">CategoricalEncoder</span><span class="p">(</span><span class="n">FeatureExtractor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Use the OneHotLabelEncoder only on categorical features.</span>
+    <span class="sd">&quot;&quot;&quot;FeatureExtractor that encodes categorical features using OneHotLabelEncoder.</span>
+
+<span class="sd">    When autodetecting features, only features with dtype ``category`` or ``object``</span>
+<span class="sd">    are considered.</span>
+
+<span class="sd">    Optionally, a ``max_unique_ratio`` can be passed, which allows ignoring features</span>
+<span class="sd">    that have a high number of unique values, such as primary keys.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        max_labels (int or None):</span>
+<span class="sd">            Maximum number of labels to use by feature. Defaults to ``None``.</span>
+<span class="sd">        max_unique_ratio (int):</span>
+<span class="sd">            Max proportion of unique values that a feature must have in order</span>
+<span class="sd">            to be considered a categorical feature. If ``0`` is given, the ratio is ignored.</span>
+<span class="sd">            Defaults to ``0``.</span>
+<span class="sd">        dropna (bool):</span>
+<span class="sd">            Whether to drop null values before analyzing the features and fitting</span>
+<span class="sd">            the encoders.</span>
 
 <span class="sd">    &gt;&gt;&gt; df = pd.DataFrame([</span>
 <span class="sd">    ... {&#39;a&#39;: &#39;a&#39;, &#39;b&#39;: 1, &#39;c&#39;: 1},</span>
 <span class="sd">    ... {&#39;a&#39;: &#39;a&#39;, &#39;b&#39;: 2, &#39;c&#39;: 2},</span>
 <span class="sd">    ... {&#39;a&#39;: &#39;b&#39;, &#39;b&#39;: 2, &#39;c&#39;: 1},</span>
 <span class="sd">    ... ])</span>
-<span class="sd">    &gt;&gt;&gt; ce = CategoricalEncoder()</span>
-<span class="sd">    &gt;&gt;&gt; ce.fit_transform(df, categorical_features=[&#39;a&#39;, &#39;c&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; df[&#39;c&#39;] = d[&#39;c&#39;].astype(&#39;category&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ce = CategoricalEncoder(features=&#39;auto&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ce.fit_transform(df)</span>
 <span class="sd">       b  a=a  a=b  c=1  c=2</span>
 <span class="sd">    0  1    1    0    1    0</span>
 <span class="sd">    1  2    1    0    0    1</span>
 <span class="sd">    2  2    0    1    1    0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_unique_ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_unique_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span> <span class="o">=</span> <span class="n">max_labels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_unique_ratio</span> <span class="o">=</span> <span class="n">max_unique_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span> <span class="o">=</span> <span class="n">dropna</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CategoricalEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_detect_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="n">features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">((</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_unique_ratio</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
             <span class="n">unique_ratio</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">unique_ratio</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_unique_ratio</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_is_str</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-                    <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+                <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">features</span>
 
@@ -495,7 +543,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">CategoricalEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotLabelEncoder</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span><span class="p">)</span>
+        <span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotLabelEncoder</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropna</span><span class="p">)</span>
         <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encoders</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoder</span>
 
@@ -505,20 +553,44 @@
 
 
 <div class="viewcode-block" id="StringVectorizer"><a class="viewcode-back" href="../../../api/mlprimitives.custom.feature_extraction.html#mlprimitives.custom.feature_extraction.StringVectorizer">[docs]</a><span class="k">class</span> <span class="nc">StringVectorizer</span><span class="p">(</span><span class="n">FeatureExtractor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Use the sklearn CountVectorizer only on string features.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;FeatureExtractor that encodes text features using a scikit-learn CountVectorizer.</span>
 
-    <span class="n">DTYPE</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span>
+<span class="sd">    When autodetecting features, only features with dtype ``object`` features are considered.</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_words</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="sd">    Optionally, a ``min_words`` can be passed, which allows ignoring features</span>
+<span class="sd">    have less than the given value of words in all their occurrences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        copy (bool):</span>
+<span class="sd">            Whether to make a copy of the input data or modify it in place.</span>
+<span class="sd">            Defaults to ``True``.</span>
+<span class="sd">        features (list or str):</span>
+<span class="sd">            List of features to apply the feature extractor to. If ``&#39;auto&#39;`` is passed,</span>
+<span class="sd">            try to detect the feature automatically. Defaults to an empty list.</span>
+<span class="sd">        keep (bool):</span>
+<span class="sd">            Whether to keep the original features instead of replacing them.</span>
+<span class="sd">            Defaults to ``False``.</span>
+<span class="sd">        min_words (int):</span>
+<span class="sd">            Minimum number of words that the features needs to have in order to be</span>
+<span class="sd">            considered a text column.</span>
+<span class="sd">        **kwargs:</span>
+<span class="sd">            Any additional keywords arguments will be passed to the underlying</span>
+<span class="sd">            StringVectorizer instances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_words</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">min_words</span> <span class="o">=</span> <span class="n">min_words</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">StringVectorizer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">keep</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_detect_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_words</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">analyzer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">build_analyzer</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">analyzer</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_words</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
                     <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
