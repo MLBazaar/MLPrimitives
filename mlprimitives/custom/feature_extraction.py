@@ -80,7 +80,7 @@ class FeatureExtractor(object):
             List of features to apply the feature extractor to. If ``'auto'`` is passed,
             try to detect the feature automatically. Defaults to an empty list.
         keep (bool):
-            Whether to keep the original features instead of replaceing them.
+            Whether to keep the original features instead of replacing them.
             Defaults to ``False``.
     """
 
@@ -223,7 +223,7 @@ class StringVectorizer(FeatureExtractor):
             List of features to apply the feature extractor to. If ``'auto'`` is passed,
             try to detect the feature automatically. Defaults to an empty list.
         keep (bool):
-            Whether to keep the original features instead of replaceing them.
+            Whether to keep the original features instead of replacing them.
             Defaults to ``False``.
         min_words (int):
             Minimum number of words that the features needs to have in order to be
