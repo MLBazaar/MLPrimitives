@@ -11,6 +11,15 @@ LOGGER = logging.getLogger(__name__)
 class OneHotLabelEncoder(object):
     """Combination of LabelEncoder + OneHotEncoder.
 
+    Args:
+        name (str or None):
+            Name of this feature. If ``None`` is given, the name is taken
+            from the training feature column.
+        max_labels (int or None):
+            Maximum number of columns to generate by feature.
+        dropna (bool):
+            Whether to drop null values before fitting. Defaults to True.
+
     >>> df = pd.DataFrame([
     ... {'a': 'a', 'b': 1, 'c': 1},
     ... {'a': 'a', 'b': 2, 'c': 2},
@@ -33,35 +42,53 @@ class OneHotLabelEncoder(object):
     2         0         1
     """
 
-    def __init__(self, name=None, max_labels=None):
+    def __init__(self, name=None, max_labels=None, dropna=True):
         self.name = name
         self.max_labels = max_labels
+        self.dropna = dropna
 
-    def fit(self, feature):
-        self.dummies = pd.Series(feature.value_counts().index).astype(str)
+    def fit(self, x):
+        if self.dropna:
+            x = x.dropna()
+
+        self.dummies = pd.Series(x.value_counts().index).astype(str)
         if self.max_labels:
             self.dummies = self.dummies[:self.max_labels]
 
-    def transform(self, feature):
-        name = self.name or feature.name
-        dummies = pd.get_dummies(feature.astype(str))
+    def transform(self, x):
+        name = self.name or x.name
+        dummies = pd.get_dummies(x.astype(str))
         dummies = dummies.reindex(columns=self.dummies, fill_value=0)
         dummies.columns = ['{}={}'.format(name, c) for c in self.dummies]
         return dummies
 
-    def fit_transform(self, feature):
-        self.fit(feature)
-        return self.transform(feature)
+    def fit_transform(self, x):
+        self.fit(x)
+        return self.transform(x)
 
 
 class FeatureExtractor(object):
-    """Single FeatureExtractor applied to multiple features."""
+    """Extract Features by applying single column feature extracts on multiple columns.
+
+    Optionally detect the features on which to apply the feature extractor automatically.
+
+    Args:
+        copy (bool):
+            Whether to make a copy of the input data or modify it in place.
+            Defaults to ``True``.
+        features (list or str):
+            List of features to apply the feature extractor to. If ``'auto'`` is passed,
+            try to detect the feature automatically. Defaults to an empty list.
+        keep (bool):
+            Whether to keep the original features instead of replaceing them.
+            Defaults to ``False``.
+    """
 
     def __init__(self, copy=True, features=None, keep=False):
         self.copy = copy
-        self.features = features or []
+        self.features = list() if features is None else features
         self.keep = keep
-        self._features = []
+        self._features = list()
 
     def _fit(self, x):
         pass
@@ -108,29 +135,44 @@ class FeatureExtractor(object):
         return self.transform(X)
 
 
-def _is_str(x):
-    return isinstance(x, str)
-
-
 class CategoricalEncoder(FeatureExtractor):
-    """Use the OneHotLabelEncoder only on categorical features.
+    """FeatureExtractor that encodes categorical features using OneHotLabelEncoder.
+
+    When autodetecting features, only features with dtype ``category`` or ``object``
+    are considered.
+
+    Optionally, a ``max_unique_ratio`` can be passed, which allows ignoring features
+    that have a high number of unique values, such as primary keys.
+
+    Args:
+        max_labels (int or None):
+            Maximum number of labels to use by feature. Defaults to ``None``.
+        max_unique_ratio (int):
+            Max proportion of unique values that a feature must have in order
+            to be considered a categorical feature. If ``0`` is given, the ratio is ignored.
+            Defaults to ``0``.
+        dropna (bool):
+            Whether to drop null values before analyzing the features and fitting
+            the encoders.
 
     >>> df = pd.DataFrame([
     ... {'a': 'a', 'b': 1, 'c': 1},
     ... {'a': 'a', 'b': 2, 'c': 2},
     ... {'a': 'b', 'b': 2, 'c': 1},
     ... ])
-    >>> ce = CategoricalEncoder()
-    >>> ce.fit_transform(df, categorical_features=['a', 'c'])
+    >>> df['c'] = d['c'].astype('category')
+    >>> ce = CategoricalEncoder(features='auto')
+    >>> ce.fit_transform(df)
        b  a=a  a=b  c=1  c=2
     0  1    1    0    1    0
     1  2    1    0    0    1
     2  2    0    1    1    0
     """
 
-    def __init__(self, max_labels=None, max_unique_ratio=1, **kwargs):
+    def __init__(self, max_labels=None, max_unique_ratio=0, dropna=True, **kwargs):
         self.max_labels = max_labels
         self.max_unique_ratio = max_unique_ratio
+        self.dropna = dropna
         super(CategoricalEncoder, self).__init__(**kwargs)
 
     def _detect_features(self, X):
@@ -141,11 +183,13 @@ class CategoricalEncoder(FeatureExtractor):
             return list(columns)
 
         for column in columns:
-            x = X[column].dropna()
+            x = X[column]
+            if self.dropna:
+                x = x.dropna()
+
             unique_ratio = len(x.unique()) / len(x)
             if unique_ratio < self.max_unique_ratio:
-                if x.apply(_is_str).all():
-                    features.append(column)
+                features.append(column)
 
         return features
 
@@ -154,7 +198,7 @@ class CategoricalEncoder(FeatureExtractor):
         super(CategoricalEncoder, self).fit(X)
 
     def _fit(self, x):
-        encoder = OneHotLabelEncoder(x.name, self.max_labels)
+        encoder = OneHotLabelEncoder(x.name, self.max_labels, self.dropna)
         encoder.fit(x)
         self.encoders[x.name] = encoder
 
@@ -164,20 +208,44 @@ class CategoricalEncoder(FeatureExtractor):
 
 
 class StringVectorizer(FeatureExtractor):
-    """Use the sklearn CountVectorizer only on string features."""
+    """FeatureExtractor that encodes text features using a scikit-learn CountVectorizer.
 
-    DTYPE = 'object'
+    When autodetecting features, only features with dtype ``object`` features are considered.
 
-    def __init__(self, copy=True, features=None, keep=False, min_words=3, **kwargs):
+    Optionally, a ``min_words`` can be passed, which allows ignoring features
+    have less than the given value of words in all their occurrences.
+
+    Args:
+        copy (bool):
+            Whether to make a copy of the input data or modify it in place.
+            Defaults to ``True``.
+        features (list or str):
+            List of features to apply the feature extractor to. If ``'auto'`` is passed,
+            try to detect the feature automatically. Defaults to an empty list.
+        keep (bool):
+            Whether to keep the original features instead of replaceing them.
+            Defaults to ``False``.
+        min_words (int):
+            Minimum number of words that the features needs to have in order to be
+            considered a text column.
+        **kwargs:
+            Any additional keywords arguments will be passed to the underlying
+            StringVectorizer instances.
+    """
+
+    def __init__(self, copy=True, features=None, keep=False, min_words=0, **kwargs):
         self.kwargs = kwargs
         self.min_words = min_words
         super(StringVectorizer, self).__init__(copy, features, keep)
 
     def _detect_features(self, X):
-        features = []
+        columns = X.select_dtypes('object').columns
+        if not self.min_words:
+            return list(columns)
 
+        features = []
         analyzer = CountVectorizer(**self.kwargs).build_analyzer()
-        for column in X.select_dtypes('object'):
+        for column in columns:
             try:
                 if (X[column].apply(analyzer).str.len() >= self.min_words).any():
                     features.append(column)
