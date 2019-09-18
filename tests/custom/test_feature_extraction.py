@@ -147,7 +147,7 @@ class CategoricalEncoderTest(TestCase):
 
         features = ce._detect_features(X)
 
-        assert features == ['unique', 'not_unique']
+        assert set(features) == {'unique', 'not_unique'}
 
     def test__detect_features_max_unique(self):
         ce = CategoricalEncoder(max_unique_ratio=0.5)
@@ -190,4 +190,4 @@ class CategoricalEncoderTest(TestCase):
 
         features = ce._detect_features(X)
 
-        assert features == ['unique', 'not_unique', 'category']
+        assert set(features) == {'unique', 'not_unique', 'category'}
