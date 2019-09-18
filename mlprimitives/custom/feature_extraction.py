@@ -160,7 +160,7 @@ class CategoricalEncoder(FeatureExtractor):
 
     def _transform(self, x):
         encoder = self.encoders[x.name]
-        return encoder.transform(x.fillna('NaN'))
+        return encoder.transform(x)
 
 
 class StringVectorizer(FeatureExtractor):
