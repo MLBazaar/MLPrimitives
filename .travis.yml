@@ -5,7 +5,7 @@ python:
   - 3.5
 
 install:
-   - pip install -U tox-travis codecov
+   - pip install -U tox-travis codecov setuptools
    - sudo apt-get install graphviz
 
 script: travis_wait tox
