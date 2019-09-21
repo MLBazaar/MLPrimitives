@@ -1,0 +1,36 @@
+{
+    "name": "numpy.ravel",
+    "contributors": [
+        "Alexander Geiger <geigera@mit.edu>"
+    ],
+    "documentation": "https://docs.scipy.org/doc/numpy/reference/generated/numpy.ravel.html",
+    "description": "Return a contiguous flattened array.",
+    "classifiers": {
+        "type": "helper"
+    },
+    "modalities": [],
+    "primitive": "numpy.ravel",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "a",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "order": {
+                "type": "str",
+                "default": "C"
+            }
+        }
+    }
+}

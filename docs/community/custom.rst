@@ -52,7 +52,7 @@ If you want to create a new custom primitive, please follow these steps:
            e-mail address to the ``contributors`` list!
         3. Add a pipeline annotation that uses your primitive inside the pipelines folder, named
            exactly like your primitive, and test it with the command
-           ``mlprimitives test pipelines/mlprimitives.candidates.your_module.YourPrimitive.json``.
+           ``mlprimitives test mlprimitives/pipelines/mlprimitives.candidates.your_module.YourPrimitive.json``.
            If adding a pipeline is not possible for any reason, please inform the maintainers, as
            this probably means that a new dataset needs to be added.
 
@@ -104,7 +104,7 @@ and that the existing primitive can be safely modified, do the following steps:
         3. If you are creating a new annotation, also add a pipeline annotation that uses your
            primitive inside the pipelines folder, named exactly like your primitive, and test it
            with the command
-           ``mlprimitives test pipelines/mlprimitives.candidates.your_module.YourPrimitive.json``.
+           ``mlprimitives test mlprimitives/pipelines/mlprimitives.candidates.your_module.YourPrimitive.json``.
            If adding a pipeline is not possible for any reason, please inform the maintainers, as
            this probably means that a new dataset needs to be added.
         4. Make sure that all the annotations that existed before that use the same primitive still

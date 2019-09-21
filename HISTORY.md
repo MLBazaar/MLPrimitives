@@ -1,5 +1,39 @@
 # History
 
+## 0.2.1 - 2019-09-09
+
+### New Primitives
+
+* Timeseries Intervals to Mask Primitive - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
+* Add new primitive: Arima model - [Issue #168](https://github.com/HDI-Project/MLPrimitives/issues/168) by @AlexanderGeiger
+
+### Primitive Improvements
+
+* Curate PCA primitive hyperparameters - [Issue #190](https://github.com/HDI-Project/MLPrimitives/issues/190) by @AlexanderGeiger
+* Add option to drop rolling window sequences - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
+
+### Bug Fixes
+
+* scikit-image==0.14.3 crashes when installed on Mac - [Issue #188](https://github.com/HDI-Project/MLPrimitives/issues/188) by @csala
+
+## 0.2.0
+
+### New Features
+
+* Publish the pipelines as an `entry_point`
+[Issue #175](https://github.com/HDI-Project/MLPrimitives/issues/175) by @csala
+
+### Primitive Improvements
+
+* Improve pandas.DataFrame.resample primitive [Issue #177](https://github.com/HDI-Project/MLPrimitives/issues/177) by @csala
+* Improve `feature_extractor` primitives [Issue #183](https://github.com/HDI-Project/MLPrimitives/issues/183) by @csala
+* Improve `find_anomalies` primitive [Issue #180](https://github.com/HDI-Project/MLPrimitives/issues/180) by @AlexanderGeiger
+
+### Bug Fixes
+
+* Typo in the primitive keras.Sequential.LSTMTimeSeriesRegressor [Issue #176](https://github.com/HDI-Project/MLPrimitives/issues/176) by @DanielCalvoCerezo
+
+
 ## 0.1.10
 
 ### New Features

@@ -6,8 +6,7 @@
     "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html",
     "description": "Call the `df.resample` method on the given time_index and afterwards call the indicated aggregation.",
     "classifiers": {
-        "type": "preprocessor",
-        "subtype": "feature_extractor"
+        "type": "helper"
     },
     "modalities": [],
     "primitive": "mlprimitives.adapters.pandas.resample",
@@ -28,22 +27,47 @@
     },
     "hyperparameters": {
         "fixed": {
-            "rule": {
+            "on": {
                 "type": "str",
-                "description": "The offset string or object representing target conversion."
+                "default": null,
+                "description": "Name of the column to use as the time index. Optional."
             },
             "time_index": {
                 "type": "str",
-                "description": "Name of the column to use as the time index."
+                "description": "(Deprecated in favor of `on`). Name of the column to use as the time index."
             },
             "groupby": {
                 "type": "str",
                 "default": null,
                 "description": "Optional list of columns to group by."
             },
+            "reset_index": {
+                "type": "bool",
+                "default": false
+            }
+        },
+        "tunable": {
+            "rule": {
+                "type": "int",
+                "default": 3600,
+                "range": [
+                    1,
+                    86400
+                ],
+                "description": "The offset interval lenght, in seconds."
+            },
             "aggregation": {
                 "type": "str",
                 "default": "mean",
+                "values": [
+                    "mean",
+                    "median",
+                    "prod",
+                    "quantile",
+                    "std",
+                    "sum",
+                    "var"
+                ],
                 "description": "Name of the aggregation function to use."
             }
         }

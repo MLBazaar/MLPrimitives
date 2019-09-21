@@ -50,7 +50,7 @@ clean-pyc: ## remove Python file artifacts
 .PHONY: clean-docs
 clean-docs: ## remove previously built docs
 	rm -f docs/api/*.rst
-	-$(MAKE) -C docs clean 2>/dev/null  # this fails if sphinx is not yet installed
+	-$(MAKE) -C docs clean 2>/dev/null
 
 .PHONY: clean-coverage
 clean-coverage: ## remove coverage artifacts
@@ -88,8 +88,8 @@ install-develop: clean-build clean-pyc ## install the package in editable mode a
 lint: ## check style with flake8 and isort
 	flake8 mlprimitives tests
 	isort -c --recursive mlprimitives tests
-	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
-	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
+	find mlprimitives/pipelines -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
+	find mlprimitives/primitives -name '*.json' | xargs -n1 -I{} bash -c "diff -q {} <(python -m json.tool {})"
 
 .PHONY: fix-lint
 fix-lint: ## fix lint issues using autoflake, autopep8, and isort
@@ -101,8 +101,8 @@ fix-lint: ## fix lint issues using autoflake, autopep8, and isort
 	autopep8 --in-place --recursive --aggressive tests
 	isort --apply --atomic --recursive tests
 
-	find pipelines -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
-	find mlprimitives/jsons -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+	find mlprimitives/pipelines -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
+	find mlprimitives/primitives -name '*.json' | xargs -n1 -I{} bash -c "python -m json.tool {} {}.tmp && mv {}.tmp {}"
 
 
 # TEST TARGETS
@@ -113,11 +113,11 @@ test: ## run tests quickly with the default Python
 
 .PHONY: test-all
 test-all: ## run tests on every Python version with tox
-	tox
+	tox -r
 
 .PHONY: test-pipelines
 test-pipelines: ## Test all the pipelines from the pipelines folder
-	mlprimitives test pipelines/*.json
+	mlprimitives test mlprimitives/pipelines/*.json
 
 .PHONY: coverage
 coverage: ## check code coverage quickly with the default Python
@@ -162,7 +162,7 @@ publish: dist ## package and upload a release
 
 .PHONY: bumpversion-release
 bumpversion-release: ## Merge master to stable and bumpversion release
-	git checkout stable
+	git checkout stable || git checkout -b stable
 	git merge --no-ff master -m"make release-tag: Merge branch 'master' into stable"
 	bumpversion release
 	git push --tags origin stable
@@ -174,6 +174,10 @@ bumpversion-patch: ## Merge stable to master and bumpversion patch
 	bumpversion --no-tag patch
 	git push
 
+.PHONY: bumpversion-build
+bumpversion-build: ## Bump the version to the next build
+	bumpversion build --no-tag
+
 .PHONY: bumpversion-minor
 bumpversion-minor: ## Bump the version the next minor skipping the release
 	bumpversion --no-tag minor
@@ -182,22 +186,29 @@ bumpversion-minor: ## Bump the version the next minor skipping the release
 bumpversion-major: ## Bump the version the next major skipping the release
 	bumpversion --no-tag major
 
-CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-CHANGELOG_LINES := $(shell git diff HEAD..stable HISTORY.md | wc -l)
+CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null)
+CHANGELOG_LINES := $(shell git diff HEAD..origin/stable HISTORY.md 2>&1 | wc -l)
 
-.PHONY: check-release
-check-release: ## Check if the release can be made
+.PHONY: check-master
+check-master: ## Check if we are in master branch
 ifneq ($(CURRENT_BRANCH),master)
 	$(error Please make the release from master branch\n)
 endif
+
+.PHONY: check-history
+check-history: ## Check if HISTORY.md has been modified
 ifeq ($(CHANGELOG_LINES),0)
 	$(error Please insert the release notes in HISTORY.md before releasing)
-else
-	@echo "A new release can be made"
 endif
+
+.PHONY: check-release
+check-release: check-master check-history ## Check if the release can be made
 
 .PHONY: release
 release: check-release bumpversion-release publish bumpversion-patch
+
+.PHONY: release-candidate
+release-candidate: check-master publish bumpversion-build
 
 .PHONY: release-minor
 release-minor: check-release bumpversion-minor release
