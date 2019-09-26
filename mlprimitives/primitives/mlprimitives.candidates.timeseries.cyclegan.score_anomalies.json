@@ -1,5 +1,5 @@
 {
-    "name": "mlprimitives.candidates.errors_cyclegan.errors_cyclegan",
+    "name": "mlprimitives.candidates.timeseries.cyclegan.score_anomalies",
     "contributors": [
         "Alexander Geiger <geigera@mit.edu>"
     ],
@@ -11,7 +11,7 @@
     "modalities": [
         "timeseries"
     ],
-    "primitive": "mlprimitives.candidates.errors_cyclegan.errors_cyclegan",
+    "primitive": "mlprimitives.candidates.timeseries.cyclegan.score_anomalies",
     "produce": {
         "args": [
             {

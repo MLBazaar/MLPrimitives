@@ -1,5 +1,5 @@
 {
-    "name": "keras.Sequential.LSTM_CycleGAN",
+    "name": "mlprimitives.candidates.timeseries.cyclegan.CycleGAN",
     "contributors": [
         "Alexander Geiger <geigera@mit.edu>"
     ],
@@ -10,7 +10,7 @@
         "subtype": "regressor"
     },
     "modalities": [],
-    "primitive": "mlprimitives.candidates.keras_LSTM_CycleGAN.LSTM_CycleGAN",
+    "primitive": "mlprimitives.candidates.timeseries.cyclegan.CycleGAN",
     "fit": {
         "method": "fit",
         "args": [
