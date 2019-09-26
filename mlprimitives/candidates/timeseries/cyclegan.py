@@ -218,16 +218,15 @@ class CycleGAN():
                 1,
                 50])
 
-    def train(self, X, epochs):
-        X_train = X
+    def _fit(self, X):
         fake = np.ones((self.batch_size, 1))
         valid = -np.ones((self.batch_size, 1))
         delta = np.ones((self.batch_size, 1)) * 10
 
-        for epoch in range(epochs):
+        for epoch in range(self.epochs):
             for _ in range(self.n_critic):
-                idx = np.random.randint(0, X_train.shape[0], self.batch_size)
-                x = X_train[idx]
+                idx = np.random.randint(0, X.shape[0], self.batch_size)
+                x = X[idx]
                 z = np.random.normal(size=(self.batch_size, self.latent_dim, 1))
 
                 cx_loss = self.critic_x_model.train_on_batch([x, z], [valid, fake, delta])
@@ -236,16 +235,8 @@ class CycleGAN():
             g_loss = self.generator_model.train_on_batch([x, z], [valid, valid, x])
 
             if epoch % 100 == 0:
-                print(
-                    "Epoch:",
-                    epoch,
-                    "[Dx loss: ",
-                    cx_loss,
-                    "] [Dz loss: ",
-                    cz_loss,
-                    "] [G loss: ",
-                    g_loss,
-                    "]")
+                print('Epoch: {}, [Dx loss: {}] [Dz loss: {}] [G loss: {}]'.format(
+                    epoch, cx_loss, cz_loss, g_loss))
 
     def fit(self, X):
         """Fit the CycleGAN.
@@ -255,7 +246,7 @@ class CycleGAN():
                 N-dimensional array containing the input training sequences for the model.
         """
         X = X.reshape((-1, self.shape[0], 1))
-        self.train(X, epochs=self.epochs)
+        self._fit(X)
 
     def predict(self, X):
         """Predict values using the initialized object.
@@ -311,22 +302,24 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
     for c in critic:
         critic_extended = critic_extended + np.repeat(c, y_hat.shape[1]).tolist()
 
-    step_size = 1
     predictions = []
     critic_kde_max = []
     pred_length = y_hat.shape[1]
-    num_errors = y_hat.shape[1] + step_size * (y_hat.shape[0] - 1)
+    num_errors = y_hat.shape[1] + (y_hat.shape[0] - 1)
     y_hat = np.asarray(y_hat)
     critic_extended = np.asarray(critic_extended).reshape((-1, y_hat.shape[1]))
 
     for i in range(num_errors):
         intermediate = []
         critic_intermediate = []
+
         for j in range(max(0, i - num_errors + pred_length), min(i + 1, pred_length)):
             intermediate.append(y_hat[i - j, j])
             critic_intermediate.append(critic_extended[i - j, j])
+
         if intermediate:
             predictions.append(np.median(np.asarray(intermediate)))
+
             if len(critic_intermediate) > 1:
                 discr_intermediate = np.asarray(critic_intermediate)
                 try:
@@ -334,36 +327,25 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
                         stats.gaussian_kde(discr_intermediate)(critic_intermediate))])
                 except np.linalg.LinAlgError:
                     critic_kde_max.append(np.median(discr_intermediate))
-                    continue
             else:
                 critic_kde_max.append(np.median(np.asarray(critic_intermediate)))
 
     predictions = np.asarray(predictions)
 
-    score_window_min = int(score_window / 2)
+    score_window_min = score_window // 2
 
-    scores = pd.Series(
-        abs(
-            pd.Series(np.asarray(true).flatten()).rolling(
-                score_window, center=True,
-                min_periods=score_window_min
-            ).apply(
-                integrate.trapz
-            ) - pd.Series(
-                np.asarray(predictions).flatten()
-            ).rolling(
-                score_window,
-                center=True,
-                min_periods=score_window_min
-            ).apply(
-                integrate.trapz
-            )
-        )
-    ).rolling(
-        smooth_window, center=True, min_periods=int(smooth_window / 2),
-        win_type='triang').mean().values
+    pd_true = pd.Series(np.asarray(true).flatten())
+    pd_pred = pd.Series(np.asarray(predictions).flatten())
+    score_measure_true = pd_true.rolling(score_window, center=True, min_periods=score_window_min)\
+        .apply(integrate.trapz)
+    score_measure_pred = pd_pred.rolling(score_window, center=True, min_periods=score_window_min)\
+        .apply(integrate.trapz)
+    scores = abs(score_measure_true - score_measure_pred)
+    scores_smoothed = pd.Series(scores).rolling(smooth_window, center=True,
+                                                min_periods=int(smooth_window / 2),
+                                                win_type='triang').mean().values
 
-    z_score_scores = stats.zscore(scores)
+    z_score_scores = stats.zscore(scores_smoothed)
 
     critic_kde_max = np.asarray(critic_kde_max)
     l_quantile = np.quantile(critic_kde_max, 0.25)
@@ -377,6 +359,4 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
         100, center=True, min_periods=50).mean().values
     z_score_scores_clip = np.clip(z_score_scores, a_min=0, a_max=None) + 1
 
-    multiply_comb = np.multiply(z_score_scores_clip, z_score_critic)
-
-    return multiply_comb
+    return np.multiply(z_score_scores_clip, z_score_critic)
