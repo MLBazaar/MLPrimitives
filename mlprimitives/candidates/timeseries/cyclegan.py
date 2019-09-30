@@ -7,15 +7,13 @@ import keras
 import numpy as np
 import pandas as pd
 from keras import backend as K
-from keras.layers import (
-    LSTM, Activation, Bidirectional, Conv1D, Dense, Dropout, Flatten, Input, Reshape,
-    TimeDistributed)
-from keras.layers.advanced_activations import LeakyReLU
-from keras.layers.convolutional import UpSampling1D
+from keras.layers import Input
 from keras.layers.merge import _Merge
 from keras.models import Model
-from keras.optimizers import Adam
 from scipy import integrate, stats
+
+from mlprimitives.adapters.keras import build_layer
+from mlprimitives.utils import import_object
 
 LOGGER = logging.getLogger(__name__)
 
@@ -29,82 +27,20 @@ class RandomWeightedAverage(_Merge):
 class CycleGAN():
     """CycleGAN class"""
 
-    def build_encoder(self):
-        x = Input(shape=self.shape)
+    def _build_model(self, hyperparameters, layers, input_shape):
+        x = Input(shape=input_shape)
         model = keras.models.Sequential()
-        model.add(Bidirectional(LSTM(100, return_sequences=True)))
-        model.add(Flatten())
-        model.add(Dense(self.latent_dim))
-        model.add(Reshape((self.latent_dim, 1)))
-        z = model(x)
-        return Model(x, z)
 
-    def build_generator(self):
-        z = Input(shape=(self.latent_dim, 1))
-        model = keras.models.Sequential()
-        model.add(Flatten())
-        model.add(Dense(50))
-        model.add(Reshape((50, 1)))
-        model.add(
-            Bidirectional(
-                LSTM(
-                    64,
-                    return_sequences=True,
-                    dropout=0.2,
-                    recurrent_dropout=0.2),
-                merge_mode='concat'))
-        model.add(UpSampling1D(2))
-        model.add(
-            Bidirectional(
-                LSTM(
-                    64,
-                    return_sequences=True,
-                    dropout=0.2,
-                    recurrent_dropout=0.2),
-                merge_mode='concat'))
-        model.add(TimeDistributed(Dense(1)))
-        model.add(Activation("tanh"))
-        x_ = model(z)
-        return Model(z, x_)
+        for layer in layers:
+            built_layer = build_layer(layer, hyperparameters)
+            model.add(built_layer)
 
-    def build_critic_x(self):
-        x = Input(shape=(self.shape[0], 1))
-        model = keras.models.Sequential()
-        model.add(Conv1D(64, 5))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv1D(64, 5))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv1D(64, 5))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv1D(64, 5))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Flatten())
-        model.add(Dense(1))
-        validity = model(x)
-        return Model(x, validity)
+        return Model(x, model(x))
 
-    def build_critic_z(self):
-        z = Input(shape=(self.latent_dim, 1))
-        model = keras.models.Sequential()
-        model.add(Flatten())
-        model.add(Dense(100))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.2))
-        model.add(Dense(100))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.2))
-        model.add(Dense(1))
-        validity = model(z)
-        return Model(z, validity)
-
-    def wasserstein_loss(self, y_true, y_pred):
+    def _wasserstein_loss(self, y_true, y_pred):
         return K.mean(y_true * y_pred)
 
-    def gradient_penalty_loss(self, y_true, y_pred, averaged_samples):
+    def _gradient_penalty_loss(self, y_true, y_pred, averaged_samples):
         gradients = K.gradients(y_pred, averaged_samples)[0]
         gradients_sqr = K.square(gradients)
         gradients_sqr_sum = K.sum(gradients_sqr, axis=np.arange(1, len(gradients_sqr.shape)))
@@ -112,36 +48,78 @@ class CycleGAN():
         gradient_penalty = K.square(1 - gradient_l2_norm)
         return K.mean(gradient_penalty)
 
-    def __init__(self, epochs=2000, shape=(100, 1), latent_dim=20, batch_size=64, n_critic=5):
+    def __init__(self, shape, encoder_input_shape, generator_input_shape, critic_x_input_shape,
+                 critic_z_input_shape, layers_encoder, layers_generator, layers_critic_x,
+                 layers_critic_z, optimizer, learning_rate=0.0005, epochs=2000, latent_dim=20,
+                 batch_size=64, iterations_critic=5, **hyperparameters):
         """Initialize the ARIMA object.
 
         Args:
-            epochs (int):
-                Optional. Integer denoting the number of epochs.
             shape (tuple):
-                Optional. Tuple denoting the shape of an input sample.
+                Tuple denoting the shape of an input sample.
+            encoder_input_shape (tuple):
+                Shape of encoder input.
+            generator_input_shape (tuple):
+                Shape of generator input.
+            critic_x_input_shape (tuple):
+                Shape of critic_x input.
+            critic_z_input_shape (tuple):
+                Shape of critic_z input.
+            layers_encoder (list):
+                List containing layers of encoder.
+            layers_generator (list):
+                List containing layers of generator.
+            layers_critic_x (list):
+                List containing layers of critic_x.
+            layers_critic_z (list):
+                List containing layers of critic_z.
+            optimizer (str):
+                String denoting the keras optimizer.
+            learning_rate (float):
+                Optional. Float denoting the learning rate of the optimizer. Default 0.005.
+            epochs (int):
+                Optional. Integer denoting the number of epochs. Default 2000.
             latent_dim (int):
-                Optional. Integer denoting dimension of latent space.
+                Optional. Integer denoting dimension of latent space. Default 20.
             batch_size (int):
-                Integer denoting the batch size.
-            n_critic (int):
-                Integer denoting the number of critic training steps per one
-                Generator/Encoder training step.
+                Integer denoting the batch size. Default 64.
+            iterations_critic (int):
+                Optional. Integer denoting the number of critic training steps per one
+                Generator/Encoder training step. Default 5.
+            hyperparameters (dictionary):
+                Optional. Dictionary containing any additional inputs.
         """
 
         self.shape = shape
         self.latent_dim = latent_dim
         self.batch_size = batch_size
-        self.n_critic = n_critic
+        self.iterations_critic = iterations_critic
         self.epochs = epochs
+        self.hyperparameters = hyperparameters
 
-        optimizer = Adam(lr=0.0005)
+        self.encoder_input_shape = encoder_input_shape
+        self.generator_input_shape = generator_input_shape
+        self.critic_x_input_shape = critic_x_input_shape
+        self.critic_z_input_shape = critic_z_input_shape
 
-        self.encoder = self.build_encoder()
-        self.generator = self.build_generator()
+        self.layers_encoder, self.layers_generator = layers_encoder, layers_generator
+        self.layers_critic_x, self.layers_critic_z = layers_critic_x, layers_critic_z
 
-        self.critic_x = self.build_critic_x()
-        self.critic_z = self.build_critic_z()
+        self.optimizer = import_object(optimizer)(learning_rate)
+
+    def _build_cyclegan(self, **kwargs):
+
+        hyperparameters = self.hyperparameters.copy()
+        hyperparameters.update(kwargs)
+
+        self.encoder = self._build_model(hyperparameters, self.layers_encoder,
+                                         self.encoder_input_shape)
+        self.generator = self._build_model(hyperparameters, self.layers_generator,
+                                           self.generator_input_shape)
+        self.critic_x = self._build_model(hyperparameters, self.layers_critic_x,
+                                          self.critic_x_input_shape)
+        self.critic_z = self._build_model(hyperparameters, self.layers_critic_z,
+                                          self.critic_z_input_shape)
 
         self.generator.trainable = False
         self.encoder.trainable = False
@@ -155,43 +133,25 @@ class CycleGAN():
         interpolated_x = RandomWeightedAverage()([x, x_])
 
         validity_interpolated_x = self.critic_x(interpolated_x)
-        partial_gp_loss_x = partial(self.gradient_penalty_loss, averaged_samples=interpolated_x)
+        partial_gp_loss_x = partial(self._gradient_penalty_loss, averaged_samples=interpolated_x)
         partial_gp_loss_x.__name__ = 'gradient_penalty'
-        self.critic_x_model = Model(
-            inputs=[
-                x, z], outputs=[
-                valid_x, fake_x, validity_interpolated_x])
-        self.critic_x_model.compile(
-            loss=[
-                self.wasserstein_loss,
-                self.wasserstein_loss,
-                partial_gp_loss_x],
-            optimizer=optimizer,
-            loss_weights=[
-                1,
-                1,
-                5])
+        self.critic_x_model = Model(inputs=[x, z], outputs=[valid_x, fake_x,
+                                                            validity_interpolated_x])
+        self.critic_x_model.compile(loss=[self._wasserstein_loss, self._wasserstein_loss,
+                                          partial_gp_loss_x], optimizer=self.optimizer,
+                                    loss_weights=[1, 1, 5])
 
         fake_z = self.critic_z(z_)
         valid_z = self.critic_z(z)
         interpolated_z = RandomWeightedAverage()([z, z_])
         validity_interpolated_z = self.critic_z(interpolated_z)
-        partial_gp_loss_z = partial(self.gradient_penalty_loss, averaged_samples=interpolated_z)
+        partial_gp_loss_z = partial(self._gradient_penalty_loss, averaged_samples=interpolated_z)
         partial_gp_loss_z.__name__ = 'gradient_penalty'
-        self.critic_z_model = Model(
-            inputs=[
-                x, z], outputs=[
-                valid_z, fake_z, validity_interpolated_z])
-        self.critic_z_model.compile(
-            loss=[
-                self.wasserstein_loss,
-                self.wasserstein_loss,
-                partial_gp_loss_z],
-            optimizer=optimizer,
-            loss_weights=[
-                1,
-                1,
-                10])
+        self.critic_z_model = Model(inputs=[x, z], outputs=[valid_z, fake_z,
+                                                            validity_interpolated_z])
+        self.critic_z_model.compile(loss=[self._wasserstein_loss, self._wasserstein_loss,
+                                          partial_gp_loss_z], optimizer=self.optimizer,
+                                    loss_weights=[1, 1, 10])
 
         self.critic_x.trainable = False
         self.critic_z.trainable = False
@@ -206,17 +166,10 @@ class CycleGAN():
         fake_gen_x = self.critic_x(x_gen_)
         fake_gen_z = self.critic_z(z_gen_)
 
-        self.generator_model = Model([x_gen, z_gen], [fake_gen_x, fake_gen_z, x_gen_rec])
-        self.generator_model.compile(
-            loss=[
-                self.wasserstein_loss,
-                self.wasserstein_loss,
-                'mse'],
-            optimizer=optimizer,
-            loss_weights=[
-                1,
-                1,
-                50])
+        self.encoder_generator_model = Model([x_gen, z_gen], [fake_gen_x, fake_gen_z, x_gen_rec])
+        self.encoder_generator_model.compile(loss=[self._wasserstein_loss, self._wasserstein_loss,
+                                                   'mse'], optimizer=self.optimizer,
+                                             loss_weights=[1, 1, 50])
 
     def _fit(self, X):
         fake = np.ones((self.batch_size, 1))
@@ -224,7 +177,7 @@ class CycleGAN():
         delta = np.ones((self.batch_size, 1)) * 10
 
         for epoch in range(self.epochs):
-            for _ in range(self.n_critic):
+            for _ in range(self.iterations_critic):
                 idx = np.random.randint(0, X.shape[0], self.batch_size)
                 x = X[idx]
                 z = np.random.normal(size=(self.batch_size, self.latent_dim, 1))
@@ -232,19 +185,20 @@ class CycleGAN():
                 cx_loss = self.critic_x_model.train_on_batch([x, z], [valid, fake, delta])
                 cz_loss = self.critic_z_model.train_on_batch([x, z], [valid, fake, delta])
 
-            g_loss = self.generator_model.train_on_batch([x, z], [valid, valid, x])
+            g_loss = self.encoder_generator_model.train_on_batch([x, z], [valid, valid, x])
 
             if epoch % 100 == 0:
                 print('Epoch: {}, [Dx loss: {}] [Dz loss: {}] [G loss: {}]'.format(
                     epoch, cx_loss, cz_loss, g_loss))
 
-    def fit(self, X):
+    def fit(self, X, **kwargs):
         """Fit the CycleGAN.
 
         Args:
             X (ndarray):
                 N-dimensional array containing the input training sequences for the model.
         """
+        self._build_cyclegan(**kwargs)
         X = X.reshape((-1, self.shape[0], 1))
         self._fit(X)
 
@@ -270,9 +224,9 @@ class CycleGAN():
 
 
 def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
-    """Compute an array of error scores.
+    """Compute an array of anomaly scores.
 
-    Errors are calculated using a combination of reconstruction error and critic score.
+    Anomaly scores are calculated using a combination of reconstruction error and critic score.
 
     Args:
         y (ndarray):
@@ -290,7 +244,7 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
 
     Returns:
         ndarray:
-            Array of errors.
+            Array of anomaly scores.
     """
 
     true = [item[0] for item in y.reshape((y.shape[0], -1))]
@@ -331,7 +285,6 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
                 critic_kde_max.append(np.median(np.asarray(critic_intermediate)))
 
     predictions = np.asarray(predictions)
-
     score_window_min = score_window // 2
 
     pd_true = pd.Series(np.asarray(true).flatten())
@@ -342,10 +295,11 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
         .apply(integrate.trapz)
     scores = abs(score_measure_true - score_measure_pred)
     scores_smoothed = pd.Series(scores).rolling(smooth_window, center=True,
-                                                min_periods=int(smooth_window / 2),
+                                                min_periods=smooth_window // 2,
                                                 win_type='triang').mean().values
 
     z_score_scores = stats.zscore(scores_smoothed)
+    z_score_scores_clip = np.clip(z_score_scores, a_min=0, a_max=None) + 1
 
     critic_kde_max = np.asarray(critic_kde_max)
     l_quantile = np.quantile(critic_kde_max, 0.25)
@@ -357,6 +311,5 @@ def score_anomalies(y, y_hat, critic, score_window=10, smooth_window=200):
     z_score_critic = np.absolute((np.asarray(critic_kde_max) - critic_mean) / critic_std) + 1
     z_score_critic = pd.Series(z_score_critic).rolling(
         100, center=True, min_periods=50).mean().values
-    z_score_scores_clip = np.clip(z_score_scores, a_min=0, a_max=None) + 1
 
     return np.multiply(z_score_scores_clip, z_score_critic)
