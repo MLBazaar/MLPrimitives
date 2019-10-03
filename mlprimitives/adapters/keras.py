@@ -14,7 +14,7 @@ LOGGER = logging.getLogger(__name__)
 def build_layer(layer, hyperparameters):
     layer_class = import_object(layer['class'])
     layer_kwargs = layer['parameters'].copy()
-    if issubclass(layer_class, keras.layers.Wrapper):
+    if issubclass(layer_class, keras.layers.wrappers.Wrapper):
         layer_kwargs['layer'] = build_layer(layer_kwargs['layer'], hyperparameters)
     for key, value in layer_kwargs.items():
         if isinstance(value, str):
