@@ -11,6 +11,17 @@ from mlprimitives.utils import import_object
 LOGGER = logging.getLogger(__name__)
 
 
+def build_layer(layer, hyperparameters):
+    layer_class = import_object(layer['class'])
+    layer_kwargs = layer['parameters'].copy()
+    if issubclass(layer_class, keras.layers.Wrapper):
+        layer_kwargs['layer'] = build_layer(layer_kwargs['layer'], hyperparameters)
+    for key, value in layer_kwargs.items():
+        if isinstance(value, str):
+            layer_kwargs[key] = hyperparameters.get(value, value)
+    return layer_class(**layer_kwargs)
+
+
 class Sequential(object):
     """A Wrapper around Sequential Keras models with a simpler interface."""
 
@@ -33,33 +44,23 @@ class Sequential(object):
         self.__dict__ = state
 
     def _build_model(self, **kwargs):
-        model = keras.models.Sequential()
-
         hyperparameters = self.hyperparameters.copy()
         hyperparameters.update(kwargs)
 
-        for layer in self.layers:
-            layer_kwargs = layer['parameters'].copy()
-            for key, value in layer_kwargs.items():
-                if isinstance(value, str):
-                    layer_kwargs[key] = hyperparameters.get(value, value)
+        model = keras.models.Sequential()
 
-            model.add(layer['class'](**layer_kwargs))
+        for layer in self.layers:
+            built_layer = build_layer(layer, hyperparameters)
+            model.add(built_layer)
 
         model.compile(loss=self.loss, optimizer=self.optimizer(), metrics=self.metrics)
-
         return model
 
     def __init__(self, layers, loss, optimizer, classification, callbacks=tuple(),
                  metrics=None, epochs=10, verbose=False, validation_split=0, batch_size=32,
                  shuffle=True, **hyperparameters):
 
-        self.layers = list()
-        for layer in layers:
-            layer = layer.copy()
-            layer['class'] = import_object(layer['class'])
-            self.layers.append(layer)
-
+        self.layers = layers
         self.optimizer = import_object(optimizer)
         self.loss = import_object(loss)
         self.metrics = metrics
