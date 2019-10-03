@@ -1,0 +1,7 @@
+mlprimitives.candidates.timeseries.cyclegan module
+==================================================
+
+.. automodule:: mlprimitives.candidates.timeseries.cyclegan
+   :members:
+   :undoc-members:
+   :show-inheritance:

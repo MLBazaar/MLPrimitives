@@ -1,0 +1,14 @@
+mlprimitives.candidates.timeseries package
+==========================================
+
+.. automodule:: mlprimitives.candidates.timeseries
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   mlprimitives.candidates.timeseries.cyclegan

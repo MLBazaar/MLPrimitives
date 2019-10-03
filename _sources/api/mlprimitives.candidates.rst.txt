@@ -6,6 +6,13 @@ mlprimitives.candidates package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+
+   mlprimitives.candidates.timeseries
+
 Submodules
 ----------
 

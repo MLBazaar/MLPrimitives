@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mlprimitives.adapters.keras module &mdash; MLPrimitives 0.2.2-dev1 documentation</title>
+  <title>mlprimitives.candidates.timeseries package &mdash; MLPrimitives 0.2.2-dev1 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mlprimitives.adapters.lightfm module" href="mlprimitives.adapters.lightfm.html" />
-    <link rel="prev" title="mlprimitives.adapters.featuretools module" href="mlprimitives.adapters.featuretools.html" /> 
+    <link rel="next" title="mlprimitives.candidates.timeseries.cyclegan module" href="mlprimitives.candidates.timeseries.cyclegan.html" />
+    <link rel="prev" title="mlprimitives.candidates package" href="mlprimitives.candidates.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -183,12 +183,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="mlprimitives.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="mlprimitives.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mlprimitives.adapters.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="mlprimitives.candidates.html">mlprimitives.candidates package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="mlprimitives.candidates.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mlprimitives.candidates.html#submodules">Submodules</a></li>
 </ul>
 </li>
@@ -328,16 +328,16 @@
         
           <li><a href="mlprimitives.html">mlprimitives package</a> &raquo;</li>
         
-          <li><a href="mlprimitives.adapters.html">mlprimitives.adapters package</a> &raquo;</li>
+          <li><a href="mlprimitives.candidates.html">mlprimitives.candidates package</a> &raquo;</li>
         
-      <li>mlprimitives.adapters.keras module</li>
+      <li>mlprimitives.candidates.timeseries package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.adapters.keras.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/api/mlprimitives.candidates.timeseries.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -351,30 +351,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-mlprimitives.adapters.keras">
-<span id="mlprimitives-adapters-keras-module"></span><h1>mlprimitives.adapters.keras module<a class="headerlink" href="#module-mlprimitives.adapters.keras" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="mlprimitives.adapters.keras.Sequential">
-<em class="property">class </em><code class="sig-prename descclassname">mlprimitives.adapters.keras.</code><code class="sig-name descname">Sequential</code><span class="sig-paren">(</span><em class="sig-param">layers</em>, <em class="sig-param">loss</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">classification</em>, <em class="sig-param">callbacks=()</em>, <em class="sig-param">metrics=None</em>, <em class="sig-param">epochs=10</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">validation_split=0</em>, <em class="sig-param">batch_size=32</em>, <em class="sig-param">shuffle=True</em>, <em class="sig-param">**hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/keras.html#Sequential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.keras.Sequential" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A Wrapper around Sequential Keras models with a simpler interface.</p>
-<dl class="method">
-<dt id="mlprimitives.adapters.keras.Sequential.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/keras.html#Sequential.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.keras.Sequential.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mlprimitives.adapters.keras.Sequential.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/keras.html#Sequential.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.keras.Sequential.predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="mlprimitives.adapters.keras.build_layer">
-<code class="sig-prename descclassname">mlprimitives.adapters.keras.</code><code class="sig-name descname">build_layer</code><span class="sig-paren">(</span><em class="sig-param">layer</em>, <em class="sig-param">hyperparameters</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/adapters/keras.html#build_layer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.adapters.keras.build_layer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+  <div class="section" id="module-mlprimitives.candidates.timeseries">
+<span id="mlprimitives-candidates-timeseries-package"></span><h1>mlprimitives.candidates.timeseries package<a class="headerlink" href="#module-mlprimitives.candidates.timeseries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mlprimitives.candidates.timeseries.cyclegan.html">mlprimitives.candidates.timeseries.cyclegan module</a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -385,10 +371,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mlprimitives.adapters.lightfm.html" class="btn btn-neutral float-right" title="mlprimitives.adapters.lightfm module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mlprimitives.candidates.timeseries.cyclegan.html" class="btn btn-neutral float-right" title="mlprimitives.candidates.timeseries.cyclegan module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mlprimitives.adapters.featuretools.html" class="btn btn-neutral float-left" title="mlprimitives.adapters.featuretools module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mlprimitives.candidates.html" class="btn btn-neutral float-left" title="mlprimitives.candidates package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
