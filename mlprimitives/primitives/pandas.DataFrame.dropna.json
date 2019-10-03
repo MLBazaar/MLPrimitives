@@ -1,0 +1,53 @@
+{
+    "name": "pandas.DataFrame.dropna",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html",
+    "description": "Remove missing values.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.dropna",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "axis": {
+                "type": "int",
+                "default": 0,
+                "description": "Determine if rows or columns which contain missing values are removed."
+            },
+            "how": {
+                "type": "str",
+                "default": "any",
+                "description": "Determine if row or column is removed from DataFrame, when we have at least one NA or all NA."
+            },
+            "thresh": {
+                "type": "int",
+                "default": null,
+                "description": "Require that many non-NA values."
+            },
+            "subset": {
+                "type": "str or list",
+                "default": null,
+                "description": "Labels along other axis to consider."
+            }
+        }
+    }
+}

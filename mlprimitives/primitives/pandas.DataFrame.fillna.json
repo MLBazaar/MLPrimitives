@@ -1,0 +1,53 @@
+{
+    "name": "pandas.DataFrame.fillna",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html",
+    "description": "Fill NA/NaN values using the specified method.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.fillna",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "value": {
+                "type": "object",
+                "default": null,
+                "description": "Value to use to fill holes."
+            },
+            "method": {
+                "type": "str",
+                "default": null,
+                "description": "Method to use for filling holes in reindexed Series"
+            },
+            "axis": {
+                "type": "int",
+                "default": 0,
+                "description": "Axis along which to fill missing values."
+            },
+            "limit": {
+                "type": "int",
+                "default": null,
+                "description": "If method is specified, this is the maximum number of consecutive NaN values to forward/backward fill. If method is not specified, this is the maximum number of entries along the entire axis where NaNs will be filled. Must be greater than 0 if not None."
+            }
+        }
+    }
+}
