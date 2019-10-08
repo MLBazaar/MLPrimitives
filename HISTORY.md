@@ -4,7 +4,7 @@
 
 ### New Primitives
 
-* Add primitives for GAN based time-series anomaly detection approved new primitives - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
+* Add primitives for GAN based time-series anomaly detection - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
 * Add `numpy.reshape` and `numpy.ravel` primitives - [Issue #197](https://github.com/HDI-Project/MLPrimitives/issues/197) by @AlexanderGeiger
 * Add feature selection primitive based on Lasso - [Issue #194](https://github.com/HDI-Project/MLPrimitives/issues/194) by @csala
 
