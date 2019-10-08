@@ -56,10 +56,9 @@ def deltas(errors, epsilon, mean, std):
             Standard deviation of errors.
 
     Returns:
-        float:
-            delta_mean.
-        float:
-            delta_std.
+        float, float:
+            * delta_mean.
+            * delta_std.
     """
     below = errors[errors <= epsilon]
     if not len(below):
@@ -82,10 +81,9 @@ def count_above(errors, epsilon):
             Threshold value.
 
     Returns:
-        int:
-            Number of errors above epsilon.
-        int:
-            Number of continuous sequences above epsilon.
+        int, int:
+            * Number of errors above epsilon.
+            * Number of continuous sequences above epsilon.
     """
     above = errors > epsilon
     total_above = len(errors[above])
@@ -196,10 +194,9 @@ def _find_sequences(errors, epsilon, anomaly_padding):
             anomalous sequence.
 
     Returns:
-        ndarray:
-            Array containing start, end of each found anomalous sequence.
-        float:
-            Maximum error value that was not considered an anomaly.
+        ndarray, float:
+            * Array containing start, end of each found anomalous sequence.
+            * Maximum error value that was not considered an anomaly.
     """
     above = pd.Series(errors > epsilon)
     index_above = np.argwhere(above)

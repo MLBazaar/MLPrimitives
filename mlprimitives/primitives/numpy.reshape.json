@@ -1,0 +1,43 @@
+{
+    "name": "numpy.reshape",
+    "contributors": [
+        "Alexander Geiger <geigera@mit.edu>"
+    ],
+    "documentation": "https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html",
+    "description": "Gives a new shape to an array without changing its data.",
+    "classifiers": {
+        "type": "helper"
+    },
+    "modalities": [],
+    "primitive": "numpy.reshape",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "a",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "newshape": {
+                "type": "tuple",
+                "default": [
+                    -1,
+                    1
+                ]
+            },
+            "order": {
+                "type": "str",
+                "default": "C"
+            }
+        }
+    }
+}
