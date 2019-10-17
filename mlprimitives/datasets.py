@@ -305,6 +305,9 @@ def load_reviews():
     The distribution of the original scores is more uniform in comparison to the revised scores.
     This difference is assumed to come from a discrepancy between the way the paper is evaluated
     and the way the review is written by the original reviewer.
+
+    source: "UCI
+    sourceURI: "https://archive.ics.uci.edu/ml/datasets/Paper+Reviews"
     """
     dataset_path = _load('reviews')
 
