@@ -40,6 +40,8 @@ The available datasets by data modality and task type are:
 +------------------+---------------+---------------------------+
 | News Groups      | Text          | Classification            |
 +------------------+---------------+---------------------------+
+| Paper Reviews    | Text          | Regression                |
++------------------+---------------+---------------------------+
 
 """
 
@@ -290,6 +292,29 @@ def load_personae():
     y = X.pop('label').values
 
     return Dataset(load_personae.__doc__, X, y, accuracy_score, stratify=True)
+
+
+def load_reviews():
+    """Paper Reviews Dataset.
+
+    The data set consists of paper reviews sent to an international conference mostly in Spanish
+    (some are in English). It has a total of N = 405 instances evaluated with a 5-point scale
+    ('-2': very negative, '-1': negative, '0': neutral, '1': positive, '2': very positive),
+    expressing the reviewer's opinion about the paper and the orientation perceived by a reader
+    who does not know the reviewer's evaluation (more details in the attributes' section).
+    The distribution of the original scores is more uniform in comparison to the revised scores.
+    This difference is assumed to come from a discrepancy between the way the paper is evaluated
+    and the way the review is written by the original reviewer.
+
+    source: "UCI
+    sourceURI: "https://archive.ics.uci.edu/ml/datasets/Paper+Reviews"
+    """
+    dataset_path = _load('reviews')
+
+    X = _load_csv(dataset_path, 'data')
+    y = X.pop('evaluation').values
+
+    return Dataset(load_reviews.__doc__, X, y, r2_score)
 
 
 def load_umls():
