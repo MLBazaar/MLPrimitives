@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "name": "single_table/regression/text",
+        "data_type": "single_table",
+        "task_type": "regression"
+    },
+    "validation": {
+        "dataset": "reviews"
+    },
+    "primitives": [
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "sklearn.impute.SimpleImputer",
+        "xgboost.XGBRegressor"
+    ]
+}
