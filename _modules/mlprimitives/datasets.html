@@ -391,6 +391,8 @@
 <span class="sd">+------------------+---------------+---------------------------+</span>
 <span class="sd">| News Groups      | Text          | Classification            |</span>
 <span class="sd">+------------------+---------------+---------------------------+</span>
+<span class="sd">| Paper Reviews    | Text          | Regression                |</span>
+<span class="sd">+------------------+---------------+---------------------------+</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -641,6 +643,29 @@
     <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
     <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_personae</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_reviews"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_reviews">[docs]</a><span class="k">def</span> <span class="nf">load_reviews</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Paper Reviews Dataset.</span>
+
+<span class="sd">    The data set consists of paper reviews sent to an international conference mostly in Spanish</span>
+<span class="sd">    (some are in English). It has a total of N = 405 instances evaluated with a 5-point scale</span>
+<span class="sd">    (&#39;-2&#39;: very negative, &#39;-1&#39;: negative, &#39;0&#39;: neutral, &#39;1&#39;: positive, &#39;2&#39;: very positive),</span>
+<span class="sd">    expressing the reviewer&#39;s opinion about the paper and the orientation perceived by a reader</span>
+<span class="sd">    who does not know the reviewer&#39;s evaluation (more details in the attributes&#39; section).</span>
+<span class="sd">    The distribution of the original scores is more uniform in comparison to the revised scores.</span>
+<span class="sd">    This difference is assumed to come from a discrepancy between the way the paper is evaluated</span>
+<span class="sd">    and the way the review is written by the original reviewer.</span>
+
+<span class="sd">    source: &quot;UCI</span>
+<span class="sd">    sourceURI: &quot;https://archive.ics.uci.edu/ml/datasets/Paper+Reviews&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_path</span> <span class="o">=</span> <span class="n">_load</span><span class="p">(</span><span class="s1">&#39;reviews&#39;</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">_load_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;evaluation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_reviews</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_umls"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_umls">[docs]</a><span class="k">def</span> <span class="nf">load_umls</span><span class="p">():</span>
