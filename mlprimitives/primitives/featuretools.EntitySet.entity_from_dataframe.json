@@ -19,6 +19,7 @@
             },
             {
                 "name": "entityset",
+                "default": null,
                 "type": "featuretools.EntitySet",
                 "description": "EntitySet where the dataframe will be added."
             }

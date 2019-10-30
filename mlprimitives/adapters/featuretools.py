@@ -125,7 +125,7 @@ class DFS(object):
         return X
 
 
-def entity_from_dataframe(entityset, entityset_id, entity_id, dataframe, index=None,
+def entity_from_dataframe(entityset_id, entity_id, dataframe, entityset=None, index=None,
                           variable_types=None, make_index=False, time_index=None,
                           secondary_time_index=None, already_sorted=False):
     if entityset is None:
