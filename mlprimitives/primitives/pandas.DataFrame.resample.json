@@ -34,6 +34,7 @@
             },
             "time_index": {
                 "type": "str",
+                "default": null,
                 "description": "(Deprecated in favor of `on`). Name of the column to use as the time index."
             },
             "groupby": {
