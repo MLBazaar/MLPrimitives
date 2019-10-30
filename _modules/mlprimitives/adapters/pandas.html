@@ -391,7 +391,7 @@
 <span class="sd">            Function or name of the function to use for the aggregation. If a name is given, it</span>
 <span class="sd">            can either be one of the standard pandas aggregation functions or the fully qualified</span>
 <span class="sd">            name of a python function that will be imported and used.</span>
-<span class="sd">        reset_index (boolt):</span>
+<span class="sd">        reset_index (bool):</span>
 <span class="sd">            Whether to reset the index after aggregating</span>
 <span class="sd">        time_index (str or None):</span>
 <span class="sd">            Deprecated: This has been renamed to `on`.</span>
@@ -425,6 +425,9 @@
             <span class="k">pass</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">dtir</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">aggregation</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">reset_index</span><span class="p">:</span>
         <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
