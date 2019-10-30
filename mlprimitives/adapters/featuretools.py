@@ -8,29 +8,38 @@ class DFS(object):
 
     features = None
 
-    def __init__(self, max_depth=None, encode=True, remove_low_information=True,
-                 target_entity=None, index=None, time_index=None,
-                 agg_primitives=None, trans_primitives=None, copy=True):
-        self.copy = copy
-        self.max_depth = max_depth
+    def __init__(self, encode=True, remove_low_information=True, index=None, time_index=None,
+                 target_entity=None, agg_primitives=None, trans_primitives=None, max_depth=2,
+                 max_features=-1, training_window=None, n_jobs=1, verbose=False, copy=True):
         self.encode = encode
         self.remove_low_information = remove_low_information
-        self.target_entity = target_entity
         self.index = index
         self.time_index = time_index
+        self.target_entity = target_entity
         self.agg_primitives = agg_primitives
         self.trans_primitives = trans_primitives
+        self.max_depth = max_depth
+        self.max_features = max_features
+        self.training_window = training_window
+        self.n_jobs = n_jobs
+        self.verbose = verbose
+        self.copy = copy
 
     def __repr__(self):
         return (
-            "DFS(max_depth={max_depth},\n"
-            "    encode={encode},\n"
+            "DFS(encode={encode},\n"
             "    remove_low_information={remove_low_information},\n"
-            "    target_entity={target_entity},\n"
             "    index={index},\n"
             "    time_index={time_index},\n"
+            "    target_entity={target_entity},\n"
             "    agg_primitives={agg_primitives},\n"
-            "    trans_primitives={trans_primitives})"
+            "    trans_primitives={trans_primitives},\n"
+            "    max_depth={max_depth},\n"
+            "    max_features={max_features},\n"
+            "    training_window={training_window},\n"
+            "    n_jobs={n_jobs},\n"
+            "    verbose={verbose},\n"
+            "    copy={copy})"
         ).format(**self.__dict__)
 
     def _get_index(self, X):
@@ -84,7 +93,11 @@ class DFS(object):
             target_entity=target_entity,
             features_only=True,
             agg_primitives=self.agg_primitives,
-            trans_primitives=self.trans_primitives
+            trans_primitives=self.trans_primitives,
+            max_features=self.max_features,
+            training_window=self.training_window,
+            n_jobs=self.n_jobs,
+            verbose=self.verbose,
         )
 
         X = ft.calculate_feature_matrix(
