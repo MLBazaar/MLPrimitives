@@ -359,29 +359,38 @@
 
     <span class="n">features</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">agg_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trans_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">copy</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agg_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trans_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">training_window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="o">=</span> <span class="n">encode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span> <span class="o">=</span> <span class="n">remove_low_information</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span> <span class="o">=</span> <span class="n">time_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span> <span class="o">=</span> <span class="n">agg_primitives</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span> <span class="o">=</span> <span class="n">trans_primitives</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">=</span> <span class="n">max_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="o">=</span> <span class="n">training_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">copy</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="s2">&quot;DFS(max_depth=</span><span class="si">{max_depth}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;    encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;DFS(encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="s2">&quot;    remove_low_information=</span><span class="si">{remove_low_information}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;    target_entity=</span><span class="si">{target_entity}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="s2">&quot;    index=</span><span class="si">{index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="s2">&quot;    time_index=</span><span class="si">{time_index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    target_entity=</span><span class="si">{target_entity}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="s2">&quot;    agg_primitives=</span><span class="si">{agg_primitives}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;    trans_primitives=</span><span class="si">{trans_primitives}</span><span class="s2">)&quot;</span>
+            <span class="s2">&quot;    trans_primitives=</span><span class="si">{trans_primitives}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    max_depth=</span><span class="si">{max_depth}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    max_features=</span><span class="si">{max_features}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    training_window=</span><span class="si">{training_window}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    n_jobs=</span><span class="si">{n_jobs}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    verbose=</span><span class="si">{verbose}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    copy=</span><span class="si">{copy}</span><span class="s2">)&quot;</span>
         <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -418,38 +427,42 @@
         <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
 
-        <span class="n">instance_ids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span><span class="o">.</span><span class="n">add_last_time_indexes</span><span class="p">()</span>
+
         <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
             <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span>
             <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
             <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
             <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
             <span class="n">target_entity</span><span class="o">=</span><span class="n">target_entity</span><span class="p">,</span>
             <span class="n">features_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">agg_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span><span class="p">,</span>
-            <span class="n">trans_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span>
+            <span class="n">trans_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span>
+            <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
-            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
-            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+                <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+                <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+                <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+            <span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">:</span>
-            <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">encode_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">encode_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
-            <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">remove_low_information_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">remove_low_information_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DFS.calculate_feature_matrix"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.calculate_feature_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_feature_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -457,20 +470,20 @@
         <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
 
-        <span class="n">instance_ids</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span><span class="o">.</span><span class="n">add_last_time_indexes</span><span class="p">()</span>
+
         <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
             <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">instance_ids</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 
         <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
             <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
             <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
-            <span class="n">instance_ids</span><span class="o">=</span><span class="n">instance_ids</span><span class="p">,</span>
+            <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">X</span></div></div>
