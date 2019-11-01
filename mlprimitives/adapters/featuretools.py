@@ -76,18 +76,15 @@ class DFS(object):
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
-        instance_ids = None
+        if self.training_window is not None:
+            entityset.add_last_time_indexes()
+
         cutoff_time = None
         if self.time_index:
             cutoff_time = X[[self.index, self.time_index]]
-        elif self.index:
-            instance_ids = X[self.index]
-        else:
-            instance_ids = X.index.values
 
         self.features = ft.dfs(
             cutoff_time=cutoff_time,
-            instance_ids=instance_ids,
             max_depth=self.max_depth,
             entityset=entityset,
             target_entity=target_entity,
@@ -104,7 +101,9 @@ class DFS(object):
             self.features,
             entityset=entityset,
             cutoff_time=cutoff_time,
-            instance_ids=instance_ids,
+            training_window=self.training_window,
+            n_jobs=self.n_jobs,
+            verbose=self.verbose,
         )
 
         if self.encode:
@@ -119,20 +118,20 @@ class DFS(object):
         if entityset is None:
             entityset = self._get_entityset(X, target_entity, entities, relationships)
 
-        instance_ids = None
+        if self.training_window is not None:
+            entityset.add_last_time_indexes()
+
         cutoff_time = None
         if self.time_index:
             cutoff_time = X[[self.index, self.time_index]]
-        elif self.index:
-            instance_ids = X[self.index]
-        else:
-            instance_ids = X.index.values
 
         X = ft.calculate_feature_matrix(
             self.features,
             entityset=entityset,
             cutoff_time=cutoff_time,
-            instance_ids=instance_ids,
+            training_window=self.training_window,
+            n_jobs=self.n_jobs,
+            verbose=self.verbose,
         )
 
         return X

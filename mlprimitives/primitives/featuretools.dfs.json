@@ -116,7 +116,7 @@
             },
             "max_features": {
                 "type": "int",
-                "deafult": null
+                "default": -1
             },
             "encode": {
                 "type": "bool",
