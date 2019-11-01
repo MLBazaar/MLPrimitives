@@ -8,7 +8,7 @@ class DFS(object):
 
     features = None
 
-    def __init__(self, encode=True, remove_low_information=True, index=None, time_index=None,
+    def __init__(self, encode=False, remove_low_information=False, index=None, time_index=None,
                  target_entity=None, agg_primitives=None, trans_primitives=None, max_depth=2,
                  max_features=-1, training_window=None, n_jobs=1, verbose=False, copy=True):
         self.encode = encode
@@ -97,20 +97,21 @@ class DFS(object):
             verbose=self.verbose,
         )
 
-        X = ft.calculate_feature_matrix(
-            self.features,
-            entityset=entityset,
-            cutoff_time=cutoff_time,
-            training_window=self.training_window,
-            n_jobs=self.n_jobs,
-            verbose=self.verbose,
-        )
+        if self.encode or self.remove_low_information:
+            X = ft.calculate_feature_matrix(
+                self.features,
+                entityset=entityset,
+                cutoff_time=cutoff_time,
+                training_window=self.training_window,
+                n_jobs=self.n_jobs,
+                verbose=self.verbose,
+            )
 
-        if self.encode:
-            X, self.features = ft.encode_features(X, self.features)
+            if self.encode:
+                X, self.features = ft.encode_features(X, self.features)
 
-        if self.remove_low_information:
-            X, self.features = remove_low_information_features(X, self.features)
+            if self.remove_low_information:
+                X, self.features = remove_low_information_features(X, self.features)
 
     def calculate_feature_matrix(self, X, target_entity=None, entityset=None,
                                  entities=None, relationships=None):

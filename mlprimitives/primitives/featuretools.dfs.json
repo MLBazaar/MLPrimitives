@@ -120,7 +120,11 @@
             },
             "encode": {
                 "type": "bool",
-                "default": true
+                "default": false
+            },
+            "remove_low_information": {
+                "type": "bool",
+                "default": false
             }
         },
         "tunable": {
@@ -132,10 +136,6 @@
                     5
                 ],
                 "values": null
-            },
-            "remove_low_information": {
-                "type": "bool",
-                "default": true
             }
         }
     }
