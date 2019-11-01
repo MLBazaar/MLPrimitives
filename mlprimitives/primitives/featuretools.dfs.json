@@ -98,7 +98,31 @@
                 "type": "list",
                 "default": null
             },
+            "verbose": {
+                "type": "bool",
+                "default": false
+            },
             "copy": {
+                "type": "bool",
+                "default": false
+            },
+            "n_jobs": {
+                "type": "int",
+                "default": -1
+            },
+            "training_window": {
+                "type": "str",
+                "default": null
+            },
+            "max_features": {
+                "type": "int",
+                "default": -1
+            },
+            "encode": {
+                "type": "bool",
+                "default": false
+            },
+            "remove_low_information": {
                 "type": "bool",
                 "default": false
             }
@@ -106,20 +130,12 @@
         "tunable": {
             "max_depth": {
                 "type": "int",
-                "default": 1,
+                "default": 2,
                 "range": [
                     1,
-                    3
+                    5
                 ],
                 "values": null
-            },
-            "encode": {
-                "type": "bool",
-                "default": true
-            },
-            "remove_low_information": {
-                "type": "bool",
-                "default": true
             }
         }
     }
