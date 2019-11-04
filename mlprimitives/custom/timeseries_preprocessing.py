@@ -229,7 +229,6 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
             one row in the ``X`` table.
     """
 
-    index = X.index.copy()
     if cutoff_time:
         X = X.set_index(cutoff_time)
 
