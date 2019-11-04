@@ -359,6 +359,36 @@
   <div class="section" id="module-mlprimitives.custom.timeseries_preprocessing">
 <span id="mlprimitives-custom-timeseries-preprocessing-module"></span><h1>mlprimitives.custom.timeseries_preprocessing module<a class="headerlink" href="#module-mlprimitives.custom.timeseries_preprocessing" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="mlprimitives.custom.timeseries_preprocessing.cutoff_window_sequences">
+<code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">cutoff_window_sequences</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">timeseries</em>, <em class="sig-param">window_size</em>, <em class="sig-param">cutoff_time=None</em>, <em class="sig-param">time_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#cutoff_window_sequences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.cutoff_window_sequences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract timeseries sequences based on cutoff times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.DataFrame</em>) – <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the cutoff time alongside any other values
+that need to be used to filter the matching timeseries data.
+The cutoff time can either be set as the DataFrame index or as a column.</p></li>
+<li><p><strong>timeseries</strong> (<em>pandas.DataFrame</em>) – <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the actual timeseries data. The time index
+and either be set as the DataFrame index or as a column.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Numer of elements to take before the cutoff time for each sequence.</p></li>
+<li><p><strong>cutoff_time</strong> (<em>str</em>) – Optional. If given, the indicated column will be used as the cutoff time.
+Otherwise, the table index will be used.</p></li>
+<li><p><strong>time_index</strong> (<em>str</em>) – Optional. If given, the indicated column will be used as the timeseries index.
+Otherwise, the table index will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Numpy array with three dimentions. The frst dimension will have the same
+length as <code class="docutils literal notranslate"><span class="pre">X</span></code>, and each of the 2D matrices within it will correspond to
+one row in the <code class="docutils literal notranslate"><span class="pre">X</span></code> table.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="mlprimitives.custom.timeseries_preprocessing.intervals_to_mask">
 <code class="sig-prename descclassname">mlprimitives.custom.timeseries_preprocessing.</code><code class="sig-name descname">intervals_to_mask</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">intervals</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mlprimitives/custom/timeseries_preprocessing.html#intervals_to_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mlprimitives.custom.timeseries_preprocessing.intervals_to_mask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create boolean mask from given intervals.</p>
