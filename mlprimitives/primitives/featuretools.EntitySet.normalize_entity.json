@@ -1,0 +1,75 @@
+{
+    "name": "featuretools.EntitySet.normalize_entity",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://docs.featuretools.com/generated/featuretools.EntitySet.normalize_entity.html#featuretools.EntitySet.normalize_entity",
+    "description": "Create a new entity and relationship from unique values of an existing variable.",
+    "classifiers": {
+        "type": "helper"
+    },
+    "modalities": [],
+    "primitive": "featuretools.EntitySet.normalize_entity",
+    "produce": {
+        "args": [
+            {
+                "name": "entityset",
+                "keyword": "self",
+                "type": "featuretools.EntitySet",
+                "description": "EntitySet from which to normalize the entity."
+            }
+        ],
+        "output": [
+            {
+                "name": "entityset",
+                "type": "featuretools.EntitySet"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "base_entity_id": {
+                "type": "str",
+                "description": "Entity id from which to split."
+            },
+            "new_entity_id": {
+                "type": "str",
+                "description": "Id of the new entity."
+            },
+            "index": {
+                "type": "str",
+                "description": "Variable in old entity that will become index of new entity. Relationship will be created across this variable."
+            },
+            "additional_variables": {
+                "type": "list",
+                "default": null,
+                "description": "List of variable ids to remove from base_entity and move to new entity."
+            },
+            "copy_variables": {
+                "type": "list",
+                "default": null,
+                "description": "List of variable ids to copy from old entity and move to new entity."
+            },
+            "make_time_index": {
+                "type": "list or str",
+                "default": null,
+                "description": "Create time index for new entity based on time index in base_entity, optionally specifying which variable in base_entity to use for time_index. If specified as True without a specific variable, uses the primary time index. Defaults to True if base entity has a time index."
+            },
+            "make_secondary_time_index": {
+                "type": "dict",
+                "default": null,
+                "description": "Create a secondary time index from key. Values of dictionary are the variables to associate with the secondary time index. Only one secondary time index is allowed. If None, only associate the time index."
+            },
+            "new_entity_time_index": {
+                "type": "str",
+                "default": null,
+                "description": "Rename new entity time index."
+            },
+            "new_entity_secondary_time_index": {
+                "type": "str",
+                "default": null,
+                "description": "Rename new entity secondary time index."
+            }
+        }
+    }
+}
