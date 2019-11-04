@@ -9,40 +9,39 @@ and task types.
 
 The available datasets by data modality and task type are:
 
-+------------------+---------------+---------------------------+
-| Dataset          | Data Modality | Task Type                 |
-+==================+===============+===========================+
-| Amazon           | Graph         | Community Detection       |
-+------------------+---------------+---------------------------+
-| DIC28            | Graph         | Graph Matching            |
-+------------------+---------------+---------------------------+
-| UMLs             | Graph         | Link Prediction           |
-+------------------+---------------+---------------------------+
-| Nomination       | Graph         | Vertex Nomination         |
-+------------------+---------------+---------------------------+
-| USPS             | Image         | Classification            |
-+------------------+---------------+---------------------------+
-| Hand Geometry    | Image         | Regression                |
-+------------------+---------------+---------------------------+
-| Iris             | Single Table  | Multiclass Classification |
-+------------------+---------------+---------------------------+
-| Census           | Single Table  | Binary Classification     |
-+------------------+---------------+---------------------------+
-| Jester           | Single Table  | Collaborative Filtering   |
-+------------------+---------------+---------------------------+
-| Boston           | Single Table  | Regression                |
-+------------------+---------------+---------------------------+
-| Boston Multitask | Single Table  | Multitask Regression      |
-+------------------+---------------+---------------------------+
-| Wiki QA          | Multi Table   | Classification            |
-+------------------+---------------+---------------------------+
-| Personae         | Text          | Classification            |
-+------------------+---------------+---------------------------+
-| News Groups      | Text          | Classification            |
-+------------------+---------------+---------------------------+
-| Paper Reviews    | Text          | Regression                |
-+------------------+---------------+---------------------------+
-
++------------------+---------------+---------------------------+-------------------+
+| Dataset          | Data Modality | Task Type                 | Task Subtype      |
++==================+===============+===========================+===================+
+| Amazon           | Graph         | Community Detection       |                   |
++------------------+---------------+---------------------------+-------------------+
+| DIC28            | Graph         | Graph Matching            |                   |
++------------------+---------------+---------------------------+-------------------+
+| UMLs             | Graph         | Link Prediction           |                   |
++------------------+---------------+---------------------------+-------------------+
+| Nomination       | Graph         | Vertex Nomination         |                   |
++------------------+---------------+---------------------------+-------------------+
+| USPS             | Image         | Classification            | Binary            |
++------------------+---------------+---------------------------+-------------------+
+| Hand Geometry    | Image         | Regression                | Univariate        |
++------------------+---------------+---------------------------+-------------------+
+| Iris             | Single Table  | Classification            | Multiclass        |
++------------------+---------------+---------------------------+-------------------+
+| Census           | Single Table  | Classification            | Binary            |
++------------------+---------------+---------------------------+-------------------+
+| Jester           | Single Table  | Collaborative Filtering   |                   |
++------------------+---------------+---------------------------+-------------------+
+| Boston           | Single Table  | Regression                | Univariate        |
++------------------+---------------+---------------------------+-------------------+
+| Boston Multitask | Single Table  | Regression                | Multivariate      |
++------------------+---------------+---------------------------+-------------------+
+| Wiki QA          | Multi Table   | Classification            | Binary            |
++------------------+---------------+---------------------------+-------------------+
+| Personae         | Text          | Classification            | Binary            |
++------------------+---------------+---------------------------+-------------------+
+| News Groups      | Text          | Classification            | Multiclass        |
++------------------+---------------+---------------------------+-------------------+
+| Paper Reviews    | Text          | Regression                | Univariate        |
++------------------+---------------+---------------------------+-------------------+
 """
 
 import io
@@ -106,8 +105,8 @@ class Dataset():
             available as instance attributes.
     """
 
-    def __init__(self, description, data, target, score, shuffle=True, stratify=False, **kwargs):
-
+    def __init__(self, description, data, target, score, data_modality, task_type,
+                 task_subtype=None, shuffle=True, stratify=False, **kwargs):
         self.name = description.splitlines()[0]
         self.description = description
 
@@ -115,10 +114,15 @@ class Dataset():
         self.target = target
         self.metric = score.__name__
 
+        self.data_modality = data_modality
+        self.task_type = task_type
+        self.task_subtype = task_subtype
+
         self._stratify = stratify
         self._shuffle = shuffle
         self._score = score
 
+        self.extras = kwargs
         self.__dict__.update(kwargs)
 
     def score(self, *args, **kwargs):
@@ -140,6 +144,13 @@ class Dataset():
     def describe(self):
         """Print the description of this Dataset on stdout."""
         print(self.description)
+        print('Data Modality: {}'.format(self.data_modality))
+        print('Task Type: {}'.format(self.task_type))
+        print('Task Subtype: {}'.format(self.task_subtype))
+        print('Data shape: {}'.format(self.data.shape))
+        print('Target shape: {}'.format(self.target.shape))
+        print('Metric: {}'.format(self.metric))
+        print('Extras: {}'.format(', '.join(self.extras.keys())))
 
     @staticmethod
     def _get_split(data, index):
@@ -246,7 +257,7 @@ def _load_csv(dataset_path, name, set_index=False):
 
 
 def load_usps():
-    """USPs Digits Dataset.
+    """USPs Digits dataset.
 
     The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)
     containing 9298 224x224 RGB photos of handwritten digits, and the target is
@@ -259,11 +270,12 @@ def load_usps():
     X = _load_images(os.path.join(dataset_path, 'images'), df.image)
     y = df.label.values
 
-    return Dataset(load_usps.__doc__, X, y, accuracy_score, stratify=True)
+    return Dataset(load_usps.__doc__, X, y, accuracy_score, 'image',
+                   'classification', 'binary', stratify=True)
 
 
 def load_handgeometry():
-    """Hand Geometry Dataset.
+    """Hand Geometry dataset.
 
     The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)
     containing 112 224x224 RGB photos of hands, and the target is a 1d numpy
@@ -275,11 +287,11 @@ def load_handgeometry():
     X = _load_images(os.path.join(dataset_path, 'images'), df.image)
     y = df.target.values
 
-    return Dataset(load_handgeometry.__doc__, X, y, r2_score)
+    return Dataset(load_handgeometry.__doc__, X, y, r2_score, 'image', 'regression', 'univariate')
 
 
 def load_personae():
-    """Personae Dataset.
+    """Personae dataset.
 
     The data of this dataset is a 2d numpy array vector containing 145 entries
     that include texts written by Dutch users in Twitter, with some additional
@@ -291,7 +303,8 @@ def load_personae():
     X = _load_csv(dataset_path, 'data')
     y = X.pop('label').values
 
-    return Dataset(load_personae.__doc__, X, y, accuracy_score, stratify=True)
+    return Dataset(load_personae.__doc__, X, y, accuracy_score, 'text',
+                   'classification', 'binary', stratify=True)
 
 
 def load_reviews():
@@ -318,7 +331,7 @@ def load_reviews():
 
 
 def load_umls():
-    """UMLs Dataset.
+    """UMLs dataset.
 
     The data consists of information about a 135 Graph and the relations between
     their nodes given as a DataFrame with three columns, source, target and type,
@@ -333,11 +346,12 @@ def load_umls():
 
     graph = nx.Graph(nx.read_gml(os.path.join(dataset_path, 'graph.gml')))
 
-    return Dataset(load_umls.__doc__, X, y, accuracy_score, stratify=True, graph=graph)
+    return Dataset(load_umls.__doc__, X, y, accuracy_score, 'graph', 'link_prediction',
+                   stratify=True, graph=graph)
 
 
 def load_dic28():
-    """DIC28 Dataset from Pajek.
+    """DIC28 dataset from Pajek.
 
     This network represents connections among English words in a dictionary.
     It was generated from Knuth's dictionary. Two words are connected by an
@@ -367,12 +381,14 @@ def load_dic28():
         'graph2': graph2,
     }
 
-    return Dataset(load_dic28.__doc__, X, y, accuracy_score,
+    return Dataset(load_dic28.__doc__, X, y, accuracy_score, 'graph', 'graph_matching',
                    stratify=True, graph=graph, graphs=graphs)
 
 
 def load_nomination():
-    """Sample 1 of graph vertex nomination data from MII Lincoln Lab.
+    """Nomination dataset.
+
+    Sample 1 of graph vertex nomination data from MIT Lincoln Lab.
 
     Data consists of one graph whose nodes contain two attributes, attr1 and attr2.
     Associated with each node is a label that has to be learned and predicted.
@@ -385,11 +401,14 @@ def load_nomination():
 
     graph = nx.Graph(nx.read_gml(os.path.join(dataset_path, 'graph.gml')))
 
-    return Dataset(load_nomination.__doc__, X, y, accuracy_score, stratify=True, graph=graph)
+    return Dataset(load_nomination.__doc__, X, y, accuracy_score, 'graph', 'vertex_nomination',
+                   stratify=True, graph=graph)
 
 
 def load_amazon():
-    """Amazon product co-purchasing network and ground-truth communities.
+    """Amazon dataset.
+
+    Amazon product co-purchasing network and ground-truth communities.
 
     Network was collected by crawling Amazon website. It is based on Customers Who Bought
     This Item Also Bought feature of the Amazon website. If a product i is frequently
@@ -404,11 +423,14 @@ def load_amazon():
 
     graph = nx.Graph(nx.read_gml(os.path.join(dataset_path, 'graph.gml')))
 
-    return Dataset(load_amazon.__doc__, X, y, normalized_mutual_info_score, graph=graph)
+    return Dataset(load_amazon.__doc__, X, y, normalized_mutual_info_score, 'graph',
+                   'community_detection', graph=graph)
 
 
 def load_jester():
-    """Ratings from the Jester Online Joke Recommender System.
+    """Jester dataset.
+
+    Ratings from the Jester Online Joke Recommender System.
 
     This dataset consists of over 1.7 million instances of (user_id, item_id, rating)
     triples, which is split 50-50 into train and test data.
@@ -422,11 +444,13 @@ def load_jester():
     X = _load_csv(dataset_path, 'data')
     y = X.pop('rating').values
 
-    return Dataset(load_jester.__doc__, X, y, r2_score)
+    return Dataset(load_jester.__doc__, X, y, r2_score, 'single_table', 'collaborative_filtering')
 
 
 def load_census():
-    """Predict whether income exceeds $50K/yr based on census data. Also known as "Adult" dataset.
+    """Adult Census dataset.
+
+    Predict whether income exceeds $50K/yr based on census data. Also known as "Adult" dataset.
 
     Extraction was done by Barry Becker from the 1994 Census database. A set of reasonably clean
     records was extracted using the following conditions: ((AAGE>16) && (AGI>100) &&
@@ -443,11 +467,14 @@ def load_census():
     X = _load_csv(dataset_path, 'data')
     y = X.pop('income').values
 
-    return Dataset(load_census.__doc__, X, y, accuracy_score, stratify=True)
+    return Dataset(load_census.__doc__, X, y, accuracy_score, 'single_table',
+                   'classification', 'binary', stratify=True)
 
 
 def load_wikiqa():
-    """A Challenge Dataset for Open-Domain Question Answering.
+    """WikiQA dataset.
+
+    A Challenge Dataset for Open-Domain Question Answering.
 
     WikiQA dataset is a publicly available set of question and sentence (QS) pairs,
     collected and annotated for research on open-domain question answering.
@@ -476,12 +503,13 @@ def load_wikiqa():
 
     target = data.pop('isAnswer').values
 
-    return Dataset(load_wikiqa.__doc__, data, target, accuracy_score, startify=True,
+    return Dataset(load_wikiqa.__doc__, data, target, accuracy_score, 'multi_table',
+                   'classification', 'binary', startify=True,
                    entities=entities, relationships=relationships)
 
 
 def load_newsgroups():
-    """20 News Groups Dataset.
+    """20 News Groups dataset.
 
     The data of this dataset is a 1d numpy array vector containing the texts
     from 11314 newsgroups posts, and the target is a 1d numpy integer array
@@ -489,24 +517,28 @@ def load_newsgroups():
     """
     dataset = datasets.fetch_20newsgroups()
     return Dataset(load_newsgroups.__doc__, np.array(dataset.data), dataset.target,
-                   accuracy_score, stratify=True)
+                   accuracy_score, 'text', 'classification', 'multiclass', stratify=True)
 
 
 def load_iris():
-    """Iris Dataset."""
+    """Iris dataset."""
     dataset = datasets.load_iris()
     return Dataset(load_iris.__doc__, dataset.data, dataset.target,
-                   accuracy_score, stratify=True)
+                   accuracy_score, 'single_table', 'classification',
+                   'multiclass', stratify=True)
 
 
 def load_boston():
-    """Boston House Prices Dataset."""
+    """Boston House Prices dataset."""
     dataset = datasets.load_boston()
-    return Dataset(load_boston.__doc__, dataset.data, dataset.target, r2_score)
+    return Dataset(load_boston.__doc__, dataset.data, dataset.target, r2_score,
+                   'single_table', 'regression', 'univariate')
 
 
 def load_boston_multitask():
-    """Boston House Prices Dataset with a synthetic multitask output.
+    """Boston House Prices dataset.
+
+    Modified version of the Boston dataset with a synthetic multitask output.
 
     The multitask output is obtained by applying a linear transformation
     to the original y and adding it as a second output column.
@@ -514,7 +546,8 @@ def load_boston_multitask():
     dataset = datasets.load_boston()
     y = dataset.target
     target = np.column_stack([y, 2 * y + 5])
-    return Dataset(load_boston.__doc__, dataset.data, target, r2_score)
+    return Dataset(load_boston.__doc__, dataset.data, target, r2_score,
+                   'single_table', 'regression', 'multivariate')
 
 
 def load_dataset(name):

@@ -1,0 +1,54 @@
+{
+    "name": "pandas.DataFrame.filter",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.filter.html",
+    "description": "Subset rows or columns of dataframe according to labels in the specified index.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.filter",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "items",
+                "type": "str or list",
+                "default": null,
+                "description": "Keep labels from axis which are in items."
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "like": {
+                "type": "str",
+                "default": null,
+                "description": "Keep labels from axis for which like in label == True."
+            },
+            "regex": {
+                "type": "str",
+                "default": null,
+                "description": "Keep labels from axis for which re.search(regex, label) == True."
+            },
+            "axis": {
+                "type": "int",
+                "default": null,
+                "description": "The axis to filter on. By default this is the info axis, index for Series, columns for DataFrame."
+            }
+        }
+    }
+}

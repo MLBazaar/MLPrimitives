@@ -1,0 +1,37 @@
+{
+    "name": "pandas.DataFrame.get",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.get.html",
+    "description": "Get column as a pandas.Series or list of columns as a pandas.DataFrame.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.get",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.series or pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "key": {
+                "type": "str or list",
+                "description": "Column or list of columns to get."
+            }
+        }
+    }
+}
