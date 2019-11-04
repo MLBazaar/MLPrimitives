@@ -1,0 +1,166 @@
+{
+    "name": "keras.Sequential.LSTMTimeSeriesClassifier",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "LSTM Time Series Classifier",
+    "classifiers": {
+        "type": "estimator",
+        "subtype": "classifier"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.adapters.keras.Sequential",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "produce": {
+        "method": "predict",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "y",
+                "type": "array"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "classification": {
+                "type": "bool",
+                "default": true
+            },
+            "verbose": {
+                "type": "bool",
+                "default": false
+            },
+            "epochs": {
+                "type": "int",
+                "default": 35
+            },
+            "callbacks": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.callbacks.EarlyStopping",
+                        "args": {
+                            "monitor": "val_loss",
+                            "patience": 10,
+                            "min_delta": 0.0003
+                        }
+                    }
+                ]
+            },
+            "validation_split": {
+                "type": "float",
+                "default": 0.2
+            },
+            "batch_size": {
+                "type": "int",
+                "default": 64
+            },
+            "input_shape": {
+                "type": "tuple",
+                "default": [
+                    250,
+                    1
+                ]
+            },
+            "dense_units": {
+                "type": "int",
+                "description": "Number of classes",
+                "default": 2
+            },
+            "optimizer": {
+                "type": "str",
+                "default": "keras.optimizers.Adam"
+            },
+            "loss": {
+                "type": "str",
+                "default": "keras.losses.categorical_crossentropy"
+            },
+            "metrics": {
+                "type": "list",
+                "default": [
+                    "accuracy"
+                ]
+            },
+            "return_sequences": {
+                "type": "bool",
+                "default": false
+            },
+            "layers": {
+                "type": "list",
+                "default": [
+                    {
+                        "class": "keras.layers.LSTM",
+                        "parameters": {
+                            "input_shape": "input_shape",
+                            "units": "lstm_1_units"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dropout",
+                        "parameters": {
+                            "rate": "dropout_1_rate"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "dense_1_units",
+                            "activation": "relu"
+                        }
+                    },
+                    {
+                        "class": "keras.layers.Dense",
+                        "parameters": {
+                            "units": "dense_units",
+                            "activation": "softmax"
+                        }
+                    }
+                ]
+            }
+        },
+        "tunable": {
+            "lstm_1_units": {
+                "type": "int",
+                "default": 80,
+                "range": [
+                    1,
+                    500
+                ]
+            },
+            "dropout_1_rate": {
+                "type": "float",
+                "default": 0.3,
+                "range": [
+                    0.01,
+                    0.75
+                ]
+            },
+            "dense_1_units": {
+                "type": "int",
+                "default": 80,
+                "range": [
+                    1,
+                    500
+                ]
+            }
+        }
+    }
+}
