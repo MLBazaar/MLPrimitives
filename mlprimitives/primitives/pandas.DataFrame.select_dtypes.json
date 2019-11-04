@@ -1,0 +1,43 @@
+{
+    "name": "pandas.DataFrame.select_dtypes",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.select_dtypes.html",
+    "description": "Return a subset of the DataFrame columns based on the column dtypes.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.select_dtypes",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "include": {
+                "type": "str or list-like",
+                "default": null,
+                "description": "A selection of dtypes or strings to be included. Either this or exclude must be supplied."
+            },
+            "exclude": {
+                "type": "str or list-like",
+                "default": null,
+                "description": "A selection of dtypes or strings to be excluded. Either this or include must be supplied."
+            }
+        }
+    }
+}

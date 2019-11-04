@@ -1,0 +1,52 @@
+{
+    "name": "pandas.DataFrame.append",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html",
+    "description": "Append rows of other to the end of caller, returning a new object. Columns in other that are not in the caller are added as new columns.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.append",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "other",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "ignore_index": {
+                "type": "bool",
+                "default": false,
+                "description": "If True, do not use the index labels."
+            },
+            "verify_integrity": {
+                "type": "bool",
+                "default": false,
+                "description": "If True, raise ValueError on creating index with duplicates."
+            },
+            "sort": {
+                "type": "bool",
+                "default": true,
+                "description": "Sort columns if the columns of self and other are not aligned."
+            }
+        }
+    }
+}
