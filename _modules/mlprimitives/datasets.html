@@ -360,40 +360,39 @@
 
 <span class="sd">The available datasets by data modality and task type are:</span>
 
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Dataset          | Data Modality | Task Type                 |</span>
-<span class="sd">+==================+===============+===========================+</span>
-<span class="sd">| Amazon           | Graph         | Community Detection       |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| DIC28            | Graph         | Graph Matching            |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| UMLs             | Graph         | Link Prediction           |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Nomination       | Graph         | Vertex Nomination         |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| USPS             | Image         | Classification            |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Hand Geometry    | Image         | Regression                |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Iris             | Single Table  | Multiclass Classification |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Census           | Single Table  | Binary Classification     |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Jester           | Single Table  | Collaborative Filtering   |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Boston           | Single Table  | Regression                |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Boston Multitask | Single Table  | Multitask Regression      |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Wiki QA          | Multi Table   | Classification            |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Personae         | Text          | Classification            |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| News Groups      | Text          | Classification            |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-<span class="sd">| Paper Reviews    | Text          | Regression                |</span>
-<span class="sd">+------------------+---------------+---------------------------+</span>
-
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Dataset          | Data Modality | Task Type                 | Task Subtype      |</span>
+<span class="sd">+==================+===============+===========================+===================+</span>
+<span class="sd">| Amazon           | Graph         | Community Detection       |                   |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| DIC28            | Graph         | Graph Matching            |                   |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| UMLs             | Graph         | Link Prediction           |                   |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Nomination       | Graph         | Vertex Nomination         |                   |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| USPS             | Image         | Classification            | Binary            |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Hand Geometry    | Image         | Regression                | Univariate        |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Iris             | Single Table  | Classification            | Multiclass        |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Census           | Single Table  | Classification            | Binary            |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Jester           | Single Table  | Collaborative Filtering   |                   |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Boston           | Single Table  | Regression                | Univariate        |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Boston Multitask | Single Table  | Regression                | Multivariate      |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Wiki QA          | Multi Table   | Classification            | Binary            |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Personae         | Text          | Classification            | Binary            |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| News Groups      | Text          | Classification            | Multiclass        |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
+<span class="sd">| Paper Reviews    | Text          | Regression                | Univariate        |</span>
+<span class="sd">+------------------+---------------+---------------------------+-------------------+</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">io</span>
@@ -457,8 +456,8 @@
 <span class="sd">            available as instance attributes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">data_modality</span><span class="p">,</span> <span class="n">task_type</span><span class="p">,</span>
+                 <span class="n">task_subtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
 
@@ -466,10 +465,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="vm">__name__</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_modality</span> <span class="o">=</span> <span class="n">data_modality</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_type</span> <span class="o">=</span> <span class="n">task_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_subtype</span> <span class="o">=</span> <span class="n">task_subtype</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_stratify</span> <span class="o">=</span> <span class="n">stratify</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_score</span> <span class="o">=</span> <span class="n">score</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">extras</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Dataset.score"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.score">[docs]</a>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -490,7 +494,14 @@
 
 <div class="viewcode-block" id="Dataset.describe"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.Dataset.describe">[docs]</a>    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print the description of this Dataset on stdout.&quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data Modality: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_modality</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Task Type: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_type</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Task Subtype: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_subtype</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Target shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Metric: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extras: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extras</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
@@ -597,7 +608,7 @@
 
 
 <div class="viewcode-block" id="load_usps"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_usps">[docs]</a><span class="k">def</span> <span class="nf">load_usps</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;USPs Digits Dataset.</span>
+    <span class="sd">&quot;&quot;&quot;USPs Digits dataset.</span>
 
 <span class="sd">    The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)</span>
 <span class="sd">    containing 9298 224x224 RGB photos of handwritten digits, and the target is</span>
@@ -610,11 +621,12 @@
     <span class="n">X</span> <span class="o">=</span> <span class="n">_load_images</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_usps</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_usps</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_handgeometry"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_handgeometry">[docs]</a><span class="k">def</span> <span class="nf">load_handgeometry</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Hand Geometry Dataset.</span>
+    <span class="sd">&quot;&quot;&quot;Hand Geometry dataset.</span>
 
 <span class="sd">    The data of this dataset is a 3d numpy array vector with shape (224, 224, 3)</span>
 <span class="sd">    containing 112 224x224 RGB photos of hands, and the target is a 1d numpy</span>
@@ -626,11 +638,11 @@
     <span class="n">X</span> <span class="o">=</span> <span class="n">_load_images</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_handgeometry</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_handgeometry</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;regression&#39;</span><span class="p">,</span> <span class="s1">&#39;univariate&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_personae"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_personae">[docs]</a><span class="k">def</span> <span class="nf">load_personae</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Personae Dataset.</span>
+    <span class="sd">&quot;&quot;&quot;Personae dataset.</span>
 
 <span class="sd">    The data of this dataset is a 2d numpy array vector containing 145 entries</span>
 <span class="sd">    that include texts written by Dutch users in Twitter, with some additional</span>
@@ -642,7 +654,8 @@
     <span class="n">X</span> <span class="o">=</span> <span class="n">_load_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_personae</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_personae</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_reviews"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_reviews">[docs]</a><span class="k">def</span> <span class="nf">load_reviews</span><span class="p">():</span>
@@ -669,7 +682,7 @@
 
 
 <div class="viewcode-block" id="load_umls"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_umls">[docs]</a><span class="k">def</span> <span class="nf">load_umls</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;UMLs Dataset.</span>
+    <span class="sd">&quot;&quot;&quot;UMLs dataset.</span>
 
 <span class="sd">    The data consists of information about a 135 Graph and the relations between</span>
 <span class="sd">    their nodes given as a DataFrame with three columns, source, target and type,</span>
@@ -684,11 +697,12 @@
 
     <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;graph.gml&#39;</span><span class="p">)))</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_umls</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_umls</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;graph&#39;</span><span class="p">,</span> <span class="s1">&#39;link_prediction&#39;</span><span class="p">,</span>
+                   <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_dic28"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_dic28">[docs]</a><span class="k">def</span> <span class="nf">load_dic28</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;DIC28 Dataset from Pajek.</span>
+    <span class="sd">&quot;&quot;&quot;DIC28 dataset from Pajek.</span>
 
 <span class="sd">    This network represents connections among English words in a dictionary.</span>
 <span class="sd">    It was generated from Knuth&#39;s dictionary. Two words are connected by an</span>
@@ -718,12 +732,14 @@
         <span class="s1">&#39;graph2&#39;</span><span class="p">:</span> <span class="n">graph2</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_dic28</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_dic28</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;graph&#39;</span><span class="p">,</span> <span class="s1">&#39;graph_matching&#39;</span><span class="p">,</span>
                    <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">,</span> <span class="n">graphs</span><span class="o">=</span><span class="n">graphs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_nomination"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_nomination">[docs]</a><span class="k">def</span> <span class="nf">load_nomination</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Sample 1 of graph vertex nomination data from MII Lincoln Lab.</span>
+    <span class="sd">&quot;&quot;&quot;Nomination dataset.</span>
+
+<span class="sd">    Sample 1 of graph vertex nomination data from MIT Lincoln Lab.</span>
 
 <span class="sd">    Data consists of one graph whose nodes contain two attributes, attr1 and attr2.</span>
 <span class="sd">    Associated with each node is a label that has to be learned and predicted.</span>
@@ -736,11 +752,14 @@
 
     <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;graph.gml&#39;</span><span class="p">)))</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_nomination</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_nomination</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;graph&#39;</span><span class="p">,</span> <span class="s1">&#39;vertex_nomination&#39;</span><span class="p">,</span>
+                   <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_amazon"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_amazon">[docs]</a><span class="k">def</span> <span class="nf">load_amazon</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Amazon product co-purchasing network and ground-truth communities.</span>
+    <span class="sd">&quot;&quot;&quot;Amazon dataset.</span>
+
+<span class="sd">    Amazon product co-purchasing network and ground-truth communities.</span>
 
 <span class="sd">    Network was collected by crawling Amazon website. It is based on Customers Who Bought</span>
 <span class="sd">    This Item Also Bought feature of the Amazon website. If a product i is frequently</span>
@@ -755,11 +774,14 @@
 
     <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;graph.gml&#39;</span><span class="p">)))</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_amazon</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">normalized_mutual_info_score</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_amazon</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">normalized_mutual_info_score</span><span class="p">,</span> <span class="s1">&#39;graph&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;community_detection&#39;</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="n">graph</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_jester"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_jester">[docs]</a><span class="k">def</span> <span class="nf">load_jester</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Ratings from the Jester Online Joke Recommender System.</span>
+    <span class="sd">&quot;&quot;&quot;Jester dataset.</span>
+
+<span class="sd">    Ratings from the Jester Online Joke Recommender System.</span>
 
 <span class="sd">    This dataset consists of over 1.7 million instances of (user_id, item_id, rating)</span>
 <span class="sd">    triples, which is split 50-50 into train and test data.</span>
@@ -773,11 +795,13 @@
     <span class="n">X</span> <span class="o">=</span> <span class="n">_load_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_jester</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_jester</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="s1">&#39;single_table&#39;</span><span class="p">,</span> <span class="s1">&#39;collaborative_filtering&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_census"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_census">[docs]</a><span class="k">def</span> <span class="nf">load_census</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Predict whether income exceeds $50K/yr based on census data. Also known as &quot;Adult&quot; dataset.</span>
+    <span class="sd">&quot;&quot;&quot;Adult Census dataset.</span>
+
+<span class="sd">    Predict whether income exceeds $50K/yr based on census data. Also known as &quot;Adult&quot; dataset.</span>
 
 <span class="sd">    Extraction was done by Barry Becker from the 1994 Census database. A set of reasonably clean</span>
 <span class="sd">    records was extracted using the following conditions: ((AAGE&gt;16) &amp;&amp; (AGI&gt;100) &amp;&amp;</span>
@@ -794,11 +818,14 @@
     <span class="n">X</span> <span class="o">=</span> <span class="n">_load_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;income&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_census</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_census</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;single_table&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_wikiqa"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_wikiqa">[docs]</a><span class="k">def</span> <span class="nf">load_wikiqa</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;A Challenge Dataset for Open-Domain Question Answering.</span>
+    <span class="sd">&quot;&quot;&quot;WikiQA dataset.</span>
+
+<span class="sd">    A Challenge Dataset for Open-Domain Question Answering.</span>
 
 <span class="sd">    WikiQA dataset is a publicly available set of question and sentence (QS) pairs,</span>
 <span class="sd">    collected and annotated for research on open-domain question answering.</span>
@@ -827,12 +854,13 @@
 
     <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;isAnswer&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_wikiqa</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">startify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_wikiqa</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;multi_table&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">startify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                    <span class="n">entities</span><span class="o">=</span><span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="n">relationships</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_newsgroups"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_newsgroups">[docs]</a><span class="k">def</span> <span class="nf">load_newsgroups</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;20 News Groups Dataset.</span>
+    <span class="sd">&quot;&quot;&quot;20 News Groups dataset.</span>
 
 <span class="sd">    The data of this dataset is a 1d numpy array vector containing the texts</span>
 <span class="sd">    from 11314 newsgroups posts, and the target is a 1d numpy integer array</span>
@@ -840,24 +868,28 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_20newsgroups</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_newsgroups</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
-                   <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+                   <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;multiclass&#39;</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_iris"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_iris">[docs]</a><span class="k">def</span> <span class="nf">load_iris</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Iris Dataset.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Iris dataset.&quot;&quot;&quot;</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_iris</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
-                   <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+                   <span class="n">accuracy_score</span><span class="p">,</span> <span class="s1">&#39;single_table&#39;</span><span class="p">,</span> <span class="s1">&#39;classification&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;multiclass&#39;</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_boston"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_boston">[docs]</a><span class="k">def</span> <span class="nf">load_boston</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Boston House Prices Dataset.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Boston House Prices dataset.&quot;&quot;&quot;</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_boston</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_boston</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span>
+                   <span class="s1">&#39;single_table&#39;</span><span class="p">,</span> <span class="s1">&#39;regression&#39;</span><span class="p">,</span> <span class="s1">&#39;univariate&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_boston_multitask"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_boston_multitask">[docs]</a><span class="k">def</span> <span class="nf">load_boston_multitask</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Boston House Prices Dataset with a synthetic multitask output.</span>
+    <span class="sd">&quot;&quot;&quot;Boston House Prices dataset.</span>
+
+<span class="sd">    Modified version of the Boston dataset with a synthetic multitask output.</span>
 
 <span class="sd">    The multitask output is obtained by applying a linear transformation</span>
 <span class="sd">    to the original y and adding it as a second output column.</span>
@@ -865,7 +897,8 @@
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_boston</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span>
     <span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">5</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_boston</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">load_boston</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span>
+                   <span class="s1">&#39;single_table&#39;</span><span class="p">,</span> <span class="s1">&#39;regression&#39;</span><span class="p">,</span> <span class="s1">&#39;multivariate&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_dataset"><a class="viewcode-back" href="../../api/mlprimitives.datasets.html#mlprimitives.datasets.load_dataset">[docs]</a><span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
