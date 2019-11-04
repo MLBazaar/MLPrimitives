@@ -45,12 +45,12 @@
             "lsuffix": {
                 "type": "str",
                 "default": "",
-                "description": "Suffix to use from left frame’s overlapping columns."
+                "description": "Suffix to use from left frame's overlapping columns."
             },
             "rsuffix": {
                 "type": "str",
                 "default": "",
-                "description": "Suffix to use from right frame’s overlapping columns."
+                "description": "Suffix to use from right frame's overlapping columns."
             },
             "sort": {
                 "type": "bool",

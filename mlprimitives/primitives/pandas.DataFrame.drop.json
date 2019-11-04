@@ -35,7 +35,7 @@
             "axis": {
                 "type": "int",
                 "default": 0,
-                "description": "Whether to drop labels from the index (0 or ‘index’) or columns (1 or ‘columns’)."
+                "description": "Whether to drop labels from the index (0 or index) or columns (1 or columns)."
             },
             "level": {
                 "type": "int or str",

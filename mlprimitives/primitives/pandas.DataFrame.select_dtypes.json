@@ -4,7 +4,7 @@
         "Carles Sala <csala@csail.mit.edu>"
     ],
     "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.select_dtypes.html",
-    "description": "Return a subset of the DataFrame’s columns based on the column dtypes.",
+    "description": "Return a subset of the DataFrame columns based on the column dtypes.",
     "classifiers": {
         "type": "helper",
         "subtype": "fitting"

@@ -17,6 +17,12 @@
                 "name": "X",
                 "keyword": "self",
                 "type": "pandas.DataFrame"
+            },
+            {
+                "name": "items",
+                "type": "str or list",
+                "default": null,
+                "description": "Keep labels from axis which are in items."
             }
         ],
         "output": [
@@ -28,15 +34,10 @@
     },
     "hyperparameters": {
         "fixed": {
-            "items": {
-                "type": "str or list",
-                "default": null,
-                "description": "Keep labels from axis which are in items."
-            },
             "like": {
                 "type": "str",
                 "default": null,
-                "description": "Keep labels from axis for which “like in label == True”."
+                "description": "Keep labels from axis for which like in label == True."
             },
             "regex": {
                 "type": "str",
@@ -46,7 +47,7 @@
             "axis": {
                 "type": "int",
                 "default": null,
-                "description": "The axis to filter on. By default this is the info axis, ‘index’ for Series, ‘columns’ for DataFrame."
+                "description": "The axis to filter on. By default this is the info axis, index for Series, columns for DataFrame."
             }
         }
     }
