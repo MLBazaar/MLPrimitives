@@ -18,7 +18,7 @@ with open('HISTORY.md') as history_file:
 install_requires = [
     'mlblocks>=0.3.0,<0.4',
     'Keras>=2.1.6,<3',
-    'featuretools>=0.6.1,<0.7',
+    'featuretools>=0.6.1,<0.12',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
     'lightfm>=1.15,<2',
@@ -129,6 +129,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.2.2-dev1',
+    version='0.2.3.dev1',
     zip_safe=False,
 )

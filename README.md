@@ -270,7 +270,7 @@ primitive.fit(X=X_train, y=y_train)
 Once the primitive has been fitted, we can produce predictions using the `X_test` data as input.
 
 ```python
-predictions = primitive.produce(data=X_test)
+predictions = primitive.produce(X=X_test)
 ```
 
 ### 5. Evalute the performance
@@ -347,7 +347,7 @@ evaluate the performance of this new hyperparameter value:
 
 ```python
 primitive.fit(X=X_train, y=y_train)
-predictions = primitive.produce(data=X_test)
+predictions = primitive.produce(X=X_test)
 dataset.score(y_test, predictions)
 ```
 

@@ -1,5 +1,17 @@
 # History
 
+## 0.2.2 - 2019-10-08
+
+### New Primitives
+
+* Add primitives for GAN based time-series anomaly detection - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
+* Add `numpy.reshape` and `numpy.ravel` primitives - [Issue #197](https://github.com/HDI-Project/MLPrimitives/issues/197) by @AlexanderGeiger
+* Add feature selection primitive based on Lasso - [Issue #194](https://github.com/HDI-Project/MLPrimitives/issues/194) by @csala
+
+### Primitive Improvements
+
+* `feature_extraction.CategoricalEncoder` support dtype category - [Issue #196](https://github.com/HDI-Project/MLPrimitives/issues/196) by @csala
+
 ## 0.2.1 - 2019-09-09
 
 ### New Primitives
