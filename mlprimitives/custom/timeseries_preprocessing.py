@@ -200,3 +200,61 @@ def time_segments_aggregate(X, interval, time_column, method=['mean']):
         start_ts = end_ts
 
     return np.asarray(values), np.asarray(index)
+
+
+def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_index=None):
+    """Extract timeseries sequences based on cutoff times.
+
+    Args:
+        X (pandas.DataFrame):
+            ``pandas.DataFrame`` containing the cutoff time alongside any other values
+            that need to be used to filter the matching timeseries data.
+            The cutoff time can either be set as the DataFrame index or as a column.
+        timeseries (pandas.DataFrame):
+            ``pandas.DataFrame`` containing the actual timeseries data. The time index
+            and either be set as the DataFrame index or as a column.
+        window_size (int):
+            Numer of elements to take before the cutoff time for each sequence.
+        cutoff_time (str):
+            Optional. If given, the indicated column will be used as the cutoff time.
+            Otherwise, the table index will be used.
+        time_index (str):
+            Optional. If given, the indicated column will be used as the timeseries index.
+            Otherwise, the table index will be used.
+
+    Returns:
+        numpy.ndarray:
+            Numpy array with three dimentions. The frst dimension will have the same
+            length as ``X``, and each of the 2D matrices within it will correspond to
+            one row in the ``X`` table.
+    """
+
+    if cutoff_time:
+        X = X.set_index(cutoff_time)
+
+    if time_index:
+        timeseries = timeseries.set_index(time_index)
+
+    columns = list(X.columns)
+
+    output = list()
+    for idx, row in enumerate(X.itertuples()):
+        selected = timeseries[timeseries.index < row.Index]
+
+        mask = [True] * len(selected)
+        for column in columns:
+            mask &= selected.pop(column) == getattr(row, column)
+
+        selected = selected[mask]
+        selected = selected.iloc[-window_size:]
+
+        len_selected = len(selected)
+        if (len_selected != window_size):
+            warnings.warn((
+                'Sequence shorter than window_size found: {} < {}. '
+                'Output shape is likely to be invalid.'
+            ).format(len_selected, window_size))
+
+        output.append(selected.values)
+
+    return np.array(output)
