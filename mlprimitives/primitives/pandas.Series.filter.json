@@ -1,0 +1,47 @@
+{
+    "name": "pandas.Series.filter",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.filter.html",
+    "description": "Subset rows a Series according to labels in the index.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.Series.filter",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.Series"
+            },
+            {
+                "name": "items",
+                "default": null,
+                "type": "list-like",
+                "description": "Keep labels from axis which are in items."
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.Series"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "like": {
+                "type": "str",
+                "default": null
+            },
+            "regex": {
+                "type": "str",
+                "default": null
+            }
+        }
+    }
+}

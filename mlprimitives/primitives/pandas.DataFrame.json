@@ -1,0 +1,53 @@
+{
+    "name": "pandas.DataFrame",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html",
+    "description": "Two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns).",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "data",
+                "type": "ndarray (structured or homogeneous), Iterable, dict, or DataFrame"
+            },
+            {
+                "name": "index",
+                "default": null,
+                "type": "Index or array-like"
+            },
+            {
+                "name": "columns",
+                "default": null,
+                "type": "Index or array-like"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "copy": {
+                "type": "bool",
+                "default": false,
+                "description": "Copy data from inputs."
+            },
+            "dtype": {
+                "default": null,
+                "type": "dtype",
+                "description": "Data type to force."
+            }
+        }
+    }
+}
