@@ -1,10 +1,29 @@
 # History
 
+## 0.2.3 - 2019-11-14
+
+### New Primitives
+
+Add primitive to make window_sequences based on cutoff times - [Issue #217](https://github.com/HDI-Project/MLPrimitives/issues/217) by @csala
+Create a keras LSTM based TimeSeriesClassifier primitive - [Issue #218](https://github.com/HDI-Project/MLPrimitives/issues/218) by @csala
+Add pandas DataFrame primitives - [Issue #214](https://github.com/HDI-Project/MLPrimitives/issues/214) by @csala
+Add featuretools.EntitySet.normalize_entity primitive - [Issue #209](https://github.com/HDI-Project/MLPrimitives/issues/209) by @csala
+
+### Primitive Improvements
+
+Make featuretools.EntitySet.entity_from_dataframe entityset arg optional - [Issue #208](https://github.com/HDI-Project/MLPrimitives/issues/208) by @csala
+
+Add text regression dataset - [Issue #206](https://github.com/HDI-Project/MLPrimitives/issues/206) by @csala
+
+### Bug Fixes
+
+pandas.DataFrame.resample crash when grouping by integer columns - [Issue #211](https://github.com/HDI-Project/MLPrimitives/issues/211) by @csala
+
 ## 0.2.2 - 2019-10-08
 
 ### New Primitives
 
-* Add primitives for GAN based time-series anomaly detection approved new primitives - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
+* Add primitives for GAN based time-series anomaly detection - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
 * Add `numpy.reshape` and `numpy.ravel` primitives - [Issue #197](https://github.com/HDI-Project/MLPrimitives/issues/197) by @AlexanderGeiger
 * Add feature selection primitive based on Lasso - [Issue #194](https://github.com/HDI-Project/MLPrimitives/issues/194) by @csala
 

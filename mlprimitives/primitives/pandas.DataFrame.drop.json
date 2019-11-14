@@ -1,0 +1,52 @@
+{
+    "name": "pandas.DataFrame.drop",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html",
+    "description": "Drop specified labels from rows or columns.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.drop",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "labels": {
+                "type": "str or list",
+                "description": "Index or column labels to drop."
+            },
+            "axis": {
+                "type": "int",
+                "default": 0,
+                "description": "Whether to drop labels from the index (0 or index) or columns (1 or columns)."
+            },
+            "level": {
+                "type": "int or str",
+                "default": null,
+                "description": "For MultiIndex, level from which the labels will be removed."
+            },
+            "errors": {
+                "type": "str",
+                "default": "ignore",
+                "description": "If 'raise', raise an error on missing labels. If 'ignore', suppress error and only existing labels are dropped."
+            }
+        }
+    }
+}

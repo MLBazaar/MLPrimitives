@@ -1,0 +1,43 @@
+{
+    "name": "pandas.DataFrame.to_numpy",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_numpy.html",
+    "description": "Convert the DataFrame to a NumPy array.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.to_numpy",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "numpy.ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "dtype": {
+                "type": "str",
+                "default": null,
+                "description": "The dtype to pass to numpy.asarray()"
+            },
+            "copy": {
+                "type": "bool",
+                "default": false,
+                "description": "Whether to ensure that the returned value is a not a view on another array. Note that copy=False does not ensure that to_numpy() is no-copy. Rather, copy=True ensure that a copy is made, even if not strictly necessary."
+            }
+        }
+    }
+}

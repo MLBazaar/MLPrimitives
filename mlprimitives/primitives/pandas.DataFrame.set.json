@@ -1,0 +1,37 @@
+{
+    "name": "pandas.DataFrame.set",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pop.html",
+    "description": "Assign a column to a frame. Syntactic sugar to access pandas.DataFrame.__setitem__",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.__setitem__",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "key",
+                "type": "str",
+                "description": "Label of column to be added."
+            },
+            {
+                "name": "value",
+                "type": "array-like",
+                "description": "Values to be added."
+            }
+        ],
+        "output": []
+    },
+    "hyperparameters": {
+        "fixed": {}
+    }
+}

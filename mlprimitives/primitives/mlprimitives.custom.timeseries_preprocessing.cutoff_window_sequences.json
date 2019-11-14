@@ -1,0 +1,48 @@
+{
+    "name": "mlprimitives.custom.timeseries_preprocessing.cutoff_window_sequences",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "Extract timeseries sequences based on cutoff times.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "feature_extractor"
+    },
+    "modalities": [
+        "timeseries"
+    ],
+    "primitive": "mlprimitives.custom.timeseries_preprocessing.cutoff_window_sequences",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "timeseries",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "window_size": {
+                "type": "int"
+            },
+            "cutoff_time": {
+                "type": "str",
+                "default": null
+            },
+            "time_index": {
+                "type": "str",
+                "default": null
+            }
+        }
+    }
+}
