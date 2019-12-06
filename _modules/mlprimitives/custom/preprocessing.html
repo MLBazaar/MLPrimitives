@@ -357,12 +357,12 @@
   <h1>Source code for mlprimitives.custom.preprocessing</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
 
 <div class="viewcode-block" id="ClassEncoder"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassEncoder">[docs]</a><span class="k">class</span> <span class="nc">ClassEncoder</span><span class="p">():</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ClassEncoder.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassEncoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -377,7 +377,7 @@
 
 <div class="viewcode-block" id="ClassDecoder"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassDecoder">[docs]</a><span class="k">class</span> <span class="nc">ClassDecoder</span><span class="p">():</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ClassDecoder.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassDecoder.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>

@@ -522,20 +522,20 @@ primitive instance and passing agin the <code class="docutils literal notranslat
 </div>
 <p>After this is done, we can see how the transformed data contains the newly generated
 one-hot vectors:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>                                                <span class="mi">0</span>      <span class="mi">1</span>       <span class="mi">2</span>       <span class="mi">3</span>       <span class="mi">4</span>
-<span class="n">age</span>                                            <span class="mi">39</span>     <span class="mi">50</span>      <span class="mi">38</span>      <span class="mi">53</span>      <span class="mi">28</span>
-<span class="n">fnlwgt</span>                                      <span class="mi">77516</span>  <span class="mi">83311</span>  <span class="mi">215646</span>  <span class="mi">234721</span>  <span class="mi">338409</span>
-<span class="n">education</span><span class="o">-</span><span class="n">num</span>                                  <span class="mi">13</span>     <span class="mi">13</span>       <span class="mi">9</span>       <span class="mi">7</span>      <span class="mi">13</span>
-<span class="n">capital</span><span class="o">-</span><span class="n">gain</span>                                 <span class="mi">2174</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">capital</span><span class="o">-</span><span class="n">loss</span>                                    <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">hours</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">week</span>                                 <span class="mi">40</span>     <span class="mi">13</span>      <span class="mi">40</span>      <span class="mi">40</span>      <span class="mi">40</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="n">Private</span>                              <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">1</span>       <span class="mi">1</span>       <span class="mi">1</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="k">Self</span><span class="o">-</span><span class="n">emp</span><span class="o">-</span><span class="k">not</span><span class="o">-</span><span class="n">inc</span>                     <span class="mi">0</span>      <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="k">Local</span><span class="o">-</span><span class="n">gov</span>                            <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="o">?</span>                                    <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="k">State</span><span class="o">-</span><span class="n">gov</span>                            <span class="mi">1</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="n">workclass</span><span class="o">=</span> <span class="k">Self</span><span class="o">-</span><span class="n">emp</span><span class="o">-</span><span class="n">inc</span>                         <span class="mi">0</span>      <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
-<span class="p">...</span>                                             <span class="p">...</span>    <span class="p">...</span>     <span class="p">...</span>     <span class="p">...</span>     <span class="p">...</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>                                                0      1       2       3       4
+age                                            39     50      38      53      28
+fnlwgt                                      77516  83311  215646  234721  338409
+education-num                                  13     13       9       7      13
+capital-gain                                 2174      0       0       0       0
+capital-loss                                    0      0       0       0       0
+hours-per-week                                 40     13      40      40      40
+workclass= Private                              0      0       1       1       1
+workclass= Self-emp-not-inc                     0      1       0       0       0
+workclass= Local-gov                            0      0       0       0       0
+workclass= ?                                    0      0       0       0       0
+workclass= State-gov                            1      0       0       0       0
+workclass= Self-emp-inc                         0      0       0       0       0
+...                                             ...    ...     ...     ...     ...
 </pre></div>
 </div>
 </div>
