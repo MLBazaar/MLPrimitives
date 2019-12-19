@@ -53,7 +53,8 @@
     "hyperparameters": {
         "fixed": {
             "input_length": {
-                "type": "int"
+                "type": "int",
+                "default": null
             },
             "classification": {
                 "type": "bool",
