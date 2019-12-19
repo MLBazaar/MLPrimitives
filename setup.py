@@ -81,7 +81,8 @@ development_requires = [
     'tox>=2.9.1',
 
     # Jupyter
-    'jupyter>=1.0.0'
+    'jupyter>=1.0.0',
+    'prompt-toolkit<2.1.0,>=2.0.0'
 ]
 
 
