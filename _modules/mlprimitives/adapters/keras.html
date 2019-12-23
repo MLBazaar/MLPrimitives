@@ -435,7 +435,24 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span> <span class="o">=</span> <span class="n">callbacks</span>
 
+    <span class="k">def</span> <span class="nf">_setdefault</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyperparameters</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyperparameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">_augment_hyperparameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setdefault</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;input_shape&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setdefault</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;input_dim&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setdefault</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;input_length&#39;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">kwargs</span>
+
 <div class="viewcode-block" id="Sequential.fit"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.keras.html#mlprimitives.adapters.keras.Sequential.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_augment_hyperparameters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_model</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">classification</span><span class="p">:</span>

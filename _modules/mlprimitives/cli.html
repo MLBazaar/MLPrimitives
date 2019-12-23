@@ -365,6 +365,7 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">mlblocks</span> <span class="kn">import</span> <span class="n">add_primitives_path</span><span class="p">,</span> <span class="n">get_primitives_paths</span>
 
 <span class="kn">from</span> <span class="nn">mlprimitives.evaluation</span> <span class="kn">import</span> <span class="n">score_pipeline</span>
@@ -375,7 +376,7 @@
 <span class="k">def</span> <span class="nf">_logging_setup</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
     <span class="n">log_level</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">verbosity</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
-    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(name)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
     <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">log_level</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>
@@ -387,10 +388,36 @@
 
 
 <span class="k">def</span> <span class="nf">_test</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring pipeline: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipeline</span><span class="p">))</span>
-        <span class="n">score</span><span class="p">,</span> <span class="n">stdev</span> <span class="o">=</span> <span class="n">score_pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">splits</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obtained Score: </span><span class="si">{:.4f}</span><span class="s1"> +/- </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">stdev</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pipeline&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring pipeline: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pipeline</span><span class="p">))</span>
+            <span class="n">pipeline_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">score</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">score_pipeline</span><span class="p">(</span>
+                    <span class="n">pipeline</span><span class="p">,</span>
+                    <span class="n">args</span><span class="o">.</span><span class="n">splits</span><span class="p">,</span>
+                    <span class="n">args</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+                    <span class="n">args</span><span class="o">.</span><span class="n">dataset</span>
+                <span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obtained Score: </span><span class="si">{:.4f}</span><span class="s1"> +/- </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">std</span><span class="p">))</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;pipeline&#39;</span><span class="p">:</span> <span class="n">pipeline_name</span><span class="p">,</span>
+                    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+                    <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">std</span><span class="p">,</span>
+                <span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;pipeline&#39;</span><span class="p">:</span> <span class="n">pipeline_name</span><span class="p">,</span>
+                    <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">ex</span><span class="p">,</span>
+                <span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">_get_primitives</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
