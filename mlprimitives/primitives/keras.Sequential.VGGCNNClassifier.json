@@ -55,11 +55,7 @@
             },
             "input_shape": {
                 "type": "list",
-                "default": [
-                    224,
-                    224,
-                    3
-                ]
+                "default": null
             },
             "conv2d_2_filters": {
                 "type": "int",

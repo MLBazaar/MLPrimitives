@@ -39,7 +39,7 @@
             "maxlen": 100
         },
         "keras.Sequential.LSTMTextClassifier#1": {
-            "input_length": 100,
+            "epochs": 1,
             "verbose": true,
             "validation_split": 0.2,
             "callbacks": [

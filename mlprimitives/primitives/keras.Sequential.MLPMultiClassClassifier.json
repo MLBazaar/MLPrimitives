@@ -25,11 +25,6 @@
                 "name": "classes",
                 "type": "int",
                 "description": "Number of classes"
-            },
-            {
-                "name": "features",
-                "type": "int",
-                "description": "Number of features in X"
             }
         ]
     },
@@ -72,6 +67,11 @@
                 "type": "int",
                 "default": 20
             },
+            "input_dim": {
+                "type": "int",
+                "default": null,
+                "description": "Number of features in X"
+            },
             "layers": {
                 "type": "list",
                 "default": [
@@ -80,7 +80,7 @@
                         "parameters": {
                             "units": "dense_1_units",
                             "activation": "relu",
-                            "input_dim": "features"
+                            "input_dim": "input_dim"
                         }
                     },
                     {

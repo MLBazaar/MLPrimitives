@@ -10,7 +10,6 @@
     },
     "primitives": [
         "mlprimitives.custom.counters.UniqueCounter",
-        "mlprimitives.custom.counters.count_features",
         "keras.Sequential.MLPMultiClassClassifier"
     ],
     "input_names": {

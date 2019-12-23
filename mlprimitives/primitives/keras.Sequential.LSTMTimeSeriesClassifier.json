@@ -75,10 +75,7 @@
             },
             "input_shape": {
                 "type": "tuple",
-                "default": [
-                    250,
-                    1
-                ]
+                "default": null
             },
             "dense_units": {
                 "type": "int",

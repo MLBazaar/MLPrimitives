@@ -8,6 +8,7 @@ import os
 import sys
 import warnings
 
+import pandas as pd
 from mlblocks import add_primitives_path, get_primitives_paths
 
 from mlprimitives.evaluation import score_pipeline
@@ -18,7 +19,7 @@ LOGGER = logging.getLogger(__name__)
 def _logging_setup(verbosity=1):
     logger = logging.getLogger()
     log_level = (3 - verbosity) * 10
-    fmt = '%(asctime)s - %(levelname)s - %(message)s'
+    fmt = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
     formatter = logging.Formatter(fmt)
     logger.setLevel(log_level)
     logger.propagate = False
@@ -30,10 +31,36 @@ def _logging_setup(verbosity=1):
 
 
 def _test(args):
-    for pipeline in args.pipeline:
-        print('Scoring pipeline: {}'.format(pipeline))
-        score, stdev = score_pipeline(pipeline, args.splits, args.random_state, args.dataset)
-        print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, stdev))
+    results = pd.DataFrame(columns=['pipeline', 'mean', 'std', 'error'])
+    try:
+        for pipeline in args.pipeline:
+            print('Scoring pipeline: {}'.format(pipeline))
+            pipeline_name = os.path.basename(pipeline)
+            try:
+                score, std = score_pipeline(
+                    pipeline,
+                    args.splits,
+                    args.random_state,
+                    args.dataset
+                )
+
+                print('Obtained Score: {:.4f} +/- {:.4f}'.format(score, std))
+                results = results.append({
+                    'pipeline': pipeline_name,
+                    'mean': score,
+                    'std': std,
+                }, ignore_index=True)
+
+            except Exception as ex:
+                results = results.append({
+                    'pipeline': pipeline_name,
+                    'error': ex,
+                }, ignore_index=True)
+
+    except KeyboardInterrupt:
+        pass
+
+    print(results.to_string(index=False))
 
 
 def _get_primitives(pattern):
