@@ -1,7 +1,4 @@
 from unittest import TestCase
-from unittest.mock import Mock, patch
-
-import pandas as pd
 
 from mlprimitives.custom.text import TextCleaner
 
