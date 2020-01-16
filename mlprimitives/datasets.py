@@ -327,7 +327,7 @@ def load_reviews():
     X = _load_csv(dataset_path, 'data')
     y = X.pop('evaluation').values
 
-    return Dataset(load_reviews.__doc__, X, y, r2_score)
+    return Dataset(load_reviews.__doc__, X, y, r2_score, 'text', 'regression', 'univariate')
 
 
 def load_umls():
