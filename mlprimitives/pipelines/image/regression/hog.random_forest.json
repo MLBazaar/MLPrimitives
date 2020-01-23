@@ -1,7 +1,6 @@
 {
     "metadata": {
-        "name": "image/regression/hog/xgb",
-        "data_type": "image",
+        "data_modality": "image",
         "task_type": "regression"
     },
     "validation": {
@@ -9,7 +8,7 @@
     },
     "primitives": [
         "skimage.feature.hog",
-        "xgboost.XGBRegressor"
+        "sklearn.ensemble.RandomForestRegressor"
     ],
     "init_params": {
         "skimage.feature.hog": {

@@ -1,15 +1,14 @@
 {
     "metadata": {
-        "name": "image/regression/hog/rf",
-        "data_type": "image",
-        "task_type": "regression"
+        "data_modality": "image",
+        "task_type": "classification"
     },
     "validation": {
-        "dataset": "handgeometry"
+        "dataset": "usps"
     },
     "primitives": [
         "skimage.feature.hog",
-        "sklearn.ensemble.RandomForestRegressor"
+        "xgboost.XGBClassifier"
     ],
     "init_params": {
         "skimage.feature.hog": {

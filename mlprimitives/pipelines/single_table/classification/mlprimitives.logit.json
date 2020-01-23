@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "data_modality": "single_table",
+        "task_type": "classification"
+    },
+    "validation": {
+        "dataset": "personae"
+    },
+    "primitives": [
+        "mlprimitives.custom.preprocessing.ClassEncoder",
+        "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
+        "mlprimitives.custom.feature_extraction.CategoricalEncoder",
+        "mlprimitives.custom.feature_extraction.StringVectorizer",
+        "sklearn.impute.SimpleImputer",
+        "sklearn.linear_model.LogisticRegression",
+        "mlprimitives.custom.preprocessing.ClassDecoder"
+    ]
+}

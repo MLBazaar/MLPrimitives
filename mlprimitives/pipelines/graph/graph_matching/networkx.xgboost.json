@@ -1,23 +1,24 @@
 {
     "metadata": {
-        "name": "graph/link_prediction/nx/xgb",
-        "data_type": "graph",
-        "task_type": "link_prediction"
+        "data_modality": "graph",
+        "task_type": "graph_matching"
     },
     "validation": {
-        "dataset": "umls",
+        "dataset": "dic28",
         "context": {
             "graph": "$graph",
+            "graphs": "$graphs",
             "node_columns": [
-                "source",
-                "target"
+                "graph1",
+                "graph2"
             ]
         }
     },
     "primitives": [
         "networkx.link_prediction_feature_extraction",
+        "networkx.graph_feature_extraction",
         "mlprimitives.custom.feature_extraction.CategoricalEncoder",
-        "sklearn.preprocessing.StandardScaler",
+        "sklearn.impute.SimpleImputer",
         "xgboost.XGBClassifier"
     ]
 }

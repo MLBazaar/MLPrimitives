@@ -1,15 +1,14 @@
 {
     "metadata": {
-        "name": "image/classification/resnet50/xgb",
-        "data_type": "image",
-        "task_type": "classification"
+        "data_modality": "image",
+        "task_type": "regression"
     },
     "validation": {
-        "dataset": "usps"
+        "dataset": "handgeometry"
     },
     "primitives": [
         "keras.applications.resnet50.preprocess_input",
         "keras.applications.resnet50.ResNet50",
-        "xgboost.XGBClassifier"
+        "xgboost.XGBRegressor"
     ]
 }

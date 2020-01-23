@@ -1,15 +1,14 @@
 {
     "metadata": {
-        "name": "image/classification/hog/xgb",
-        "data_type": "image",
-        "task_type": "classification"
+        "data_modality": "image",
+        "task_type": "regression"
     },
     "validation": {
-        "dataset": "usps"
+        "dataset": "handgeometry"
     },
     "primitives": [
         "skimage.feature.hog",
-        "xgboost.XGBClassifier"
+        "xgboost.XGBRegressor"
     ],
     "init_params": {
         "skimage.feature.hog": {

@@ -1,7 +1,6 @@
 {
     "metadata": {
-        "name": "multi_table/classification/dfs/xgb",
-        "data_type": "multi_table",
+        "data_modality": "multi_table",
         "task_type": "classification"
     },
     "validation": {

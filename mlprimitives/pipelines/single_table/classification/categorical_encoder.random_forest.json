@@ -1,19 +1,16 @@
 {
     "metadata": {
-        "name": "single_table.classification",
-        "data_type": "single_table",
+        "data_modality": "single_table",
         "task_type": "classification"
     },
     "validation": {
-        "dataset": "personae"
+        "dataset": "census"
     },
     "primitives": [
         "mlprimitives.custom.preprocessing.ClassEncoder",
-        "mlprimitives.custom.feature_extraction.DatetimeFeaturizer",
         "mlprimitives.custom.feature_extraction.CategoricalEncoder",
-        "mlprimitives.custom.feature_extraction.StringVectorizer",
         "sklearn.impute.SimpleImputer",
-        "xgboost.XGBClassifier",
+        "sklearn.ensemble.RandomForestClassifier",
         "mlprimitives.custom.preprocessing.ClassDecoder"
     ]
 }

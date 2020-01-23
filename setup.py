@@ -36,6 +36,7 @@ install_requires = [
     'statsmodels>=0.9.0,<1',
     'tensorflow>=1.11.0,<2',
     'xgboost>=0.72.1,<1',
+    'docutils<0.16,>=0.10',    # required by botocore
 ]
 
 

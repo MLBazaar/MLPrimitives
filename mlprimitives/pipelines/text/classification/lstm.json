@@ -1,7 +1,6 @@
 {
     "metadata": {
-        "name": "text/classification/lstm",
-        "data_type": "text",
+        "data_modality": "text",
         "task_type": "classification"
     },
     "validation": {

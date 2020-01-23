@@ -1,7 +1,6 @@
 {
     "metadata": {
-        "name": "single_table/classification/xgb",
-        "data_type": "single_table",
+        "data_modality": "single_table",
         "task_type": "classification"
     },
     "validation": {
@@ -11,7 +10,7 @@
         "mlprimitives.custom.preprocessing.ClassEncoder",
         "mlprimitives.custom.feature_extraction.CategoricalEncoder",
         "sklearn.impute.SimpleImputer",
-        "xgboost.XGBClassifier",
+        "sklearn.linear_model.LogisticRegression",
         "mlprimitives.custom.preprocessing.ClassDecoder"
     ]
 }

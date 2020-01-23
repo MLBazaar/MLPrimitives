@@ -1,7 +1,6 @@
 {
     "metadata": {
-        "name": "image/classification/hog/rf",
-        "data_type": "image",
+        "data_modality": "image",
         "task_type": "classification"
     },
     "validation": {
