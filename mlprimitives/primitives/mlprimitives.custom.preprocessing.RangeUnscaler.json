@@ -3,7 +3,7 @@
     "contributors": [
         "Carles Sala <csala@csail.mit.edu>"
     ],
-    "description": "Uncale data from the specified range.",
+    "description": "Unscale data from the specified range.",
     "classifiers": {
         "type": "preprocessor",
         "subtype": "unscaler"
