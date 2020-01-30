@@ -385,6 +385,44 @@
 
 <div class="viewcode-block" id="ClassDecoder.decode"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.ClassDecoder.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="RangeScaler"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeScaler">[docs]</a><span class="k">class</span> <span class="nc">RangeScaler</span><span class="p">():</span>
+
+    <span class="n">_data_min</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_data_scale</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_data_range</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_out_min</span> <span class="o">=</span> <span class="n">out_min</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_out_scale</span> <span class="o">=</span> <span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span>
+
+<div class="viewcode-block" id="RangeScaler.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeScaler.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">data_max</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_scale</span> <span class="o">=</span> <span class="n">data_max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_range</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span><span class="p">,</span> <span class="n">data_max</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RangeScaler.scale"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeScaler.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">scaled</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_scale</span>
+        <span class="n">rescaled</span> <span class="o">=</span> <span class="p">(</span><span class="n">scaled</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_scale</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_min</span>
+
+        <span class="k">return</span> <span class="n">rescaled</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_range</span></div></div>
+
+
+<div class="viewcode-block" id="RangeUnscaler"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeUnscaler">[docs]</a><span class="k">class</span> <span class="nc">RangeUnscaler</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_out_min</span> <span class="o">=</span> <span class="n">out_min</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_out_scale</span> <span class="o">=</span> <span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span>
+
+<div class="viewcode-block" id="RangeUnscaler.fit"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeUnscaler.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_range</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span> <span class="o">=</span> <span class="n">data_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_scale</span> <span class="o">=</span> <span class="n">data_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span></div>
+
+<div class="viewcode-block" id="RangeUnscaler.unscale"><a class="viewcode-back" href="../../../api/mlprimitives.custom.preprocessing.html#mlprimitives.custom.preprocessing.RangeUnscaler.unscale">[docs]</a>    <span class="k">def</span> <span class="nf">unscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">unscaled</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_min</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_scale</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">unscaled</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_scale</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_min</span></div></div>
 </pre></div>
 
            </div>
