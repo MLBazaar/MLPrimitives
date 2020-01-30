@@ -27,7 +27,6 @@ install_requires = [
     'numpy>=1.15.2,<1.17',
     'opencv-python>=3.4.0.12,<5',
     'pandas>=0.23.4,<0.25',
-    'python-dateutil>=2.1,<2.8.1',    # required by botocore
     'python-louvain>=0.10,<0.14',
     'scikit-image>=0.13.1,<0.15,!=0.14.3',
     'scikit-learn>=0.20.0,<0.21',
@@ -36,7 +35,7 @@ install_requires = [
     'statsmodels>=0.9.0,<1',
     'tensorflow>=1.11.0,<2',
     'xgboost>=0.72.1,<1',
-    'docutils<0.16,>=0.10',    # required by botocore
+    'docutils>=0.10,<0.16',    # required by botocore
 ]
 
 
