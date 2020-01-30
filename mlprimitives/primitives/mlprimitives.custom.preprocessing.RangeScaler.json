@@ -1,0 +1,53 @@
+{
+    "name": "mlprimitives.custom.preprocessing.RangeScaler",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "Scale data to a specified range.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "scaler"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.preprocessing.RangeScaler",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "scale",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            },
+            {
+                "name": "data_range",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "out_min": {
+                "type": "float",
+                "default": -1
+            },
+            "out_max": {
+                "type": "float",
+                "default": 1
+            }
+        }
+    }
+}

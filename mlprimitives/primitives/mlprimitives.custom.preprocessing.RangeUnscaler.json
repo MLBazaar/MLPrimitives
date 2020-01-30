@@ -1,0 +1,49 @@
+{
+    "name": "mlprimitives.custom.preprocessing.RangeUnscaler",
+    "contributors": [
+        "Carles Sala <csala@csail.mit.edu>"
+    ],
+    "description": "Unscale data from the specified range.",
+    "classifiers": {
+        "type": "preprocessor",
+        "subtype": "unscaler"
+    },
+    "modalities": [],
+    "primitive": "mlprimitives.custom.preprocessing.RangeUnscaler",
+    "fit": {
+        "method": "fit",
+        "args": [
+            {
+                "name": "data_range",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "produce": {
+        "method": "unscale",
+        "args": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "ndarray"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "out_min": {
+                "type": "float",
+                "default": -1
+            },
+            "out_max": {
+                "type": "float",
+                "default": 1
+            }
+        }
+    }
+}

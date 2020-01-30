@@ -82,6 +82,9 @@ class TextCleaner(object):
         return []
 
     def _remove_stopwords(self, text):
+        if text == '':
+            return text
+
         if self.language_code:
             language_code = self.language_code
 

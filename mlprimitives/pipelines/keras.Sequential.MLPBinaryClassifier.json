@@ -11,7 +11,6 @@
     "primitives": [
         "mlprimitives.custom.preprocessing.ClassEncoder",
         "mlprimitives.custom.feature_extraction.CategoricalEncoder",
-        "mlprimitives.custom.counters.count_features",
         "keras.Sequential.MLPBinaryClassifier",
         "mlprimitives.custom.preprocessing.ClassDecoder"
     ]

@@ -44,7 +44,7 @@
         "fixed": {
             "input_length": {
                 "type": "int",
-                "default": 1500
+                "default": null
             },
             "classification": {
                 "type": "bool",
