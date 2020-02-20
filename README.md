@@ -4,7 +4,7 @@
 </p>
 
 
-
+[![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
 [![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
 
@@ -14,6 +14,7 @@
 Pipelines and primitives for machine learning and data science.
 
 - Free software: MIT license
+- Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 - Documentation: https://HDI-Project.github.io/MLPrimitives
 
 # Overview
