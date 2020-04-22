@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import json
-import os
+import pytest
+from mlblocks import MLBlock
+from mlblocks.discovery import _PRIMITIVES_PATHS, find_primitives, load_primitive
 
-from mlblocks import MLPipeline
+# Remove the $(cwd)/mlprimitives path from discovery
+_PRIMITIVES_PATHS.pop(0)
 
-from mlprimitives import MLBLOCKS_PRIMITIVES
-
-HYPERPARAMETER_DEFAULTS = {
+HYPERPARAM_DEFAULTS = {
     'int': 1,
     'float': 1.,
     'bool': True,
@@ -16,40 +16,27 @@ HYPERPARAMETER_DEFAULTS = {
 }
 
 
-def test_jsons():
-    """Validate MLBlocks primitive jsons"""
+def get_init_params(metadata):
+    fixed_hyperparams = metadata.get('hyperparameters', dict()).get('fixed', dict())
+    init_params = dict()
+    for name, hyperparameter in fixed_hyperparams.items():
+        if 'default' not in hyperparameter:
+            type_ = hyperparameter.get('type')
+            init_params[name] = HYPERPARAM_DEFAULTS.get(type_)
 
-    primitives = (f for f in os.listdir(MLBLOCKS_PRIMITIVES) if f.endswith('.json'))
-    for primitive_filename in primitives:
-        try:
-            primitive_path = os.path.join(MLBLOCKS_PRIMITIVES, primitive_filename)
-            with open(primitive_path, 'r') as f:
-                primitive = json.load(f)
+    return init_params
 
-            primitive_name = primitive['name']
-            fixed_hyperparameters = primitive.get('hyperparameters', dict()).get('fixed', dict())
 
-            init_hyperparameters = dict()
-            for name, hyperparameter in fixed_hyperparameters.items():
-                if 'default' not in hyperparameter:
-                    type_ = hyperparameter.get('type')
-                    init_hyperparameters[name] = HYPERPARAMETER_DEFAULTS.get(type_)
+@pytest.mark.parametrize("primitive_name", find_primitives())
+def test_primitive(primitive_name):
+    metadata = load_primitive(primitive_name)
+    init_params = get_init_params(metadata)
+    mlblock = MLBlock(primitive_name, **init_params)
 
-            block_name = primitive_name + '#1'
-            mlpipeline = MLPipeline(
-                primitives=[primitive_name],
-                init_params={block_name: init_hyperparameters}
-            )
+    if mlblock._class:
+        fit = metadata.get('fit')
+        if fit:
+            assert hasattr(mlblock.instance, fit['method'])
 
-            # Validate methods
-            mlblock = mlpipeline.blocks[block_name]
-            if mlblock._class:
-                fit = primitive.get('fit')
-                if fit:
-                    assert hasattr(mlblock.instance, fit['method'])
-
-                produce = primitive['produce']
-                assert hasattr(mlblock.instance, produce['method'])
-
-        except Exception:
-            raise ValueError("Invalid JSON primitive: {}".format(primitive_filename))
+        produce = metadata['produce']
+        assert hasattr(mlblock.instance, produce['method'])
