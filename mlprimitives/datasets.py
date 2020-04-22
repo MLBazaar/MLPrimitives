@@ -471,6 +471,21 @@ def load_census():
                    'classification', 'binary', stratify=True)
 
 
+def load_sunspots():
+    """Sunspots dataset.
+
+    source: "http://www.sidc.be/silso/datafiles"
+    """
+
+    dataset_path = _load('sunspots')
+
+    X = _load_csv(dataset_path, 'data')
+    X['timestamp'] = pd.to_datetime(X['timestamp'])
+    y = X['value'].values
+
+    return Dataset(load_sunspots.__doc__, X, y, r2_score, 'timeseries', 'forecasting')
+
+
 def load_wikiqa():
     """WikiQA dataset.
 

@@ -1,0 +1,59 @@
+ {
+    "primitives": [
+        "pandas.DataFrame.resample",
+        "pandas.DataFrame.pop",
+        "sklearn.impute.SimpleImputer",
+        "mlprimitives.custom.preprocessing.RangeScaler",
+        "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences",
+        "numpy.reshape",
+        "statsmodels.tsa.arima_model.Arima",
+        "mlprimitives.custom.preprocessing.RangeUnscaler",
+        "pandas.DataFrame"
+    ],
+    "init_params": {
+        "pandas.DataFrame.resample#1": {
+            "rule": "1h",
+            "aggregation": "mean",
+            "reset_index": true
+        },
+        "pandas.DataFrame.pop#1": {
+            "item": "timestamp"
+        },
+        "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences#1": {
+            "target_column": 0,
+            "window_size": 50
+        },
+        "numpy.reshape#1": {
+            "newshape": [
+                -1,
+                50
+            ]
+        },
+        "statsmodels.tsa.arima_model.Arima#1": {
+            "steps": 1
+        },
+        "pandas.DataFrame#1": {
+            "columns": ["predicted"]
+        }
+    },
+    "input_names": {
+        "mlprimitives.custom.timeseries_preprocessing.rolling_window_sequences#1": {
+            "index": "timestamp"
+        },
+        "mlprimitives.custom.preprocessing.RangeUnscaler#1": {
+            "X": "y"
+        },
+        "pandas.DataFrame#1": {
+            "index": "target_index"
+        }
+    },
+    "output_names": {
+        "pandas.DataFrame.pop#1": {
+            "item": "timestamp"
+        },
+        "numpy.reshape#1": {
+            "y": "X"
+        }
+
+    }
+}
