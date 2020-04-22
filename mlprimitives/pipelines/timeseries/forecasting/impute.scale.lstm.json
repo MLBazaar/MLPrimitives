@@ -1,4 +1,4 @@
- {
+{
     "primitives": [
         "pandas.DataFrame.resample",
         "pandas.DataFrame.pop",
@@ -31,7 +31,9 @@
             ]
         },
         "pandas.DataFrame#1": {
-            "columns": ["predicted"]
+            "columns": [
+                "predicted"
+            ]
         }
     },
     "input_names": {
