@@ -1,23 +1,39 @@
 # History
 
+## 0.2.4 - 2020-01-30
+
+### New Primitives
+
+* Add RangeScaler and RangeUnscaler primitives - [Issue #232](https://github.com/HDI-Project/MLPrimitives/issues/232) by @csala
+
+### Primitive Improvements
+
+* Extract input_shape from X in keras.Sequential - [Issue #223](https://github.com/HDI-Project/MLPrimitives/issues/223) by @csala
+
+### Bug Fixes
+
+* mlprimitives.custom.text.TextCleaner fails if text is empty - [Issue #228](https://github.com/HDI-Project/MLPrimitives/issues/228) by @csala
+* Error when loading the reviews dataset - [Issue #230](https://github.com/HDI-Project/MLPrimitives/issues/230) by @csala
+* Curate dependencies: specify an explicit prompt-toolkit version range - [Issue #224](https://github.com/HDI-Project/MLPrimitives/issues/224) by @csala
+
 ## 0.2.3 - 2019-11-14
 
 ### New Primitives
 
-Add primitive to make window_sequences based on cutoff times - [Issue #217](https://github.com/HDI-Project/MLPrimitives/issues/217) by @csala
-Create a keras LSTM based TimeSeriesClassifier primitive - [Issue #218](https://github.com/HDI-Project/MLPrimitives/issues/218) by @csala
-Add pandas DataFrame primitives - [Issue #214](https://github.com/HDI-Project/MLPrimitives/issues/214) by @csala
-Add featuretools.EntitySet.normalize_entity primitive - [Issue #209](https://github.com/HDI-Project/MLPrimitives/issues/209) by @csala
+* Add primitive to make window_sequences based on cutoff times - [Issue #217](https://github.com/HDI-Project/MLPrimitives/issues/217) by @csala
+* Create a keras LSTM based TimeSeriesClassifier primitive - [Issue #218](https://github.com/HDI-Project/MLPrimitives/issues/218) by @csala
+* Add pandas DataFrame primitives - [Issue #214](https://github.com/HDI-Project/MLPrimitives/issues/214) by @csala
+* Add featuretools.EntitySet.normalize_entity primitive - [Issue #209](https://github.com/HDI-Project/MLPrimitives/issues/209) by @csala
 
 ### Primitive Improvements
 
-Make featuretools.EntitySet.entity_from_dataframe entityset arg optional - [Issue #208](https://github.com/HDI-Project/MLPrimitives/issues/208) by @csala
+* Make featuretools.EntitySet.entity_from_dataframe entityset arg optional - [Issue #208](https://github.com/HDI-Project/MLPrimitives/issues/208) by @csala
 
-Add text regression dataset - [Issue #206](https://github.com/HDI-Project/MLPrimitives/issues/206) by @csala
+* Add text regression dataset - [Issue #206](https://github.com/HDI-Project/MLPrimitives/issues/206) by @csala
 
 ### Bug Fixes
 
-pandas.DataFrame.resample crash when grouping by integer columns - [Issue #211](https://github.com/HDI-Project/MLPrimitives/issues/211) by @csala
+* pandas.DataFrame.resample crash when grouping by integer columns - [Issue #211](https://github.com/HDI-Project/MLPrimitives/issues/211) by @csala
 
 ## 0.2.2 - 2019-10-08
 
