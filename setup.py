@@ -16,7 +16,7 @@ with open('HISTORY.md') as history_file:
 
 
 install_requires = [
-    'Keras>=2.1.6,<3',
+    'Keras>=2.1.6,<2.4',
     'featuretools>=0.6.1,<0.12',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
