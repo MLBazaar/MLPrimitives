@@ -66,7 +66,7 @@ class TextCleaner(object):
             return cls.STOPWORDS[language_code]
 
         try:
-            names = [l.strip().lower() for l in iso639.to_name(language_code).split(';')]
+            names = [lang.strip().lower() for lang in iso639.to_name(language_code).split(';')]
         except iso639.NonExistentLanguageError:
             return []
 

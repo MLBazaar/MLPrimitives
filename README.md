@@ -131,7 +131,7 @@ load the indicated primitive as an [MLBlock Object from MLBlocks](https://hdi-pr
 In this case, we will load the `mlprimitives.custom.feature_extraction.CategoricalEncoder`
 primitive.
 
-```python
+```python3
 from mlprimitives import load_primitive
 
 primitive = load_primitive('mlprimitives.custom.feature_extraction.CategoricalEncoder')
@@ -147,7 +147,7 @@ categorical columns.
 
 This can be done with the `mlprimitives.datasets.load_census` function:
 
-```python
+```python3
 from mlprimitives.datasets import load_census
 
 dataset = load_census()
@@ -159,7 +159,7 @@ columns.
 We can have a look at this table by executing `dataset.data.head()`, which will return a
 table like this:
 
-```python
+```
                              0                    1                   2
 age                         39                   50                  38
 workclass            State-gov     Self-emp-not-inc             Private
@@ -185,7 +185,7 @@ This is the process where it analyzes the data to detect which columns are categ
 
 This is done by calling its `fit` method and assing the `dataset.data` as `X`.
 
-```python
+```python3
 primitive.fit(X=dataset.data)
 ```
 
@@ -194,7 +194,7 @@ primitive.fit(X=dataset.data)
 Once the pipeline is fit, we can process the data by calling the `produce` method of the
 primitive instance and passing agin the `data` as `X`.
 
-```python
+```python3
 transformed = primitive.produce(X=dataset.data)
 ```
 
@@ -230,7 +230,7 @@ generated and later on make predictions based on new data.
 
 Firs of all, we will load the `xgboost.XGBClassifier` primitive that we will use afterwards.
 
-```python
+```python3
 primitive = load_primitive('xgboost.XGBClassifier')
 ```
 
@@ -243,7 +243,7 @@ to make the predictions that later on will be evaluated.
 In order to do this, we will get the first 75% of rows from the transformed data that we
 obtained above and call it `X_train`, and then set the next 25% of rows as `X_test`.
 
-```python
+```python3
 train_size = int(len(transformed) * 0.75)
 X_train = transformed.iloc[:train_size]
 X_test = transformed.iloc[train_size:]
@@ -252,7 +252,7 @@ X_test = transformed.iloc[train_size:]
 Similarly, we need to obtain the `y_train` and `y_test` variables containing the corresponding
 output values.
 
-```python
+```python3
 y_train = dataset.target[:train_size]
 y_test = dataset.target[train_size:]
 ```
@@ -262,7 +262,7 @@ y_test = dataset.target[train_size:]
 Once we have have splitted the data, we can fit the primitive by passing `X_train` and `y_train`
 to its `fit` method.
 
-```python
+```python3
 primitive.fit(X=X_train, y=y_train)
 ```
 
@@ -270,7 +270,7 @@ primitive.fit(X=X_train, y=y_train)
 
 Once the primitive has been fitted, we can produce predictions using the `X_test` data as input.
 
-```python
+```python3
 predictions = primitive.produce(X=X_test)
 ```
 
@@ -280,7 +280,7 @@ We can now evaluate how good the predictions from our primitive are by using the
 method from the `dataset` object on both the expected output and the real output from the
 primitive:
 
-```python
+```python3
 dataset.score(y_test, predictions)
 ```
 
@@ -297,7 +297,7 @@ hyperparameters.
 First we will see which hyperparameter values the primitive has by calling its
 `get_hyperparameters` method.
 
-```python
+```python3
 primitive.get_hyperparameters()
 ```
 
@@ -317,7 +317,7 @@ which will return a dictionary like this:
 Next, we will see which are the valid values for each one of those hyperparameters by calling its
 `get_tunable_hyperparameters` method:
 
-```python
+```python3
 primitive.get_tunable_hyperparameters()
 ```
 
@@ -337,7 +337,7 @@ For example, we will see that the `max_depth` hyperparameter has the following s
 Next, we will choose a valid value, for example 7, and set it into the pipeline using the
 `set_hyperparameters` method:
 
-```python
+```python3
 primitive.set_hyperparameters({'max_depth': 7})
 ```
 
@@ -346,7 +346,7 @@ primitive.set_hyperparameters({'max_depth': 7})
 Once the new hyperparameter value has been set, we repeat the fit/train/score cycle to
 evaluate the performance of this new hyperparameter value:
 
-```python
+```python3
 primitive.fit(X=X_train, y=y_train)
 predictions = primitive.produce(X=X_test)
 dataset.score(y_test, predictions)
