@@ -88,9 +88,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-using-pip">Install using Pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from Source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-for-development">Install for Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-with-pip">Install with pip</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#quickstart">Quickstart</a><ul>
@@ -374,9 +372,10 @@
 <h1>MLPrimitives<a class="headerlink" href="#mlprimitives" title="Permalink to this headline">¶</a></h1>
 <p>Pipelines and primitives for machine learning and data science.</p>
 <ul class="simple">
-<li><p>Free software: MIT license</p></li>
+<li><p>License: <a class="reference external" href="https://github.com/hdi-project/MLPrimitives/blob/master/LICENSE">MIT</a></p></li>
 <li><p>Development Status: <a class="reference external" href="https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha">Pre-Alpha</a></p></li>
-<li><p>Documentation: <a class="reference external" href="https://HDI-Project.github.io/MLPrimitives">https://HDI-Project.github.io/MLPrimitives</a></p></li>
+<li><p>Documentation: <a class="reference external" href="https://hdi-project.github.io/MLPrimitives">https://hdi-project.github.io/MLPrimitives</a></p></li>
+<li><p>Homepage: <a class="reference external" href="https://github.com/hdi-project/MLPrimitives">https://github.com/hdi-project/MLPrimitives</a></p></li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -399,62 +398,20 @@ combine third party tools or implement new functionalities from scratch.</p>
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p><strong>MLPrimitives</strong> has been developed and tested on <a class="reference external" href="https://www.python.org/downloads/">Python 3.5, and 3.6</a></p>
+<p><strong>MLPrimitives</strong> has been developed and tested on <a class="reference external" href="https://www.python.org/downloads/">Python 3.5, 3.6 and 3.7</a></p>
 <p>Also, although it is not strictly required, the usage of a
 <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> is highly recommended in order to avoid
 interfering with other software installed in the system where <strong>MLPrimitives</strong> is run.</p>
-<p>These are the minimum commands needed to create a virtualenv using python3.6 for <strong>MLPrimitives</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install virtualenv
-virtualenv -p <span class="k">$(</span>which python3.6<span class="k">)</span> mlprimitives-venv
-</pre></div>
 </div>
-<p>Afterwards, you have to execute this command to have the virtualenv activated:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> mlprimitives-venv/bin/activate
-</pre></div>
-</div>
-<p>Remember about executing it every time you start a new console to work on <strong>MLPrimitives</strong>!</p>
-</div>
-<div class="section" id="install-using-pip">
-<h2>Install using Pip<a class="headerlink" href="#install-using-pip" title="Permalink to this headline">¶</a></h2>
-<p>After creating the virtualenv and activating it, we recommend using
-<a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> in order to install <strong>MLPrimitives</strong>:</p>
+<div class="section" id="install-with-pip">
+<h2>Install with pip<a class="headerlink" href="#install-with-pip" title="Permalink to this headline">¶</a></h2>
+<p>The easiest and recommended way to install <strong>MLPrimitives</strong> is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install mlprimitives
 </pre></div>
 </div>
 <p>This will pull and install the latest stable release from <a class="reference external" href="https://pypi.org/">PyPi</a>.</p>
-</div>
-<div class="section" id="install-from-source">
-<h2>Install from Source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
-<p>Alternatively, with your virtualenv activated, you can clone the repository and install it from
-source by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> on the <code class="docutils literal notranslate"><span class="pre">stable</span></code> branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:HDI-Project/MLPrimitives.git
-<span class="nb">cd</span> MLPrimitives
-git checkout stable
-make install
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-for-development">
-<h2>Install for Development<a class="headerlink" href="#install-for-development" title="Permalink to this headline">¶</a></h2>
-<p>If you want to contribute to the project, a few more steps are required to make the project ready
-for development.</p>
-<p>First, please head to <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives">the GitHub page of the project</a>
-and make a fork of the project under you own username by clicking on the <strong>fork</strong> button on the
-upper right corner of the page.</p>
-<p>Afterwards, clone your fork and create a branch from master with a descriptive name that includes
-the number of the issue that you are going to work on:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:<span class="o">{</span>your username<span class="o">}</span>/MLPrimitives.git
-<span class="nb">cd</span> MLPrimitives
-git branch issue-xx-cool-new-feature master
-git checkout issue-xx-cool-new-feature
-</pre></div>
-</div>
-<p>Finally, install the project with the following command, which will install some additional
-dependencies for code linting and testing.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make install-develop
-</pre></div>
-</div>
-<p>Make sure to use them regularly while developing by running the commands <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>.</p>
+<p>If you want to install from source or contribute to the project please read the
+<a class="reference external" href="https://hdi-project.github.io/MLPrimitives/community/welcome.html">Contributing Guide</a>.</p>
 </div>
 </div>
 <div class="section" id="quickstart">
