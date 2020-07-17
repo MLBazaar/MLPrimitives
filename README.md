@@ -13,9 +13,10 @@
 
 Pipelines and primitives for machine learning and data science.
 
-- Free software: MIT license
-- Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-- Documentation: https://HDI-Project.github.io/MLPrimitives
+* License: [MIT](https://github.com/hdi-project/MLPrimitives/blob/master/LICENSE)
+* Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
+* Documentation: https://hdi-project.github.io/MLPrimitives
+* Homepage: https://github.com/hdi-project/MLPrimitives
 
 # Overview
 
@@ -36,31 +37,15 @@ combine third party tools or implement new functionalities from scratch.
 
 ## Requirements
 
-**MLPrimitives** has been developed and tested on [Python 3.5, and 3.6](https://www.python.org/downloads/)
+**MLPrimitives** has been developed and tested on [Python 3.5, 3.6 and 3.7](https://www.python.org/downloads/)
 
 Also, although it is not strictly required, the usage of a
 [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended in order to avoid
 interfering with other software installed in the system where **MLPrimitives** is run.
 
-These are the minimum commands needed to create a virtualenv using python3.6 for **MLPrimitives**:
+## Install with pip
 
-```bash
-pip install virtualenv
-virtualenv -p $(which python3.6) mlprimitives-venv
-```
-
-Afterwards, you have to execute this command to have the virtualenv activated:
-
-```bash
-source mlprimitives-venv/bin/activate
-```
-
-Remember about executing it every time you start a new console to work on **MLPrimitives**!
-
-## Install using Pip
-
-After creating the virtualenv and activating it, we recommend using
-[pip](https://pip.pypa.io/en/stable/) in order to install **MLPrimitives**:
+The easiest and recommended way to install **MLPrimitives** is using [pip](https://pip.pypa.io/en/stable/):
 
 ```bash
 pip install mlprimitives
@@ -68,45 +53,8 @@ pip install mlprimitives
 
 This will pull and install the latest stable release from [PyPi](https://pypi.org/).
 
-## Install from Source
-
-Alternatively, with your virtualenv activated, you can clone the repository and install it from
-source by running `make install` on the `stable` branch:
-
-```bash
-git clone git@github.com:HDI-Project/MLPrimitives.git
-cd MLPrimitives
-git checkout stable
-make install
-```
-
-## Install for Development
-
-If you want to contribute to the project, a few more steps are required to make the project ready
-for development.
-
-First, please head to [the GitHub page of the project](https://github.com/HDI-Project/MLPrimitives)
-and make a fork of the project under you own username by clicking on the **fork** button on the
-upper right corner of the page.
-
-Afterwards, clone your fork and create a branch from master with a descriptive name that includes
-the number of the issue that you are going to work on:
-
-```bash
-git clone git@github.com:{your username}/MLPrimitives.git
-cd MLPrimitives
-git branch issue-xx-cool-new-feature master
-git checkout issue-xx-cool-new-feature
-```
-
-Finally, install the project with the following command, which will install some additional
-dependencies for code linting and testing.
-
-```bash
-make install-develop
-```
-
-Make sure to use them regularly while developing by running the commands `make lint` and `make test`.
+If you want to install from source or contribute to the project please read the
+[Contributing Guide](https://hdi-project.github.io/MLPrimitives/community/welcome.html).
 
 # Quickstart
 
