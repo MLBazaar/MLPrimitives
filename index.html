@@ -472,7 +472,7 @@ its hyperparameters.</p>
 load the indicated primitive as an <a class="reference external" href="https://hdi-project.github.io/MLBlocks/api/mlblocks.html#mlblocks.MLBlock">MLBlock Object from MLBlocks</a></p>
 <p>In this case, we will load the <code class="docutils literal notranslate"><span class="pre">mlprimitives.custom.feature_extraction.CategoricalEncoder</span></code>
 primitive.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlprimitives</span> <span class="kn">import</span> <span class="n">load_primitive</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlprimitives</span> <span class="kn">import</span> <span class="n">load_primitive</span>
 
 <span class="n">primitive</span> <span class="o">=</span> <span class="n">load_primitive</span><span class="p">(</span><span class="s1">&#39;mlprimitives.custom.feature_extraction.CategoricalEncoder&#39;</span><span class="p">)</span>
 </pre></div>
@@ -485,7 +485,7 @@ categorical columns of a <code class="docutils literal notranslate"><span class=
 <p>So, in order to be able to run our primitive, we will first load some data that contains
 categorical columns.</p>
 <p>This can be done with the <code class="docutils literal notranslate"><span class="pre">mlprimitives.datasets.load_census</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlprimitives.datasets</span> <span class="kn">import</span> <span class="n">load_census</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlprimitives.datasets</span> <span class="kn">import</span> <span class="n">load_census</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_census</span><span class="p">()</span>
 </pre></div>
@@ -494,21 +494,21 @@ categorical columns.</p>
 columns.</p>
 <p>We can have a look at this table by executing <code class="docutils literal notranslate"><span class="pre">dataset.data.head()</span></code>, which will return a
 table like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>                             <span class="mi">0</span>                    <span class="mi">1</span>                   <span class="mi">2</span>
-<span class="n">age</span>                         <span class="mi">39</span>                   <span class="mi">50</span>                  <span class="mi">38</span>
-<span class="n">workclass</span>            <span class="n">State</span><span class="o">-</span><span class="n">gov</span>     <span class="n">Self</span><span class="o">-</span><span class="n">emp</span><span class="o">-</span><span class="ow">not</span><span class="o">-</span><span class="n">inc</span>             <span class="n">Private</span>
-<span class="n">fnlwgt</span>                   <span class="mi">77516</span>                <span class="mi">83311</span>              <span class="mi">215646</span>
-<span class="n">education</span>            <span class="n">Bachelors</span>            <span class="n">Bachelors</span>             <span class="n">HS</span><span class="o">-</span><span class="n">grad</span>
-<span class="n">education</span><span class="o">-</span><span class="n">num</span>               <span class="mi">13</span>                   <span class="mi">13</span>                   <span class="mi">9</span>
-<span class="n">marital</span><span class="o">-</span><span class="n">status</span>   <span class="n">Never</span><span class="o">-</span><span class="n">married</span>   <span class="n">Married</span><span class="o">-</span><span class="n">civ</span><span class="o">-</span><span class="n">spouse</span>            <span class="n">Divorced</span>
-<span class="n">occupation</span>        <span class="n">Adm</span><span class="o">-</span><span class="n">clerical</span>      <span class="n">Exec</span><span class="o">-</span><span class="n">managerial</span>   <span class="n">Handlers</span><span class="o">-</span><span class="n">cleaners</span>
-<span class="n">relationship</span>     <span class="n">Not</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">family</span>              <span class="n">Husband</span>       <span class="n">Not</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">family</span>
-<span class="n">race</span>                     <span class="n">White</span>                <span class="n">White</span>               <span class="n">White</span>
-<span class="n">sex</span>                       <span class="n">Male</span>                 <span class="n">Male</span>                <span class="n">Male</span>
-<span class="n">capital</span><span class="o">-</span><span class="n">gain</span>              <span class="mi">2174</span>                    <span class="mi">0</span>                   <span class="mi">0</span>
-<span class="n">capital</span><span class="o">-</span><span class="n">loss</span>                 <span class="mi">0</span>                    <span class="mi">0</span>                   <span class="mi">0</span>
-<span class="n">hours</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">week</span>              <span class="mi">40</span>                   <span class="mi">13</span>                  <span class="mi">40</span>
-<span class="n">native</span><span class="o">-</span><span class="n">country</span>   <span class="n">United</span><span class="o">-</span><span class="n">States</span>        <span class="n">United</span><span class="o">-</span><span class="n">States</span>       <span class="n">United</span><span class="o">-</span><span class="n">States</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>                             0                    1                   2
+age                         39                   50                  38
+workclass            State-gov     Self-emp-not-inc             Private
+fnlwgt                   77516                83311              215646
+education            Bachelors            Bachelors             HS-grad
+education-num               13                   13                   9
+marital-status   Never-married   Married-civ-spouse            Divorced
+occupation        Adm-clerical      Exec-managerial   Handlers-cleaners
+relationship     Not-in-family              Husband       Not-in-family
+race                     White                White               White
+sex                       Male                 Male                Male
+capital-gain              2174                    0                   0
+capital-loss                 0                    0                   0
+hours-per-week              40                   13                  40
+native-country   United-States        United-States       United-States
 </pre></div>
 </div>
 </div>
@@ -517,7 +517,7 @@ table like this:</p>
 <p>In order to run our pipeline, we first need to fit it.</p>
 <p>This is the process where it analyzes the data to detect which columns are categorical</p>
 <p>This is done by calling its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method and assing the <code class="docutils literal notranslate"><span class="pre">dataset.data</span></code> as <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -525,7 +525,7 @@ table like this:</p>
 <h3>4. Produce results<a class="headerlink" href="#produce-results" title="Permalink to this headline">¶</a></h3>
 <p>Once the pipeline is fit, we can process the data by calling the <code class="docutils literal notranslate"><span class="pre">produce</span></code> method of the
 primitive instance and passing agin the <code class="docutils literal notranslate"><span class="pre">data</span></code> as <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">transformed</span> <span class="o">=</span> <span class="n">primitive</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed</span> <span class="o">=</span> <span class="n">primitive</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>After this is done, we can see how the transformed data contains the newly generated
@@ -557,7 +557,7 @@ generated and later on make predictions based on new data.</p>
 <div class="section" id="load-another-primitive">
 <h3>1. Load another primitive<a class="headerlink" href="#load-another-primitive" title="Permalink to this headline">¶</a></h3>
 <p>Firs of all, we will load the <code class="docutils literal notranslate"><span class="pre">xgboost.XGBClassifier</span></code> primitive that we will use afterwards.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span> <span class="o">=</span> <span class="n">load_primitive</span><span class="p">(</span><span class="s1">&#39;xgboost.XGBClassifier&#39;</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span> <span class="o">=</span> <span class="n">load_primitive</span><span class="p">(</span><span class="s1">&#39;xgboost.XGBClassifier&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -568,14 +568,14 @@ parts: train, which will be used for the primitive to learn, and test, which wil
 to make the predictions that later on will be evaluated.</p>
 <p>In order to do this, we will get the first 75% of rows from the transformed data that we
 obtained above and call it <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, and then set the next 25% of rows as <code class="docutils literal notranslate"><span class="pre">X_test</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transformed</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">transformed</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.75</span><span class="p">)</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
 </pre></div>
 </div>
 <p>Similarly, we need to obtain the <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code> variables containing the corresponding
 output values.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">[:</span><span class="n">train_size</span><span class="p">]</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">train_size</span><span class="p">:]</span>
 </pre></div>
 </div>
@@ -584,14 +584,14 @@ output values.</p>
 <h3>3. Fit the new primitive<a class="headerlink" href="#fit-the-new-primitive" title="Permalink to this headline">¶</a></h3>
 <p>Once we have have splitted the data, we can fit the primitive by passing <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code>
 to its <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="make-predictions">
 <h3>4. Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h3>
 <p>Once the primitive has been fitted, we can produce predictions using the <code class="docutils literal notranslate"><span class="pre">X_test</span></code> data as input.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">primitive</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">primitive</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -600,7 +600,7 @@ to its <code class="docutils literal notranslate"><span class="pre">fit</span></
 <p>We can now evaluate how good the predictions from our primitive are by using the <code class="docutils literal notranslate"><span class="pre">score</span></code>
 method from the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> object on both the expected output and the real output from the
 primitive:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This will output a float value between 0 and 1 indicating how good the predicitons are, being
@@ -613,7 +613,7 @@ primitive:</p>
 hyperparameters.</p>
 <p>First we will see which hyperparameter values the primitive has by calling its
 <code class="docutils literal notranslate"><span class="pre">get_hyperparameters</span></code> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">get_hyperparameters</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>which will return a dictionary like this:</p>
@@ -629,7 +629,7 @@ hyperparameters.</p>
 </div>
 <p>Next, we will see which are the valid values for each one of those hyperparameters by calling its
 <code class="docutils literal notranslate"><span class="pre">get_tunable_hyperparameters</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">get_tunable_hyperparameters</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">get_tunable_hyperparameters</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>For example, we will see that the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter has the following specification:</p>
@@ -645,7 +645,7 @@ hyperparameters.</p>
 </div>
 <p>Next, we will choose a valid value, for example 7, and set it into the pipeline using the
 <code class="docutils literal notranslate"><span class="pre">set_hyperparameters</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">({</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">set_hyperparameters</span><span class="p">({</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -653,7 +653,7 @@ hyperparameters.</p>
 <h3>7. Re-evaluate the performance<a class="headerlink" href="#re-evaluate-the-performance" title="Permalink to this headline">¶</a></h3>
 <p>Once the new hyperparameter value has been set, we repeat the fit/train/score cycle to
 evaluate the performance of this new hyperparameter value:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">primitive</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">dataset</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
 </pre></div>
