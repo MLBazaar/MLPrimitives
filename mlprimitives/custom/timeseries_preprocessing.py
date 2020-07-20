@@ -237,9 +237,18 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
 
     columns = list(X.columns)
 
+    if not isinstance(window_size, int):
+        window_size = pd.to_timedelta(window_size)
+
     output = list()
     for idx, row in enumerate(X.itertuples()):
         selected = timeseries[timeseries.index < row.Index]
+
+        if not isinstance(window_size, int):
+            min_time = selected.index[-1] - window_size
+            selected = selected.loc[selected.index > min_time]
+        else:
+            selected = selected.iloc[-window_size:]
 
         mask = [True] * len(selected)
         for column in columns:
