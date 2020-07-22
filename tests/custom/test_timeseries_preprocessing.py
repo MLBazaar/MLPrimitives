@@ -2,10 +2,11 @@ from unittest import TestCase
 
 import numpy as np
 import pandas as pd
+import pytest
 from numpy.testing import assert_allclose
 
 from mlprimitives.custom.timeseries_preprocessing import (
-    intervals_to_mask, rolling_window_sequences, time_segments_aggregate, time_segments_average)
+    intervals_to_mask, rolling_window_sequences, time_segments_aggregate, time_segments_average, cutoff_window_sequences)
 
 
 class IntervalsToMaskTest(TestCase):
@@ -239,3 +240,104 @@ class TimeSegmentsAggregateTest(TestCase):
         expected_index = np.array([1, 3])
         self._run(X, interval, expected_values, expected_index, time_column=0,
                   method=['mean', 'median'])
+        
+class CutoffWindowSequencesTest(TestCase):
+    
+    def setUp(self):
+        self.X = pd.DataFrame({
+            'id': [1, 2],
+            'cutoff': pd.to_datetime(['2020-01-05', '2020-01-07'])
+        })
+        self.timeseries = pd.DataFrame({
+            'timestamp': list(pd.date_range(
+                start='2020-01-01',
+                end='2020-01-10',
+                freq='1d'
+            )) * 2,
+            'value': np.arange(1, 21),
+            'id': [1] * 10 + [2] * 10
+        })
+        
+    def test_cutoff_time_not_index(self):
+        #setup
+        timeseries = self.timeseries.set_index('timestamp')
+        
+        #run
+        array = cutoff_window_sequences(
+            self.X,
+            timeseries,
+            window_size=3,
+            cutoff_time='cutoff',
+        )
+        
+        #assert
+        expected_array = np.array([[[2],[3],[4]], [[14],[15],[16]]])
+        assert_allclose(array,expected_array)
+    
+    def test_time_index_not_index(self):
+        #setup
+        X = self.X.set_index('cutoff')
+        
+        #run
+        array = cutoff_window_sequences(
+            X,
+            self.timeseries,
+            window_size=3,
+            time_index='timestamp',
+        )
+        
+        #assert
+        expected_array = np.array([[[2],[3],[4]], [[14],[15],[16]]])
+        assert_allclose(array,expected_array)
+        
+    def test_window_size_integer(self):
+        #setup
+        X = self.X.set_index('cutoff')
+        timeseries = self.timeseries.set_index('timestamp')
+        
+        #run
+        array = cutoff_window_sequences(
+            X,
+            timeseries,
+            window_size=3,
+        )
+        
+        #assert
+        expected_array = np.array([[[2],[3],[4]], [[14],[15],[16]]])
+        assert_allclose(array,expected_array)
+    
+    #At the moment, it fails
+    #@pytest.mark.xfail
+    def test_window_size_string(self):
+        #setup
+        X = self.X.set_index('cutoff')
+        timeseries = self.timeseries.set_index('timestamp')
+        
+        #run
+        array = cutoff_window_sequences(
+            X,
+            timeseries,
+            window_size='3d',
+        )
+        
+        #assert
+        expected_array = np.array([[[2],[3],[4]], [[14],[15],[16]]])
+        assert_allclose(array,expected_array)
+    
+    #At the moment, it fails
+    #@pytest.mark.xfail
+    def test_window_size_timedelta(self):
+        #setup
+        X = self.X.set_index('cutoff')
+        timeseries = self.timeseries.set_index('timestamp')
+        
+        #run
+        array = cutoff_window_sequences(
+                X,
+                timeseries,
+                window_size=pd.Timedelta(days=3),
+            )
+
+        #assert
+        expected_array = np.array([[[2],[3],[4]], [[14],[15],[16]]])
+        assert_allclose(array,expected_array)
