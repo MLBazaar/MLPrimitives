@@ -249,13 +249,11 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
             mask &= selected.pop(column) == getattr(row, column)
 
         selected = selected[mask]
-        
         if not isinstance(window_size, int):
             min_time = selected.index[-1] - window_size
             selected = selected.loc[selected.index > min_time]
         else:
-            selected = selected.iloc[-window_size:]
-        
+            selected = selected.iloc[-window_size:]  
         len_selected = len(selected)
         if (len_selected != window_size):
             warnings.warn((
