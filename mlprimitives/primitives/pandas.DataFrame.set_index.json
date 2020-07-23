@@ -1,0 +1,57 @@
+{
+    "name": "pandas.DataFrame.set_index",
+    "contributors": [
+        "Jose David Perez <jose@pythiac.com>"
+    ],
+    "documentation": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.set_index.html",
+    "description": "Set the DataFrame index using existing columns.",
+    "classifiers": {
+        "type": "helper",
+        "subtype": "fitting"
+    },
+    "modalities": [],
+    "primitive": "pandas.DataFrame.set_index",
+    "produce": {
+        "args": [
+            {
+                "name": "X",
+                "keyword": "self",
+                "type": "pandas.DataFrame"
+            },
+            {
+                "name": "keys",
+                "type": "label or array-like or list of labels/arrays"
+            }
+        ],
+        "output": [
+            {
+                "name": "X",
+                "type": "pandas.DataFrame"
+            }
+        ]
+    },
+    "hyperparameters": {
+        "fixed": {
+            "drop": {
+                "type": "bool",
+                "default": true,
+                "description": "Delete columns to be used as the new index."
+            },
+            "append": {
+                "type": "bool",
+                "default": false,
+                "description": "Whether to append columns to existing index."
+            },
+            "inplace": {
+                "type": "bool",
+                "default": false,
+                "description": "Modify the DataFrame in place (do not create a new object)."
+            },
+            "verify_integrity": {
+                "type": "bool",
+                "default": false,
+                "description": "Check the new index for duplicates. Otherwise defer the check until necessary. Setting to False will improve the performance of this method."
+            }
+        }
+    }
+}
