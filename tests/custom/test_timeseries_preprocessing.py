@@ -260,6 +260,7 @@ class CutoffWindowSequencesTest(TestCase):
             'id': [1] * 10 + [2] * 10
         }).set_index('timestamp')
 
+    """Passing cutoff_time. The indicated column will be used as the cutoff time."""
     def test_cutoff_time_column(self):
         # setup
         timeseries = self.timeseries
@@ -274,14 +275,18 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[2, 22],
-                                    [3, 23],
-                                    [4, 24]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
+        expected_array = np.array([
+            [[2, 22],
+             [3, 23],
+             [4, 24]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
+
         assert_allclose(array, expected_array)
 
+    """Passing time_index. The indicated column will be used as the timeseries index."""
     def test_time_index_column(self):
         # setup
         X = self.X
@@ -296,14 +301,18 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[2, 22],
-                                    [3, 23],
-                                    [4, 24]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
+        expected_array = np.array([
+            [[2, 22],
+             [3, 23],
+             [4, 24]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
+
         assert_allclose(array, expected_array)
 
+    """window_size accepts integer."""
     def test_window_size_integer(self):
         # setup
         X = self.X
@@ -317,14 +326,18 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[2, 22],
-                                    [3, 23],
-                                    [4, 24]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
+        expected_array = np.array([
+            [[2, 22],
+             [3, 23],
+             [4, 24]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
+
         assert_allclose(array, expected_array)
 
+    """window_size accepts string."""
     def test_window_size_string(self):
         # setup
         X = self.X
@@ -338,14 +351,18 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[2, 22],
-                                    [3, 23],
-                                    [4, 24]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
+        expected_array = np.array([
+            [[2, 22],
+             [3, 23],
+             [4, 24]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
+
         assert_allclose(array, expected_array)
 
+    """window_size accepts Timedelta object."""
     def test_window_size_timedelta(self):
         # setup
         X = self.X
@@ -359,15 +376,19 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[2, 22],
-                                    [3, 23],
-                                    [4, 24]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
+        expected_array = np.array([
+            [[2, 22],
+             [3, 23],
+             [4, 24]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
+
         assert_allclose(array, expected_array)
 
-    def test_large_window_size(self):
+    """If there is not enough data for the given window_size, shape changes."""
+    def test_not_enough_data(self):
         # setup
         X = self.X
         timeseries = self.timeseries
@@ -381,17 +402,14 @@ class CutoffWindowSequencesTest(TestCase):
 
         # assert
         assert len(array) == 2
-        assert_allclose(
-            array[0],
+
+        expected_array = np.array([
             np.array([
                 [1, 21],
                 [2, 22],
                 [3, 23],
                 [4, 24]
-            ])
-        )
-        assert_allclose(
-            array[1],
+            ]),
             np.array([
                 [12, 32],
                 [13, 33],
@@ -399,44 +417,20 @@ class CutoffWindowSequencesTest(TestCase):
                 [15, 35],
                 [16, 36]
             ])
-        )
+        ])
 
-    def test_window_size_zero(self):
-        # setup
-        X = self.X
-        timeseries = self.timeseries
-
-        # run
-        array = cutoff_window_sequences(
-            X,
-            timeseries,
-            window_size=0,
-        )
-
-        # assert
-        assert len(array) == 2
         assert_allclose(
             array[0],
-            np.array([
-                [1, 21],
-                [2, 22],
-                [3, 23],
-                [4, 24]
-            ])
-        )
-        assert_allclose(
-            array[1],
-            np.array([
-                [11, 31],
-                [12, 32],
-                [13, 33],
-                [14, 34],
-                [15, 35],
-                [16, 36]
-            ])
+            expected_array[0]
         )
 
-    def test_not_id(self):
+        assert_allclose(
+            array[1],
+            expected_array[1]
+        )
+
+    """Test X without any other column than cutoff_time."""
+    def test_cutoff_time_only(self):
         # setup
         X = self.X
         del X['id']
@@ -451,28 +445,13 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[12, 32],
-                                    [13, 33],
-                                    [14, 34]],
-                                   [[14, 34],
-                                    [15, 35],
-                                    [16, 36]]])
-        assert_allclose(array, expected_array)
+        expected_array = np.array([
+            [[12, 32],
+             [13, 33],
+             [14, 34]],
+            [[14, 34],
+             [15, 35],
+             [16, 36]]
+        ])
 
-    def test_not_values(self):
-        # setup
-        X = self.X
-        timeseries = self.timeseries
-        del timeseries['value1']
-        del timeseries['value2']
-
-        # run
-        array = cutoff_window_sequences(
-            X,
-            timeseries,
-            window_size=3,
-        )
-
-        # assert
-        expected_array = np.array([[[], [], []], [[], [], []]])
         assert_allclose(array, expected_array)
