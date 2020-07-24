@@ -2,12 +2,11 @@ from unittest import TestCase
 
 import numpy as np
 import pandas as pd
-import pytest
 from numpy.testing import assert_allclose
 
 from mlprimitives.custom.timeseries_preprocessing import (
-    intervals_to_mask, rolling_window_sequences, time_segments_aggregate,
-    time_segments_average, cutoff_window_sequences)
+    cutoff_window_sequences, intervals_to_mask, rolling_window_sequences, time_segments_aggregate,
+    time_segments_average)
 
 
 class IntervalsToMaskTest(TestCase):
@@ -241,10 +240,10 @@ class TimeSegmentsAggregateTest(TestCase):
         expected_index = np.array([1, 3])
         self._run(X, interval, expected_values, expected_index, time_column=0,
                   method=['mean', 'median'])
-        
-        
+
+
 class CutoffWindowSequencesTest(TestCase):
-    
+
     def setUp(self):
         self.X = pd.DataFrame({
             'id': [1, 2],
@@ -260,12 +259,12 @@ class CutoffWindowSequencesTest(TestCase):
             'value2': np.arange(21, 41),
             'id': [1] * 10 + [2] * 10
         }).set_index('timestamp')
-        
+
     def test_cutoff_time_column(self):
         # setup
         timeseries = self.timeseries
         X = self.X.reset_index()
-        
+
         # run
         array = cutoff_window_sequences(
             X,
@@ -273,21 +272,21 @@ class CutoffWindowSequencesTest(TestCase):
             window_size=3,
             cutoff_time='cutoff',
         )
-        
+
         # assert
-        expected_array = np.array([[[ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]],
-                            [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
-        assert_allclose(array,expected_array)
-    
+        expected_array = np.array([[[2, 22],
+                                    [3, 23],
+                                    [4, 24]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
+        assert_allclose(array, expected_array)
+
     def test_time_index_column(self):
         # setup
         X = self.X
         timeseries = self.timeseries.reset_index()
-        
+
         # run
         array = cutoff_window_sequences(
             X,
@@ -295,63 +294,63 @@ class CutoffWindowSequencesTest(TestCase):
             window_size=3,
             time_index='timestamp',
         )
-        
+
         # assert
-        expected_array = np.array([[[ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]],
-                            [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
-        assert_allclose(array,expected_array)
-        
+        expected_array = np.array([[[2, 22],
+                                    [3, 23],
+                                    [4, 24]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
+        assert_allclose(array, expected_array)
+
     def test_window_size_integer(self):
         # setup
         X = self.X
         timeseries = self.timeseries
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size=3,
         )
-        
+
         # assert
-        expected_array = np.array([[[ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]],
-                            [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
-        assert_allclose(array,expected_array)
-    
+        expected_array = np.array([[[2, 22],
+                                    [3, 23],
+                                    [4, 24]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
+        assert_allclose(array, expected_array)
+
     def test_window_size_string(self):
         # setup
         X = self.X
         timeseries = self.timeseries
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size='3d',
         )
-        
+
         # assert
-        expected_array = np.array([[[ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]],
-                            [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
-        assert_allclose(array,expected_array)
-    
+        expected_array = np.array([[[2, 22],
+                                    [3, 23],
+                                    [4, 24]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
+        assert_allclose(array, expected_array)
+
     def test_window_size_timedelta(self):
         # setup
         X = self.X
         timeseries = self.timeseries
-        
+
         # run
         array = cutoff_window_sequences(
             X,
@@ -360,103 +359,120 @@ class CutoffWindowSequencesTest(TestCase):
         )
 
         # assert
-        expected_array = np.array([[[ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]],
-                            [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
-        assert_allclose(array,expected_array)
-        
-    @pytest.mark.xfail       
+        expected_array = np.array([[[2, 22],
+                                    [3, 23],
+                                    [4, 24]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
+        assert_allclose(array, expected_array)
+
     def test_large_window_size(self):
         # setup
         X = self.X
         timeseries = self.timeseries
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size=5,
         )
-        
+
         # assert
-        expected_array = np.array([np.array([[ 1, 21],
-                            [ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]]),
-                            np.array([[12, 32],
-                            [13, 33],
-                            [14, 34],
-                            [15, 35],
-                            [16, 36]])])
-        assert_allclose(array, expected_array)
-        
-    @pytest.mark.xfail       
+        assert len(array) == 2
+        assert_allclose(
+            array[0],
+            np.array([
+                [1, 21],
+                [2, 22],
+                [3, 23],
+                [4, 24]
+            ])
+        )
+        assert_allclose(
+            array[1],
+            np.array([
+                [12, 32],
+                [13, 33],
+                [14, 34],
+                [15, 35],
+                [16, 36]
+            ])
+        )
+
     def test_window_size_zero(self):
         # setup
         X = self.X
         timeseries = self.timeseries
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size=0,
         )
-        
+
         # assert
-        expected_array = np.array([np.array([[ 1, 21],
-                            [ 2, 22],
-                            [ 3, 23],
-                            [ 4, 24]]),
-                            np.array([[11, 31],
-                            [12, 32],
-                            [13, 33],
-                            [14, 34],
-                            [15, 35],
-                            [16, 36]])],dtype=object)
-        assert_allclose(array, expected_array)
-        
+        assert len(array) == 2
+        assert_allclose(
+            array[0],
+            np.array([
+                [1, 21],
+                [2, 22],
+                [3, 23],
+                [4, 24]
+            ])
+        )
+        assert_allclose(
+            array[1],
+            np.array([
+                [11, 31],
+                [12, 32],
+                [13, 33],
+                [14, 34],
+                [15, 35],
+                [16, 36]
+            ])
+        )
+
     def test_not_id(self):
         # setup
         X = self.X
         del X['id']
         timeseries = self.timeseries
         del timeseries['id']
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size=3,
         )
-        
+
         # assert
         expected_array = np.array([[[12, 32],
-                            [13, 33],
-                            [14, 34]],
-                           [[14, 34],
-                            [15, 35],
-                            [16, 36]]])
+                                    [13, 33],
+                                    [14, 34]],
+                                   [[14, 34],
+                                    [15, 35],
+                                    [16, 36]]])
         assert_allclose(array, expected_array)
-        
+
     def test_not_values(self):
         # setup
         X = self.X
         timeseries = self.timeseries
         del timeseries['value1']
         del timeseries['value2']
-        
+
         # run
         array = cutoff_window_sequences(
             X,
             timeseries,
             window_size=3,
         )
-        
+
         # assert
-        expected_array = np.array([[[],[],[]],[[],[],[]]])
+        expected_array = np.array([[[], [], []], [[], [], []]])
         assert_allclose(array, expected_array)
-        
