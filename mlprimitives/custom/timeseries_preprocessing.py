@@ -213,8 +213,10 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
         timeseries (pandas.DataFrame):
             ``pandas.DataFrame`` containing the actual timeseries data. The time index
             and either be set as the DataFrame index or as a column.
-        window_size (int):
-            Numer of elements to take before the cutoff time for each sequence.
+        window_size (int, str or Timedelta):
+            If an integer is passed, it is the number of elements to take before the
+            cutoff time for each sequence. If a string or a Timedelta object is passed,
+            it is the period of time we take the elements from.
         cutoff_time (str):
             Optional. If given, the indicated column will be used as the cutoff time.
             Otherwise, the table index will be used.
@@ -237,6 +239,9 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
 
     columns = list(X.columns)
 
+    if not isinstance(window_size, int):
+        window_size = pd.to_timedelta(window_size)
+
     output = list()
     for idx, row in enumerate(X.itertuples()):
         selected = timeseries[timeseries.index < row.Index]
@@ -246,7 +251,12 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
             mask &= selected.pop(column) == getattr(row, column)
 
         selected = selected[mask]
-        selected = selected.iloc[-window_size:]
+
+        if not isinstance(window_size, int):
+            min_time = selected.index[-1] - window_size
+            selected = selected.loc[selected.index > min_time]
+        else:
+            selected = selected.iloc[-window_size:]
 
         len_selected = len(selected)
         if (len_selected != window_size):
