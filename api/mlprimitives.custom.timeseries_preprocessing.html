@@ -380,7 +380,9 @@ that need to be used to filter the matching timeseries data.
 The cutoff time can either be set as the DataFrame index or as a column.</p></li>
 <li><p><strong>timeseries</strong> (<em>pandas.DataFrame</em>) – <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing the actual timeseries data. The time index
 and either be set as the DataFrame index or as a column.</p></li>
-<li><p><strong>window_size</strong> (<em>int</em>) – Numer of elements to take before the cutoff time for each sequence.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em><em>, </em><em>str</em><em> or </em><em>Timedelta</em>) – If an integer is passed, it is the number of elements to take before the
+cutoff time for each sequence. If a string or a Timedelta object is passed,
+it is the period of time we take the elements from.</p></li>
 <li><p><strong>cutoff_time</strong> (<em>str</em>) – Optional. If given, the indicated column will be used as the cutoff time.
 Otherwise, the table index will be used.</p></li>
 <li><p><strong>time_index</strong> (<em>str</em>) – Optional. If given, the indicated column will be used as the timeseries index.
