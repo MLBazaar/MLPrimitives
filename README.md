@@ -4,7 +4,7 @@
 </p>
 
 
-
+[![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
 [![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
 
@@ -13,8 +13,10 @@
 
 Pipelines and primitives for machine learning and data science.
 
-- Free software: MIT license
-- Documentation: https://HDI-Project.github.io/MLPrimitives
+* License: [MIT](https://github.com/hdi-project/MLPrimitives/blob/master/LICENSE)
+* Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
+* Documentation: https://hdi-project.github.io/MLPrimitives
+* Homepage: https://github.com/hdi-project/MLPrimitives
 
 # Overview
 
@@ -35,31 +37,15 @@ combine third party tools or implement new functionalities from scratch.
 
 ## Requirements
 
-**MLPrimitives** has been developed and tested on [Python 3.5, and 3.6](https://www.python.org/downloads/)
+**MLPrimitives** has been developed and tested on [Python 3.5, 3.6 and 3.7](https://www.python.org/downloads/)
 
 Also, although it is not strictly required, the usage of a
 [virtualenv](https://virtualenv.pypa.io/en/latest/) is highly recommended in order to avoid
 interfering with other software installed in the system where **MLPrimitives** is run.
 
-These are the minimum commands needed to create a virtualenv using python3.6 for **MLPrimitives**:
+## Install with pip
 
-```bash
-pip install virtualenv
-virtualenv -p $(which python3.6) mlprimitives-venv
-```
-
-Afterwards, you have to execute this command to have the virtualenv activated:
-
-```bash
-source mlprimitives-venv/bin/activate
-```
-
-Remember about executing it every time you start a new console to work on **MLPrimitives**!
-
-## Install using Pip
-
-After creating the virtualenv and activating it, we recommend using
-[pip](https://pip.pypa.io/en/stable/) in order to install **MLPrimitives**:
+The easiest and recommended way to install **MLPrimitives** is using [pip](https://pip.pypa.io/en/stable/):
 
 ```bash
 pip install mlprimitives
@@ -67,45 +53,8 @@ pip install mlprimitives
 
 This will pull and install the latest stable release from [PyPi](https://pypi.org/).
 
-## Install from Source
-
-Alternatively, with your virtualenv activated, you can clone the repository and install it from
-source by running `make install` on the `stable` branch:
-
-```bash
-git clone git@github.com:HDI-Project/MLPrimitives.git
-cd MLPrimitives
-git checkout stable
-make install
-```
-
-## Install for Development
-
-If you want to contribute to the project, a few more steps are required to make the project ready
-for development.
-
-First, please head to [the GitHub page of the project](https://github.com/HDI-Project/MLPrimitives)
-and make a fork of the project under you own username by clicking on the **fork** button on the
-upper right corner of the page.
-
-Afterwards, clone your fork and create a branch from master with a descriptive name that includes
-the number of the issue that you are going to work on:
-
-```bash
-git clone git@github.com:{your username}/MLPrimitives.git
-cd MLPrimitives
-git branch issue-xx-cool-new-feature master
-git checkout issue-xx-cool-new-feature
-```
-
-Finally, install the project with the following command, which will install some additional
-dependencies for code linting and testing.
-
-```bash
-make install-develop
-```
-
-Make sure to use them regularly while developing by running the commands `make lint` and `make test`.
+If you want to install from source or contribute to the project please read the
+[Contributing Guide](https://hdi-project.github.io/MLPrimitives/community/welcome.html).
 
 # Quickstart
 
@@ -130,7 +79,7 @@ load the indicated primitive as an [MLBlock Object from MLBlocks](https://hdi-pr
 In this case, we will load the `mlprimitives.custom.feature_extraction.CategoricalEncoder`
 primitive.
 
-```python
+```python3
 from mlprimitives import load_primitive
 
 primitive = load_primitive('mlprimitives.custom.feature_extraction.CategoricalEncoder')
@@ -146,7 +95,7 @@ categorical columns.
 
 This can be done with the `mlprimitives.datasets.load_census` function:
 
-```python
+```python3
 from mlprimitives.datasets import load_census
 
 dataset = load_census()
@@ -158,7 +107,7 @@ columns.
 We can have a look at this table by executing `dataset.data.head()`, which will return a
 table like this:
 
-```python
+```
                              0                    1                   2
 age                         39                   50                  38
 workclass            State-gov     Self-emp-not-inc             Private
@@ -184,7 +133,7 @@ This is the process where it analyzes the data to detect which columns are categ
 
 This is done by calling its `fit` method and assing the `dataset.data` as `X`.
 
-```python
+```python3
 primitive.fit(X=dataset.data)
 ```
 
@@ -193,7 +142,7 @@ primitive.fit(X=dataset.data)
 Once the pipeline is fit, we can process the data by calling the `produce` method of the
 primitive instance and passing agin the `data` as `X`.
 
-```python
+```python3
 transformed = primitive.produce(X=dataset.data)
 ```
 
@@ -229,7 +178,7 @@ generated and later on make predictions based on new data.
 
 Firs of all, we will load the `xgboost.XGBClassifier` primitive that we will use afterwards.
 
-```python
+```python3
 primitive = load_primitive('xgboost.XGBClassifier')
 ```
 
@@ -242,7 +191,7 @@ to make the predictions that later on will be evaluated.
 In order to do this, we will get the first 75% of rows from the transformed data that we
 obtained above and call it `X_train`, and then set the next 25% of rows as `X_test`.
 
-```python
+```python3
 train_size = int(len(transformed) * 0.75)
 X_train = transformed.iloc[:train_size]
 X_test = transformed.iloc[train_size:]
@@ -251,7 +200,7 @@ X_test = transformed.iloc[train_size:]
 Similarly, we need to obtain the `y_train` and `y_test` variables containing the corresponding
 output values.
 
-```python
+```python3
 y_train = dataset.target[:train_size]
 y_test = dataset.target[train_size:]
 ```
@@ -261,7 +210,7 @@ y_test = dataset.target[train_size:]
 Once we have have splitted the data, we can fit the primitive by passing `X_train` and `y_train`
 to its `fit` method.
 
-```python
+```python3
 primitive.fit(X=X_train, y=y_train)
 ```
 
@@ -269,7 +218,7 @@ primitive.fit(X=X_train, y=y_train)
 
 Once the primitive has been fitted, we can produce predictions using the `X_test` data as input.
 
-```python
+```python3
 predictions = primitive.produce(X=X_test)
 ```
 
@@ -279,7 +228,7 @@ We can now evaluate how good the predictions from our primitive are by using the
 method from the `dataset` object on both the expected output and the real output from the
 primitive:
 
-```python
+```python3
 dataset.score(y_test, predictions)
 ```
 
@@ -296,7 +245,7 @@ hyperparameters.
 First we will see which hyperparameter values the primitive has by calling its
 `get_hyperparameters` method.
 
-```python
+```python3
 primitive.get_hyperparameters()
 ```
 
@@ -316,7 +265,7 @@ which will return a dictionary like this:
 Next, we will see which are the valid values for each one of those hyperparameters by calling its
 `get_tunable_hyperparameters` method:
 
-```python
+```python3
 primitive.get_tunable_hyperparameters()
 ```
 
@@ -336,7 +285,7 @@ For example, we will see that the `max_depth` hyperparameter has the following s
 Next, we will choose a valid value, for example 7, and set it into the pipeline using the
 `set_hyperparameters` method:
 
-```python
+```python3
 primitive.set_hyperparameters({'max_depth': 7})
 ```
 
@@ -345,7 +294,7 @@ primitive.set_hyperparameters({'max_depth': 7})
 Once the new hyperparameter value has been set, we repeat the fit/train/score cycle to
 evaluate the performance of this new hyperparameter value:
 
-```python
+```python3
 primitive.fit(X=X_train, y=y_train)
 predictions = primitive.produce(X=X_test)
 dataset.score(y_test, predictions)
