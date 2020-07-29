@@ -12,7 +12,7 @@
 
 ### New Primitives
 
-+ Add `pandas.DataFrame.set_index` primitive - [Issue #222](https://github.com/HDI-Project/MLPrimitives/issues/222) by @JDTheRipperPC
+* Add `pandas.DataFrame.set_index` primitive - [Issue #222](https://github.com/HDI-Project/MLPrimitives/issues/222) by @JDTheRipperPC
 
 ## 0.2.4 - 2020-01-30
 
