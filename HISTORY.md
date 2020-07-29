@@ -1,5 +1,19 @@
 # History
 
+## 0.2.5 - 2020-07-29
+
+### Primitive Improvements
+
+* Accept timedelta `window_size` in `cutoff_window_sequences` - [Issue #239](https://github.com/HDI-Project/MLPrimitives/issues/239) by @joanvaquer
+
+### Bug Fixes
+
+* ImportError: Keras requires TensorFlow 2.2 or higher. Install TensorFlow via `pip install tensorflow` - [Issue #237](https://github.com/HDI-Project/MLPrimitives/issues/237) by @joanvaquer
+
+### New Primitives
+
++ Add `pandas.DataFrame.set_index` primitive - [Issue #222](https://github.com/HDI-Project/MLPrimitives/issues/222) by @JDTheRipperPC
+
 ## 0.2.4 - 2020-01-30
 
 ### New Primitives
