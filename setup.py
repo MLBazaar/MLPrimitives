@@ -40,7 +40,6 @@ setup_requires = [
 ]
 
 tests_require = [
-    'mlblocks>=0.3.0,<0.4',
     'pytest>=3.4.2',
     'pytest-cov>=2.6.0',
     'jupyter>=1.0.0,<2',
@@ -94,7 +93,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
@@ -120,7 +118,7 @@ setup(
     long_description_content_type='text/markdown',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
-    python_requires='>=3.5,<3.8',
+    python_requires='>=3.6,<3.8',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
