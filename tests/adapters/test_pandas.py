@@ -83,12 +83,12 @@ class ResampleTest(TestCase):
 
         out = resample(self.df.set_index('dt'), '1d', reset_index=False)
 
-        assert_frame_equal(out, pd.DataFrame([
+        assert_frame_equal(out.reset_index(), pd.DataFrame([
             {'dt': datetime(2000, 1, 1), 'value': 11.5},
             {'dt': datetime(2000, 1, 2), 'value': 35.5},
             {'dt': datetime(2000, 1, 3), 'value': 59.5},
             {'dt': datetime(2000, 1, 4), 'value': 83.5},
-        ]).set_index('dt'))
+        ]))
 
     def test_resample_aggregation_str(self):
 

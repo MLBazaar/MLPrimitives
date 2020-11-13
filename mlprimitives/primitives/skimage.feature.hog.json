@@ -82,7 +82,7 @@
             },
             "block_norm": {
                 "type": "str",
-                "default": null,
+                "default": "L2-Hys",
                 "values": [
                     "L1",
                     "L1-sqrt",
