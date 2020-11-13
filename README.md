@@ -6,8 +6,8 @@
 
 [![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
-[![Travis CI Shield](https://travis-ci.org/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.org/HDI-Project/MLPrimitives)
-
+[![Travis CI Shield](https://travis-ci.com/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.com/HDI-Project/MLPrimitives)
+[![Downloads](https://pepy.tech/badge/mlprimitives)](https://pepy.tech/project/mlprimitives)
 
 # MLPrimitives
 
