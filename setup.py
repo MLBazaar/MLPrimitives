@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'Keras>=2.1.6,<2.4',
+    'Keras>=2.4',
     'featuretools>=0.6.1,<0.12',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
@@ -20,18 +20,21 @@ install_requires = [
     'mlblocks>=0.3.4,<0.4',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
-    'numpy>=1.15.2,<1.17',
     'opencv-python>=3.4.0.12,<5',
-    'pandas>=0.23.4,<0.25',
+    'pandas>=1,<2',
     'python-louvain>=0.10,<0.14',
-    'scikit-image>=0.13.1,<0.15,!=0.14.3',
-    'scikit-learn>=0.20.0,<0.21',
+    'scikit-image>=0.15',
+    'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
-    'setuptools>=41.0.0',
     'statsmodels>=0.9.0,<1',
-    'tensorflow>=1.11.0,<2',
+    'tensorflow>=2,<3',
     'xgboost>=0.72.1,<1',
-    'docutils>=0.10,<0.16',    # required by botocore
+
+    # Conflict fixing
+    'docutils<0.16,>=0.10',
+    'urllib3<1.26,>=1.20',
+    'h5py<2.11.0,>=2.10.0',
+    'numpy<1.19.0,>=1.16.0',
 ]
 
 
@@ -76,7 +79,6 @@ development_requires = [
 
     # Jupyter
     'jupyter>=1.0.0',
-    'prompt-toolkit<2.1.0,>=2.0.0'
 ]
 
 extras_require = {
@@ -95,6 +97,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     description='Pipelines and primitives for machine learning and data science.',
     entry_points = {
@@ -118,7 +121,7 @@ setup(
     long_description_content_type='text/markdown',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
-    python_requires='>=3.6,<3.8',
+    python_requires='>=3.6,<3.9',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
