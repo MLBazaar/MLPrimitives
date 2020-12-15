@@ -6,17 +6,17 @@
 
 [![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
-[![Travis CI Shield](https://travis-ci.com/HDI-Project/MLPrimitives.svg?branch=master)](https://travis-ci.com/HDI-Project/MLPrimitives)
+[![Travis CI Shield](https://travis-ci.com/MLBazaar/MLPrimitives.svg?branch=master)](https://travis-ci.com/MLBazaar/MLPrimitives)
 [![Downloads](https://pepy.tech/badge/mlprimitives)](https://pepy.tech/project/mlprimitives)
 
 # MLPrimitives
 
 Pipelines and primitives for machine learning and data science.
 
-* License: [MIT](https://github.com/hdi-project/MLPrimitives/blob/master/LICENSE)
+* License: [MIT](https://github.com/MLBazaar/MLPrimitives/blob/master/LICENSE)
 * Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-* Documentation: https://hdi-project.github.io/MLPrimitives
-* Homepage: https://github.com/hdi-project/MLPrimitives
+* Documentation: https://MLBazaar.github.io/MLPrimitives
+* Homepage: https://github.com/MLBazaar/MLPrimitives
 
 # Overview
 
@@ -54,7 +54,7 @@ pip install mlprimitives
 This will pull and install the latest stable release from [PyPi](https://pypi.org/).
 
 If you want to install from source or contribute to the project please read the
-[Contributing Guide](https://hdi-project.github.io/MLPrimitives/community/welcome.html).
+[Contributing Guide](https://MLBazaar.github.io/MLPrimitives/community/welcome.html).
 
 # Quickstart
 
@@ -74,7 +74,7 @@ In this first tutorial, we will be executing a single primitive for data transfo
 The first step in order to run a primitive is to load it.
 
 This will be done using the `mlprimitives.load_primitive` function, which will
-load the indicated primitive as an [MLBlock Object from MLBlocks](https://hdi-project.github.io/MLBlocks/api/mlblocks.html#mlblocks.MLBlock)
+load the indicated primitive as an [MLBlock Object from MLBlocks](https://MLBazaar.github.io/MLBlocks/api/mlblocks.html#mlblocks.MLBlock)
 
 In this case, we will load the `mlprimitives.custom.feature_extraction.CategoricalEncoder`
 primitive.
@@ -304,7 +304,7 @@ This time we should see that the performance has improved to a value around 0.72
 
 ## What's Next?
 
-Do you want to [learn more about how the project](https://hdi-project.github.io/MLPrimitives/getting_started/concepts.html),
-about [how to contribute to it](https://hdi-project.github.io/MLPrimitives/community/contributing.html)
-or browse the [API Reference](https://hdi-project.github.io/MLPrimitives/api/mlprimitives.html)?
-Please check the corresponding sections of the [documentation](https://hdi-project.github.io/MLPrimitives/)!
+Do you want to [learn more about how the project](https://MLBazaar.github.io/MLPrimitives/getting_started/concepts.html),
+about [how to contribute to it](https://MLBazaar.github.io/MLPrimitives/community/contributing.html)
+or browse the [API Reference](https://MLBazaar.github.io/MLPrimitives/api/mlprimitives.html)?
+Please check the corresponding sections of the [documentation](https://MLBazaar.github.io/MLPrimitives/)!

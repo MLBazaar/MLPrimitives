@@ -23,7 +23,7 @@ Reporting Issues
 ~~~~~~~~~~~~~~~~
 
 If there is something that you would like to see changed in the project, or that you just want
-to ask, please create an issue at https://github.com/HDI-Project/MLPrimitives/issues
+to ask, please create an issue at https://github.com/MLBazaar/MLPrimitives/issues
 
 If you do so, please:
 
