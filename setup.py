@@ -27,7 +27,7 @@ install_requires = [
     'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
     'statsmodels>=0.9.0,<1',
-    'tensorflow>=2,<3',
+    'tensorflow>=2,<2.4',
     'xgboost>=0.72.1,<1',
 
     # Conflict fixing
@@ -76,6 +76,7 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
+    'importlib-metadata<2.0.0,>=0.12'
 
     # Jupyter
     'jupyter>=1.0.0',
