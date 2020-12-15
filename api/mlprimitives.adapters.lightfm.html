@@ -403,7 +403,8 @@ Not implemented for the k-OS loss.</p></li>
 <li><p><strong>epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – number of epochs to run</p></li>
 <li><p><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
 not be higher than the number of physical cores.</p></li>
-<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to print progress messages.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to print progress messages.
+If <cite>tqdm</cite> is installed, a progress bar will be displayed instead.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -430,9 +431,13 @@ on the <code class="xref py py-class docutils literal notranslate"><span class="
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>user_ids</strong> (<em>integer</em><em> or </em><em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – single user id or an array containing the user ids for the
-user-item pairs for which a prediction is to be computed</p></li>
+user-item pairs for which a prediction is to be computed. Note
+that these are LightFM’s internal id’s, i.e. the index of the
+user in the interaction matrix used for fitting the model.</p></li>
 <li><p><strong>item_ids</strong> (<em>np.int32 array of shape</em><em> [</em><em>n_pairs</em><em>,</em><em>]</em>) – an array containing the item ids for the user-item pairs for which
-a prediction is to be computed.</p></li>
+a prediction is to be computed. Note that these are LightFM’s
+internal id’s, i.e. the index of the item in the interaction
+matrix used for fitting the model.</p></li>
 <li><p><strong>user_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_users</em><em>, </em><em>n_user_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that user’s weights over features.</p></li>
 <li><p><strong>item_features</strong> (<em>np.float32 csr_matrix of shape</em><em> [</em><em>n_items</em><em>, </em><em>n_item_features</em><em>]</em><em>, </em><em>optional</em>) – Each row contains that item’s weights over features.</p></li>
 <li><p><strong>num_threads</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of parallel computation threads to use. Should
