@@ -354,7 +354,7 @@
         
             
             
-              <a href="https://github.com/HDI-Project/MLPrimitives/blob/master/docs/getting_started/concepts.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/MLBazaar/MLPrimitives/blob/master/docs/getting_started/concepts.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -429,13 +429,13 @@ any complex structure before the call is made.</p></li>
 </ul>
 <p>In this case, no additional code is necessary to adapt them and those blocks can be brought into
 MLPrimitives using nothing else than a single JSON annotation file, which can be found in the
-<a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
+<a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
 <div class="section" id="examples">
 <h4>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/numpy.argmax.json">numpy.argmax</a></p></li>
-<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/sklearn.preprocessing.StandardScaler.json">sklearn.preprocessing.StandardScaler</a></p></li>
-<li><p><a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/xgboost.XGBClassifier.json">xgboost.XGBClassifier</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/numpy.argmax.json">numpy.argmax</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/sklearn.preprocessing.StandardScaler.json">sklearn.preprocessing.StandardScaler</a></p></li>
+<li><p><a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/xgboost.XGBClassifier.json">xgboost.XGBClassifier</a></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -463,7 +463,7 @@ be manipulated in some way before they can be passed to any other primitive.</p>
 and later on compiled before they can be used, or some image transformation primitives which need
 to be applied to the images one by one. These primitives consist of some Python code which can be
 found in the <code class="docutils literal notranslate"><span class="pre">mlprimitives.adapters</span></code> module, as well as JSON annotations that point at the
-corresponding functions or classes, which can also be found in the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
+corresponding functions or classes, which can also be found in the <a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
 <div class="section" id="id1">
 <h4>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -478,8 +478,8 @@ corresponding functions or classes, which can also be found in the <a class="ref
 <p>The third type are custom primitives implemented specifically for this library. These custom
 primitives may be implemented from scratch or they may be using third party tools in such a way
 as to alter the third party tool’s native behavior to add new functionalities.</p>
-<p>This type of primitives consist of Python code that can be found inside the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a>,
-as well as the corresponding JSON annotations, which can also be found in the <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
+<p>This type of primitives consist of Python code that can be found inside the <a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a>,
+as well as the corresponding JSON annotations, which can also be found in the <a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives">mlprimitives/primitives folder</a>.</p>
 <div class="section" id="id2">
 <h4>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -495,13 +495,13 @@ for everyone to contribute their own code without the need to have project maint
 carefully and thoroughly review all the new contributions, as this would make the contributing
 process very slow. However, having all the new primitives accepted and merged without a proper
 review, might compromise the project stability in some cases.</p>
-<p>For this reason, we have created the special <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/candidates">mlprimitives/candidates module</a>, which includes
+<p>For this reason, we have created the special <a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/candidates">mlprimitives/candidates module</a>, which includes
 all the primitives that have been recently contributed but haven’t gone through a proper testing
 and review yet.</p>
 <p>So, does this it mean that these primitives do not work? Not at all!</p>
 <p>All the candidate primitives have gone through an initial testing and review process before being
 accepted, so they are always proved to work. The only difference between these primitives and
-the ones that you can find in <a class="reference external" href="https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a> is that the later ones have gone
+the ones that you can find in <a class="reference external" href="https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/custom">mlprimitives/custom module</a> is that the later ones have gone
 through a deeper code review in search of possible improvements in terms of performance and
 functionality refinements</p>
 </div>

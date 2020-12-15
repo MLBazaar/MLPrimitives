@@ -158,9 +158,9 @@ through a deeper code review in search of possible improvements in terms of perf
 functionality refinements
 
 
-.. _mlprimitives/primitives folder: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives
-.. _mlprimitives/custom module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/custom
-.. _mlprimitives/candidates module: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/candidates
-.. _numpy.argmax: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/numpy.argmax.json
-.. _sklearn.preprocessing.StandardScaler: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/sklearn.preprocessing.StandardScaler.json
-.. _xgboost.XGBClassifier: https://github.com/HDI-Project/MLPrimitives/blob/master/mlprimitives/primitives/xgboost.XGBClassifier.json
+.. _mlprimitives/primitives folder: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives
+.. _mlprimitives/custom module: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/custom
+.. _mlprimitives/candidates module: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/candidates
+.. _numpy.argmax: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/numpy.argmax.json
+.. _sklearn.preprocessing.StandardScaler: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/sklearn.preprocessing.StandardScaler.json
+.. _xgboost.XGBClassifier: https://github.com/MLBazaar/MLPrimitives/blob/master/mlprimitives/primitives/xgboost.XGBClassifier.json
