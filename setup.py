@@ -13,7 +13,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
 
 install_requires = [
     'Keras>=2.4',
-    'featuretools>=0.6.1,<0.12',
+    'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
     'lightfm>=1.15,<2',
