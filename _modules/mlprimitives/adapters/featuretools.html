@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mlprimitives.adapters.featuretools &mdash; MLPrimitives 0.2.6.dev1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> MLPrimitives
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">MLPrimitives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#why-did-we-create-this-library">Why did we create this library?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#install-with-pip">Install with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html#quickstart">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#running-a-primitive">Running a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#load-a-primitive">1. Load a Primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#load-some-data">2. Load some data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#fit-the-primitive">3. Fit the primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#produce-results">4. Produce results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#tuning-a-primitive">Tuning a Primitive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#load-another-primitive">1. Load another primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#split-the-dataset">2. Split the dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#fit-the-new-primitive">3. Fit the new primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#make-predictions">4. Make predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#evalute-the-performance">5. Evalute the performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#set-new-hyperparameter-values">6. Set new hyperparameter values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../readme.html#re-evaluate-the-performance">7. Re-evaluate the performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../readme.html#what-s-next">What’s Next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/concepts.html">Basic Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/concepts.html#what-is-a-primitive">What is a primitive?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/concepts.html#types-of-primitives">Types of Primitives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/concepts.html#function-primitives">Function Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/concepts.html#class-primitives">Class Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/concepts.html#types-of-integrations">Types of Integrations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/concepts.html#directly-integrable-primitives">Directly integrable primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../getting_started/concepts.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/concepts.html#primitives-that-require-a-python-adapter">Primitives that require a Python adapter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../getting_started/concepts.html#id1">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/concepts.html#custom-primitives">Custom primitives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../getting_started/concepts.html#id2">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../getting_started/concepts.html#candidate-primitives">Candidate primitives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/welcome.html">Community</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/welcome.html#types-of-contributions">Types of contributions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../community/welcome.html#reporting-issues">Reporting Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../community/welcome.html#request-new-primitives">Request new primitives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../community/welcome.html#request-new-features">Request new features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../community/welcome.html#report-bugs">Report Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../community/welcome.html#ask-for-documentation">Ask for Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../community/welcome.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../community/welcome.html#contribute-code">Contribute code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/contributing.html#general-coding-guidelines">General Coding Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/contributing.html#unit-testing-guidelines">Unit Testing Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/annotations.html">Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/annotations.html#creating-an-annotation-for-a-new-primitive">Creating an annotation for a new primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/annotations.html#modifying-an-existing-annotation">Modifying an existing annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/annotations.html#creating-a-new-version-of-an-existing-annotation">Creating a new version of an existing annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/adapters.html">Adapters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/adapters.html#creating-a-new-adapter">Creating a new Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/adapters.html#modifying-an-existing-adapter">Modifying an existing Adapter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/custom.html">Custom Primitives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/custom.html#creating-a-custom-primitive">Creating a Custom Primitive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../community/custom.html#modifying-a-custom-primitive">Modifying a Custom Primitive</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/mlprimitives.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/mlprimitives.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.adapters.html">mlprimitives.adapters package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/mlprimitives.adapters.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.candidates.html">mlprimitives.candidates package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/mlprimitives.candidates.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/mlprimitives.candidates.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.custom.html">mlprimitives.custom package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/mlprimitives.custom.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/mlprimitives.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.cli.html">mlprimitives.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.datasets.html">mlprimitives.datasets module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.evaluation.html">mlprimitives.evaluation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/mlprimitives.utils.html">mlprimitives.utils module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Credits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#development-lead">Development Lead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../authors.html#contributors">Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../history.html">History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id1">0.2.5 - 2020-07-29</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#primitive-improvements">Primitive Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#new-primitives">New Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id2">0.2.4 - 2020-01-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id3">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id4">Primitive Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id5">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id6">0.2.3 - 2019-11-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id7">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id8">Primitive Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id9">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id10">0.2.2 - 2019-10-08</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id11">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id12">Primitive Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id13">0.2.1 - 2019-09-09</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id14">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id15">Primitive Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id17">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id18">0.2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id19">Primitive Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id20">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id21">0.1.10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id22">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#new-pipelines">New Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id23">Primitive Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id24">0.1.9</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id25">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id26">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id27">Primitive Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id28">0.1.8</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id29">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id30">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id31">0.1.7</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#general-improvements">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id32">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id34">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id35">0.1.6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id36">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id37">New Primitives</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id38">0.1.5</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id39">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id40">General Improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id41">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id42">0.1.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id43">New Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id44">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id45">0.1.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id46">New Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id47">0.1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id48">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id49">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id50">0.1.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id51">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../history.html#id52">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../history.html#id53">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MLPrimitives</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../mlprimitives.html">mlprimitives</a> &raquo;</li>
+        
+      <li>mlprimitives.adapters.featuretools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mlprimitives.adapters.featuretools</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">featuretools</span> <span class="k">as</span> <span class="nn">ft</span>
+<span class="kn">from</span> <span class="nn">featuretools.selection</span> <span class="kn">import</span> <span class="n">remove_low_information_features</span>
+
+
+<div class="viewcode-block" id="DFS"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS">[docs]</a><span class="k">class</span> <span class="nc">DFS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">features</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_low_information</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">agg_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trans_primitives</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">training_window</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="o">=</span> <span class="n">encode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span> <span class="o">=</span> <span class="n">remove_low_information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span> <span class="o">=</span> <span class="n">time_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span> <span class="o">=</span> <span class="n">agg_primitives</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span> <span class="o">=</span> <span class="n">trans_primitives</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">=</span> <span class="n">max_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="o">=</span> <span class="n">training_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="n">copy</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="s2">&quot;DFS(encode=</span><span class="si">{encode}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    remove_low_information=</span><span class="si">{remove_low_information}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    index=</span><span class="si">{index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    time_index=</span><span class="si">{time_index}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    target_entity=</span><span class="si">{target_entity}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    agg_primitives=</span><span class="si">{agg_primitives}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    trans_primitives=</span><span class="si">{trans_primitives}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    max_depth=</span><span class="si">{max_depth}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    max_features=</span><span class="si">{max_features}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    training_window=</span><span class="si">{training_window}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    n_jobs=</span><span class="si">{n_jobs}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    verbose=</span><span class="si">{verbose}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;    copy=</span><span class="si">{copy}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s1">&#39;index&#39;</span>
+        <span class="k">while</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">index</span>
+
+        <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">index</span>
+
+    <span class="k">def</span> <span class="nf">_get_entityset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">entities</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">entities</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">relationships</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">relationships</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">EntitySet</span><span class="p">(</span><span class="s1">&#39;entityset&#39;</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DFS.dfs"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.dfs">[docs]</a>    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entities</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">entityset</span><span class="p">:</span>
+            <span class="n">target_entity</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target_entity</span> <span class="o">=</span> <span class="n">target_entity</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_entity</span>
+
+        <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span><span class="o">.</span><span class="n">add_last_time_indexes</span><span class="p">()</span>
+
+        <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
+            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span>
+            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+            <span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">,</span>
+            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+            <span class="n">target_entity</span><span class="o">=</span><span class="n">target_entity</span><span class="p">,</span>
+            <span class="n">features_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">agg_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agg_primitives</span><span class="p">,</span>
+            <span class="n">trans_primitives</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trans_primitives</span><span class="p">,</span>
+            <span class="n">max_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span>
+            <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+                <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+                <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+                <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">encode_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_low_information</span><span class="p">:</span>
+                <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">remove_low_information_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DFS.calculate_feature_matrix"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.DFS.calculate_feature_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_feature_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">entities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">relationships</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entityset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_entity</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">relationships</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entityset</span><span class="o">.</span><span class="n">add_last_time_indexes</span><span class="p">()</span>
+
+        <span class="n">cutoff_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">:</span>
+            <span class="n">cutoff_time</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_index</span><span class="p">]]</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">calculate_feature_matrix</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+            <span class="n">entityset</span><span class="o">=</span><span class="n">entityset</span><span class="p">,</span>
+            <span class="n">cutoff_time</span><span class="o">=</span><span class="n">cutoff_time</span><span class="p">,</span>
+            <span class="n">training_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">training_window</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X</span></div></div>
+
+
+<div class="viewcode-block" id="entity_from_dataframe"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.entity_from_dataframe">[docs]</a><span class="k">def</span> <span class="nf">entity_from_dataframe</span><span class="p">(</span><span class="n">entityset_id</span><span class="p">,</span> <span class="n">entity_id</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">entityset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">variable_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">make_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">secondary_time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">already_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">entityset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">entityset</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">EntitySet</span><span class="p">(</span><span class="n">entityset_id</span><span class="p">)</span>
+
+    <span class="n">entityset</span><span class="o">.</span><span class="n">entity_from_dataframe</span><span class="p">(</span><span class="n">entity_id</span><span class="p">,</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">index</span><span class="p">,</span> <span class="n">variable_types</span><span class="p">,</span>
+                                    <span class="n">make_index</span><span class="p">,</span> <span class="n">time_index</span><span class="p">,</span> <span class="n">secondary_time_index</span><span class="p">,</span>
+                                    <span class="n">already_sorted</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entityset</span></div>
+
+
+<div class="viewcode-block" id="add_relationship"><a class="viewcode-back" href="../../../api/mlprimitives.adapters.featuretools.html#mlprimitives.adapters.featuretools.add_relationship">[docs]</a><span class="k">def</span> <span class="nf">add_relationship</span><span class="p">(</span><span class="n">entityset</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">parent_column</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">child_column</span><span class="p">):</span>
+    <span class="n">parent_variable</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">parent</span><span class="p">][</span><span class="n">parent_column</span><span class="p">]</span>
+    <span class="n">child_variable</span> <span class="o">=</span> <span class="n">entityset</span><span class="p">[</span><span class="n">child</span><span class="p">][</span><span class="n">child_column</span><span class="p">]</span>
+    <span class="n">relationship</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Relationship</span><span class="p">(</span><span class="n">parent_variable</span><span class="p">,</span> <span class="n">child_variable</span><span class="p">)</span>
+    <span class="n">entityset</span><span class="o">.</span><span class="n">add_relationship</span><span class="p">(</span><span class="n">relationship</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">entityset</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, MIT Data To AI Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
