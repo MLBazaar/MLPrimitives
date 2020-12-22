@@ -413,7 +413,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">issparse</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">hstack</span> <span class="k">as</span> <span class="n">sparse_hstack</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span>
 
 <span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">MultiOutputMixin</span>
 <span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
@@ -424,6 +424,7 @@
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">check_random_state</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">compute_sample_weight</span>
 <span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">DataConversionWarning</span>
 <span class="kn">from</span> <span class="nn">._base</span> <span class="kn">import</span> <span class="n">BaseEnsemble</span><span class="p">,</span> <span class="n">_partition_estimators</span>
+<span class="kn">from</span> <span class="nn">..utils.fixes</span> <span class="kn">import</span> <span class="n">delayed</span>
 <span class="kn">from</span> <span class="nn">..utils.fixes</span> <span class="kn">import</span> <span class="n">_joblib_parallel_args</span>
 <span class="kn">from</span> <span class="nn">..utils.multiclass</span> <span class="kn">import</span> <span class="n">check_classification_targets</span>
 <span class="kn">from</span> <span class="nn">..utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">_check_sample_weight</span>
@@ -472,7 +473,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">max_samples</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;`max_samples` must be in range (0, 1) but got value </span><span class="si">{}</span><span class="s2">&quot;</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_samples</span><span class="p">))</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">max_samples</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">*</span> <span class="n">max_samples</span><span class="p">)</span>
 
     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;`max_samples` should be int or float, but got type &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span>
     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">max_samples</span><span class="p">)))</span>
@@ -931,7 +932,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="n">y_store_unique_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+        <span class="n">y_store_unique_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_outputs_</span><span class="p">):</span>
             <span class="n">classes_k</span><span class="p">,</span> <span class="n">y_store_unique_indices</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> \
                 <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1313,7 +1314,7 @@
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
 <span class="sd">        - If float, then `max_features` is a fraction and</span>
-<span class="sd">          `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">          `round(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
 <span class="sd">        - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)` (same as &quot;auto&quot;).</span>
@@ -1355,8 +1356,8 @@
 <span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
 <span class="sd">           ``min_impurity_decrease`` in 0.19. The default value of</span>
 <span class="sd">           ``min_impurity_split`` has changed from 1e-7 to 0 in 0.23 and it</span>
-<span class="sd">           will be removed in 0.25. Use ``min_impurity_decrease`` instead.</span>
-
+<span class="sd">           will be removed in 1.0 (renaming of 0.25).</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    bootstrap : bool, default=True</span>
 <span class="sd">        Whether bootstrap samples are used when building trees. If False, the</span>
@@ -1373,7 +1374,7 @@
 <span class="sd">        context. ``-1`` means using all processors. See :term:`Glossary</span>
 <span class="sd">        &lt;n_jobs&gt;` for more details.</span>
 
-<span class="sd">    random_state : int or RandomState, default=None</span>
+<span class="sd">    random_state : int, RandomState instance or None, default=None</span>
 <span class="sd">        Controls both the randomness of the bootstrapping of the samples used</span>
 <span class="sd">        when building trees (if ``bootstrap=True``) and the sampling of the</span>
 <span class="sd">        features to consider when looking for the best split at each node</span>
@@ -1636,7 +1637,7 @@
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
 <span class="sd">        - If float, then `max_features` is a fraction and</span>
-<span class="sd">          `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">          `round(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=n_features`.</span>
 <span class="sd">        - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.</span>
@@ -1678,7 +1679,8 @@
 <span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
 <span class="sd">           ``min_impurity_decrease`` in 0.19. The default value of</span>
 <span class="sd">           ``min_impurity_split`` has changed from 1e-7 to 0 in 0.23 and it</span>
-<span class="sd">           will be removed in 0.25. Use ``min_impurity_decrease`` instead.</span>
+<span class="sd">           will be removed in 1.0 (renaming of 0.25).</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    bootstrap : bool, default=True</span>
 <span class="sd">        Whether bootstrap samples are used when building trees. If False, the</span>
@@ -1695,7 +1697,7 @@
 <span class="sd">        context. ``-1`` means using all processors. See :term:`Glossary</span>
 <span class="sd">        &lt;n_jobs&gt;` for more details.</span>
 
-<span class="sd">    random_state : int or RandomState, default=None</span>
+<span class="sd">    random_state : int, RandomState instance or None, default=None</span>
 <span class="sd">        Controls both the randomness of the bootstrapping of the samples used</span>
 <span class="sd">        when building trees (if ``bootstrap=True``) and the sampling of the</span>
 <span class="sd">        features to consider when looking for the best split at each node</span>
@@ -1918,7 +1920,7 @@
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
 <span class="sd">        - If float, then `max_features` is a fraction and</span>
-<span class="sd">          `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">          `round(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=sqrt(n_features)`.</span>
 <span class="sd">        - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.</span>
@@ -1960,7 +1962,8 @@
 <span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
 <span class="sd">           ``min_impurity_decrease`` in 0.19. The default value of</span>
 <span class="sd">           ``min_impurity_split`` has changed from 1e-7 to 0 in 0.23 and it</span>
-<span class="sd">           will be removed in 0.25. Use ``min_impurity_decrease`` instead.</span>
+<span class="sd">           will be removed in 1.0 (renaming of 0.25).</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    bootstrap : bool, default=False</span>
 <span class="sd">        Whether bootstrap samples are used when building trees. If False, the</span>
@@ -1977,7 +1980,7 @@
 <span class="sd">        context. ``-1`` means using all processors. See :term:`Glossary</span>
 <span class="sd">        &lt;n_jobs&gt;` for more details.</span>
 
-<span class="sd">    random_state : int, RandomState, default=None</span>
+<span class="sd">    random_state : int, RandomState instance or None, default=None</span>
 <span class="sd">        Controls 3 sources of randomness:</span>
 
 <span class="sd">        - the bootstrapping of the samples used when building trees</span>
@@ -2231,12 +2234,12 @@
 <span class="sd">        the input samples) required to be at a leaf node. Samples have</span>
 <span class="sd">        equal weight when sample_weight is not provided.</span>
 
-<span class="sd">    max_features : {&quot;auto&quot;, &quot;sqrt&quot;, &quot;log2&quot;} int or float, default=&quot;auto&quot;</span>
+<span class="sd">    max_features : {&quot;auto&quot;, &quot;sqrt&quot;, &quot;log2&quot;}, int or float, default=&quot;auto&quot;</span>
 <span class="sd">        The number of features to consider when looking for the best split:</span>
 
 <span class="sd">        - If int, then consider `max_features` features at each split.</span>
 <span class="sd">        - If float, then `max_features` is a fraction and</span>
-<span class="sd">          `int(max_features * n_features)` features are considered at each</span>
+<span class="sd">          `round(max_features * n_features)` features are considered at each</span>
 <span class="sd">          split.</span>
 <span class="sd">        - If &quot;auto&quot;, then `max_features=n_features`.</span>
 <span class="sd">        - If &quot;sqrt&quot;, then `max_features=sqrt(n_features)`.</span>
@@ -2278,7 +2281,8 @@
 <span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
 <span class="sd">           ``min_impurity_decrease`` in 0.19. The default value of</span>
 <span class="sd">           ``min_impurity_split`` has changed from 1e-7 to 0 in 0.23 and it</span>
-<span class="sd">           will be removed in 0.25. Use ``min_impurity_decrease`` instead.</span>
+<span class="sd">           will be removed in 1.0 (renaming of 0.25).</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    bootstrap : bool, default=False</span>
 <span class="sd">        Whether bootstrap samples are used when building trees. If False, the</span>
@@ -2294,7 +2298,7 @@
 <span class="sd">        context. ``-1`` means using all processors. See :term:`Glossary</span>
 <span class="sd">        &lt;n_jobs&gt;` for more details.</span>
 
-<span class="sd">    random_state : int or RandomState, default=None</span>
+<span class="sd">    random_state : int, RandomState instance or None, default=None</span>
 <span class="sd">        Controls 3 sources of randomness:</span>
 
 <span class="sd">        - the bootstrapping of the samples used when building trees</span>
@@ -2368,8 +2372,8 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    sklearn.tree.ExtraTreeRegressor: Base estimator for this ensemble.</span>
-<span class="sd">    RandomForestRegressor: Ensemble regressor using trees with optimal splits.</span>
+<span class="sd">    sklearn.tree.ExtraTreeRegressor : Base estimator for this ensemble.</span>
+<span class="sd">    RandomForestRegressor : Ensemble regressor using trees with optimal splits.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -2537,7 +2541,8 @@
 <span class="sd">           ``min_impurity_split`` has been deprecated in favor of</span>
 <span class="sd">           ``min_impurity_decrease`` in 0.19. The default value of</span>
 <span class="sd">           ``min_impurity_split`` has changed from 1e-7 to 0 in 0.23 and it</span>
-<span class="sd">           will be removed in 0.25. Use ``min_impurity_decrease`` instead.</span>
+<span class="sd">           will be removed in 1.0 (renaming of 0.25).</span>
+<span class="sd">           Use ``min_impurity_decrease`` instead.</span>
 
 <span class="sd">    sparse_output : bool, default=True</span>
 <span class="sd">        Whether or not to return a sparse CSR matrix, as default behavior,</span>
@@ -2550,7 +2555,7 @@
 <span class="sd">        context. ``-1`` means using all processors. See :term:`Glossary</span>
 <span class="sd">        &lt;n_jobs&gt;` for more details.</span>
 
-<span class="sd">    random_state : int or RandomState, default=None</span>
+<span class="sd">    random_state : int, RandomState instance or None, default=None</span>
 <span class="sd">        Controls the generation of the random `y` used to fit the trees</span>
 <span class="sd">        and the draw of the splits for each feature at the trees&#39; nodes.</span>
 <span class="sd">        See :term:`Glossary &lt;random_state&gt;` for details.</span>
@@ -2565,8 +2570,24 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    estimators_ : list of DecisionTreeClassifier</span>
+<span class="sd">    base_estimator_ : DecisionTreeClassifier instance</span>
+<span class="sd">        The child estimator template used to create the collection of fitted</span>
+<span class="sd">        sub-estimators.</span>
+
+<span class="sd">    estimators_ : list of DecisionTreeClassifier instances</span>
 <span class="sd">        The collection of fitted sub-estimators.</span>
+
+<span class="sd">    feature_importances_ : ndarray of shape (n_features,)</span>
+<span class="sd">        The feature importances (the higher, the more important the feature).</span>
+
+<span class="sd">    n_features_ : int</span>
+<span class="sd">        The number of features when ``fit`` is performed.</span>
+
+<span class="sd">    n_outputs_ : int</span>
+<span class="sd">        The number of outputs when ``fit`` is performed.</span>
+
+<span class="sd">    one_hot_encoder_ : OneHotEncoder instance</span>
+<span class="sd">        One-hot encoder used to create the sparse embedding.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
