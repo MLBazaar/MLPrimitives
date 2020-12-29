@@ -92,10 +92,10 @@ class IntervalsToMaskTest(TestCase):
 class RollingWindowSequencesTest(TestCase):
 
     def _run(self, X, index, expected_X, expected_y, expected_X_index, expected_y_index,
-             window_size=2, target_size=1, step_size=1, target_column=0, drop=None,
+             window_size=2, target_size=1, step_size=1, target_column=0, drop=None, offset=0,
              drop_windows=False):
         X, y, X_index, y_index = rolling_window_sequences(X, index, window_size, target_size,
-                                                          step_size, target_column, drop,
+                                                          step_size, target_column, offset, drop,
                                                           drop_windows)
         assert_allclose(X.astype(float), expected_X)
         assert_allclose(y.astype(float), expected_y)

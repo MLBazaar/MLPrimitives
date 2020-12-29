@@ -38,7 +38,7 @@ def intervals_to_mask(index, intervals):
 
 
 def rolling_window_sequences(X, index, window_size, target_size, step_size, target_column,
-                             drop=None, drop_windows=False):
+                             offset=0, drop=None, drop_windows=False):
     """Create rolling window sequences out of time series data.
 
     The function creates an array of input sequences and an array of target sequences by rolling
@@ -58,6 +58,8 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
             Indicating the number of steps to move the window forward each round.
         target_column (int):
             Indicating which column of X is the target.
+        offset (int):
+            Indicating the number of steps between the input and the target sequence.
         drop (ndarray or None or str or float or bool):
             Optional. Array of boolean values indicating which values of X are invalid, or value
             indicating which value should be dropped. If not given, `None` is used.
@@ -89,7 +91,7 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
                 drop = X == drop
 
     start = 0
-    max_start = len(X) - window_size - target_size + 1
+    max_start = len(X) - window_size - target_size - offset + 1
     while start < max_start:
         end = start + window_size
 
@@ -101,9 +103,9 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
                 continue
 
         out_X.append(X[start:end])
-        out_y.append(target[end:end + target_size])
+        out_y.append(target[end + offset:end + offset + target_size])
         X_index.append(index[start])
-        y_index.append(index[end])
+        y_index.append(index[end + offset])
         start = start + step_size
 
     return np.asarray(out_X), np.asarray(out_y), np.asarray(X_index), np.asarray(y_index)
