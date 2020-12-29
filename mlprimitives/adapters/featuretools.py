@@ -82,6 +82,7 @@ class DFS(object):
         cutoff_time = None
         if self.time_index:
             cutoff_time = X[[self.index, self.time_index]]
+            cutoff_time = cutoff_time.rename(columns={self.time_index: 'time'})
 
         self.features = ft.dfs(
             cutoff_time=cutoff_time,
@@ -125,6 +126,7 @@ class DFS(object):
         cutoff_time = None
         if self.time_index:
             cutoff_time = X[[self.index, self.time_index]]
+            cutoff_time = cutoff_time.rename(columns={self.time_index: 'time'})
 
         X = ft.calculate_feature_matrix(
             self.features,
