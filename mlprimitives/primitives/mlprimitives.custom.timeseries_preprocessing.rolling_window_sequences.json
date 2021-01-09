@@ -66,6 +66,10 @@
                 "type": "str or int",
                 "default": 1
             },
+            "offset": {
+                "type": "int",
+                "default": 0
+            },
             "drop_windows": {
                 "type": "bool",
                 "default": false
