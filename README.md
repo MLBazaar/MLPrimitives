@@ -1,22 +1,24 @@
 <p align="left">
-<img width=25% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt=“DAI-Lab” />
-<i>An open source project from Data to AI Lab at MIT.</i>
+  <a href="https://dai.lids.mit.edu">
+    <img width=15% src="https://dai.lids.mit.edu/wp-content/uploads/2018/06/Logo_DAI_highres.png" alt="DAI-Lab" />
+  </a>
+  <i>An Open Source Project from the <a href="https://dai.lids.mit.edu">Data to AI Lab, at MIT</a></i>
 </p>
-
 
 [![Development Status](https://img.shields.io/badge/Development%20Status-2%20--%20Pre--Alpha-yellow)](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
 [![PyPi Shield](https://img.shields.io/pypi/v/mlprimitives.svg)](https://pypi.python.org/pypi/mlprimitives)
-[![Travis CI Shield](https://travis-ci.com/MLBazaar/MLPrimitives.svg?branch=master)](https://travis-ci.com/MLBazaar/MLPrimitives)
+[![Tests](https://github.com/MLBazaar/MLPrimitives/workflows/Run%20Tests/badge.svg)](https://github.com/MLBazaar/MLPrimitives/actions?query=workflow%3A%22Run+Tests%22+branch%3Amaster)
 [![Downloads](https://pepy.tech/badge/mlprimitives)](https://pepy.tech/project/mlprimitives)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MLBazaar/MLBlocks/master?filepath=examples/tutorials)
 
 # MLPrimitives
 
 Pipelines and primitives for machine learning and data science.
 
+* Documentation: https://MLBazaar.github.io/MLPrimitives
+* Github: https://github.com/MLBazaar/MLPrimitives
 * License: [MIT](https://github.com/MLBazaar/MLPrimitives/blob/master/LICENSE)
 * Development Status: [Pre-Alpha](https://pypi.org/search/?c=Development+Status+%3A%3A+2+-+Pre-Alpha)
-* Documentation: https://MLBazaar.github.io/MLPrimitives
-* Homepage: https://github.com/MLBazaar/MLPrimitives
 
 # Overview
 

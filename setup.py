@@ -40,7 +40,6 @@ setup_requires = [
 tests_require = [
     'pytest>=3.4.2',
     'pytest-cov>=2.6.0',
-    'jupyter>=1.0.0,<2',
     'rundoc>=0.4.3,<0.5',
 ]
 
@@ -71,10 +70,6 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
-    'importlib-metadata<2.0.0,>=0.12'
-
-    # Jupyter
-    'jupyter>=1.0.0',
 ]
 
 extras_require = {
@@ -121,7 +116,7 @@ setup(
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
-    url='https://github.com/HDI-Project/MLPrimitives',
+    url='https://github.com/MLBazaar/MLPrimitives',
     version='0.3.0.dev2',
     zip_safe=False,
 )

@@ -6,6 +6,7 @@ from functools import partial
 import keras
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from keras import backend as K
 from keras.layers import Input, Layer
 from keras.models import Model
