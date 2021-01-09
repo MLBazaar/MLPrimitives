@@ -1,5 +1,23 @@
 # History
 
+## 0.3.0 - 2021-01-09
+
+### New Primitives
+
+* Add primitive `sklearn.naive_bayes.GaussianNB` - [Issue #242](https://github.com/MLBazaar/MLPrimitives/issues/242) by @sarahmish
+* Add primitive `sklearn.linear_model.SGDClassifier` - [Issue #241](https://github.com/MLBazaar/MLPrimitives/issues/241) by @sarahmish
+
+### Primitive Improvements
+
+* Add offset to rolling_window_sequence primitive - [Issue #251](https://github.com/MLBazaar/MLPrimitives/issues/251) by @skyeeiskowitz
+* Rename the time_index column to time - [Issue #252](https://github.com/MLBazaar/MLPrimitives/issues/252) by @pvk-developer
+* Update featuretools dependency - [Issue #250](https://github.com/MLBazaar/MLPrimitives/issues/250) by @pvk-developer
+
+### General Improvements
+
+* Udpate dependencies and add python3.8 - [Issue #246](https://github.com/MLBazaar/MLPrimitives/issues/246) by @csala
+* Drop Python35 - [Issue #244](https://github.com/MLBazaar/MLPrimitives/issues/244) by @csala
+
 ## 0.2.5 - 2020-07-29
 
 ### Primitive Improvements
