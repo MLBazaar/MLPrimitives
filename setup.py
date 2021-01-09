@@ -12,26 +12,24 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'Keras>=2.1.6,<2.4',
-    'featuretools>=0.6.1,<0.12',
+    'Keras>=2.4',
+    'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
     'lightfm>=1.15,<2',
-    'mlblocks>=0.3.4,<0.4',
+    'mlblocks>=0.4.0.dev0,<0.5',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
-    'numpy>=1.15.2,<1.17',
+    'numpy<1.19.0,>=1.16.0',
     'opencv-python>=3.4.0.12,<5',
-    'pandas>=0.23.4,<0.25',
-    'python-louvain>=0.10,<0.14',
-    'scikit-image>=0.13.1,<0.15,!=0.14.3',
-    'scikit-learn>=0.20.0,<0.21',
+    'pandas>=1,<2',
+    'python-louvain>=0.10,<0.14',   # community
+    'scikit-image>=0.15',
+    'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
-    'setuptools>=41.0.0',
-    'statsmodels>=0.9.0,<1',
-    'tensorflow>=1.11.0,<2',
+    'statsmodels>=0.9.0,<0.13',
+    'tensorflow>=2,<2.4',
     'xgboost>=0.72.1,<1',
-    'docutils>=0.10,<0.16',    # required by botocore
 ]
 
 
@@ -40,10 +38,8 @@ setup_requires = [
 ]
 
 tests_require = [
-    'mlblocks>=0.3.0,<0.4',
     'pytest>=3.4.2',
     'pytest-cov>=2.6.0',
-    'jupyter>=1.0.0,<2',
     'rundoc>=0.4.3,<0.5',
 ]
 
@@ -74,10 +70,6 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
-
-    # Jupyter
-    'jupyter>=1.0.0',
-    'prompt-toolkit<2.1.0,>=2.0.0'
 ]
 
 extras_require = {
@@ -94,9 +86,9 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     description='Pipelines and primitives for machine learning and data science.',
     entry_points = {
@@ -120,11 +112,11 @@ setup(
     long_description_content_type='text/markdown',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
-    python_requires='>=3.5,<3.8',
+    python_requires='>=3.6,<3.9',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
-    url='https://github.com/HDI-Project/MLPrimitives',
-    version='0.2.5',
+    url='https://github.com/MLBazaar/MLPrimitives',
+    version='0.3.0.dev2',
     zip_safe=False,
 )
