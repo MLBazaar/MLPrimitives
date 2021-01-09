@@ -1,151 +1,183 @@
 # History
 
+## 0.3.0 - 2021-01-09
+
+### New Primitives
+
+* Add primitive `sklearn.naive_bayes.GaussianNB` - [Issue #242](https://github.com/MLBazaar/MLPrimitives/issues/242) by @sarahmish
+* Add primitive `sklearn.linear_model.SGDClassifier` - [Issue #241](https://github.com/MLBazaar/MLPrimitives/issues/241) by @sarahmish
+
+### Primitive Improvements
+
+* Add offset to rolling_window_sequence primitive - [Issue #251](https://github.com/MLBazaar/MLPrimitives/issues/251) by @skyeeiskowitz
+* Rename the time_index column to time - [Issue #252](https://github.com/MLBazaar/MLPrimitives/issues/252) by @pvk-developer
+* Update featuretools dependency - [Issue #250](https://github.com/MLBazaar/MLPrimitives/issues/250) by @pvk-developer
+
+### General Improvements
+
+* Udpate dependencies and add python3.8 - [Issue #246](https://github.com/MLBazaar/MLPrimitives/issues/246) by @csala
+* Drop Python35 - [Issue #244](https://github.com/MLBazaar/MLPrimitives/issues/244) by @csala
+
+## 0.2.5 - 2020-07-29
+
+### Primitive Improvements
+
+* Accept timedelta `window_size` in `cutoff_window_sequences` - [Issue #239](https://github.com/MLBazaar/MLPrimitives/issues/239) by @joanvaquer
+
+### Bug Fixes
+
+* ImportError: Keras requires TensorFlow 2.2 or higher. Install TensorFlow via `pip install tensorflow` - [Issue #237](https://github.com/MLBazaar/MLPrimitives/issues/237) by @joanvaquer
+
+### New Primitives
+
+* Add `pandas.DataFrame.set_index` primitive - [Issue #222](https://github.com/MLBazaar/MLPrimitives/issues/222) by @JDTheRipperPC
+
 ## 0.2.4 - 2020-01-30
 
 ### New Primitives
 
-* Add RangeScaler and RangeUnscaler primitives - [Issue #232](https://github.com/HDI-Project/MLPrimitives/issues/232) by @csala
+* Add RangeScaler and RangeUnscaler primitives - [Issue #232](https://github.com/MLBazaar/MLPrimitives/issues/232) by @csala
 
 ### Primitive Improvements
 
-* Extract input_shape from X in keras.Sequential - [Issue #223](https://github.com/HDI-Project/MLPrimitives/issues/223) by @csala
+* Extract input_shape from X in keras.Sequential - [Issue #223](https://github.com/MLBazaar/MLPrimitives/issues/223) by @csala
 
 ### Bug Fixes
 
-* mlprimitives.custom.text.TextCleaner fails if text is empty - [Issue #228](https://github.com/HDI-Project/MLPrimitives/issues/228) by @csala
-* Error when loading the reviews dataset - [Issue #230](https://github.com/HDI-Project/MLPrimitives/issues/230) by @csala
-* Curate dependencies: specify an explicit prompt-toolkit version range - [Issue #224](https://github.com/HDI-Project/MLPrimitives/issues/224) by @csala
+* mlprimitives.custom.text.TextCleaner fails if text is empty - [Issue #228](https://github.com/MLBazaar/MLPrimitives/issues/228) by @csala
+* Error when loading the reviews dataset - [Issue #230](https://github.com/MLBazaar/MLPrimitives/issues/230) by @csala
+* Curate dependencies: specify an explicit prompt-toolkit version range - [Issue #224](https://github.com/MLBazaar/MLPrimitives/issues/224) by @csala
 
 ## 0.2.3 - 2019-11-14
 
 ### New Primitives
 
-* Add primitive to make window_sequences based on cutoff times - [Issue #217](https://github.com/HDI-Project/MLPrimitives/issues/217) by @csala
-* Create a keras LSTM based TimeSeriesClassifier primitive - [Issue #218](https://github.com/HDI-Project/MLPrimitives/issues/218) by @csala
-* Add pandas DataFrame primitives - [Issue #214](https://github.com/HDI-Project/MLPrimitives/issues/214) by @csala
-* Add featuretools.EntitySet.normalize_entity primitive - [Issue #209](https://github.com/HDI-Project/MLPrimitives/issues/209) by @csala
+* Add primitive to make window_sequences based on cutoff times - [Issue #217](https://github.com/MLBazaar/MLPrimitives/issues/217) by @csala
+* Create a keras LSTM based TimeSeriesClassifier primitive - [Issue #218](https://github.com/MLBazaar/MLPrimitives/issues/218) by @csala
+* Add pandas DataFrame primitives - [Issue #214](https://github.com/MLBazaar/MLPrimitives/issues/214) by @csala
+* Add featuretools.EntitySet.normalize_entity primitive - [Issue #209](https://github.com/MLBazaar/MLPrimitives/issues/209) by @csala
 
 ### Primitive Improvements
 
-* Make featuretools.EntitySet.entity_from_dataframe entityset arg optional - [Issue #208](https://github.com/HDI-Project/MLPrimitives/issues/208) by @csala
+* Make featuretools.EntitySet.entity_from_dataframe entityset arg optional - [Issue #208](https://github.com/MLBazaar/MLPrimitives/issues/208) by @csala
 
-* Add text regression dataset - [Issue #206](https://github.com/HDI-Project/MLPrimitives/issues/206) by @csala
+* Add text regression dataset - [Issue #206](https://github.com/MLBazaar/MLPrimitives/issues/206) by @csala
 
 ### Bug Fixes
 
-* pandas.DataFrame.resample crash when grouping by integer columns - [Issue #211](https://github.com/HDI-Project/MLPrimitives/issues/211) by @csala
+* pandas.DataFrame.resample crash when grouping by integer columns - [Issue #211](https://github.com/MLBazaar/MLPrimitives/issues/211) by @csala
 
 ## 0.2.2 - 2019-10-08
 
 ### New Primitives
 
-* Add primitives for GAN based time-series anomaly detection - [Issue #200](https://github.com/HDI-Project/MLPrimitives/issues/200) by @AlexanderGeiger
-* Add `numpy.reshape` and `numpy.ravel` primitives - [Issue #197](https://github.com/HDI-Project/MLPrimitives/issues/197) by @AlexanderGeiger
-* Add feature selection primitive based on Lasso - [Issue #194](https://github.com/HDI-Project/MLPrimitives/issues/194) by @csala
+* Add primitives for GAN based time-series anomaly detection - [Issue #200](https://github.com/MLBazaar/MLPrimitives/issues/200) by @AlexanderGeiger
+* Add `numpy.reshape` and `numpy.ravel` primitives - [Issue #197](https://github.com/MLBazaar/MLPrimitives/issues/197) by @AlexanderGeiger
+* Add feature selection primitive based on Lasso - [Issue #194](https://github.com/MLBazaar/MLPrimitives/issues/194) by @csala
 
 ### Primitive Improvements
 
-* `feature_extraction.CategoricalEncoder` support dtype category - [Issue #196](https://github.com/HDI-Project/MLPrimitives/issues/196) by @csala
+* `feature_extraction.CategoricalEncoder` support dtype category - [Issue #196](https://github.com/MLBazaar/MLPrimitives/issues/196) by @csala
 
 ## 0.2.1 - 2019-09-09
 
 ### New Primitives
 
-* Timeseries Intervals to Mask Primitive - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
-* Add new primitive: Arima model - [Issue #168](https://github.com/HDI-Project/MLPrimitives/issues/168) by @AlexanderGeiger
+* Timeseries Intervals to Mask Primitive - [Issue #186](https://github.com/MLBazaar/MLPrimitives/issues/186) by @AlexanderGeiger
+* Add new primitive: Arima model - [Issue #168](https://github.com/MLBazaar/MLPrimitives/issues/168) by @AlexanderGeiger
 
 ### Primitive Improvements
 
-* Curate PCA primitive hyperparameters - [Issue #190](https://github.com/HDI-Project/MLPrimitives/issues/190) by @AlexanderGeiger
-* Add option to drop rolling window sequences - [Issue #186](https://github.com/HDI-Project/MLPrimitives/issues/186) by @AlexanderGeiger
+* Curate PCA primitive hyperparameters - [Issue #190](https://github.com/MLBazaar/MLPrimitives/issues/190) by @AlexanderGeiger
+* Add option to drop rolling window sequences - [Issue #186](https://github.com/MLBazaar/MLPrimitives/issues/186) by @AlexanderGeiger
 
 ### Bug Fixes
 
-* scikit-image==0.14.3 crashes when installed on Mac - [Issue #188](https://github.com/HDI-Project/MLPrimitives/issues/188) by @csala
+* scikit-image==0.14.3 crashes when installed on Mac - [Issue #188](https://github.com/MLBazaar/MLPrimitives/issues/188) by @csala
 
 ## 0.2.0
 
 ### New Features
 
 * Publish the pipelines as an `entry_point`
-[Issue #175](https://github.com/HDI-Project/MLPrimitives/issues/175) by @csala
+[Issue #175](https://github.com/MLBazaar/MLPrimitives/issues/175) by @csala
 
 ### Primitive Improvements
 
-* Improve pandas.DataFrame.resample primitive [Issue #177](https://github.com/HDI-Project/MLPrimitives/issues/177) by @csala
-* Improve `feature_extractor` primitives [Issue #183](https://github.com/HDI-Project/MLPrimitives/issues/183) by @csala
-* Improve `find_anomalies` primitive [Issue #180](https://github.com/HDI-Project/MLPrimitives/issues/180) by @AlexanderGeiger
+* Improve pandas.DataFrame.resample primitive [Issue #177](https://github.com/MLBazaar/MLPrimitives/issues/177) by @csala
+* Improve `feature_extractor` primitives [Issue #183](https://github.com/MLBazaar/MLPrimitives/issues/183) by @csala
+* Improve `find_anomalies` primitive [Issue #180](https://github.com/MLBazaar/MLPrimitives/issues/180) by @AlexanderGeiger
 
 ### Bug Fixes
 
-* Typo in the primitive keras.Sequential.LSTMTimeSeriesRegressor [Issue #176](https://github.com/HDI-Project/MLPrimitives/issues/176) by @DanielCalvoCerezo
+* Typo in the primitive keras.Sequential.LSTMTimeSeriesRegressor [Issue #176](https://github.com/MLBazaar/MLPrimitives/issues/176) by @DanielCalvoCerezo
 
 
 ## 0.1.10
 
 ### New Features
 
-* Add function to run primitives without a pipeline [Issue #43](https://github.com/HDI-Project/MLPrimitives/issues/43) by @csala
+* Add function to run primitives without a pipeline [Issue #43](https://github.com/MLBazaar/MLPrimitives/issues/43) by @csala
 
 ### New Pipelines
 
-* Add pipelines for all the MLBlocks examples [Issue #162](https://github.com/HDI-Project/MLPrimitives/issues/162) by @csala
+* Add pipelines for all the MLBlocks examples [Issue #162](https://github.com/MLBazaar/MLPrimitives/issues/162) by @csala
 
 ### Primitive Improvements
 
-* Add Early Stopping to `keras.Sequential.LSTMTimeSeriesRegressor` primitive [Issue #156](https://github.com/HDI-Project/MLPrimitives/issues/156) by @csala
-* Make FeatureExtractor primitives accept Numpy arrays [Issue #165](https://github.com/HDI-Project/MLPrimitives/issues/165) by @csala
-* Add window size and pruning to the `timeseries_anomalies.find_anomalies` primitive [Issue #160](https://github.com/HDI-Project/MLPrimitives/issues/160) by @csala
+* Add Early Stopping to `keras.Sequential.LSTMTimeSeriesRegressor` primitive [Issue #156](https://github.com/MLBazaar/MLPrimitives/issues/156) by @csala
+* Make FeatureExtractor primitives accept Numpy arrays [Issue #165](https://github.com/MLBazaar/MLPrimitives/issues/165) by @csala
+* Add window size and pruning to the `timeseries_anomalies.find_anomalies` primitive [Issue #160](https://github.com/MLBazaar/MLPrimitives/issues/160) by @csala
 
 
 ## 0.1.9
 
 ### New Features
 
-* Add a single table binary classification dataset [Issue #141](https://github.com/HDI-Project/MLPrimitives/issues/141) by @csala
+* Add a single table binary classification dataset [Issue #141](https://github.com/MLBazaar/MLPrimitives/issues/141) by @csala
 
 ### New Primitives
 
-* Add Multilayer Perceptron (MLP) primitive for binary classification [Issue #140](https://github.com/HDI-Project/MLPrimitives/issues/140) by @Hector-hedb12
-* Add primitive for Sequence classification with LSTM [Issue #150](https://github.com/HDI-Project/MLPrimitives/issues/150) by @Hector-hedb12
-* Add VGG-like convnet primitive [Issue #149](https://github.com/HDI-Project/MLPrimitives/issues/149) by @Hector-hedb12
-* Add Multilayer Perceptron (MLP) primitive for multi-class softmax classification [Issue #139](https://github.com/HDI-Project/MLPrimitives/issues/139) by @Hector-hedb12
-* Add primitive to count feature matrix columns [Issue #146](https://github.com/HDI-Project/MLPrimitives/issues/146) by @csala
+* Add Multilayer Perceptron (MLP) primitive for binary classification [Issue #140](https://github.com/MLBazaar/MLPrimitives/issues/140) by @Hector-hedb12
+* Add primitive for Sequence classification with LSTM [Issue #150](https://github.com/MLBazaar/MLPrimitives/issues/150) by @Hector-hedb12
+* Add VGG-like convnet primitive [Issue #149](https://github.com/MLBazaar/MLPrimitives/issues/149) by @Hector-hedb12
+* Add Multilayer Perceptron (MLP) primitive for multi-class softmax classification [Issue #139](https://github.com/MLBazaar/MLPrimitives/issues/139) by @Hector-hedb12
+* Add primitive to count feature matrix columns [Issue #146](https://github.com/MLBazaar/MLPrimitives/issues/146) by @csala
 
 ### Primitive Improvements
 
-* Add additional fit and predict arguments to keras.Sequential [Issue #161](https://github.com/HDI-Project/MLPrimitives/issues/161) by @csala
-* Add suport for keras.Sequential Callbacks [Issue #159](https://github.com/HDI-Project/MLPrimitives/issues/159) by @csala
-* Add fixed hyperparam to control keras.Sequential verbosity [Issue #143](https://github.com/HDI-Project/MLPrimitives/issues/143) by @csala
+* Add additional fit and predict arguments to keras.Sequential [Issue #161](https://github.com/MLBazaar/MLPrimitives/issues/161) by @csala
+* Add suport for keras.Sequential Callbacks [Issue #159](https://github.com/MLBazaar/MLPrimitives/issues/159) by @csala
+* Add fixed hyperparam to control keras.Sequential verbosity [Issue #143](https://github.com/MLBazaar/MLPrimitives/issues/143) by @csala
 
 ## 0.1.8
 
 ### New Primitives
 
-* mlprimitives.custom.timeseries_preprocessing.time_segments_average - [Issue #137](https://github.com/HDI-Project/MLPrimitives/issues/137)
+* mlprimitives.custom.timeseries_preprocessing.time_segments_average - [Issue #137](https://github.com/MLBazaar/MLPrimitives/issues/137)
 
 ### New Features
 
-* Add target_index output in timseries_preprocessing.rolling_window_sequences - [Issue #136](https://github.com/HDI-Project/MLPrimitives/issues/136)
+* Add target_index output in timseries_preprocessing.rolling_window_sequences - [Issue #136](https://github.com/MLBazaar/MLPrimitives/issues/136)
 
 ## 0.1.7
 
 ### General Improvements
 
-* Validate JSON format in `make lint` -  [Issue #133](https://github.com/HDI-Project/MLPrimitives/issues/133)
-* Add demo datasets - [Issue #131](https://github.com/HDI-Project/MLPrimitives/issues/131)
-* Improve featuretools.dfs primitive - [Issue #127](https://github.com/HDI-Project/MLPrimitives/issues/127)
+* Validate JSON format in `make lint` -  [Issue #133](https://github.com/MLBazaar/MLPrimitives/issues/133)
+* Add demo datasets - [Issue #131](https://github.com/MLBazaar/MLPrimitives/issues/131)
+* Improve featuretools.dfs primitive - [Issue #127](https://github.com/MLBazaar/MLPrimitives/issues/127)
 
 ### New Primitives
 
-* pandas.DataFrame.resample - [Issue #123](https://github.com/HDI-Project/MLPrimitives/issues/123)
-* pandas.DataFrame.unstack - [Issue #124](https://github.com/HDI-Project/MLPrimitives/issues/124)
-* featuretools.EntitySet.add_relationship - [Issue #126](https://github.com/HDI-Project/MLPrimitives/issues/126)
-* featuretools.EntitySet.entity_from_dataframe - [Issue #126](https://github.com/HDI-Project/MLPrimitives/issues/126)
+* pandas.DataFrame.resample - [Issue #123](https://github.com/MLBazaar/MLPrimitives/issues/123)
+* pandas.DataFrame.unstack - [Issue #124](https://github.com/MLBazaar/MLPrimitives/issues/124)
+* featuretools.EntitySet.add_relationship - [Issue #126](https://github.com/MLBazaar/MLPrimitives/issues/126)
+* featuretools.EntitySet.entity_from_dataframe - [Issue #126](https://github.com/MLBazaar/MLPrimitives/issues/126)
 
 ### Bug Fixes
 
-* Bug in timeseries_anomalies.py - [Issue #119](https://github.com/HDI-Project/MLPrimitives/issues/119)
+* Bug in timeseries_anomalies.py - [Issue #119](https://github.com/MLBazaar/MLPrimitives/issues/119)
 
 ## 0.1.6
 

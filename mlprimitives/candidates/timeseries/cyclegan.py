@@ -6,9 +6,9 @@ from functools import partial
 import keras
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from keras import backend as K
-from keras.layers import Input
-from keras.layers.merge import _Merge
+from keras.layers import Input, Layer
 from keras.models import Model
 from scipy import integrate, stats
 
@@ -18,10 +18,17 @@ from mlprimitives.utils import import_object
 LOGGER = logging.getLogger(__name__)
 
 
-class RandomWeightedAverage(_Merge):
-    def _merge_function(self, inputs):
-        alpha = K.random_uniform((64, 1, 1))
+class RandomWeightedAverage(Layer):
+    def __init__(self, batch_size):
+        super().__init__()
+        self.batch_size = batch_size
+
+    def call(self, inputs, **kwargs):
+        alpha = tf.random_uniform((self.batch_size, 1, 1, 1))
         return (alpha * inputs[0]) + ((1 - alpha) * inputs[1])
+
+    def compute_output_shape(self, input_shape):
+        return input_shape[0]
 
 
 class CycleGAN():
@@ -130,7 +137,7 @@ class CycleGAN():
         z_ = self.encoder(x)
         fake_x = self.critic_x(x_)
         valid_x = self.critic_x(x)
-        interpolated_x = RandomWeightedAverage()([x, x_])
+        interpolated_x = RandomWeightedAverage(self.batch_size)([x, x_])
 
         validity_interpolated_x = self.critic_x(interpolated_x)
         partial_gp_loss_x = partial(self._gradient_penalty_loss, averaged_samples=interpolated_x)
@@ -143,7 +150,7 @@ class CycleGAN():
 
         fake_z = self.critic_z(z_)
         valid_z = self.critic_z(z)
-        interpolated_z = RandomWeightedAverage()([z, z_])
+        interpolated_z = RandomWeightedAverage(self.batch_size)([z, z_])
         validity_interpolated_z = self.critic_z(interpolated_z)
         partial_gp_loss_z = partial(self._gradient_penalty_loss, averaged_samples=interpolated_z)
         partial_gp_loss_z.__name__ = 'gradient_penalty'
@@ -210,10 +217,11 @@ class CycleGAN():
                 N-dimensional array containing the input sequences for the model.
 
         Returns:
-            ndarray:
-                N-dimensional array containing the reconstructions for each input sequence.
-            ndarray:
-                N-dimensional array containing the critic scores for each input sequence.
+            typle:
+                ndarray:
+                    N-dimensional array containing the reconstructions for each input sequence.
+                ndarray:
+                    N-dimensional array containing the critic scores for each input sequence.
         """
         X = X.reshape((-1, self.shape[0], 1))
         z_ = self.encoder.predict(X)

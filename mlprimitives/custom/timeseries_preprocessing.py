@@ -38,7 +38,7 @@ def intervals_to_mask(index, intervals):
 
 
 def rolling_window_sequences(X, index, window_size, target_size, step_size, target_column,
-                             drop=None, drop_windows=False):
+                             offset=0, drop=None, drop_windows=False):
     """Create rolling window sequences out of time series data.
 
     The function creates an array of input sequences and an array of target sequences by rolling
@@ -58,6 +58,8 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
             Indicating the number of steps to move the window forward each round.
         target_column (int):
             Indicating which column of X is the target.
+        offset (int):
+            Indicating the number of steps between the input and the target sequence.
         drop (ndarray or None or str or float or bool):
             Optional. Array of boolean values indicating which values of X are invalid, or value
             indicating which value should be dropped. If not given, `None` is used.
@@ -89,7 +91,7 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
                 drop = X == drop
 
     start = 0
-    max_start = len(X) - window_size - target_size + 1
+    max_start = len(X) - window_size - target_size - offset + 1
     while start < max_start:
         end = start + window_size
 
@@ -101,9 +103,9 @@ def rolling_window_sequences(X, index, window_size, target_size, step_size, targ
                 continue
 
         out_X.append(X[start:end])
-        out_y.append(target[end:end + target_size])
+        out_y.append(target[end + offset:end + offset + target_size])
         X_index.append(index[start])
-        y_index.append(index[end])
+        y_index.append(index[end + offset])
         start = start + step_size
 
     return np.asarray(out_X), np.asarray(out_y), np.asarray(X_index), np.asarray(y_index)
@@ -213,8 +215,10 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
         timeseries (pandas.DataFrame):
             ``pandas.DataFrame`` containing the actual timeseries data. The time index
             and either be set as the DataFrame index or as a column.
-        window_size (int):
-            Numer of elements to take before the cutoff time for each sequence.
+        window_size (int, str or Timedelta):
+            If an integer is passed, it is the number of elements to take before the
+            cutoff time for each sequence. If a string or a Timedelta object is passed,
+            it is the period of time we take the elements from.
         cutoff_time (str):
             Optional. If given, the indicated column will be used as the cutoff time.
             Otherwise, the table index will be used.
@@ -237,6 +241,9 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
 
     columns = list(X.columns)
 
+    if not isinstance(window_size, int):
+        window_size = pd.to_timedelta(window_size)
+
     output = list()
     for idx, row in enumerate(X.itertuples()):
         selected = timeseries[timeseries.index < row.Index]
@@ -246,7 +253,12 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
             mask &= selected.pop(column) == getattr(row, column)
 
         selected = selected[mask]
-        selected = selected.iloc[-window_size:]
+
+        if not isinstance(window_size, int):
+            min_time = selected.index[-1] - window_size
+            selected = selected.loc[selected.index > min_time]
+        else:
+            selected = selected.iloc[-window_size:]
 
         len_selected = len(selected)
         if (len_selected != window_size):
