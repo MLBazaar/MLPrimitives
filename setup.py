@@ -20,21 +20,16 @@ install_requires = [
     'mlblocks>=0.4.0.dev0,<0.5',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
+    'numpy<1.19.0,>=1.16.0',
     'opencv-python>=3.4.0.12,<5',
     'pandas>=1,<2',
-    'python-louvain>=0.10,<0.14',
+    'python-louvain>=0.10,<0.14',   # community
     'scikit-image>=0.15',
     'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
-    'statsmodels>=0.9.0,<1',
+    'statsmodels>=0.9.0,<0.13',
     'tensorflow>=2,<2.4',
     'xgboost>=0.72.1,<1',
-
-    # Conflict fixing
-    'docutils<0.16,>=0.10',
-    'urllib3<1.26,>=1.20',
-    'h5py<2.11.0,>=2.10.0',
-    'numpy<1.19.0,>=1.16.0',
 ]
 
 
@@ -45,7 +40,6 @@ setup_requires = [
 tests_require = [
     'pytest>=3.4.2',
     'pytest-cov>=2.6.0',
-    'jupyter>=1.0.0,<2',
     'rundoc>=0.4.3,<0.5',
 ]
 
@@ -76,10 +70,6 @@ development_requires = [
     # Advanced testing
     'coverage>=4.5.1,<6',
     'tox>=2.9.1,<4',
-    'importlib-metadata<2.0.0,>=0.12'
-
-    # Jupyter
-    'jupyter>=1.0.0',
 ]
 
 extras_require = {
@@ -126,7 +116,7 @@ setup(
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
-    url='https://github.com/HDI-Project/MLPrimitives',
+    url='https://github.com/MLBazaar/MLPrimitives',
     version='0.3.0.dev2',
     zip_safe=False,
 )
