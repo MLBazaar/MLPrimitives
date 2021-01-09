@@ -55,5 +55,5 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install package and dependencies
       run: pip install .[test]
-    - name: make test
-      run: make test
+    - name: make test-unit
+      run: make test-unit
