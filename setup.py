@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'Keras>=2.4',
+    'Keras>=2.4,<2.6',
     'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
