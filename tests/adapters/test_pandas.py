@@ -48,6 +48,7 @@ class ResampleTest(TestCase):
         self.df['group2'] = ['C', 'C', 'D', 'D'] * 24
 
         out = resample(self.df.set_index('dt'), '1d', groupby=['group1', 'group2'])
+        out['value'] = out['value'].astype(int)
 
         assert_frame_equal(out, pd.DataFrame([
             {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 1), 'value': 10},
