@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'Keras>=2.4,<2.6',
+    'Keras>=2.4,<2.5',
     'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
@@ -20,7 +20,7 @@ install_requires = [
     'mlblocks>=0.4.0.dev0,<0.5',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
-    'numpy<1.19.0,>=1.16.0',
+    'numpy<1.21.0,>=1.16.0',
     'opencv-python>=3.4.0.12,<5',
     'pandas>=1,<2',
     'python-louvain>=0.10,<0.14',   # community
@@ -28,7 +28,7 @@ install_requires = [
     'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
     'statsmodels>=0.9.0,<0.13',
-    'tensorflow>=2,<2.4',
+    'tensorflow>=2,<2.5',
     'xgboost>=0.72.1,<1',
 ]
 
