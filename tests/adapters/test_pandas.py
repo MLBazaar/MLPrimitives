@@ -17,7 +17,7 @@ class ResampleTest(TestCase):
                 for day in range(4)
                 for hour in range(24)
             ],
-            'value': list(range(4 * 24))
+            'value': np.arange(0, 4 * 24, dtype=float)
         })
 
     def test_resample_rule_str(self):
@@ -50,22 +50,22 @@ class ResampleTest(TestCase):
         out = resample(self.df.set_index('dt'), '1d', groupby=['group1', 'group2'])
 
         assert_frame_equal(out, pd.DataFrame([
-            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 1), 'value': 10},
-            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 2), 'value': 34},
-            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 3), 'value': 58},
-            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 4), 'value': 82},
-            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 1), 'value': 12},
-            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 2), 'value': 36},
-            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 3), 'value': 60},
-            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 4), 'value': 84},
-            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 1), 'value': 11},
-            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 2), 'value': 35},
-            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 3), 'value': 59},
-            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 4), 'value': 83},
-            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 1), 'value': 13},
-            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 2), 'value': 37},
-            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 3), 'value': 61},
-            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 4), 'value': 85},
+            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 1), 'value': 10.0},
+            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 2), 'value': 34.0},
+            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 3), 'value': 58.0},
+            {'group1': 'A', 'group2': 'C', 'dt': datetime(2000, 1, 4), 'value': 82.0},
+            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 1), 'value': 12.0},
+            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 2), 'value': 36.0},
+            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 3), 'value': 60.0},
+            {'group1': 'A', 'group2': 'D', 'dt': datetime(2000, 1, 4), 'value': 84.0},
+            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 1), 'value': 11.0},
+            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 2), 'value': 35.0},
+            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 3), 'value': 59.0},
+            {'group1': 'B', 'group2': 'C', 'dt': datetime(2000, 1, 4), 'value': 83.0},
+            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 1), 'value': 13.0},
+            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 2), 'value': 37.0},
+            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 3), 'value': 61.0},
+            {'group1': 'B', 'group2': 'D', 'dt': datetime(2000, 1, 4), 'value': 85.0},
         ], columns=['group1', 'group2', 'dt', 'value']))
 
     def test_resample_on(self):
@@ -95,10 +95,10 @@ class ResampleTest(TestCase):
         out = resample(self.df.set_index('dt'), '1d', aggregation='max')
 
         assert_frame_equal(out, pd.DataFrame([
-            {'dt': datetime(2000, 1, 1), 'value': 23},
-            {'dt': datetime(2000, 1, 2), 'value': 47},
-            {'dt': datetime(2000, 1, 3), 'value': 71},
-            {'dt': datetime(2000, 1, 4), 'value': 95},
+            {'dt': datetime(2000, 1, 1), 'value': 23.0},
+            {'dt': datetime(2000, 1, 2), 'value': 47.0},
+            {'dt': datetime(2000, 1, 3), 'value': 71.0},
+            {'dt': datetime(2000, 1, 4), 'value': 95.0},
         ]))
 
     def test_resample_aggregation_func(self):
@@ -106,10 +106,10 @@ class ResampleTest(TestCase):
         out = resample(self.df.set_index('dt'), '1d', aggregation=np.max)
 
         assert_frame_equal(out, pd.DataFrame([
-            {'dt': datetime(2000, 1, 1), 'value': 23},
-            {'dt': datetime(2000, 1, 2), 'value': 47},
-            {'dt': datetime(2000, 1, 3), 'value': 71},
-            {'dt': datetime(2000, 1, 4), 'value': 95},
+            {'dt': datetime(2000, 1, 1), 'value': 23.0},
+            {'dt': datetime(2000, 1, 2), 'value': 47.0},
+            {'dt': datetime(2000, 1, 3), 'value': 71.0},
+            {'dt': datetime(2000, 1, 4), 'value': 95.0},
         ]))
 
     def test_resample_aggregation_import(self):
@@ -117,8 +117,8 @@ class ResampleTest(TestCase):
         out = resample(self.df.set_index('dt'), '1d', aggregation='numpy.max')
 
         assert_frame_equal(out, pd.DataFrame([
-            {'dt': datetime(2000, 1, 1), 'value': 23},
-            {'dt': datetime(2000, 1, 2), 'value': 47},
-            {'dt': datetime(2000, 1, 3), 'value': 71},
-            {'dt': datetime(2000, 1, 4), 'value': 95},
+            {'dt': datetime(2000, 1, 1), 'value': 23.0},
+            {'dt': datetime(2000, 1, 2), 'value': 47.0},
+            {'dt': datetime(2000, 1, 3), 'value': 71.0},
+            {'dt': datetime(2000, 1, 4), 'value': 95.0},
         ]))
