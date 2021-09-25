@@ -28,14 +28,14 @@ class Sequential(object):
     def __getstate__(self):
         state = self.__dict__.copy()
 
-        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=True) as fd:
+        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=False) as fd:
             keras.models.save_model(state.pop('model'), fd.name, overwrite=True)
             state['model_str'] = fd.read()
 
         return state
 
     def __setstate__(self, state):
-        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=True) as fd:
+        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=False) as fd:
             fd.write(state.pop('model_str'))
             fd.flush()
 
