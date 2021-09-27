@@ -65,7 +65,7 @@ class SequentialTest(TestCase):
              [1, 2, 3, 4],
              [1, 2, 3, 4]],
         ])
-        Sequential._augment_hyperparameters(sequential, X, kwargs)
+        Sequential._augment_hyperparameters(sequential, X, 'input', kwargs)
 
         # Assert
         assert kwargs == {'input_shape': (3, 4)}
