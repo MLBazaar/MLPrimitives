@@ -1,5 +1,16 @@
 # History
 
+## 0.3.1 - 2021-10-07
+
+### Primitive Improvements
+
+* Dynamic target_shape in keras adapter - [Issue #263](https://github.com/MLBazaar/MLPrimitives/issues/263) by @sarahmish
+* Save keras primitives in Windows environment - [Issue #261](https://github.com/MLBazaar/MLPrimitives/issues/261) by @sarahmish
+
+### General Imporvements
+
+* Update TensorFlow and NumPy dependency - [Issue #259](https://github.com/MLBazaar/MLPrimitives/issues/259) by @sarahmish
+
 ## 0.3.0 - 2021-01-09
 
 ### New Primitives
