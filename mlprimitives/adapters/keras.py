@@ -28,14 +28,14 @@ class Sequential(object):
     def __getstate__(self):
         state = self.__dict__.copy()
 
-        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=True) as fd:
+        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=False) as fd:
             keras.models.save_model(state.pop('model'), fd.name, overwrite=True)
             state['model_str'] = fd.read()
 
         return state
 
     def __setstate__(self, state):
-        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=True) as fd:
+        with tempfile.NamedTemporaryFile(suffix='.hdf5', delete=False) as fd:
             fd.write(state.pop('model_str'))
             fd.flush()
 
@@ -85,17 +85,18 @@ class Sequential(object):
         if key in self.hyperparameters and self.hyperparameters[key] is None:
             kwargs[key] = value
 
-    def _augment_hyperparameters(self, X, kwargs):
+    def _augment_hyperparameters(self, X, mode, kwargs):
         shape = np.asarray(X)[0].shape
         length = shape[0]
-        self._setdefault(kwargs, 'input_shape', shape)
-        self._setdefault(kwargs, 'input_dim', length)
-        self._setdefault(kwargs, 'input_length', length)
+        self._setdefault(kwargs, '{}_shape'.format(mode), shape)
+        self._setdefault(kwargs, '{}_dim'.format(mode), length)
+        self._setdefault(kwargs, '{}_length'.format(mode), length)
 
         return kwargs
 
     def fit(self, X, y, **kwargs):
-        self._augment_hyperparameters(X, kwargs)
+        self._augment_hyperparameters(X, 'input', kwargs)
+        self._augment_hyperparameters(y, 'target', kwargs)
         self.model = self._build_model(**kwargs)
 
         if self.classification:
