@@ -53,6 +53,7 @@ development_requires = [
     'm2r>=0.2.0,<0.3',
     'Sphinx>=1.7.1,<3',
     'sphinx_rtd_theme>=0.2.4,<0.5',
+    'docutils>=0.14,<0.18',
     'ipython>=6.5.0',
 
     # style check
