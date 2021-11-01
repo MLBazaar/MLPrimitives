@@ -87,7 +87,11 @@ class Sequential(object):
 
     def _augment_hyperparameters(self, X, mode, kwargs):
         shape = np.asarray(X)[0].shape
-        length = shape[0]
+        if shape:
+            length = shape[0]
+        else:
+            length = 1  # supporting shape (l, )
+
         self._setdefault(kwargs, '{}_shape'.format(mode), shape)
         self._setdefault(kwargs, '{}_dim'.format(mode), length)
         self._setdefault(kwargs, '{}_length'.format(mode), length)
