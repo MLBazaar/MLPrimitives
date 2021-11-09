@@ -1,8 +1,14 @@
 # History
 
+## 0.3.2 - 2021-11-09
+
+### Adapter Improvements
+
+* Inferring data shapes with single dimension for keras adapter - [Issue #265](https://github.com/MLBazaar/MLPrimitives/issues/265) by @sarahmish
+
 ## 0.3.1 - 2021-10-07
 
-### Primitive Improvements
+### Adapter Improvements
 
 * Dynamic target_shape in keras adapter - [Issue #263](https://github.com/MLBazaar/MLPrimitives/issues/263) by @sarahmish
 * Save keras primitives in Windows environment - [Issue #261](https://github.com/MLBazaar/MLPrimitives/issues/261) by @sarahmish
