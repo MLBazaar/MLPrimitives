@@ -1,0 +1,42 @@
+{
+    "name": "mlblocks.MLPipeline",
+    "contributors": [
+        "Plamen Valentinov Kolev",
+        "Sarah Alnegheimish <smish@mit.edu>"
+    ],
+    "description": "Executes an MLPipeline as a primitive.",
+    "primitive": "mlblocks.MLPipeline",
+    "fit": {
+        "method": "fit",
+        "args": "get_fit_args"
+    },
+    "produce": {
+        "method": "predict",
+        "args": "get_predict_args",
+        "output": "get_outputs"
+    },
+    "hyperparameters": {
+        "fixed": {
+            "pipeline": {
+                "type": "str",
+                "default": null
+            },
+            "primitives": {
+                "type": "list",
+                "default": []
+            },
+            "init_params": {
+                "type": "dict",
+                "default": {}
+            },
+            "input_names": {
+                "type": "dict",
+                "default": {}
+            },
+            "output_names": {
+                "type": "dict",
+                "default": {}
+            }
+        }
+    }
+}
