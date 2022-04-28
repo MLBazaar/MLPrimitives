@@ -72,6 +72,7 @@ class Sequential(object):
         self.validation_split = validation_split
         self.batch_size = batch_size
         self.shuffle = shuffle
+        self._fitted = False
 
         for callback in callbacks:
             callback['class'] = import_object(callback['class'])
@@ -99,9 +100,10 @@ class Sequential(object):
         return kwargs
 
     def fit(self, X, y, **kwargs):
-        self._augment_hyperparameters(X, 'input', kwargs)
-        self._augment_hyperparameters(y, 'target', kwargs)
-        self.model = self._build_model(**kwargs)
+        if not self._fitted:
+            self._augment_hyperparameters(X, 'input', kwargs)
+            self._augment_hyperparameters(y, 'target', kwargs)
+            self.model = self._build_model(**kwargs)
 
         if self.classification:
             y = keras.utils.to_categorical(y)
@@ -114,6 +116,8 @@ class Sequential(object):
         self.model.fit(X, y, epochs=self.epochs, verbose=self.verbose, callbacks=callbacks,
                        validation_split=self.validation_split, batch_size=self.batch_size,
                        shuffle=self.shuffle)
+
+        self._fitted = True
 
     def predict(self, X):
         y = self.model.predict(X, batch_size=self.batch_size, verbose=self.verbose)
