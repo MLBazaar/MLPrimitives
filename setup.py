@@ -55,6 +55,8 @@ development_requires = [
     'sphinx_rtd_theme>=0.2.4,<0.5',
     'docutils>=0.14,<0.18',
     'ipython>=6.5.0',
+    'mistune>=0.7,<2',
+    'Jinja2>=2,<3.1',
 
     # style check
     'flake8>=3.7.7,<4',
