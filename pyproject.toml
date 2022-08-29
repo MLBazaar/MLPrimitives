@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools >= 61",
+    "setuptools >= 59",
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
@@ -100,14 +100,6 @@ dev = [
     'tox>=2.9.1,<4',
 ]
 
-[project.scripts]
-console_scripts = 
-    mlprimitives = "mlprimitives.cli:main"
-mlblocks =
-    primitives = "mlprimitives:MLBLOCKS_PRIMITIVES"
-    pipelines = "mlprimitives:MLBLOCKS_PIPELINES"
-mlprimitives =
-    jsons_path = "mlprimitives:MLBLOCKS_PRIMITIVES"
 
 [tool.setuptools]
 include-package-data = true
