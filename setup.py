@@ -92,6 +92,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     description='Pipelines and primitives for machine learning and data science.',
     entry_points = {
@@ -115,7 +116,7 @@ setup(
     long_description_content_type='text/markdown',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
-    python_requires='>=3.6,<3.9',
+    python_requires='>=3.6,<3.10',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
