@@ -96,7 +96,7 @@ The process of releasing a new version involves several steps combining both ``g
 ``bumpversion`` which, briefly:
 
 1. Merge what is in ``master`` branch into ``stable`` branch.
-2. Update the version in the code and condiguration files.
+2. Update the version in the code and configuration files.
 3. Create a new git tag pointing at the corresponding commit in ``stable`` branch.
 4. Merge the new commit from ``stable`` into ``master``.
 2. Update the version in the code and condiguration files again to start the next development iteration.
