@@ -21,7 +21,7 @@ install_requires = [
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
     'numpy<1.21.0,>=1.16.0',
-    'opencv-python>=3.4.0.12,<5',
+    'opencv-python>=3.4.0.12,<4.7',
     'pandas>=1,<2',
     'python-louvain>=0.10,<0.14',   # community
     'scikit-image>=0.15',
@@ -30,6 +30,7 @@ install_requires = [
     'statsmodels>=0.9.0,<0.13',
     'tensorflow>=2,<2.5',
     'xgboost>=0.72.1,<1',
+    'protobuf<4',
 ]
 
 
@@ -55,6 +56,8 @@ development_requires = [
     'sphinx_rtd_theme>=0.2.4,<0.5',
     'docutils>=0.14,<0.18',
     'ipython>=6.5.0',
+    'mistune>=0.7,<2',
+    'Jinja2>=2,<3.1',
 
     # style check
     'flake8>=3.7.7,<4',
@@ -63,6 +66,7 @@ development_requires = [
     # fix style issues
     'autoflake>=1.1,<2',
     'autopep8>=1.4.3,<2',
+    'importlib-metadata<5',
 
     # distribute on PyPI
     'twine>=1.10.0,<4',
@@ -118,6 +122,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/MLBazaar/MLPrimitives',
-    version='0.3.2',
+    version='0.3.3.dev1',
     zip_safe=False,
 )
