@@ -1,5 +1,15 @@
 # History
 
+## 0.3.3 - 2023-01-20
+
+### General Imporvements
+
+* Update dependencies - [Issue #276](https://github.com/MLBazaar/MLPrimitives/issues/276) by @sarahmish
+
+### Adapter Improvements
+
+* Building model within fit in keras adapter- [Issue #267](https://github.com/MLBazaar/MLPrimitives/issues/267) by @sarahmish
+
 ## 0.3.2 - 2021-11-09
 
 ### Adapter Improvements
