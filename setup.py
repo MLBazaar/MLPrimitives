@@ -17,7 +17,7 @@ install_requires = [
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
     'lightfm>=1.15,<2',
-    'mlblocks>=0.4.0.dev0,<0.5',
+    'mlblocks>=0.4.0.dev0,<0.6',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
     'numpy<1.21.0,>=1.16.0',
@@ -122,6 +122,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/MLBazaar/MLPrimitives',
-    version='0.3.3',
+    version='0.3.4.dev1',
     zip_safe=False,
 )
