@@ -1,5 +1,11 @@
 # History
 
+## 0.3.5 - 2023-04-14
+
+### General Imporvements
+
+* Update `mlblocks` cap - [Issue #278](https://github.com/MLBazaar/MLPrimitives/issues/278) by @sarahmish
+
 ## 0.3.4 - 2023-01-24
 
 ### General Imporvements
