@@ -269,4 +269,8 @@ def cutoff_window_sequences(X, timeseries, window_size, cutoff_time=None, time_i
 
         output.append(selected.values)
 
-    return np.array(output)
+    output = np.array(output, dtype=object)
+    if output.ndim >= 2:
+        output = output.astype(float)
+
+    return output
