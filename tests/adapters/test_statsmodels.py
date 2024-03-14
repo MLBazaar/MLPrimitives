@@ -6,7 +6,7 @@ from numpy.testing import assert_allclose
 from mlprimitives.adapters.statsmodels import ARIMA
 
 
-@patch('statsmodels.tsa.arima_model.ARIMA')
+@patch('statsmodels.tsa.arima.model.ARIMA')
 def test_arima_1d(arima_mock):
     arima = ARIMA(1, 0, 0, 3)
     X = np.array([1, 2, 3, 4, 5])
@@ -15,7 +15,7 @@ def test_arima_1d(arima_mock):
     assert arima_mock.call_args[1] == {'order': (1, 0, 0)}
 
 
-@patch('statsmodels.tsa.arima_model.ARMAResults.forecast')
+@patch('statsmodels.tsa.arima.model.ARIMAResultsWrapper.forecast')
 def test_predict_1d(arima_mock):
     arima_mock.return_value = [[1, 2, 3]]
 
@@ -29,7 +29,7 @@ def test_predict_1d(arima_mock):
     arima_mock.assert_called_once_with(3)
 
 
-@patch('statsmodels.tsa.arima_model.ARIMA')
+@patch('statsmodels.tsa.arima.model.ARIMA')
 def test_arima_2d(arima_mock):
     arima = ARIMA(1, 0, 0, 3)
     X = np.array([
@@ -46,7 +46,7 @@ def test_arima_2d(arima_mock):
     assert arima_mock.call_args_list[2][1] == {'order': (1, 0, 0)}
 
 
-@patch('statsmodels.tsa.arima_model.ARMAResults.forecast')
+@patch('statsmodels.tsa.arima.model.ARIMAResultsWrapper.forecast')
 def test_predict_2d(arima_mock):
     arima_mock.side_effect = [
         [[1, 2, 3]],
