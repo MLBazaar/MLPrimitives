@@ -1,5 +1,13 @@
 # History
 
+## 0.4.0 - 2024-03-22
+
+### General Imporvements
+
+* Upgrade python versions 3.9, 3.10, and 3.11 - [Issue #279](https://github.com/MLBazaar/MLPrimitives/issues/279) by @sarahmish
+* Adapt to statsmodels.tsa.arima_model.ARIMA deprecation
+ - [Issue #253](https://github.com/MLBazaar/MLPrimitives/issues/253) by @sarahmish
+
 ## 0.3.5 - 2023-04-14
 
 ### General Imporvements
