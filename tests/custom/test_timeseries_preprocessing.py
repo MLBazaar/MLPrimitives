@@ -417,7 +417,7 @@ class CutoffWindowSequencesTest(TestCase):
                 [15, 35],
                 [16, 36]
             ])
-        ])
+        ], dtype=object)
 
         assert_allclose(
             array[0],

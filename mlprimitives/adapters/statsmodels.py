@@ -1,5 +1,5 @@
 import numpy as np
-from statsmodels.tsa import arima_model
+from statsmodels.tsa.arima import model
 
 
 class ARIMA(object):
@@ -45,8 +45,8 @@ class ARIMA(object):
 
         num_sequences = len(X)
         for sequence in range(num_sequences):
-            arima = arima_model.ARIMA(X[sequence], order=(self.p, self.d, self.q))
-            arima_fit = arima.fit(disp=0)
+            arima = model.ARIMA(X[sequence], order=(self.p, self.d, self.q))
+            arima_fit = arima.fit()
             arima_results.append(arima_fit.forecast(self.steps)[0])
 
         arima_results = np.asarray(arima_results)
