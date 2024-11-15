@@ -132,6 +132,6 @@ setup(
     test_suite='tests',
     tests_require=tests_require,
     url='https://github.com/MLBazaar/MLPrimitives',
-    version='0.4.1.dev1',
+    version='0.4.1',
     zip_safe=False,
 )
