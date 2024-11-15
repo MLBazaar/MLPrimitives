@@ -45,10 +45,6 @@
                 "type": "str, int or float",
                 "default": null
             },
-            "verbose": {
-                "type": "bool",
-                "default": false
-            },
             "copy": {
                 "type": "bool",
                 "default": true
