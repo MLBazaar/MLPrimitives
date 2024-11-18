@@ -113,7 +113,6 @@ corresponding functions or classes, which can also be found in the `mlprimitives
 Examples
 ********
 
-* LightFM
 * Keras Sequential LSTMTextClassifier
 * NetworkX Graph Feature Extraction
 

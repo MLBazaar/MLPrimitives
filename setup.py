@@ -16,7 +16,6 @@ install_requires = [
     'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
-    'lightfm>=1.15,<2',
     'mlblocks>=0.6,<0.7',
     'networkx>=2.0,<3',
     'nltk>=3.3,<4',
