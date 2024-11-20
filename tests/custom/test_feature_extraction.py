@@ -35,7 +35,7 @@ class FeatureExtractorTest(TestCase):
         fe.fit(X)
 
         assert fe._features == ['b']
-        assert fe._detect_features.not_called()
+        fe._detect_features.assert_not_called()
 
     def test_fit_auto_pandas(self):
         class FE(FeatureExtractor):
@@ -52,7 +52,7 @@ class FeatureExtractorTest(TestCase):
         fe.fit(X)
 
         assert fe._features == ['a', 'b']
-        assert fe._detect_features.called_once_with(X)
+        fe._detect_features.assert_called_once_with(X)
         expected_calls = [
             ((pd.Series(['a', 'b', 'c']), ), {}),
             ((pd.Series(['d', 'e', 'f']), ), {})
@@ -74,7 +74,7 @@ class FeatureExtractorTest(TestCase):
         fe.fit(X)
 
         assert fe._features == [0, 1]
-        assert fe._detect_features.called_once_with(X)
+        assert fe._detect_features.called
         expected_calls = [
             ((pd.Series(['a', 'b', 'c']), ), {}),
             ((pd.Series(['d', 'e', 'f']), ), {})

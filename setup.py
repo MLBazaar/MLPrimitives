@@ -12,7 +12,7 @@ with open('HISTORY.md', encoding='utf-8') as history_file:
     history = history_file.read()
 
 install_requires = [
-    'Keras>=2.4,<2.15',
+    'Keras>=2.4',
     'featuretools>=0.6.1,<0.23',
     'iso639>=0.1.4,<0.2',
     'langdetect>=1.0.7,<2',
@@ -21,13 +21,13 @@ install_requires = [
     'nltk>=3.3,<4',
     'numpy>=1.16.0,<2',
     'opencv-python>=3.4.0.12,<4.7',
-    'pandas>=1,<2',
+    'pandas>=1,<3',
     'python-louvain>=0.10,<0.14',   # community
     'scikit-image>=0.15',
     'scikit-learn>=0.21',
     'scipy>=1.1.0,<2',
     'statsmodels>=0.9.0,<0.15',
-    'tensorflow>=2,<2.15',
+    'tensorflow>=2,<2.20',
     'xgboost>=0.72.1,<2',
     'protobuf<4',
 ]
@@ -47,7 +47,7 @@ development_requires = [
     # general
     'bumpversion>=0.5.3,<0.6',
     'pip>=9.0.1',
-    'watchdog>=0.8.3,<0.11',
+    'watchdog>=0.8.3,<5',
 
     # docs
     'm2r>=0.2.0,<0.3',
@@ -103,6 +103,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
     description='Pipelines and primitives for machine learning and data science.',
     entry_points = {
@@ -126,7 +127,7 @@ setup(
     long_description_content_type='text/markdown',
     name='mlprimitives',
     packages=find_packages(include=['mlprimitives', 'mlprimitives.*']),
-    python_requires='>=3.8,<3.12',
+    python_requires='>=3.8,<3.13',
     setup_requires=setup_requires,
     test_suite='tests',
     tests_require=tests_require,
